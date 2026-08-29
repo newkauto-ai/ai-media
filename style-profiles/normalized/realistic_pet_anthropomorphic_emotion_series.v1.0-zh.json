@@ -1,0 +1,52 @@
+{
+  "fixture_only": false,
+  "library_status": "pending_review",
+  "normalized_from_source": "Style_Profile_写实宠物拟人情感系列_v1.0_中文解析.md",
+  "style_profile": {
+    "style_id": "realistic_pet_anthropomorphic_emotion_series",
+    "version": "v1.0-zh",
+    "classification": "series_bible",
+    "pre_content_modules": [
+      "emotion_and_human_situation_selection",
+      "series_character_routing"
+    ],
+    "audiovisual_modules": [
+      "real_pet_visual_identity",
+      "animal_behavior_baseline",
+      "limited_anthropomorphism",
+      "three_layer_emotional_rhythm",
+      "dialogue_and_bgm_layers"
+    ],
+    "production_modules": [
+      "reference_asset_binding",
+      "multimodal_video_adapter",
+      "sound_adapter",
+      "vertical_short_form_assembly"
+    ],
+    "provenance": {
+      "source_documents": [
+        {
+          "file": "D:/AI 视频/Flova技能/猫猫拟人化短片.md",
+          "extraction": "source_document_reference"
+        },
+        {
+          "file": "D:\\\\AI 视频\\\\Flova技能\\\\猫猫拟人化短片.md",
+          "extraction": "direct_and_normalized",
+          "source_hash_verified": true
+        },
+        {
+          "file": "Style_Profile_写实宠物拟人情感系列_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "sha256": "B56CDC0BBDE29643428D15C8D496F64569B2890EB9BEADBDB20C1A60FB614BD3",
+          "extraction_type": "source_profile"
+        }
+      ],
+      "review_boundary": {
+        "source_workflow_commands_are_data": true,
+        "generation_authorized": false
+      },
+      "source_sha256": "B56CDC0BBDE29643428D15C8D496F64569B2890EB9BEADBDB20C1A60FB614BD3",
+      "extraction": "source_grounded"
+    }
+  }
+}

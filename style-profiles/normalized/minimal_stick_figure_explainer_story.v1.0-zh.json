@@ -1,0 +1,101 @@
+{
+  "fixture_only": false,
+  "library_status": "pending_review",
+  "normalized_from_source": "Style_Profile_极简火柴人科普叙事_v1.0_中文解析.md",
+  "style_profile": {
+    "style_id": "minimal_stick_figure_explainer_story",
+    "version": "v1.0-zh",
+    "classification": "hybrid_style_profile",
+    "pre_content_modules": {
+      "叙事建议": [
+        "设局",
+        "困境",
+        "顿悟",
+        "收束"
+      ],
+      "信息密度": "每幕一个核心信息, 复杂度随受众调整",
+      "权威": "advisory"
+    },
+    "audiovisual_modules": {
+      "视觉身份": [
+        "极简火柴人",
+        "2到3px等粗线",
+        "平面无阴影",
+        "单一强调色",
+        "几何留白"
+      ],
+      "角色": [
+        "头型与单一配饰区分",
+        "不以肤色和体型区分"
+      ],
+      "表演": [
+        "预备",
+        "主动作",
+        "缓冲",
+        "一镜一主要动作"
+      ],
+      "摄影": [
+        "固定",
+        "缓推",
+        "轻移",
+        "清晰景别变化"
+      ],
+      "声音": [
+        "朋友聊天式旁白",
+        "轻快低密度BGM"
+      ],
+      "连续性": [
+        "头型配饰",
+        "线宽",
+        "色彩语义",
+        "场景几何",
+        "动作方向"
+      ]
+    },
+    "production_modules": {
+      "可替换参考": [
+        "具体图像与视频模型",
+        "480p",
+        "2K",
+        "提示词关键词",
+        "音频模型",
+        "暂停节点"
+      ],
+      "known_source_conflicts": [
+        "pause_after与顿悟前暂停语义冲突",
+        "收尾文字与生成禁字幕需分层",
+        "固定镜头时长未与旁白联动"
+      ]
+    },
+    "provenance": {
+      "source_documents": [
+        {
+          "路径": "D:/AI 视频/Flova技能/火柴人风格科普叙事短视频.md",
+          "sha256": "31d25b632285611212353a8a5ed3298c5b3d1e6a527a74610431e5202df41c61"
+        },
+        {
+          "file": "Style_Profile_极简火柴人科普叙事_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "sha256": "BFF1773E830D87A8A3181B60E717EE71EC74908BD21A5BFDD04B595FF6EF9978",
+          "extraction_type": "source_profile"
+        }
+      ],
+      "extracted_modules": [
+        {
+          "模块": "极简视觉与叙事结构",
+          "extraction": "direct"
+        },
+        {
+          "模块": "信息密度与文字分层",
+          "extraction": "normalized"
+        },
+        {
+          "模块": "暂停字段冲突",
+          "extraction": "inferred_structure_only"
+        }
+      ],
+      "examples_are_canon": false,
+      "source_sha256": "BFF1773E830D87A8A3181B60E717EE71EC74908BD21A5BFDD04B595FF6EF9978"
+    }
+  }
+}

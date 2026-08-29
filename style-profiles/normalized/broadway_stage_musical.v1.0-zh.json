@@ -1,0 +1,115 @@
+{
+  "fixture_only": false,
+  "library_status": "pending_review",
+  "normalized_from_source": "Style_Profile_百老汇舞台音乐剧_v1.0_中文解析.md",
+  "style_profile": {
+    "style_id": "broadway_stage_musical",
+    "version": "v1.0-zh",
+    "classification": "mixed",
+    "pre_content_modules": {
+      "compatibility": {
+        "strong": [
+          "舞台音乐剧",
+          "歌舞叙事",
+          "群舞表演"
+        ],
+        "weak": [
+          "自然主义纪录片",
+          "无音乐无表演的写实剧情"
+        ]
+      },
+      "content_constraints": [
+        "选择一个主要时代域",
+        "不得为了套用风格改写冻结脚本",
+        "经典作品与角色示例不是 Canon"
+      ]
+    },
+    "audiovisual_modules": {
+      "visual_identity": [
+        "舞台空间可读",
+        "编舞阵列有序",
+        "灯光承担叙事",
+        "镜头与乐句同步"
+      ],
+      "visual_domains": [
+        "复古黄金舞台",
+        "现代爵士隔离",
+        "当代仪式或流行舞台"
+      ],
+      "cinematography": {
+        "baseline": [
+          "宽景定场",
+          "平稳推进",
+          "横移展示阵列"
+        ],
+        "climax": [
+          "完整乐句",
+          "主角推进",
+          "灯光同步"
+        ],
+        "avoid": [
+          "无意义碎切",
+          "无序群舞",
+          "舞台轴线丢失"
+        ]
+      },
+      "performance": [
+        "唱说舞主次明确",
+        "动作落在音乐与叙事重音",
+        "群舞说明队形、方向、间距和变化"
+      ],
+      "sound_design": [
+        "剧院空间反射",
+        "人声前置",
+        "管弦乐分层"
+      ],
+      "music_direction": [
+        "配器和密度服从时代域",
+        "高潮仍保证歌词清晰"
+      ]
+    },
+    "production_modules": {
+      "replaceable": true,
+      "source_references": [
+        "人物设定图版式",
+        "参考资产绑定",
+        "固定模型与分辨率",
+        "单镜时长",
+        "黑场切与轨道布局"
+      ]
+    },
+    "provenance": {
+      "source_documents": [
+        {
+          "file": "百老汇音乐剧风格.md",
+          "sha256": "D0687E8448D1551F74B8FC4BDBC6CFC5EDB93950094E1F6509589E15EE2C397E",
+          "source_version": "本地文件 2026-08-18"
+        },
+        {
+          "file": "Style_Profile_百老汇舞台音乐剧_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "sha256": "4526D0F6B9C082D6E809A79EA5891F992FA0E33712A73CCDA139AC8CAFE76125",
+          "extraction_type": "source_profile"
+        }
+      ],
+      "extracted_modules": [
+        {
+          "field": "pre_content_modules",
+          "source_section": "planner 与 storyboard_designer",
+          "extraction_type": "normalized"
+        },
+        {
+          "field": "audiovisual_modules",
+          "source_section": "storyboard_designer 与 write_the_prompt",
+          "extraction_type": "normalized"
+        },
+        {
+          "field": "production_modules",
+          "source_section": "media_generator 与 video_assembler",
+          "extraction_type": "direct"
+        }
+      ],
+      "source_sha256": "4526D0F6B9C082D6E809A79EA5891F992FA0E33712A73CCDA139AC8CAFE76125"
+    }
+  }
+}

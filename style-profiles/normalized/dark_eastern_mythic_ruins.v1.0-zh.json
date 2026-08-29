@@ -1,0 +1,183 @@
+{
+  "fixture_only": false,
+  "library_status": "pending_review",
+  "normalized_from_source": "Style_Profile_暗黑东方神话废墟奇幻_v1.0_中文解析.md",
+  "style_profile": {
+    "style_id": "dark_eastern_mythic_ruins",
+    "version": "v1.0-zh",
+    "classification": "mixed",
+    "classification_detail": {
+      "primary": "narrative_style_bible",
+      "secondary": [
+        "combat_style_bible",
+        "audiovisual_style_profile",
+        "production_playbook"
+      ],
+      "full_series_canon": "partial"
+    },
+    "pre_content_modules": {
+      "load": [
+        "dark_mythic_theme_preference",
+        "ruin_world_preference",
+        "fate_tone"
+      ],
+      "ip_specific": {
+        "load": "source_ip_reference",
+        "condition": "explicit_only"
+      }
+    },
+    "audiovisual_modules": {
+      "load": [
+        "visual_identity",
+        "color_system",
+        "light_system",
+        "ruin_materials",
+        "scale_grammar",
+        "combat_grammar",
+        "physics",
+        "particles",
+        "cinematography",
+        "transitions",
+        "sound_design",
+        "narration",
+        "music"
+      ]
+    },
+    "production_modules": {
+      "load": [
+        "prompt_structure_reference",
+        "model_adapter_reference",
+        "postproduction_reference"
+      ]
+    },
+    "visual_identity": {
+      "core": [
+        "暗黑东方神话",
+        "废墟美学",
+        "低饱和",
+        "高反差",
+        "巨物尺度压迫",
+        "重物理"
+      ]
+    },
+    "color": {
+      "base": [
+        "深灰",
+        "暗褐",
+        "黛绿",
+        "暗红",
+        "暗金"
+      ],
+      "lighting_rule": "暖高光 + 冷暗部强对冲"
+    },
+    "light": {
+      "chiaroscuro": true,
+      "tyndall_shafts": true,
+      "rim_light": "暖金",
+      "atmospheric_particles_in_beam": true
+    },
+    "materials": [
+      "风化石材",
+      "剥落古建彩漆",
+      "泥塑",
+      "青铜锈斑",
+      "黑铁战损",
+      "撕裂布料"
+    ],
+    "combat": {
+      "decompose_complex_action": true,
+      "beats": [
+        "起势",
+        "释放",
+        "碰撞",
+        "收势"
+      ],
+      "ruin_closeups_between_impacts": true,
+      "directional_match": true
+    },
+    "sound": {
+      "spatial_acoustics": true,
+      "heavy_transient_impacts": true,
+      "magical_resonance": true,
+      "envelope": [
+        "起音",
+        "峰值",
+        "余韵"
+      ]
+    },
+    "narration": {
+      "profile": "深沉、低沉、沧桑、缓慢、宿命感的中老年男声倾向"
+    },
+    "music": {
+      "style": "暗黑东方史诗",
+      "instruments": [
+        "埙",
+        "二胡",
+        "锣鼓",
+        "重型打击",
+        "低频弦乐"
+      ],
+      "independent_track": true
+    },
+    "source_ip_reference": {
+      "load_policy": "explicit_only",
+      "contains": [
+        "悟空角色",
+        "金箍棒",
+        "具体法术体系",
+        "特定 Boss 设计"
+      ]
+    },
+    "production_adapter_reference": {
+      "replaceable": true,
+      "known_conflicts": [
+        "模型唯一锁定与后备降级同时存在",
+        "480p 生成与 1080p 目标混合",
+        "no text 与章节书法标题并存"
+      ]
+    },
+    "conflict_policy": {
+      "no_silent_content_rewrite": true,
+      "topic_owner": "Topic Hunter",
+      "script_semantics_owner": "Script Engine",
+      "audiovisual_owner": "Audiovisual Director",
+      "final_model_prompt_owner": "Video Production"
+    },
+    "provenance": {
+      "source_documents": [
+        {
+          "file": "暗黑中式奇幻短片 (黑神话悟空风格).md",
+          "sha256": "12C3C0174DA2E8A0BF997D94F8800FE9CA08EA9169588A6F1174DE86DA2E4500",
+          "source_version": "本地文件 2026-08-18"
+        },
+        {
+          "file": "Style_Profile_暗黑东方神话废墟奇幻_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "sha256": "D897C3B65BAD41AACD5518A1FC94958C37E6063700B9C6473E42C4749A6E5E11",
+          "extraction_type": "source_profile"
+        }
+      ],
+      "extracted_modules": [
+        {
+          "field": "pre_content_modules",
+          "source_section": "planner 与 storyboard_designer",
+          "extraction_type": "normalized"
+        },
+        {
+          "field": "audiovisual_modules",
+          "source_section": "storyboard_designer 与 write_the_prompt",
+          "extraction_type": "normalized"
+        },
+        {
+          "field": "production_modules",
+          "source_section": "media_generator 与 video_assembler",
+          "extraction_type": "direct"
+        }
+      ],
+      "extraction": "source_grounded",
+      "ip_specific_content_separated": true,
+      "inferred_missing_fields": false,
+      "source_sha256": "D897C3B65BAD41AACD5518A1FC94958C37E6063700B9C6473E42C4749A6E5E11"
+    }
+  }
+}

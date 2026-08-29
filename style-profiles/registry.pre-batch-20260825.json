@@ -1,0 +1,27 @@
+{
+  "registry_version": "1.0",
+  "source_directory": "style-profiles/source",
+  "normalized_directory": "style-profiles/normalized",
+  "profiles": [
+    {
+      "profile_id": "soft_cute_3d_healing",
+      "source_file": "Style_Profile_软萌3D治愈动画_v1.1_中文重解析.md",
+      "source_sha256": "EFCD65142C5B88C75E59A5CA3CBD46823934FBFDC23AD98AE84C4202875E40ED",
+      "normalized_file": "soft-cute-3d-healing.v1.1-zh.json",
+      "normalized_version": "v1.1-zh",
+      "classification": "hybrid_style_profile",
+      "status": "ready",
+      "provenance_verified": true
+    },
+    {
+      "profile_id": "hand_drawn_nature_growth_fantasy",
+      "source_file": "Style_Profile_手绘自然成长奇幻_v1.1_中文重解析.md",
+      "source_sha256": "A80EE95C408972D12F8B0F6CDA759F37EDAD7CD28536C120A22A1A2667BECF17",
+      "normalized_file": "hand-drawn-nature-growth-fantasy.v1.1-zh.json",
+      "normalized_version": "v1.1-zh",
+      "classification": "narrative_style_bible",
+      "status": "pending_review",
+      "provenance_verified": true
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "fixture_only": false,
+  "library_status": "pending_review",
+  "normalized_from_source": "Style_Profile_赛博巨物硬科幻_v1.0_中文解析.md",
+  "style_profile": {
+    "style_id": "cyber_gargantuan_hard_scifi",
+    "version": "v1.0-zh",
+    "classification": "mixed",
+    "pre_content_modules": {
+      "compatibility": "direct",
+      "worldview": "direct",
+      "themes": "normalized"
+    },
+    "audiovisual_modules": {
+      "visual_identity": "direct",
+      "cinematography": "direct",
+      "performance": "direct",
+      "sound_design": "direct",
+      "music_direction": "direct",
+      "continuity_schema": "normalized"
+    },
+    "production_modules": {
+      "model_adapter_reference": "direct",
+      "generation_workflow": "direct",
+      "prompt_templates": "direct"
+    },
+    "provenance": {
+      "source_sha256": "04CFDB121DAD1071B54943577788C5465A9FD464D7DC3A4581F54DF5421C0868",
+      "extraction": "source_grounded",
+      "source_documents": [
+        {
+          "file": "Style_Profile_赛博巨物硬科幻_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "sha256": "04CFDB121DAD1071B54943577788C5465A9FD464D7DC3A4581F54DF5421C0868",
+          "extraction_type": "source_profile"
+        }
+      ]
+    }
+  }
+}

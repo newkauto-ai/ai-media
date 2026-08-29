@@ -1,0 +1,50 @@
+{
+  "fixture_only": false,
+  "library_status": "ready",
+  "normalized_from_source": "Style_Profile_FPV连续穿越运镜_v1.0_中文解析.md",
+  "style_profile": {
+    "style_id": "fpv_continuous_flight_take",
+    "version": "v1.0-zh",
+    "classification": "production_playbook",
+    "pre_content_modules": {
+      "route_gate": "需要可识别起点、终点、连续通道和真实空间参照物"
+    },
+    "audiovisual_modules": {
+      "cinematography": "第一人称 FPV 连续向前穿越",
+      "motion": "平滑推进、转向、横移、升降、环绕与穿越",
+      "continuity": "无切镜、无重置、无瞬移、无倒退、无视角切换",
+      "sound": null,
+      "music": null
+    },
+    "production_modules": {
+      "adapter_reference": "replaceable",
+      "route_overlay_must_be_removed": true
+    },
+    "provenance": {
+      "source_documents": [
+        {
+          "file": "无人机运镜一镜到底.md",
+          "sha256": "E339D153AC41BF07ED8C40D58F08E6C3B4EDD5C392714D785B275E0381F251E6"
+        },
+        {
+          "file": "Style_Profile_FPV连续穿越运镜_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "sha256": "B95909310BEF83FF30C6F117DD896EF2370C92925E3F90FFD80C3060EFFB9068",
+          "extraction_type": "source_profile"
+        }
+      ],
+      "extracted_modules": [
+        {
+          "module": "路线分析、运镜与连续性",
+          "extraction": "normalized"
+        },
+        {
+          "module": "固定提示词、模型、时长和分辨率",
+          "extraction": "direct",
+          "routed_to": "production_modules"
+        }
+      ],
+      "source_sha256": "B95909310BEF83FF30C6F117DD896EF2370C92925E3F90FFD80C3060EFFB9068"
+    }
+  }
+}

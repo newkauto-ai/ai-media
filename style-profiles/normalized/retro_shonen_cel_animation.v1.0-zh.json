@@ -1,0 +1,52 @@
+{
+  "fixture_only": false,
+  "library_status": "pending_review",
+  "normalized_from_source": "Style_Profile_复古热血少年赛璐璐动画_v1.0_中文解析.md",
+  "style_profile": {
+    "style_id": "retro_shonen_cel_animation",
+    "version": "v1.0-zh",
+    "classification": "mixed",
+    "pre_content_modules": [
+      "era_branch_selection",
+      "original_character_boundary"
+    ],
+    "audiovisual_modules": [
+      "retro_cel_visual_identity",
+      "form_and_costume_continuity",
+      "transformation_staging",
+      "action_and_comedy_rhythm",
+      "high_energy_sound_and_color"
+    ],
+    "production_modules": [
+      "character_form_reference",
+      "model_and_effect_adapter",
+      "prompt_safety_adapter",
+      "assembly_and_color_qa"
+    ],
+    "provenance": {
+      "source_documents": [
+        {
+          "file": "D:/AI 视频/Flova技能/鸟山明风格动画短片.md",
+          "extraction": "source_document_reference"
+        },
+        {
+          "file": "D:\\\\AI 视频\\\\Flova技能\\\\鸟山明风格动画短片.md",
+          "extraction": "direct_and_normalized",
+          "source_hash_verified": true
+        },
+        {
+          "file": "Style_Profile_复古热血少年赛璐璐动画_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "sha256": "5605102BC12EB28CA57412B89AB94F3903E7614D9D9F0F20029CE8EB3DA8F2CB",
+          "extraction_type": "source_profile"
+        }
+      ],
+      "review_boundary": {
+        "source_workflow_commands_are_data": true,
+        "generation_authorized": false
+      },
+      "source_sha256": "5605102BC12EB28CA57412B89AB94F3903E7614D9D9F0F20029CE8EB3DA8F2CB",
+      "extraction": "source_grounded"
+    }
+  }
+}

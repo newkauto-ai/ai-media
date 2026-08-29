@@ -1,0 +1,473 @@
+{
+  "fixture_only": false,
+  "library_status": "pending_review",
+  "normalized_from_source": "Style_Profile_东方仙侠天域电影视觉_v1.0_中文解析.md",
+  "style_profile": {
+    "style_id": "eastern_xianxia_celestial_cinema",
+    "version": "v1.0-zh",
+    "classification": "pure_visual_style",
+    "classification_detail": {
+      "primary": "pure_visual_style",
+      "full_series_canon": false,
+      "has_visual_system": true,
+      "has_camera_language": true,
+      "has_environment_performance": "conditional",
+      "has_sound_system": false,
+      "has_voice_system": false,
+      "has_music_system": false,
+      "has_prompt_templates": false,
+      "has_model_specific_rules": false
+    },
+    "pre_content_modules": {
+      "compatibility": {
+        "authority": "medium",
+        "preferred": [
+          "东方仙侠环境与世界观展示",
+          "神域城市、悬空宫阙、天门和天域文明",
+          "敬畏、神圣、辽阔或巨构压迫的环境型镜头"
+        ],
+        "conditional": [
+          "强动作",
+          "人物近景",
+          "地理总览",
+          "历史题材"
+        ],
+        "avoid": [
+          "现代写实都市",
+          "纯工业科幻",
+          "产品静物与室内口播"
+        ]
+      },
+      "content_boundaries": {
+        "authority": "hard",
+        "value": [
+          "不拥有 Topic Thesis 或 Frozen Script",
+          "不定义角色身份、剧情动作、事实或对白",
+          "不把视觉方便当成内容改写理由"
+        ],
+        "late_conflict_outcomes": [
+          "UPSTREAM-CONSTRAINT-LATE",
+          "FLAG-CONFLICT"
+        ]
+      }
+    },
+    "audiovisual_modules": {
+      "visual_identity": {
+        "authority": "hard",
+        "value": "以可见尺度关系、清楚空间拓扑、结构可信的东方幻想建筑、高明度选择性色彩、有来源的电影光、可区分材质和跨镜连续性，构成可居住、可延展、可连续拍摄的天域环境",
+        "medium": "cinematic_eastern_xianxia_environment",
+        "geometry": "单一主导空间几何与清楚层级",
+        "depth": "开放区域携带空间信息，近重远轻，远景保持可读",
+        "atmosphere": "透明分层空气与局部薄雾"
+      },
+      "global_visual_dna": {
+        "authority": "hard",
+        "principles": [
+          "关系化巨物尺度",
+          "单一主导空间几何",
+          "结构可信的东方幻想建筑",
+          "携带空间信息的开放区域",
+          "高明度与选择性色彩",
+          "有来源的电影光",
+          "分层透明空气",
+          "可区分的材质行为",
+          "幻想世界内部物理一致",
+          "环境连续性优先"
+        ],
+        "scale_evidence": [
+          "人与门洞、柱列、平台、桥梁或树木直接比较",
+          "结构延伸出画面或跨越云层、峡谷、水系和城区",
+          "重复构件随纵深规律递减",
+          "近处框架、承载面、主结构、从属空间与极远终点形成尺度断层",
+          "连通城区、交通、庭院、水系和极远聚落证明文明范围"
+        ],
+        "spatial_geometries": [
+          "单点纵深",
+          "对称轴",
+          "对角线引导",
+          "框景揭示",
+          "曲线流动",
+          "纵向上升",
+          "横向层叠"
+        ],
+        "construction_logic": [
+          "先建立梁柱、屋面、基座、平台厚度、连接、承重和通行关系",
+          "装饰集中在可读区域",
+          "巨型表面简洁、安静、有重量",
+          "超现实结构仍保持透视、重力、材质和光线内部一致"
+        ],
+        "color_language": [
+          "高明度中低纯度基底",
+          "局部提高朱红、矿物绿、群青、衣饰或金属边缘纯度",
+          "白石、玉、云和皮肤保持材质区别",
+          "暗部有色、开放、可读",
+          "远景降低对比和纯度但不变灰幕"
+        ],
+        "material_language": {
+          "stone": "重量、颗粒、切面、风化和边缘磨损",
+          "jade": "矿物纹理、适度透光与抛光边缘",
+          "lacquered_wood": "颜色深度、木纹、磨损边缘和克制反射",
+          "bronze_and_metal": "厚度、锈蚀或磨亮凸缘",
+          "water": "表面张力、折射、破碎反射和连续流向",
+          "silk_and_gauze": "褶皱、重量、透光和统一风向",
+          "cloud_and_mist": "体积、层次、光照和流向"
+        }
+      },
+      "visual_domains": {
+        "authority": "hard_after_selection",
+        "selection_policy": "每个项目只加载脚本实际需要的 Domain；首版不做权重混合",
+        "domains": [
+          {
+            "domain_id": "luminous_celestial_landmark",
+            "display_name": "明透仙境地标",
+            "core_promise": "围绕一个可辨识地标，建立明亮、清澈、材质丰富且具有旅行或静观感的仙界环境",
+            "spatial_grammar": [
+              "一个主地标与一条接近或观看路径",
+              "近景框架、承载面、地标、轻量从属空间与终端远景"
+            ],
+            "scale": [
+              "人物、台阶、门洞、树木或桥梁提供比较",
+              "地标可部分出画但不强制巨构压顶"
+            ],
+            "light_field": [
+              "清晰高空天光",
+              "有方向的柔和日光或雨后光",
+              "开放而有色的阴影"
+            ],
+            "geometry": [
+              "单体仙阁",
+              "天门",
+              "祭台",
+              "神树书阁",
+              "观星台",
+              "悬空藏经阁"
+            ],
+            "materials": [
+              "浅石",
+              "玉",
+              "漆木",
+              "铜",
+              "水",
+              "丝",
+              "植物",
+              "云"
+            ],
+            "distinguishing_prohibitions": [
+              "不自动扩展为高密度城市",
+              "不增加多个同等主地标",
+              "不重复固定白玉长廊或月门构图"
+            ]
+          },
+          {
+            "domain_id": "inhabited_divine_civilization",
+            "display_name": "可居住神域文明",
+            "core_promise": "天域像有人居住、可通行、可运行的文明，而不是孤立宫殿散落在云中",
+            "spatial_grammar": [
+              "一个统治城区、神圣轴线或城市冠部",
+              "两个以上从属空间组",
+              "可见交通、庭院、水系、街巷、云港或廊桥连接",
+              "极远聚落、高层天域或终端天光"
+            ],
+            "scale": [
+              "城区范围、人物通行面、重复结构与极远聚落共同证明",
+              "密度不能替代尺度关系"
+            ],
+            "light_field": [
+              "城区间保留空气、庭院、门洞、桥下和云隙",
+              "深景深优先，远景仍可读"
+            ],
+            "geometry": [
+              "轴线升阶",
+              "层叠浮空大陆",
+              "岛屿网络",
+              "环形神域",
+              "云崖城市"
+            ],
+            "distinguishing_prohibitions": [
+              "不退化为一座主殿加空白云海",
+              "不形成没有连接关系的建筑散点",
+              "不用连续屋顶铺满画面而消灭空间",
+              "不让所有城区拥有相同视觉权重"
+            ]
+          },
+          {
+            "domain_id": "threshold_megastructure_revelation",
+            "display_name": "门槛巨构揭示",
+            "core_promise": "观众位于巨构之下或门槛附近，通过遮挡、出画、结构断层和远方终点感到敬畏、神圣或压迫",
+            "spatial_grammar": [
+              "近处门槛、柱列、檐下、崖壁或平台边缘",
+              "人物承载面与小尺度环境人物",
+              "被裁切、遮挡或延伸出画的主巨构",
+              "较轻从属天域与清楚极远终点"
+            ],
+            "scale": [
+              "人与开口、柱体、桥梁、平台或远域形成尺度断层",
+              "裁切不能作为唯一尺度证据"
+            ],
+            "light_field": [
+              "门槛内外明暗分区",
+              "低角度侧光或逆光",
+              "局部薄雾揭示结构"
+            ],
+            "geometry": [
+              "压顶结构",
+              "门槛窥视",
+              "桥入不可达空间",
+              "垂直断裂",
+              "结构切面"
+            ],
+            "distinguishing_prohibitions": [
+              "不默认完整展示主建筑",
+              "不默认鸟瞰、航拍或地图视角",
+              "不把人物放大成前景英雄",
+              "不把开放边缘变成所有镜头硬锁"
+            ]
+          }
+        ]
+      },
+      "environment": {
+        "authority": "high",
+        "value": "按选定 Domain 组织空间拓扑、建筑结构、开放区域与尺度证据",
+        "open_space_rule": "开放区域携带层级、轮廓、光值和悬空高度信息；占比按构图与叙事决定",
+        "atmospheric_rule": "近重远轻，局部薄雾分层，不能用均匀灰雾包裹世界"
+      },
+      "cinematography": {
+        "authority": "high",
+        "camera_intents": {
+          "divine_awe_or_pressure": {
+            "preferred": "人眼高度或低位，平视或轻微仰视，主结构位于中上部",
+            "lens_logic": [
+              "远距离中长焦压缩城区与巨构",
+              "保持足够距离的广角用于门槛、桥梁、柱列和结构底部"
+            ]
+          },
+          "immersive_exploration": {
+            "preferred": "接近人眼高度，沿桥、廊、阶、庭院或水系建立路径",
+            "lens_logic": [
+              "中等焦段保持建筑可信",
+              "广角只在有清楚前景框架和纵深路径时使用"
+            ]
+          },
+          "geographic_overview": {
+            "preferred": "只在用户或脚本明确需要城区分布、浮岛关系或交通拓扑时使用高位镜头",
+            "restriction": "不因宏大、云海或城市而自动航拍"
+          }
+        },
+        "record_separately": [
+          "camera_height",
+          "viewing_distance",
+          "tilt",
+          "focal_length"
+        ],
+        "shot_duty_policy": {
+          "environment_establishing": "继承尺度证据、空间层级、东方结构、材质与光色",
+          "key_frame": "优先当前动作、角色道具连续性、主光、天气与材质身份",
+          "character_closeup": "继承角色 Canon、服装材质、色温与背景 Domain；放宽巨物尺度和完整环境",
+          "action": "继承动作因果、方向、空间可读性与环境身份；放宽低运动和完整远景",
+          "geographic_overview": "继承城区连接、地貌、水系和空间拓扑；放宽观者低位规则"
+        },
+        "baseline_motion": [
+          "固定",
+          "缓推",
+          "缓拉",
+          "缓慢横移",
+          "小幅升降",
+          "沿明确路径探索",
+          "从门槛或遮挡中揭示巨构"
+        ],
+        "aspect_behavior": {
+          "16:9": "横向展开环境、建筑和从属空间，保持一个主视觉与清楚远景",
+          "21:9": "强化横向层叠、边缘框景和远方延展，避免平均散布多个地标",
+          "4:3": "强化庄严、古典、对称或稳定轴线，避免角落拥挤",
+          "3:2": "强化自然电影剧照感、非对称三分和可信镜头位置",
+          "4:5": "纵向堆叠承载面、主体结构与天光，控制侧边裁切",
+          "9:16": "建立自下而上的纵向阅读路径，只表示一张竖屏画面"
+        }
+      },
+      "character_visual": {
+        "authority": "conditional",
+        "value": [
+          "环境人物作为尺度、生活和通行信号",
+          "默认虚构成年人、背向或斜后方，动作平静且与环境发生关系",
+          "人物大小由镜头职责决定",
+          "服装具有结构、重量、层次和主色",
+          "具体朝代、身份、纹样、配饰和颜色由 Series Canon 或项目决定"
+        ]
+      },
+      "performance": {
+        "authority": "conditional",
+        "value": "环境人物以观看、行走、停驻、登阶、交谈或操作既有设施等低复杂度动作证明世界正在运行；人物近景和动作高潮由当前项目决定",
+        "wind_rule": "头发、衣袖、后摆、披帛、旗幡、云雾和水面响应同一主风向"
+      },
+      "sound_design": {
+        "authority": "none",
+        "value": null
+      },
+      "voice_system": {
+        "authority": "none",
+        "value": null
+      },
+      "music_direction": {
+        "authority": "none",
+        "value": null
+      },
+      "continuity_schema": {
+        "authority": "hard",
+        "track": {
+          "environment": [
+            "visual_domain_id",
+            "建筑结构族与关键几何",
+            "主地标、统治城区或主巨构身份",
+            "地貌、水系、桥梁和交通连接",
+            "云层高度、雾区和远景可见度",
+            "主光方向、色温、天气和时段",
+            "材质、湿度、磨损和反射状态"
+          ],
+          "character_in_environment": [
+            "人物数量、尺度与位置",
+            "服装结构、主色、发型和配饰",
+            "观看方向、行进方向和动作阶段",
+            "发丝、衣袖、后摆与披帛风向"
+          ],
+          "dynamic_media": [
+            "主风向与强度",
+            "云、雾、水、瀑布和旗幡方向",
+            "积水、破损、落物和环境变化"
+          ],
+          "camera": [
+            "镜头职责",
+            "机位高度、距离、倾角和焦段",
+            "主导空间几何与运动方向"
+          ]
+        },
+        "skill3_state": "expected_end_state_only",
+        "skill4_state": "actual_end_state_after_generation_only"
+      }
+    },
+    "production_modules": {
+      "asset_prompt_templates": null,
+      "first_frame_templates": null,
+      "end_frame_templates": null,
+      "video_prompt_templates": null,
+      "adapter_rules": null,
+      "model_adapter_reference": null,
+      "output_specs": "runtime_only",
+      "generation_workflow": null,
+      "named_qa_failures": [
+        "scale_claim_without_visible_reference",
+        "flattened_depth_or_missing_terminal_distance",
+        "solitary_palace_in_undifferentiated_clouds",
+        "competing_spatial_geometries",
+        "generic_or_structurally_implausible_eastern_architecture",
+        "uniform_haze_or_muddy_grade",
+        "global_warm_cast_erases_material_identity",
+        "equal_saturation_without_palette_hierarchy",
+        "plastic_or_undifferentiated_materials",
+        "aerial_map_when_viewer_subordination_is_required",
+        "costume_or_environment_wind_discontinuity",
+        "repeated_house_composition_without_meaningful_variation"
+      ]
+    },
+    "authority": {
+      "hard": [
+        "global_visual_identity",
+        "eastern_construction_logic",
+        "material_family_and_response",
+        "palette_hierarchy",
+        "motivated_light_and_atmosphere",
+        "selected_visual_domain_identity",
+        "continuity_locks"
+      ],
+      "conditional": [
+        "viewer_subordinate_camera",
+        "tiny_environment_scale_figures",
+        "deep_focus",
+        "open_edge_monumentality",
+        "cropped_or_occluded_megastructure",
+        "dense_inhabited_realm",
+        "complete_environment_depth_chain"
+      ],
+      "current_project_overrides": [
+        "Topic Thesis 与 Frozen Script",
+        "角色 Canon、当前动作与道具状态",
+        "历史、地理、器物与礼制事实",
+        "建筑功能与人物安全语义",
+        "用户明确机位、焦段、构图与画幅",
+        "当前 Beat 的景别、时长与运动"
+      ],
+      "runtime_only": [
+        "模型语法与参考图绑定",
+        "像素尺寸、分辨率、seed 与平台参数",
+        "调用数量、成本、重试与停止条件"
+      ],
+      "precedence": "current_user_override > Series Canon > selected Style Profile > runtime_recommended"
+    },
+    "conflict_policy": {
+      "no_silent_content_rewrite": true,
+      "no_weighted_profile_blending_v1": true,
+      "same_domain_hard_conflict": "UNRESOLVED",
+      "style_content_mismatch": "STYLE-CONTENT-MISMATCH",
+      "known_overlap_profiles": [
+        "high_energy_ink_wash_wuxia_animation",
+        "dark_eastern_mythic_ruins",
+        "classical_landscape_wuxia_cinema",
+        "ritualized_chinese_epic_color",
+        "expressive_fantasy_wuxia_action_family",
+        "dark_luminous_chinese_celestial_palace"
+      ]
+    },
+    "missing_or_null": {
+      "fixed_character_canon": null,
+      "exact_historical_period": null,
+      "dialogue_style": null,
+      "narration_style": null,
+      "sound_design": null,
+      "voice_system": null,
+      "music_direction": null,
+      "editing_rhythm": null,
+      "model_adapter": null,
+      "real_model_ab_results": null
+    },
+    "provenance": {
+      "source_documents": [
+        {
+          "type": "local_independent_reconstruction",
+          "file": "Style_Profile_东方仙侠天域电影视觉_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "sha256": "AFEB9DDC77E9997DEEF150AB9CB28DE7D174ADB8AB028991E5EE7985BD6391E7"
+        },
+        {
+          "type": "inspiration_only",
+          "url": "https://github.com/liyue-aigc/xianxia-visual-director",
+          "commit": "bd886174f4d84659f2381c4f5baa610003c5bdda",
+          "observed_date": "2026-08-25"
+        }
+      ],
+      "extracted_modules": [
+        {
+          "field": "pre_content_modules",
+          "source_section": "2",
+          "extraction_type": "direct"
+        },
+        {
+          "field": "audiovisual_modules",
+          "source_section": "4-10",
+          "extraction_type": "direct"
+        },
+        {
+          "field": "production_modules",
+          "source_section": "11-12",
+          "extraction_type": "direct"
+        }
+      ],
+      "examples_are_canon": false,
+      "external_runtime_dependency": false,
+      "source_hash_verified": true,
+      "review_approval": {
+        "status": "approved_for_phase_c",
+        "approved_by": "user",
+        "approved_date": "2026-08-25"
+      }
+    }
+  }
+}

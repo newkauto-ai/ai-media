@@ -1,0 +1,19 @@
+{
+  "fixture_only": true,
+  "audiovisual_direction_package": {
+    "contract_version": "1.2",
+    "meta": {"project_id":"fixture-adp-v12","topic_id":"fixture-topic","script_id":"fixture-script-v11","script_version":"1.1","selected_style_profiles":[],"series_bible":null,"current_overrides":null},
+    "semantic_locks": {"core_thesis":"结构化证据优先。","hook":"先看证据再下结论。","reveal":"权威状态不能被计划副本覆盖。","core_conclusion":"只把确定性检查交给确定性规则。","factual_claims":[]},
+    "style_resolution": {"classification":"fixture","compatibility":{"result":"pass","reasons":[],"risks":[],"recommendation":"fixture-only"},"loaded_modules":[],"routed_upstream_modules":[],"ignored_production_modules":[],"conflicts":[],"resolved_by":[],"provenance":{}},
+    "style_blueprint": {"visual_identity":{},"camera_language":{},"performance_language":{},"sound_identity":{},"voice_identity":{"narration":"克制旁白"},"music_identity":{},"global_visual_dna":{"line":"clean","world_motion":"stable","spatial_rule":"readable","originality_rule":"original"},"visual_domains":[{"domain_id":"fixture-domain","name":"Fixture Domain"}]},
+    "character_voice_bible":[{"character_id":"char-fixture","name":"Fixture Character","visual":{"apparent_age":"adult","body":"average","face":"neutral","hair":"short","costume":"plain","palette":"blue","materials":"matte","accessories":"none","silhouette":"simple","design_level":"model-independent","prohibited_changes":[]},"performance":{"posture":"neutral","gesture_style":"restrained","facial_behavior":"subtle","motion_energy":"low"}}],
+    "asset_plan":{"characters":["char-fixture"],"scenes":["scene-fixture"],"props":[],"special_assets":[]},
+    "audiovisual_beats":[{"beat_id":"B01","script_reference":"fixture-script-v11#B01","story_function":"transition","narration_or_dialogue":"","visual":{"action":"stands","camera":"locked","lighting":"soft","color":"neutral"},"performance":{"expression":"neutral","gesture":"none","interaction":"none"},"audio":{"voice_profile_id":null},"music":{"state":"none"},"assets":{"character_ids":["char-fixture"]},"continuity":{"inherited_state":"first state","expected_end_state":"stable state"},"production":{"complexity":"low"}}],
+    "performance_plans":[{"contract_version":"1.0","performance_plan_id":"PP-FIXTURE-001","source_arc_id":"ARC-FIXTURE-001","adp_beat_ids":["B01"],"visible_trigger":["trigger"],"initial_visible_evidence":["initial"],"deliberation_visible_evidence":["deliberation"],"decision_signal_visible_evidence":["signal"],"resulting_action_visible_evidence":["action"],"end_visible_evidence":["end"],"performance_style":{"intensity":"restrained","forbidden_overacting":[]},"gate":{"status":"passed","evaluator_source":"deterministic","evidence":["fixture structure"],"failures":[]}}],
+    "sound_cue_plan":[],
+    "music":{"music_brief":{},"suno_prompt":""},
+    "continuity_plan":{},
+    "template_bindings":{},
+    "production_handoff":{"complexity":"low","highest_risk_beats":[],"reusable_assets":[],"generation_priority":[],"recommended_validation_order":[],"lookdev_test_spec":{"purpose":"fixture-only","anchor_count":3,"anchors":[{"anchor_id":"LD-FIXTURE-001","type":"character","subject":"Fixture Character","domain_id":"fixture-domain"},{"anchor_id":"LD-FIXTURE-002","type":"scene","subject":"Fixture Scene","domain_id":"fixture-domain"},{"anchor_id":"LD-FIXTURE-003","type":"keyframe","subject":"Fixture Key Frame","domain_id":"fixture-domain"}],"validation_dimensions":["global_style","domain_identity","world_scale","story_usability","reference_usability"],"human_approval_required":true,"domain_blocking_policy":"fixture-only"}}
+  }
+}

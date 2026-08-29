@@ -1,0 +1,42 @@
+{
+  "fixture_only": false,
+  "library_status": "pending_review",
+  "normalized_from_source": "Style_Profile_高能水墨武侠动画_v1.0_中文解析.md",
+  "style_profile": {
+    "style_id": "high_energy_ink_wash_wuxia_animation",
+    "version": "v1.0-zh",
+    "classification": "hybrid_style_profile",
+    "pre_content_modules": {
+      "compatibility": "direct",
+      "worldview": "normalized",
+      "character_archetypes": "direct",
+      "story_direction": "direct"
+    },
+    "audiovisual_modules": {
+      "visual_identity": "direct",
+      "character_visual": "direct",
+      "cinematography": "direct",
+      "performance": "direct",
+      "sound_design": "direct",
+      "music_direction": "direct",
+      "editing_rhythm": "direct"
+    },
+    "production_modules": {
+      "asset_binding_rules": "direct",
+      "prompt_templates": "direct",
+      "model_adapter_reference": "direct"
+    },
+    "provenance": {
+      "source_sha256": "178336B5AB19C87EEBDC9284A9170DAB16F2764F9A96F2EFCA1731EFB50F645B",
+      "extraction": "source_grounded",
+      "source_documents": [
+        {
+          "file": "Style_Profile_高能水墨武侠动画_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "sha256": "178336B5AB19C87EEBDC9284A9170DAB16F2764F9A96F2EFCA1731EFB50F645B",
+          "extraction_type": "source_profile"
+        }
+      ]
+    }
+  }
+}

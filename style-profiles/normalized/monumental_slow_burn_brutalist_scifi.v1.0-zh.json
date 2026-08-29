@@ -1,0 +1,62 @@
+{
+  "fixture_only": false,
+  "library_status": "ready",
+  "normalized_from_source": "Style_Profile_巨构慢燃粗野主义科幻_v1.0_中文解析.md",
+  "style_profile": {
+    "style_id": "monumental_slow_burn_brutalist_scifi",
+    "version": "v1.0-zh",
+    "classification": "hybrid_style_profile",
+    "pre_content_modules": {
+      "preferred_themes": [
+        "宿命",
+        "权力",
+        "文明遗迹",
+        "孤独探索",
+        "神圣启示"
+      ],
+      "preferred_arc": [
+        "压抑",
+        "逼近",
+        "爆发或静默"
+      ]
+    },
+    "audiovisual_modules": {
+      "visual_identity": "低饱和巨构、粗野主义、未来考古与大气介质",
+      "scale_and_space": "个体渺小、巨构压迫、轴线与深消失点",
+      "performance": "克制微表演与受压呼吸",
+      "cinematography": "单一缓慢运镜与长时间凝视",
+      "sound": "低频音景、介质拟音与结构性静默"
+    },
+    "production_modules": {
+      "adapter_reference": "replaceable",
+      "precise_numeric_rules": "runtime_recommended",
+      "creator_name_runtime_dependency": false
+    },
+    "provenance": {
+      "source_documents": [
+        {
+          "file": "维伦纽瓦导演美学风格电影.md",
+          "sha256": "075DA7BFA553CCDE0C37589126CFE6EE0FB7834E1AB5803CDF623F5E76101F74"
+        },
+        {
+          "file": "Style_Profile_巨构慢燃粗野主义科幻_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "sha256": "4A4E0494162FD208F9C1DDD1A6D7B6DDB42D34874893288E680FA78ACF9EE965",
+          "extraction_type": "source_profile"
+        }
+      ],
+      "extracted_modules": [
+        {
+          "module": "叙事、空间、光线、材质、表演、镜头与声音",
+          "extraction": "normalized"
+        },
+        {
+          "module": "模型、数值、画幅、暂停与提示词语法",
+          "extraction": "direct",
+          "routed_to": "production_modules"
+        }
+      ],
+      "source_sha256": "4A4E0494162FD208F9C1DDD1A6D7B6DDB42D34874893288E680FA78ACF9EE965"
+    }
+  }
+}

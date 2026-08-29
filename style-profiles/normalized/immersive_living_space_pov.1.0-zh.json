@@ -1,0 +1,38 @@
+{
+  "fixture_only": false,
+  "library_status": "pending_review",
+  "normalized_from_source": "Style_Profile_生活空间沉浸式POV_v1.0_中文解析.md",
+  "style_profile": {
+    "style_id": "immersive_living_space_pov",
+    "version": "v1.0-zh",
+    "classification": "production_playbook",
+    "pre_content_modules": {
+      "compatibility": "direct",
+      "story_direction": "normalized"
+    },
+    "audiovisual_modules": {
+      "visual_identity": "normalized",
+      "cinematography": "direct",
+      "editing_rhythm": "direct",
+      "sound_design": "direct",
+      "continuity_schema": "direct"
+    },
+    "production_modules": {
+      "asset_binding_rules": "direct",
+      "prompt_templates": "direct",
+      "model_adapter_reference": "direct"
+    },
+    "provenance": {
+      "source_sha256": "B48DD8BA1B06473B1713548CA6752B54258B629C8696C58B7C678835F7C5B1EB",
+      "extraction": "source_grounded",
+      "source_documents": [
+        {
+          "file": "Style_Profile_生活空间沉浸式POV_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "sha256": "B48DD8BA1B06473B1713548CA6752B54258B629C8696C58B7C678835F7C5B1EB",
+          "extraction_type": "source_profile"
+        }
+      ]
+    }
+  }
+}

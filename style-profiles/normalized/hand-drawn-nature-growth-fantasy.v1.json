@@ -1,0 +1,49 @@
+{
+  "fixture_only": false,
+  "library_status": "ready",
+  "normalized_from_source": "宫崎骏动画大师.md",
+  "style_profile": {
+    "style_id": "hand_drawn_nature_growth_fantasy",
+    "version": "normalized-fixture-1.0",
+    "classification": "narrative_style_bible",
+    "pre_content_modules": {
+      "compatibility": {"authority": "medium", "preferred": ["growth", "responsibility", "nature relationship", "ordinary protagonist"], "avoid": ["empty spectacle", "simple good-versus-evil", "theme delivered only by narration"]},
+      "themes": {"authority": "medium", "value": ["growth through action", "responsibility", "empathy", "nature and human coexistence", "anti-war without violence spectacle"]},
+      "story_direction": {"authority": "medium", "value": "flawed ordinary protagonist acts, cares, repairs, chooses, and grows"},
+      "worldview": {"authority": "medium", "value": "human, nature, machine, spirit and opposition each retain understandable interests"},
+      "character_archetypes": {"authority": "soft", "value": ["child", "apprentice", "worker", "traveler", "caretaker", "mechanic"]},
+      "dialogue_style": {"authority": "medium", "value": "plain, brief, sincere; no adult philosophical exposition"},
+      "narration_style": {"authority": "medium", "value": "observational and concrete"},
+      "theme_expression_rules": {"authority": "hard", "value": "growth must be shown through action; fantasy rules must serve the theme"}
+    },
+    "audiovisual_modules": {
+      "visual_identity": {"authority": "hard", "medium": "original high-quality hand-drawn 2D fantasy animation", "line": "soft contour", "background": "watercolor", "layering": "cel-like foreground-subject-background separation", "texture": "natural brush and slight paper texture", "forbidden": ["3D plastic", "photo realism", "existing character or film replication"]},
+      "character_visual": {"authority": "hard", "value": "stable silhouette, functional costume, expressive but restrained face"},
+      "environment": {"authority": "hard", "value": "functional lived-in space; wind, water, plants, clouds and mechanical elements remain visibly alive"},
+      "props": {"authority": "hard", "value": "narrative function and physically coherent mechanical logic"},
+      "cinematography": {"authority": "hard", "baseline": "natural observational framing with foreground, subject and background depth", "special": ["child-height perspective", "lateral tracking", "micro-action close-up", "brief nature observation"], "limits": ["exaggerated wide angle at most 1-2 times", "over-symmetry at most once"]},
+      "performance": {"authority": "hard", "value": "weight, breath, hesitation, gaze response, cloth lag and non-human expression organs"},
+      "editing_rhythm": {"authority": "hard", "value": "tension, relief, wonder, action, emotional release"},
+      "sound_design": {"authority": "hard", "value": "spatial dialogue, physical ambience and precise Foley; no BGM inside video intent"},
+      "voice_system": {"authority": "hard", "narration": "grounded, warm and unhurried", "dialogue": "natural, brief and sincere"},
+      "music_direction": {"authority": "hard", "emotional_arc": "warm, clear, adventurous, slightly wistful, ending in light", "instrumentation": ["piano", "strings", "woodwinds", "horn", "harp", "glockenspiel", "accordion", "light percussion"], "avoid": ["famous musician or work names", "overly manipulative scoring"]},
+      "continuity_schema": {"authority": "hard", "track": ["position", "pose", "costume", "prop", "weather", "wind", "light", "natural motion", "emotion"]},
+      "template_bindings": {"authority": "hard", "character_asset": "handdrawn-character-source", "scene_asset": "handdrawn-scene-source", "prop_asset": "handdrawn-prop-source", "video": "handdrawn-video-source"}
+    },
+    "production_modules": {
+      "asset_prompt_templates": ["multi-view character", "scene reference", "mechanical reference"],
+      "video_prompt_templates": ["30-second multi-cut Motion Stack"],
+      "negative_constraints": ["no music in video prompt", "no subtitles", "no text", "no watermark", "no static background"],
+      "model_adapter_reference": {"image": ["Nano Banana Pro", "GPT Image 2", "Seedream 4.5"], "video": "Seedance 2.5 480p", "music": "text_to_instrumental"},
+      "generation_workflow": ["spec confirmation", "storyboard confirmation", "reference generation", "voice extraction", "per-segment video", "BGM generation", "assembly", "poster"]
+    },
+    "provenance": {
+      "source_documents": [{"file": "宫崎骏动画大师.md", "version": "attached-2026-08-20"}],
+      "extracted_modules": [
+        {"field": "pre_content_modules", "source_section": "planner and storyboard_designer", "extraction_type": "normalized"},
+        {"field": "audiovisual_modules", "source_section": "multimodal_analyze_tool and storyboard_designer", "extraction_type": "normalized"},
+        {"field": "production_modules", "source_section": "media_generator, write_the_prompt and video_assembler", "extraction_type": "direct"}
+      ]
+    }
+  }
+}

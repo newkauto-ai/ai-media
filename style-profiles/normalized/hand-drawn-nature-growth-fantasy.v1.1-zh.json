@@ -1,0 +1,130 @@
+{
+  "fixture_only": false,
+  "library_status": "pending_review",
+  "normalized_from_source": "Style_Profile_手绘自然成长奇幻_v1.1_中文重解析.md",
+  "style_profile": {
+    "style_id": "hand_drawn_nature_growth_fantasy",
+    "version": "v1.1-zh",
+    "classification": "narrative_style_bible",
+    "pre_content_modules": {
+      "compatibility": {
+        "authority": "medium",
+        "preferred": ["少年少女成长", "普通人成长", "自然奇幻", "飞行冒险", "森林与小镇", "蒸汽机械", "人与自然冲突", "温暖略带忧伤的成长叙事"],
+        "weak_for": ["纯知识罗列", "高密度信息口播", "无成长爽文", "单纯炫技战斗", "长篇说教"]
+      },
+      "narrative_themes": {
+        "authority": "medium",
+        "value": ["成长", "自然敬畏", "环境与共生", "责任", "劳动", "共情", "自我认同", "反战或技术失控的人文反思"]
+      },
+      "protagonist_principles": {
+        "authority": "medium_high",
+        "value": ["主角可以不完美", "成长通过行动体现", "普通人、少年少女、学徒、劳动者、旅人优先"]
+      },
+      "conflict_principles": {
+        "authority": "hard",
+        "value": ["避免简单善恶二元", "对立方保留自身动机", "人类、自然、机械、神灵、动物可有独立立场"]
+      },
+      "worldview_principles": {
+        "authority": "hard",
+        "value": ["幻想规则保持一致", "奇观服务主题", "相关时呈现人与自然关系"]
+      },
+      "dialogue_style": {
+        "authority": "hard",
+        "value": "简洁、自然、真诚；避免成人哲学说教"
+      },
+      "theme_expression_rules": {
+        "authority": "hard",
+        "value": "用行动、环境、道具和后果表达，不依赖旁白宣布主题"
+      }
+    },
+    "audiovisual_modules": {
+      "visual_identity": {
+        "authority": "hard",
+        "format": "高质量二维手绘动画",
+        "outline": "柔和轮廓线",
+        "background": "水彩",
+        "layering": "前景、主体、背景的赛璐珞分层",
+        "texture": "自然笔触与轻微纸张纹理",
+        "avoid": ["三维塑料感", "真人照片感", "廉价贴图感", "已有角色或影片复刻"]
+      },
+      "spatial_grammar": {
+        "authority": "hard",
+        "layers": ["前景", "主体", "背景"],
+        "depth_by_motion_parallax": true
+      },
+      "natural_motion": {
+        "authority": "hard",
+        "wind": "visible",
+        "water": "animated",
+        "vegetation": "animated",
+        "clouds": "animated"
+      },
+      "mechanical_motion": {
+        "authority": "hard",
+        "weight": "required",
+        "inertia": "required",
+        "transmission_logic": "required"
+      },
+      "character_performance": {
+        "authority": "hard",
+        "micro_expression": "required",
+        "physical_weight": "required",
+        "interaction_reaction": "required"
+      },
+      "cinematography": {
+        "authority": "hard",
+        "preferred": ["自然开阔构图", "儿童低机位", "横向跟拍", "动作细节特写", "静观自然", "剧情需要时的飞行镜头"],
+        "rhythm_wave": ["紧张", "舒缓", "惊奇", "行动", "情感回落"]
+      },
+      "sound_design": {
+        "authority": "hard",
+        "spatialized": true,
+        "physical_foley_required": true,
+        "bgm_embedded_in_video_prompt": false
+      },
+      "music_direction": {
+        "authority": "hard",
+        "narrative_function": "托住成长、自然、冒险与情感和解",
+        "emotional_core": ["温暖", "清澈", "冒险", "童年", "自然", "希望", "略带忧伤但最终向光"],
+        "instruments": ["钢琴", "弦乐群", "长笛", "双簧管", "单簧管", "圆号", "竖琴", "钟琴", "手风琴", "木琴", "轻打击乐"],
+        "independent_track": true,
+        "avoid_artist_name_dependency": true
+      },
+      "continuity_schema": {
+        "authority": "hard",
+        "track": ["角色位置", "姿态", "表情", "服装", "发丝", "受伤与湿润状态", "道具归属与位置", "天气", "风向", "光线方向", "水面状态", "机械状态", "情绪状态"]
+      }
+    },
+    "production_modules": {
+      "prompt_template_reference": {
+        "authority": "medium",
+        "permanent_structure": ["镜头", "主体动作与面部", "空间和物理阻力", "拟音与对白"],
+        "model_syntax_locked": false
+      },
+      "negative_constraints": ["no music in video prompt", "no subtitles", "no text", "no watermark", "no static background"],
+      "model_adapter_reference": {
+        "replaceable": true,
+        "source_mentions": ["Nano Banana Pro", "GPT Image 2", "Seedream 4.5", "Seedance 2.5", "text_to_instrumental"],
+        "authority": "none"
+      },
+      "known_source_conflicts": ["分辨率描述存在重复 480p", "30 秒 Prompt 示例时间轴只写到约 15 秒"]
+    },
+    "provenance": {
+      "source_documents": [
+        {
+          "file": "Style_Profile_手绘自然成长奇幻_v1.1_中文重解析.md",
+          "version": "v1.1-zh",
+          "derived_from": "宫崎骏动画大师.md"
+        }
+      ],
+      "extracted_modules": [
+        {"field": "pre_content_modules", "source_section": "4-5", "extraction_type": "normalized"},
+        {"field": "audiovisual_modules", "source_section": "6-14", "extraction_type": "normalized"},
+        {"field": "production_modules", "source_section": "15-17", "extraction_type": "direct_and_routed"}
+      ],
+      "examples_are_canon": false,
+      "creator_name_used_as_runtime_prompt_dependency": false,
+      "inferred_missing_fields": false
+    }
+  }
+}

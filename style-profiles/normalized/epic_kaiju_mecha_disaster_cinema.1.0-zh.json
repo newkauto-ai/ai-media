@@ -1,0 +1,40 @@
+{
+  "fixture_only": false,
+  "library_status": "pending_review",
+  "normalized_from_source": "Style_Profile_史诗巨兽机甲灾难电影_v1.0_中文解析.md",
+  "style_profile": {
+    "style_id": "epic_kaiju_mecha_disaster_cinema",
+    "version": "v1.0-zh",
+    "classification": "hybrid_style_profile",
+    "pre_content_modules": {
+      "compatibility": "direct",
+      "story_direction": "direct",
+      "themes": "normalized"
+    },
+    "audiovisual_modules": {
+      "visual_identity": "direct",
+      "cinematography": "direct",
+      "performance": "normalized",
+      "sound_design": "direct",
+      "music_direction": "direct",
+      "continuity_schema": "direct"
+    },
+    "production_modules": {
+      "asset_prompt_templates": "direct",
+      "model_adapter_reference": "direct",
+      "generation_workflow": "direct"
+    },
+    "provenance": {
+      "source_sha256": "9EEB5972743EDCB41094F45EE5D4E5949C713901D5EFEC35321ED02D6BA906F9",
+      "extraction": "source_grounded",
+      "source_documents": [
+        {
+          "file": "Style_Profile_史诗巨兽机甲灾难电影_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "sha256": "9EEB5972743EDCB41094F45EE5D4E5949C713901D5EFEC35321ED02D6BA906F9",
+          "extraction_type": "source_profile"
+        }
+      ]
+    }
+  }
+}

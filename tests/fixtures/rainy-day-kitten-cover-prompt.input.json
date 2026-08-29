@@ -1,0 +1,187 @@
+{
+  "schema_version": "1.2",
+  "project": {
+    "project_id": "rainy-day-kitten-001",
+    "content_id": "rainy-day-kitten"
+  },
+  "source_artifact": null,
+  "upstream_refs": {
+    "frozen_script_id": "script-rain-kitten-001",
+    "frozen_script_hash": "4C05037A64221F4758F0D245CD8309D131BE54AA1DCC75005872F86E3A10B638",
+    "audiovisual_direction_id": "adp-rain-kitten-001",
+    "audiovisual_direction_hash": "931526E3FD5A3C1B826490FD6985522BA5692ADC07C61782F8824F90131E45ED",
+    "production_manifest_id": "rainy-day-kitten-production-manifest",
+    "production_manifest_version": "1.6",
+    "production_manifest_hash": "8654E4E526EC21C1411E4DAC8DD2481CC31F19199CD949E2B5F4D2D8352F71E8",
+    "upstream_review_result_ids": []
+  },
+  "content_core": {
+    "topic": "《雨停之前》：女孩在雨里停下，耐心帮助一只小奶猫",
+    "core_promise": "真正的温柔，是愿意在别人的雨里停一下",
+    "audience": "喜欢治愈叙事与软萌 3D 动画的观众",
+    "audience_need": "在短时间内看见克制、可信的善意",
+    "story_hook": "所有人都在躲雨，她却朝雨里走去",
+    "hook": "所有人都在躲雨，她却朝雨里走去",
+    "platform_titles": {
+      "xiaohongshu": "所有人都在躲雨，她却走向雨里",
+      "douyin": "她为什么转身走进雨里？"
+    },
+    "approved_cover_titles": {
+      "xiaohongshu": "她朝雨里走去",
+      "douyin": "她为什么转身？"
+    },
+    "key_points": ["女孩停下", "把伞转向奶猫", "等待奶猫主动靠近"],
+    "factual_claims": [],
+    "search_intent": "治愈动画 雨天 女孩 奶猫",
+    "share_save_reason": "分享一个不强迫接触的温柔瞬间",
+    "content_type": "video",
+    "ai_generation_profile": {"cover_prompt_only": true, "real_generation_authorized": false}
+  },
+  "series_context": {
+    "series_id": "healing-shorts",
+    "series_name": "治愈小事",
+    "packaging_visual_rules_ref": null,
+    "packaging_visual_rules_version": null,
+    "source_status": "missing",
+    "approved_exceptions": [],
+    "run_local_constraints": {
+      "brand_color": "#F6C445",
+      "text_color": "#FFFFFF",
+      "panel_color": "#101820",
+      "font_rights_status": "system",
+      "layout_variant": "clean-title-space-v1",
+      "show_border": false,
+      "show_series_mark": false,
+      "show_title_panel": false
+    }
+  },
+  "publishing_context": {
+    "target_platforms": ["xiaohongshu", "douyin"],
+    "publish_goal": "save_share",
+    "account_profiles": [],
+    "historical_performance_refs": [],
+    "requested_publish_date": "2026-08-30",
+    "primary_audience_timezone": "Asia/Singapore"
+  },
+  "platform_copy": {
+    "xiaohongshu": {
+      "platform_title": "所有人都在躲雨，她却走向雨里",
+      "body": "真正的温柔，不是把善意强塞给谁，而是愿意停下来，把伞偏过去，再耐心等它自己靠近。",
+      "topics": ["治愈动画", "雨天故事", "软萌3D"]
+    },
+    "douyin": {
+      "platform_title": "她为什么转身走进雨里？",
+      "text": "她为什么转身走进雨里？",
+      "topics": ["治愈短片", "雨天女孩与猫", "AI动画"]
+    }
+  },
+  "legacy_packaging": {},
+  "cover_inputs": {
+    "approved_assets": [
+      {
+        "asset_id": "LD-A01",
+        "asset_type": "character_identity",
+        "path": "D:/文档/ChatGPT/AI 自媒体/productions/rainy-day-kitten/assets/lookdev/LD-A01-mili-identity-v1.png",
+        "checksum_sha256": "2DEA38EBAB8372287EE319445376536AC2FE7CD024EBD6F1213352141BC29D1D",
+        "version": "v1",
+        "approval_status": "approved",
+        "approval_ref": "production_manifest.lookdev.anchors.LD-A01:user_message:接受1@2026-08-24",
+        "rights_status": "unknown",
+        "rights_ref": "local-project-asset; external-use rights not separately attested",
+        "reference_role": "identity"
+      },
+      {
+        "asset_id": "LD-A02",
+        "asset_type": "character_identity",
+        "path": "D:/文档/ChatGPT/AI 自媒体/productions/rainy-day-kitten/assets/lookdev/LD-A02-tuanzi-identity-v1.png",
+        "checksum_sha256": "59AA7D658FC45CD9A5CEDC7712A01AE9B21F9D303FB3A2422D39BA2F2055A0A5",
+        "version": "v1-right-ear-canon",
+        "approval_status": "approved",
+        "approval_ref": "production_manifest.lookdev.anchors.LD-A02:user_message:接受2@2026-08-24",
+        "rights_status": "unknown",
+        "rights_ref": "local-project-asset; external-use rights not separately attested",
+        "reference_role": "identity"
+      }
+    ],
+    "approved_keyframes": [
+      {
+        "asset_id": "LD-A03",
+        "asset_type": "keyframe",
+        "path": "D:/文档/ChatGPT/AI 自媒体/productions/rainy-day-kitten/assets/lookdev/LD-A03-first-contact-keyframe-v2.png",
+        "checksum_sha256": "81A43016CCDFEAFD97C9D2C3CE51C57A96449E4E0FEC77350AA189C4455D93B5",
+        "version": "v2",
+        "approval_status": "approved",
+        "approval_ref": "production_manifest.lookdev.anchors.LD-A03:user_message:第3张批准@2026-08-24",
+        "rights_status": "unknown",
+        "rights_ref": "local-project-asset; external-use rights not separately attested",
+        "reference_role": "action"
+      }
+    ],
+    "visual_thesis": "米粒不是冲动抱走奶猫，而是转身、把黄色雨伞偏向纸箱，并耐心等团子主动靠近",
+    "required_subjects": ["米粒（女孩）", "团子（奶猫）"],
+    "required_action": "女孩和奶猫必须同时出现；女孩在黄色雨伞下把空着的手低低伸向奶猫，表现等待而非抓取",
+    "emotional_read": "一眼看懂女孩选择停下、奶猫仍谨慎但开始信任",
+    "forbidden_elements": ["女孩缺失", "奶猫缺失", "抓抱奶猫", "人物或猫被标题遮挡", "黄边框", "黑色标题底板", "系列测试徽标", "模板残留"],
+    "identity_locks": ["米粒七岁东亚女孩，黑色短波波头，薄荷绿雨衣，珊瑚红雨靴，海军蓝书包", "团子六周奶猫，奶油白短毛，自身右耳杏色斑，杏色尾尖，无项圈"],
+    "style_locks": ["软萌3D治愈风格", "冷蓝灰雨暮与暖黄色雨伞反光", "哑光材质，避免塑料光泽"],
+    "allowed_variation": ["雨滴位置", "轻微表情变化", "平台原生机位微调"],
+    "platform_composition_overrides": []
+  },
+  "cover_sources": {"approved_keyframes": [], "supplied_assets": [], "generated_background_fallback": {}},
+  "rights_and_disclosure": {
+    "rights_provenance_refs": ["D:/文档/ChatGPT/AI 自媒体/productions/rainy-day-kitten/production_manifest.json"],
+    "commercial_relationship": "none",
+    "ai_disclosure_required": true,
+    "disclosure_text": "本内容含 AI 辅助或生成画面，请按平台当前要求声明。",
+    "platform_setting_action": "manually verify current AI disclosure control",
+    "contains_synthetic_media": true,
+    "has_paid_product_placement": false
+  },
+  "review_inputs": {
+    "promise_match": "human_review",
+    "metadata_relevance": "human_review",
+    "evidence_refs": ["01_Frozen_Script_Package.md", "audiovisual_direction_package.json", "production_manifest.json"],
+    "performance_assessment": null,
+    "evaluator_result": null,
+    "cover_semantic_review_by_platform": {
+      "xiaohongshu": {
+        "review_version": "1.0",
+        "target_cover_hash": "3191C8014500CF50631EDE9D113C2B425C5403AD95454052B13A26C1C2CCD863",
+        "evidence_source": "evaluator",
+        "required_subjects_present": "pass",
+        "title_visual_match": "pass",
+        "key_action_readable": "fail",
+        "critical_subject_unoccluded": "fail",
+        "thumbnail_readability": "human_review",
+        "identity_and_style_consistency": "pass",
+        "platform_native_composition": "fail",
+        "template_residue": "pass",
+        "verdict": "fail",
+        "findings": [
+          {"code": "title_occludes_key_action", "evidence": "At final 3:4 size the title crosses the girl-to-kitten hand/action area."},
+          {"code": "mechanical_crop_not_platform_native", "evidence": "The actual preview is a center crop of the approved 16:9 keyframe, not a newly composed Xiaohongshu-native background."}
+        ]
+      },
+      "douyin": {
+        "review_version": "1.0",
+        "target_cover_hash": "665DA6DF3187AAC2CFA7F2B5073E936E55F57CCFE17422B51CD427E6E95A1DC7",
+        "evidence_source": "evaluator",
+        "required_subjects_present": "pass",
+        "title_visual_match": "pass",
+        "key_action_readable": "fail",
+        "critical_subject_unoccluded": "fail",
+        "thumbnail_readability": "human_review",
+        "identity_and_style_consistency": "pass",
+        "platform_native_composition": "fail",
+        "template_residue": "pass",
+        "verdict": "fail",
+        "findings": [
+          {"code": "title_occludes_key_action", "evidence": "At final 9:16 size the two-line title covers the girl's forearm and the low open-hand trust gesture."},
+          {"code": "mechanical_crop_not_platform_native", "evidence": "The actual preview is a center crop of the approved 16:9 keyframe, not a newly composed Douyin-native background."}
+        ]
+      }
+    }
+  },
+  "execution_mode": {"cover_prompt_only": true, "allow_real_generation": false},
+  "runtime_context": {"fixture_only": false, "shadow_only": true, "as_of": "2026-08-29T17:00:00+08:00"}
+}

@@ -1,0 +1,54 @@
+{
+  "fixture_only": false,
+  "library_status": "pending_review",
+  "normalized_from_source": "Style_Profile_创作工艺过程短片_v1.0_中文解析.md",
+  "style_profile": {
+    "style_id": "creative_process_craft_short",
+    "version": "v1.0-zh",
+    "classification": "production_playbook",
+    "pre_content_modules": {
+      "compatibility": "process_creation",
+      "story_direction": "rise_develop_turn_resolve"
+    },
+    "audiovisual_modules": {
+      "visual_identity": "material_process_documentation",
+      "cinematography": "stage_based_progression",
+      "performance": "hand_tool_material_interaction",
+      "sound": "synchronized_craft_foley",
+      "continuity": "anchor_final_state_with_progress_lock"
+    },
+    "production_modules": {
+      "anchor_frame_workflow": "reference_only",
+      "model_adapter": "replaceable"
+    },
+    "provenance": {
+      "source_documents": [
+        {
+          "file": "工艺品制作过程短片.md",
+          "extraction": "direct_and_normalized"
+        },
+        {
+          "file": "Style_Profile_创作工艺过程短片_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "sha256": "2CD532074495F4B1DB8100DAF7B3A44EDEEAF893D9130E27F4B41CA57E30072F",
+          "extraction_type": "source_profile"
+        }
+      ],
+      "extracted_modules": [
+        {
+          "module": "narrative_and_audiovisual",
+          "method": "normalized"
+        },
+        {
+          "module": "production_workflow",
+          "method": "direct"
+        },
+        {
+          "module": "missing_fields",
+          "method": "inferred_structure_only"
+        }
+      ],
+      "source_sha256": "2CD532074495F4B1DB8100DAF7B3A44EDEEAF893D9130E27F4B41CA57E30072F"
+    }
+  }
+}

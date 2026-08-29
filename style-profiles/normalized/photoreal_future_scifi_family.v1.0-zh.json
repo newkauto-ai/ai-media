@@ -1,0 +1,61 @@
+{
+  "fixture_only": false,
+  "library_status": "ready",
+  "normalized_from_source": "Style_Profile_超写实未来科幻风格族_v1.0_中文解析.md",
+  "style_profile": {
+    "style_id": "photoreal_future_scifi_family",
+    "version": "v1.0-zh",
+    "classification": "hybrid_style_profile",
+    "pre_content_modules": {
+      "required_decisions": [
+        "世界观逻辑",
+        "主角身份",
+        "人物关系",
+        "核心事件",
+        "视觉域"
+      ],
+      "default_domain": "超写实科幻电影共同基线"
+    },
+    "audiovisual_modules": {
+      "global_visual_dna": "真人电影感、可信材质、有来源光线、受控饱和度",
+      "visual_domains": [
+        "hard_space_exploration",
+        "epic_space_opera",
+        "wasteland_ruin_scifi",
+        "alien_organic_ecology"
+      ],
+      "anti_cyberpunk_baseline": true,
+      "continuity": "锁定人物、空间、材质、天气、时间与光向"
+    },
+    "production_modules": {
+      "adapter_reference": "replaceable",
+      "load_one_visual_domain_only": true
+    },
+    "provenance": {
+      "source_documents": [
+        {
+          "file": "未来科幻真人电影.md",
+          "sha256": "41872BBA2930DEFFC5A984D5AF802D4C551C4B40DADBEC0CF9068130756EC4EF"
+        },
+        {
+          "file": "Style_Profile_超写实未来科幻风格族_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "sha256": "4E55F1AD80791EE0EEDDFA7B56DDC73680EF2DA3245F0E11CE87EEF4F342A054",
+          "extraction_type": "source_profile"
+        }
+      ],
+      "extracted_modules": [
+        {
+          "module": "共同视觉基线与四个视觉域",
+          "extraction": "normalized"
+        },
+        {
+          "module": "资产、模型、网格、时长与提示词格式",
+          "extraction": "direct",
+          "routed_to": "production_modules"
+        }
+      ],
+      "source_sha256": "4E55F1AD80791EE0EEDDFA7B56DDC73680EF2DA3245F0E11CE87EEF4F342A054"
+    }
+  }
+}

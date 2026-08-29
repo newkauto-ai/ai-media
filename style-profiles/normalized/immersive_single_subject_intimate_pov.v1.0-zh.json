@@ -1,0 +1,103 @@
+{
+  "fixture_only": false,
+  "library_status": "pending_review",
+  "normalized_from_source": "Style_Profile_沉浸式单主体亲密POV互动_v1.0_中文解析.md",
+  "style_profile": {
+    "style_id": "immersive_single_subject_intimate_pov",
+    "version": "v1.0-zh",
+    "classification": "narrative_style_bible",
+    "pre_content_modules": {
+      "domains": {
+        "adult_female_romance": "ready_with_safety_gate",
+        "animal_companion": "separated_non_romantic",
+        "ip_companion": "separated_non_romantic",
+        "male_subject": "blocked"
+      },
+      "content_constraints": [
+        "成年、自愿、非露骨",
+        "禁止真实公众人物亲密化",
+        "动物和 IP 不加载恋爱规则",
+        "同居关系只在明确选择时加载"
+      ]
+    },
+    "audiovisual_modules": {
+      "visual_identity": [
+        "第一人称主观镜头",
+        "单一完整主体",
+        "直接眼神交流",
+        "近距离微表演",
+        "轻微手持呼吸感"
+      ],
+      "camera_language": {
+        "baseline": [
+          "自然手持",
+          "缓慢推进",
+          "主体直视镜头"
+        ],
+        "avoid": [
+          "第三人称双人镜头",
+          "剧烈晃动",
+          "无动机失焦"
+        ]
+      },
+      "performance": [
+        "微表情与台词形成因果",
+        "互动动作低复杂度且可执行",
+        "非人主体使用物种或造型对应动作"
+      ],
+      "sound_design": [
+        "近距离人声或主体发声",
+        "环境声与衣物、毛发或材质拟音",
+        "声音距离与镜头距离一致"
+      ],
+      "continuity": [
+        "主体身份和造型稳定",
+        "光线与场景状态衔接",
+        "情绪弧线跨段推进"
+      ]
+    },
+    "production_modules": {
+      "replaceable": true,
+      "source_references": [
+        "四分区设定图",
+        "固定模型与分辨率",
+        "30 秒拆段和尾帧续接",
+        "内嵌音频包装语法",
+        "封面矩阵与社媒文案"
+      ]
+    },
+    "provenance": {
+      "source_documents": [
+        {
+          "file": "沉浸式POV女友男友互动视频.md",
+          "sha256": "300E400AB713872CEF4AD48492F103B490BA655F48F1D7DC9795227316415FC4",
+          "source_version": "本地文件 2026-08-18"
+        },
+        {
+          "file": "Style_Profile_沉浸式单主体亲密POV互动_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "sha256": "52A62680A581CD3EB7350231E1D8DF55104C26B016391C717086669232A9FE52",
+          "extraction_type": "source_profile"
+        }
+      ],
+      "extracted_modules": [
+        {
+          "field": "pre_content_modules",
+          "source_section": "planner 与 storyboard_designer",
+          "extraction_type": "normalized"
+        },
+        {
+          "field": "audiovisual_modules",
+          "source_section": "multimodal_analyze_tool、storyboard_designer 与 write_the_prompt",
+          "extraction_type": "normalized"
+        },
+        {
+          "field": "production_modules",
+          "source_section": "media_generator 与 video_assembler",
+          "extraction_type": "direct"
+        }
+      ],
+      "source_sha256": "52A62680A581CD3EB7350231E1D8DF55104C26B016391C717086669232A9FE52"
+    }
+  }
+}

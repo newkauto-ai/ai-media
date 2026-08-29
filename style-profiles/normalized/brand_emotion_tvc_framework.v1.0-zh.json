@@ -1,0 +1,72 @@
+{
+  "fixture_only": false,
+  "library_status": "ready",
+  "normalized_from_source": "Style_Profile_新品品牌情绪TVC生产框架_v1.0_中文解析.md",
+  "style_profile": {
+    "style_id": "brand_emotion_tvc_framework",
+    "version": "v1.0-zh",
+    "classification": "production_playbook",
+    "pre_content_modules": {
+      "required_inputs": [
+        "场景调性参考",
+        "品牌授权信息",
+        "产品证据_如需精确展示"
+      ],
+      "conditional_inputs": [
+        "代言人参考",
+        "产品图",
+        "品牌色",
+        "材质参考"
+      ],
+      "commercial_goals": [
+        "主体气质",
+        "品牌世界",
+        "产品欲望",
+        "品牌记忆"
+      ]
+    },
+    "audiovisual_modules": {
+      "visual_identity": "由当前项目 visual_dna 决定",
+      "domain_variants": [
+        "高奢时尚",
+        "运动",
+        "汽车",
+        "3C"
+      ],
+      "material_truth": "产品结构与真实色优先于风格",
+      "cinematography": "服务品牌关系、产品细节与情绪曲线",
+      "sound": "材质拟音、项目级音乐与必要人声避让"
+    },
+    "production_modules": {
+      "adapter_reference": "replaceable",
+      "fixed_timing_heuristics_are_canon": false,
+      "unauthorized_brand_generation": "blocked"
+    },
+    "provenance": {
+      "source_documents": [
+        {
+          "file": "新品视觉TVC广告宣传.md",
+          "sha256": "7E0005D5BAD536DD55362CB2EDB86C284ECA3EBD9F73F7519D46E74631F30413"
+        },
+        {
+          "file": "Style_Profile_新品品牌情绪TVC生产框架_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "sha256": "79295D074539A2B6A1A4D9D1852DDB15361D6200D4A39B7537D48FF9E6536BF7",
+          "extraction_type": "source_profile"
+        }
+      ],
+      "extracted_modules": [
+        {
+          "module": "视觉反推、商业表达、材质、资产与连续性",
+          "extraction": "normalized"
+        },
+        {
+          "module": "固定模型、时长、镜头数、提示词和流程",
+          "extraction": "direct",
+          "routed_to": "production_modules"
+        }
+      ],
+      "source_sha256": "79295D074539A2B6A1A4D9D1852DDB15361D6200D4A39B7537D48FF9E6536BF7"
+    }
+  }
+}

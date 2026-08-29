@@ -1,0 +1,57 @@
+{
+  "fixture_only": false,
+  "library_status": "ready",
+  "normalized_from_source": "Style_Profile_微缩模型温柔叙事_v1.0_中文解析.md",
+  "style_profile": {
+    "style_id": "miniature_tilt_shift_tender_story",
+    "version": "v1.0-zh",
+    "classification": "hybrid_style_profile",
+    "pre_content_modules": {
+      "preferred_story_shape": [
+        "建立世界",
+        "触发事件",
+        "推进",
+        "情感高潮",
+        "余韵"
+      ],
+      "compatibility_gate": "不得为了套用治愈微缩风格改写核心语义"
+    },
+    "audiovisual_modules": {
+      "visual_identity": "实拍感微缩模型摄影与移轴浅景深",
+      "scale_physics": "跨镜比例稳定，大道具体现重量与协作",
+      "cinematography": "克制缓慢，以中景、微距和柔和推进为主",
+      "narration": "温柔、克制、短句、有留白",
+      "music": "钢琴或钢琴加弦乐的独立无人声背景音乐"
+    },
+    "production_modules": {
+      "adapter_reference": "replaceable",
+      "prompt_templates_are_canon": false
+    },
+    "provenance": {
+      "source_documents": [
+        {
+          "file": "微缩世界创意短片.md",
+          "sha256": "E4F667C2B89300BE074C8A8FCDA47825C54E1D2AFFCED2101BD5753039994A31"
+        },
+        {
+          "file": "Style_Profile_微缩模型温柔叙事_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "sha256": "14B7B3D2345F2469E915F00723F10A17B57782F2C1BD07E1AC9796D8BC0CC54B",
+          "extraction_type": "source_profile"
+        }
+      ],
+      "extracted_modules": [
+        {
+          "module": "视觉、比例物理、镜头、旁白与音乐",
+          "extraction": "normalized"
+        },
+        {
+          "module": "模型、分辨率、时长与暂停节点",
+          "extraction": "direct",
+          "routed_to": "production_modules"
+        }
+      ],
+      "source_sha256": "14B7B3D2345F2469E915F00723F10A17B57782F2C1BD07E1AC9796D8BC0CC54B"
+    }
+  }
+}

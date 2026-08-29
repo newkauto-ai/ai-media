@@ -1,0 +1,63 @@
+{
+  "fixture_only": false,
+  "library_status": "pending_review",
+  "normalized_from_source": "Style_Profile_短剧前期视觉开发定调_v1.0_中文解析.md",
+  "style_profile": {
+    "style_id": "short_drama_preproduction_visual_development",
+    "version": "v1.0-zh",
+    "classification": "production_playbook",
+    "pre_content_modules": {
+      "compatibility": "短剧及叙事型真人内容的前期视觉开发",
+      "story_direction": "只提取剧本既有节拍，不改写剧情",
+      "series_content_constraints": "未确认视觉风格时必须先选择方向"
+    },
+    "audiovisual_modules": {
+      "visual_identity": "由剧本锚点与用户确认的风格共同定义",
+      "character_visual": "锁定外貌、服装、妆发和状态变体",
+      "environment": "锁定空间、材质、时间、光源和视觉锚点",
+      "props": "锁定形态、材质、颜色、磨损和归属",
+      "cinematography": "景别、角度、运动、焦段服务故事节拍",
+      "sound_design": "环境音与音效作为独立参考层",
+      "voice_system": "角色音色样本与正式对白分离",
+      "music_direction": "BGM 独立成轨并服从样片节奏",
+      "continuity_schema": "角色、场景、道具、色彩和状态连续性"
+    },
+    "production_modules": {
+      "asset_prompt_templates": "角色、场景、道具、造型、氛围、海报和提案页模板",
+      "model_adapter_reference": "源文档模型与分辨率仅作可替换参考",
+      "generation_workflow": "风格确认、选片、故事板、资产、扩展包、文档、样片、交付清单"
+    },
+    "provenance": {
+      "source_documents": [
+        {
+          "file": "D:/AI 视频/Flova技能/短剧前期视觉开发定调.md",
+          "sha256": "E0FB49E8FB8A937ED715B104271B96B4E550A85DEDF7935B138467C9B0249356"
+        },
+        {
+          "file": "Style_Profile_短剧前期视觉开发定调_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "sha256": "6B1081ADF23412AC6EA3CA2EA0E88BDCF8024F6D4839B8E824985D794799C712",
+          "extraction_type": "source_profile"
+        }
+      ],
+      "extracted_modules": [
+        {
+          "field": "pre_content_modules",
+          "source_section": "planner 与 multimodal_analyze_tool",
+          "extraction_type": "normalized"
+        },
+        {
+          "field": "audiovisual_modules",
+          "source_section": "storyboard_designer",
+          "extraction_type": "normalized"
+        },
+        {
+          "field": "production_modules",
+          "source_section": "media_generator、write_the_prompt 与 video_assembler",
+          "extraction_type": "direct"
+        }
+      ],
+      "source_sha256": "6B1081ADF23412AC6EA3CA2EA0E88BDCF8024F6D4839B8E824985D794799C712"
+    }
+  }
+}

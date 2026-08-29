@@ -1,0 +1,40 @@
+{
+  "fixture_only": false,
+  "library_status": "pending_review",
+  "normalized_from_source": "Style_Profile_中国经典美术动画复合风格_v1.0_中文解析.md",
+  "style_profile": {
+    "style_id": "classic_chinese_art_animation_collection",
+    "version": "v1.0-zh",
+    "classification": "mixed",
+    "pre_content_modules": {
+      "compatibility": "direct",
+      "story_direction": "normalized",
+      "narration_style": "direct"
+    },
+    "audiovisual_modules": {
+      "visual_identity": "direct",
+      "character_visual": "direct",
+      "cinematography": "direct",
+      "voice_system": "direct",
+      "music_direction": "direct",
+      "editing_rhythm": "direct"
+    },
+    "production_modules": {
+      "asset_binding_rules": "direct",
+      "model_adapter_reference": "direct",
+      "prompt_templates": "direct"
+    },
+    "provenance": {
+      "source_sha256": "CE96B694A8F759597FD365341D97666A79BB4A2025046D737706666B7EE44DB0",
+      "extraction": "source_grounded",
+      "source_documents": [
+        {
+          "file": "Style_Profile_中国经典美术动画复合风格_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "sha256": "CE96B694A8F759597FD365341D97666A79BB4A2025046D737706666B7EE44DB0",
+          "extraction_type": "source_profile"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "fixture_only": false,
+  "library_status": "pending_review",
+  "normalized_from_source": "Style_Profile_都市霓虹碎片诗电影_v1.0_中文解析.md",
+  "style_profile": {
+    "style_id": "urban_neon_fragmented_poetic_cinema",
+    "version": "v1.0-zh",
+    "classification": "narrative_style_bible",
+    "pre_content_modules": {
+      "compatibility": "direct",
+      "themes": "direct",
+      "story_direction": "direct",
+      "dialogue_style": "direct",
+      "narration_style": "direct"
+    },
+    "audiovisual_modules": {
+      "visual_identity": "direct",
+      "cinematography": "direct",
+      "performance": "direct",
+      "sound_design": "direct",
+      "voice_system": "normalized",
+      "music_direction": "direct",
+      "continuity_schema": "direct"
+    },
+    "production_modules": {
+      "model_adapter_reference": "direct",
+      "prompt_templates": "direct",
+      "generation_workflow": "direct"
+    },
+    "provenance": {
+      "source_sha256": "CAF2A65DA21C203E3F380455040C2C96EE60A499D4611920F251E4F8F1811E10",
+      "extraction": "source_grounded",
+      "source_documents": [
+        {
+          "file": "Style_Profile_都市霓虹碎片诗电影_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "sha256": "CAF2A65DA21C203E3F380455040C2C96EE60A499D4611920F251E4F8F1811E10",
+          "extraction_type": "source_profile"
+        }
+      ]
+    }
+  }
+}

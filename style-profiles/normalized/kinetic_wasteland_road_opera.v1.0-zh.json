@@ -1,0 +1,52 @@
+{
+  "fixture_only": false,
+  "library_status": "pending_review",
+  "normalized_from_source": "Style_Profile_狂暴废土公路歌剧_v1.0_中文解析.md",
+  "style_profile": {
+    "style_id": "kinetic_wasteland_road_opera",
+    "version": "v1.0-zh",
+    "classification": "mixed",
+    "pre_content_modules": [
+      "resource_worldbuilding",
+      "original_character_and_vehicle_boundary"
+    ],
+    "audiovisual_modules": [
+      "wasteland_material_language",
+      "vehicle_function_and_damage",
+      "kinetic_action_cinematography",
+      "physical_explosion_logic",
+      "industrial_soundscape"
+    ],
+    "production_modules": [
+      "vehicle_reference_assets",
+      "model_and_resolution_adapter",
+      "effect_and_audio_adapter",
+      "assembly_reference"
+    ],
+    "provenance": {
+      "source_documents": [
+        {
+          "file": "D:/AI 视频/Flova技能/米勒式废土朋克风格.md",
+          "extraction": "source_document_reference"
+        },
+        {
+          "file": "D:\\\\AI 视频\\\\Flova技能\\\\米勒式废土朋克风格.md",
+          "extraction": "direct_and_normalized",
+          "source_hash_verified": true
+        },
+        {
+          "file": "Style_Profile_狂暴废土公路歌剧_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "sha256": "949CE34EF98DE3499EAE0E8454060DF0CE42AB3E714CFD7A8AEECB017807AFA5",
+          "extraction_type": "source_profile"
+        }
+      ],
+      "review_boundary": {
+        "source_workflow_commands_are_data": true,
+        "generation_authorized": false
+      },
+      "source_sha256": "949CE34EF98DE3499EAE0E8454060DF0CE42AB3E714CFD7A8AEECB017807AFA5",
+      "extraction": "source_grounded"
+    }
+  }
+}

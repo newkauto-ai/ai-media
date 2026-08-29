@@ -1,0 +1,21 @@
+{
+  "decision_contract_version": "1.0",
+  "decision": {
+    "unit_id": "script-xyj-001",
+    "prior_stage": "script_quality",
+    "evaluator_source": "llm",
+    "evidence": [
+      "The frozen script reports 78 seconds against a 75-second target and retains a Hook, Conflict, Escalation, Reveal, and Meaning section.",
+      "The Hook states the Wukong strength-versus-seeking-help contrast in its first sentence; later sections visibly progress from artifacts to team responsibility.",
+      "The frozen semantic-lock list contains two factual claims, but the script fixture contains no primary-source citation or chapter reference for either claim."
+    ],
+    "failure_types": [
+      "evidence_missing"
+    ],
+    "state": "blocked",
+    "selected_capability": "research",
+    "next_action": "collect_external_evidence",
+    "retry_count": 0,
+    "reason": "Evidence-dependent topic cannot advance without current evidence."
+  }
+}

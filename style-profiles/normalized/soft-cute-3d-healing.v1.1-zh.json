@@ -1,0 +1,122 @@
+{
+  "fixture_only": false,
+  "library_status": "ready",
+  "normalized_from_source": "Style_Profile_软萌3D治愈动画_v1.1_中文重解析.md",
+  "style_profile": {
+    "style_id": "soft_cute_3d_healing",
+    "version": "v1.1-zh",
+    "classification": "hybrid_style_profile",
+    "pre_content_modules": {
+      "compatibility": {
+        "authority": "medium",
+        "preferred": ["轻剧情治愈", "小动物", "幻想小生物", "儿童温馨故事", "小尺度单事件"],
+        "weak_for": ["复杂悬疑", "高密度知识解释", "战斗", "快节奏动作", "大规模群戏"]
+      },
+      "story_direction": {
+        "authority": "medium",
+        "value": ["温暖开场", "小事件", "温柔互动", "治愈收尾"],
+        "status": "advisory"
+      },
+      "character_archetypes": {
+        "authority": "soft",
+        "value": ["小动物", "幻想小生物", "儿童与小动物"]
+      },
+      "theme_expression_rules": {
+        "authority": "medium",
+        "value": "通过一个小动作和清晰互动表达，不靠复杂对白或说教"
+      }
+    },
+    "audiovisual_modules": {
+      "visual_identity": {
+        "authority": "hard",
+        "medium": "原创软萌 3D 治愈动画",
+        "proportions": "头身比约 1:1.5–1:2；头大身小；四肢短圆粗；弱化骨节",
+        "eyes": "约占脸部 25%–35%，圆润且有清晰高光",
+        "geometry": "柔和圆角倒角，无锐利棱角",
+        "materials": "哑光低反光，可见细绒；避免廉价塑料玩具感与镜面反射",
+        "palette": "低饱和、暖色倾向；可使用奶油白、浅木色、浅绿色、奶油橘、柔和雨后蓝、暖黄色",
+        "lighting": "侧前方约 45 度柔和漫射主光，对侧弱反射补光",
+        "depth": "浅景深，主体清晰，背景柔和虚化"
+      },
+      "character_visual": {
+        "authority": "hard",
+        "locks": ["主色与副色", "服装款式、颜色和图案位置", "配件", "眼睛形状与高光", "耳朵和尾巴", "头身比", "四肢粗细", "脸颊饱满度"]
+      },
+      "environment": {
+        "authority": "hard",
+        "value": "干净、视觉焦点明确、保留角色活动区、道具少而明确、材质易辨识、兼具生活感与童话感"
+      },
+      "cinematography": {
+        "authority": "hard",
+        "baseline": ["固定机位", "缓慢推进", "轻微横移", "缓慢后拉", "平稳跟拍", "轻微上摇", "轻微下摇"],
+        "rule": "每个镜头只保留一个主要运镜；具体镜头数与时长由 Production Manifest 决定",
+        "forbidden": ["360 度环绕", "快速旋转", "突然变焦", "多重运镜同时叠加", "大幅手持晃动", "高频角度乱切"]
+      },
+      "performance": {
+        "authority": "hard",
+        "baseline": "一个主要动作与细微表情，动作克制、稳定、可预测",
+        "interaction_sequence": ["看向", "靠近", "接触", "物体反馈", "表情变化"],
+        "forbidden": ["持续大幅运动", "多角色同时复杂动作", "夸张表演"]
+      },
+      "editing_rhythm": {
+        "authority": "medium",
+        "value": "开场慢，小事件略加速，温柔互动放缓，结尾最慢"
+      },
+      "sound_design": {
+        "authority": "hard",
+        "value": "干净、轻柔、近距离的环境音和拟音，与小动作同步；对话、环境、Foley、SFX 与 BGM 分层"
+      },
+      "voice_system": {
+        "authority": "medium",
+        "source_voice_timbre": null,
+        "rule": "固定音色缺失；如需语音，由运行时建立 recommended_runtime_voice_profile 并标注来源"
+      },
+      "music_direction": {
+        "authority": "hard",
+        "function": "独立背景音乐，托住治愈氛围，不抢夺小动作与表情",
+        "tempo": "慢",
+        "rhythm_density": "低",
+        "instrumentation": ["轻柔木琴", "钢片琴", "柔和弦乐"],
+        "avoid": ["强鼓点", "高频密集节奏", "过度煽情", "压过对白和拟音"],
+        "embedded_in_video_prompt": false
+      },
+      "continuity_schema": {
+        "authority": "hard",
+        "track": ["角色颜色", "服装和配件", "眼睛", "耳朵和尾巴", "体型比例", "道具位置与状态", "场景光线与色调", "角色情绪状态"],
+        "retry_policy": "优先只重做失败镜头并保持角色资产绑定"
+      },
+      "template_bindings": {
+        "authority": "hard",
+        "character_asset": "soft3d-character-source",
+        "scene_asset": "soft3d-scene-source",
+        "prop_asset": "soft3d-prop-source",
+        "first_frame": "soft3d-first-source",
+        "end_frame": "soft3d-end-source",
+        "video": "soft3d-video-source"
+      }
+    },
+    "production_modules": {
+      "prompt_template_reference": ["character_asset", "scene_asset", "prop_asset", "first_frame", "end_frame", "video", "negative_constraints"],
+      "negative_constraints": ["no text unless explicitly required", "no watermark", "no unintended logo", "no duplicate character"],
+      "model_adapter_reference": {
+        "replaceable": true,
+        "source_mentions": ["GPT Image 2", "Seedance 2.5", "Suno 5"],
+        "authority": "none"
+      },
+      "workflow_reference": ["先主角资产", "再场景、道具和首尾帧", "先试做开场镜头", "再批量后续镜头", "BGM 最后独立生成"],
+      "known_source_conflicts": ["60 秒 + 24 镜 + 每镜约 5 秒存在算术冲突；镜头数不得锁死"]
+    },
+    "provenance": {
+      "source_documents": [
+        {"file": "Style_Profile_软萌3D治愈动画_v1.1_中文重解析.md", "version": "v1.1-zh", "derived_from": "软萌 3D 治愈动画.md"}
+      ],
+      "extracted_modules": [
+        {"field": "pre_content_modules", "source_section": "4-5", "extraction_type": "normalized"},
+        {"field": "audiovisual_modules", "source_section": "6-12", "extraction_type": "normalized"},
+        {"field": "production_modules", "source_section": "13-14", "extraction_type": "direct_and_routed"}
+      ],
+      "examples_are_canon": false,
+      "inferred_missing_fields": false
+    }
+  }
+}

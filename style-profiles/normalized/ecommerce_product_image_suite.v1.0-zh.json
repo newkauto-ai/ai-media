@@ -1,0 +1,59 @@
+{
+  "fixture_only": false,
+  "library_status": "pending_review",
+  "normalized_from_source": "Style_Profile_电商产品主图详情_v1.0_中文解析.md",
+  "style_profile": {
+    "style_id": "ecommerce_product_image_suite",
+    "version": "v1.0-zh",
+    "classification": "production_playbook",
+    "pre_content_modules": {
+      "compatibility": "有真实产品参考与已确认卖点的电商静态视觉",
+      "series_content_constraints": "不得从图片补造尺寸、材料等级、性能或品牌事实"
+    },
+    "audiovisual_modules": {
+      "visual_identity": "高端商业摄影、物理合理布光、真实材质、受控色彩",
+      "props": "产品是唯一核心资产并保持真值一致",
+      "environment": "白底、场景与道具按图位功能选择",
+      "cinematography": "建立、中景、微距、平铺和标准棚拍等静态景别",
+      "continuity_schema": "轮廓、比例、颜色、材质、Logo、结构、朝向、接口和文字"
+    },
+    "production_modules": {
+      "asset_prompt_templates": "主图、白底图、卖点图、材质微距、对比图和规格图",
+      "negative_constraints": "禁止产品形变、随机文字、水印、物理错误光影和无关道具",
+      "model_adapter_reference": "模型、英文提示词、词数、坐标和容差均需当前适配",
+      "generation_workflow": "基线提取、规格、图集规划、参考绑定、批量生成、一致性审计"
+    },
+    "provenance": {
+      "source_documents": [
+        {
+          "file": "D:/AI 视频/Flova技能/电商产品主图详情生成.md",
+          "sha256": "4746330FD67F19F40B2DF5EAEBF5664868E3F49D8B1E613038AE06AF0A4B159F"
+        },
+        {
+          "file": "Style_Profile_电商产品主图详情_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "sha256": "2A3AC870476B17CBDB72B762614535024B8973B4D53E0E547BC8CA10E2911D2D",
+          "extraction_type": "source_profile"
+        }
+      ],
+      "extracted_modules": [
+        {
+          "field": "pre_content_modules",
+          "source_section": "planner 与 multimodal_analyze_tool",
+          "extraction_type": "normalized"
+        },
+        {
+          "field": "audiovisual_modules",
+          "source_section": "storyboard_designer",
+          "extraction_type": "normalized"
+        },
+        {
+          "field": "production_modules",
+          "source_section": "media_generator 与 write_the_prompt",
+          "extraction_type": "direct"
+        }
+      ],
+      "source_sha256": "2A3AC870476B17CBDB72B762614535024B8973B4D53E0E547BC8CA10E2911D2D"
+    }
+  }
+}

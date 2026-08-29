@@ -1,0 +1,112 @@
+{
+  "fixture_only": false,
+  "library_status": "pending_review",
+  "normalized_from_source": "Style_Profile_城市蛛丝英雄动作大片_v1.0_中文解析.md",
+  "style_profile": {
+    "style_id": "urban_web_swinging_action",
+    "version": "v1.0-zh",
+    "classification": "production_playbook",
+    "pre_content_modules": {
+      "compatibility": {
+        "authority": "medium",
+        "preferred": [
+          "城市冒险",
+          "真人身份代入",
+          "高速动作与生活反差"
+        ]
+      },
+      "story_direction": {
+        "authority": "soft",
+        "value": "日常起点 → 城市高速穿越 → 高点停顿 → 日常回归"
+      },
+      "series_content_constraints": {
+        "authority": "hard",
+        "value": "不默认使用既有受保护角色的战衣、标志或故事 Canon"
+      }
+    },
+    "audiovisual_modules": {
+      "visual_identity": {
+        "authority": "hard",
+        "value": "真人写实城市动作电影，高速动态跟拍与天际线广角停顿"
+      },
+      "character_visual": {
+        "authority": "hard",
+        "value": "用户身份和原服装锁定，不自动英雄化"
+      },
+      "environment": {
+        "authority": "high",
+        "value": "城市地标、道路、屋顶与交通工具空间关系可信"
+      },
+      "cinematography": {
+        "authority": "high",
+        "value": "连续追踪、低空跟拍、手部极近特写、快速后拉、倾斜与动机明确的翻滚"
+      },
+      "performance": {
+        "authority": "hard",
+        "value": "重力、惯性、接触点、蛛丝锚点和身体结构必须可读"
+      },
+      "editing_rhythm": {
+        "authority": "medium",
+        "value": "高速动作与高点静止、生活片刻形成反差"
+      },
+      "sound_design": {
+        "authority": "medium",
+        "value": "城市环境、风噪、蛛丝张力、脚步与接触声"
+      },
+      "music_direction": {
+        "authority": "low",
+        "value": "源模板默认无独立背景音乐，可被当前项目覆盖"
+      },
+      "continuity_schema": {
+        "authority": "hard",
+        "track": [
+          "人物身份与服装",
+          "发射手与锚点",
+          "蛛丝连续性",
+          "身体惯性",
+          "城市空间层级"
+        ]
+      }
+    },
+    "production_modules": {
+      "fixed_timeline_template": "source_defined_optional",
+      "asset_prompt_templates": "source_defined",
+      "video_prompt_templates": "source_defined",
+      "model_adapter_reference": "replaceable"
+    },
+    "provenance": {
+      "source_documents": [
+        {
+          "file": "D:/AI 视频/Flova技能/蜘蛛侠动作风格.md",
+          "version": "attached-2026-08-24",
+          "sha256": "35263DD6E72F82D689E251ABE3E225EF1921A92213C006CAB1A63DE2FCCDD666"
+        },
+        {
+          "file": "Style_Profile_城市蛛丝英雄动作大片_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "sha256": "5CD8D5BFAFFE2279E1465E5B0E483E9EFCB8CD790DC76B06E50ADF68F76C8546",
+          "extraction_type": "source_profile"
+        }
+      ],
+      "extracted_modules": [
+        {
+          "field": "pre_content_modules",
+          "source_section": "planner + storyboard_designer",
+          "extraction_type": "normalized"
+        },
+        {
+          "field": "audiovisual_modules",
+          "source_section": "multimodal_analyze_tool + storyboard_designer + write_the_prompt",
+          "extraction_type": "normalized"
+        },
+        {
+          "field": "production_modules",
+          "source_section": "media_generator + fixed_28s_template",
+          "extraction_type": "direct"
+        }
+      ],
+      "source_sha256": "5CD8D5BFAFFE2279E1465E5B0E483E9EFCB8CD790DC76B06E50ADF68F76C8546",
+      "extraction": "source_grounded"
+    }
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "fixture_only": false,
+  "library_status": "pending_review",
+  "normalized_from_source": "Style_Profile_金色美式怀旧装饰艺术_v1.0_中文解析.md",
+  "style_profile": {
+    "style_id": "golden_americana_art_deco_melancholy",
+    "version": "v1.0-zh",
+    "classification": "hybrid_style_profile",
+    "pre_content_modules": {
+      "themes": "desire_distance_disillusionment",
+      "story_direction": "public_opulence_vs_private_absence",
+      "period_consistency": "required"
+    },
+    "audiovisual_modules": {
+      "visual_identity": "golden_americana_art_deco",
+      "color": "warm_highlight_cool_shadow_separation",
+      "film_texture": "public_35mm_private_16mm",
+      "cinematography": "restrained_functional",
+      "voice": "behavioral_presets_without_real_person_lock",
+      "music": "jazz_strings_ambient_by_domain",
+      "continuity": "period_character_and_prop_lock"
+    },
+    "production_modules": {
+      "keyword_library": "reference_only",
+      "model_adapter": "replaceable"
+    },
+    "provenance": {
+      "source_documents": [
+        {
+          "file": "盖茨比金色怀旧风格.md",
+          "extraction": "direct_and_normalized"
+        },
+        {
+          "file": "Style_Profile_金色美式怀旧装饰艺术_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "sha256": "B4A775CA1C3DA4EFF5F2E2FF324A1D649BEE43B58079305BDBCFF3754AEE44B0",
+          "extraction_type": "source_profile"
+        }
+      ],
+      "extracted_modules": [
+        {
+          "module": "themes_and_dual_grammar",
+          "method": "direct"
+        },
+        {
+          "module": "audiovisual_system",
+          "method": "normalized"
+        },
+        {
+          "module": "artist_reference_neutralization",
+          "method": "inferred_structure_only"
+        }
+      ],
+      "source_sha256": "B4A775CA1C3DA4EFF5F2E2FF324A1D649BEE43B58079305BDBCFF3754AEE44B0"
+    }
+  }
+}

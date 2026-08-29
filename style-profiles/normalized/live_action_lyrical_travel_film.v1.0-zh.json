@@ -1,0 +1,58 @@
+{
+  "fixture_only": false,
+  "library_status": "ready",
+  "normalized_from_source": "Style_Profile_真人唯美旅拍电影_v1.0_中文解析.md",
+  "style_profile": {
+    "style_id": "live_action_lyrical_travel_film",
+    "version": "v1.0-zh",
+    "classification": "hybrid_style_profile",
+    "pre_content_modules": {
+      "preferred_content": [
+        "旅行",
+        "城市漫游",
+        "自然体验",
+        "生活方式"
+      ],
+      "restrictions": "不得强制正能量、押韵或鸡汤化"
+    },
+    "audiovisual_modules": {
+      "visual_identity": "真人实拍旅拍电影感",
+      "location_fidelity": "有参考时锁定地标、植被、建筑、气候与光向",
+      "performance": "自然行走、停驻、回望及环境互动",
+      "cinematography": "大景建立环境，中近景建立人物在场感",
+      "narration": "第一人称、感官化、具体",
+      "music": "纯器乐的渐起、高潮、舒缓曲线"
+    },
+    "production_modules": {
+      "adapter_reference": "replaceable",
+      "fixed_shot_count_is_canon": false,
+      "automatic_retry_requires_cost_gate": true
+    },
+    "provenance": {
+      "source_documents": [
+        {
+          "file": "唯美旅拍风格视频.md",
+          "sha256": "A86672EA91ECC48A57B6A7409E1428D1B118BD8E4ACCCC46F5E3A308F06FEB6C"
+        },
+        {
+          "file": "Style_Profile_真人唯美旅拍电影_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "sha256": "121678BFCF820109254829C6AF78C668BDF17B205BE89C78C48AC9CA9E9D1988",
+          "extraction_type": "source_profile"
+        }
+      ],
+      "extracted_modules": [
+        {
+          "module": "真人视觉、地点锚定、表演、镜头、旁白与音乐",
+          "extraction": "normalized"
+        },
+        {
+          "module": "爆款文案、模型、时长、镜头数与暂停流程",
+          "extraction": "direct",
+          "routed_to": "production_modules"
+        }
+      ],
+      "source_sha256": "121678BFCF820109254829C6AF78C668BDF17B205BE89C78C48AC9CA9E9D1988"
+    }
+  }
+}

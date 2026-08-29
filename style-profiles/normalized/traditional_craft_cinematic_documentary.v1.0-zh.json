@@ -1,0 +1,176 @@
+{
+  "fixture_only": false,
+  "library_status": "pending_review",
+  "normalized_from_source": "Style_Profile_传统手工艺电影纪录_v1.0_中文解析.md",
+  "style_profile": {
+    "style_id": "traditional_craft_cinematic_documentary",
+    "version": "v1.0-zh",
+    "classification": "mixed",
+    "classification_detail": {
+      "primary": "audiovisual_style_profile",
+      "secondary": [
+        "narrative_structure_reference",
+        "production_playbook"
+      ],
+      "full_series_canon": false,
+      "requires_factual_source": true
+    },
+    "pre_content_modules": {
+      "load": [
+        "craft_documentary_story_shape",
+        "source_requirement"
+      ]
+    },
+    "audiovisual_modules": {
+      "load": [
+        "visual_identity",
+        "mineral_palette",
+        "material_macro",
+        "physics_visualization",
+        "cinematography",
+        "eye_tracing",
+        "narration",
+        "sound",
+        "music"
+      ]
+    },
+    "production_modules": {
+      "load": [
+        "storyboard_matrix_reference",
+        "model_adapter_reference",
+        "timing_reference",
+        "qc_reference"
+      ]
+    },
+    "factual_boundary": {
+      "style_may_generate_facts": false,
+      "source_required_for": [
+        "起源",
+        "朝代",
+        "传承年限",
+        "地域分布",
+        "工艺步骤"
+      ]
+    },
+    "narrative": {
+      "preferred_structure": [
+        "工艺溯源",
+        "工艺流程",
+        "成品实景与文明意义"
+      ],
+      "authority": "medium_high"
+    },
+    "visual": {
+      "identity": [
+        "古籍木刻版画线描",
+        "超写实材质微距",
+        "电影纪录片",
+        "微粒胶片颗粒",
+        "高反差暗部"
+      ],
+      "palette": [
+        "赭石",
+        "松石绿",
+        "朱砂",
+        "黛蓝"
+      ],
+      "palette_dominance": "high"
+    },
+    "craft_physics": {
+      "abstract_to_physical_visualization": true,
+      "material_state_change": true,
+      "force_reaction": true,
+      "heat_and_fluid_behavior": true
+    },
+    "cinematography": {
+      "origin": [
+        "宽景",
+        "稳定横摇",
+        "缓慢推进"
+      ],
+      "process": [
+        "极近特写",
+        "手持纪实",
+        "时间流逝",
+        "高反差动作特写"
+      ],
+      "final_product": [
+        "生活化中景",
+        "柔和宽景",
+        "材质极近特写",
+        "平稳退轨"
+      ],
+      "eye_tracing": "required"
+    },
+    "narration": {
+      "profile": "低沉、磁性、沉稳、克制的中文人文纪录片解说",
+      "writing": [
+        "凝练",
+        "沉稳",
+        "有意象",
+        "事实清晰"
+      ]
+    },
+    "music": {
+      "instruments": [
+        "古琴",
+        "埙",
+        "编钟"
+      ],
+      "tempo": "舒缓",
+      "independent_track": true
+    },
+    "production_adapter_reference": {
+      "replaceable": true,
+      "known_source_conflicts": [
+        "18 格与 36 节点冲突",
+        "3×30 秒原始视频与 45 秒成片关系未完整定义",
+        "B 段时间区间只标 15 秒",
+        "6 格参考图与每组 12 节点映射不明确"
+      ]
+    },
+    "conflict_policy": {
+      "no_silent_fact_generation": true,
+      "topic_owner": "Topic Hunter",
+      "script_semantics_owner": "Script Engine",
+      "audiovisual_owner": "Audiovisual Director",
+      "final_model_prompt_owner": "Video Production"
+    },
+    "provenance": {
+      "source_documents": [
+        {
+          "file": "传统手工艺纪录风格短片.md",
+          "sha256": "F8C513582E9F326EF61C8669982A83E7B56ED047CEBFED567633549F9674EBBB",
+          "source_version": "本地文件 2026-08-18"
+        },
+        {
+          "file": "Style_Profile_传统手工艺电影纪录_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "sha256": "D0B73FA8F1236A0C60378D806F493266D16226056D19C5E233D69357782F7086",
+          "extraction_type": "source_profile"
+        }
+      ],
+      "extracted_modules": [
+        {
+          "field": "pre_content_modules",
+          "source_section": "planner 与 storyboard_designer",
+          "extraction_type": "normalized"
+        },
+        {
+          "field": "audiovisual_modules",
+          "source_section": "multimodal_analyze_tool、storyboard_designer 与 write_the_prompt",
+          "extraction_type": "normalized"
+        },
+        {
+          "field": "production_modules",
+          "source_section": "media_generator 与 video_assembler",
+          "extraction_type": "direct"
+        }
+      ],
+      "extraction": "source_grounded",
+      "factual_examples_are_canon": false,
+      "inferred_missing_fields": false,
+      "source_sha256": "D0B73FA8F1236A0C60378D806F493266D16226056D19C5E233D69357782F7086"
+    }
+  }
+}

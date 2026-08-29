@@ -1,0 +1,196 @@
+{
+  "fixture_only": true,
+  "contract_version": "1.1",
+  "cases": [
+    {
+      "case_id": "provenance-broken",
+      "expected_result": "blocked",
+      "input": {
+        "clip_id": "C01",
+        "continuity": {"predecessor_clip_id": "C00", "source_state_type": "ledger_actual_end_state", "state_record_id": null, "ledger": []},
+        "timeline": [{"start_seconds": 0.0, "end_seconds": 5.0}],
+        "body_resource_timeline": [], "prop_state_transitions": [],
+        "scene": {"clip_ids": ["C01"], "coverage_required": false, "coverage_bindings": []}
+      }
+    },
+    {
+      "case_id": "actual-beats-planned",
+      "expected_result": "blocked",
+      "input": {
+        "clip_id": "C02",
+        "continuity": {"predecessor_clip_id": "C01", "source_state_type": "frozen_planned_end_state", "state_record_id": "STATE-C01", "ledger": [{"state_record_id": "STATE-C01", "actual_end_state": "observed C01 end"}]},
+        "timeline": [{"start_seconds": 0.0, "end_seconds": 5.0}],
+        "body_resource_timeline": [], "prop_state_transitions": [],
+        "scene": {"clip_ids": ["C01", "C02"], "coverage_required": false, "coverage_bindings": []}
+      }
+    },
+    {
+      "case_id": "unknown-routes",
+      "expected_result": "unknown",
+      "input": {
+        "clip_id": "C03",
+        "continuity": {"predecessor_clip_id": "C02", "source_state_type": "frozen_planned_end_state", "state_record_id": "STATE-C02", "ledger": [{"state_record_id": "STATE-C02", "actual_end_state": null}]},
+        "timeline": [{"start_seconds": 0.0, "end_seconds": 5.0}],
+        "body_resource_timeline": [], "prop_state_transitions": [],
+        "semantic_assessments": [{"check_id": "physical-causality", "status": "unknown", "evidence": ["surface material is not declared"], "confidence": "low", "owner": "human_decision"}],
+        "scene": {"clip_ids": ["C02", "C03"], "coverage_required": false, "coverage_bindings": []}
+      }
+    },
+    {
+      "case_id": "same-axis-size-change",
+      "expected_result": "passed",
+      "case_assertion": "no_scene_setting_trigger",
+      "input": {
+        "clip_id": "C04",
+        "continuity": {"predecessor_clip_id": null, "source_state_type": "first_clip", "state_record_id": null, "ledger": []},
+        "timeline": [{"start_seconds": 0.0, "end_seconds": 5.0}],
+        "body_resource_timeline": [], "prop_state_transitions": [],
+        "scene": {"clip_ids": ["C04", "C05"], "coverage_required": false, "coverage_bindings": [], "coverage": [{"coverage_id": "COV-WIDE", "axis_group_id": "AX-1", "visible_zone_ids": ["front"], "reveals_new_space": false}, {"coverage_id": "COV-CLOSE", "axis_group_id": "AX-1", "visible_zone_ids": ["front"], "reveals_new_space": false}]},
+        "semantic_preflight": {
+          "input_character_limit": 1200, "output_character_limit": 250, "max_findings": 3,
+          "risk_packet": {"clip_id": "C04", "scene": "same room and axis", "start_state": "subject faces camera", "timeline": [{"start_seconds": 0.0, "end_seconds": 5.0, "action": "camera changes shot size only"}], "end_state": "subject unchanged", "characters_involved": ["subject"], "props_and_state_changes": [], "metaphorical_clauses": []},
+          "evaluator_result": {"source": "llm", "run_id": "fixture-semantic-pass-1", "status": "passed", "confidence": "high", "evidence": ["No prop, causality, setting, or literalization conflict in the bounded packet."], "failures": [], "repair_targets": [], "affects_semantics": false, "summary": "PASS"}
+        }
+      }
+    },
+    {
+      "case_id": "complex-but-consistent-sequence",
+      "expected_result": "passed",
+      "input": {
+        "clip_id": "C05",
+        "continuity": {"predecessor_clip_id": null, "source_state_type": "first_clip", "state_record_id": null, "ledger": []},
+        "timeline": [{"start_seconds": 0.0, "end_seconds": 2.0}, {"start_seconds": 2.0, "end_seconds": 4.0}, {"start_seconds": 4.0, "end_seconds": 7.0}],
+        "body_resource_timeline": [{"start_seconds": 0.0, "end_seconds": 2.0, "character_id": "girl", "posture": "crouch", "left_hand_or_limb": "holds umbrella", "right_hand_or_limb": "free", "other_support": ["both feet"], "reach_target": null}, {"start_seconds": 2.0, "end_seconds": 4.0, "character_id": "girl", "posture": "crouch", "left_hand_or_limb": "holds umbrella", "right_hand_or_limb": "touches kitten", "other_support": ["both feet"], "reach_target": "kitten"}, {"start_seconds": 4.0, "end_seconds": 7.0, "character_id": "girl", "posture": "crouch", "left_hand_or_limb": "holds umbrella", "right_hand_or_limb": "supports kitten", "other_support": ["both feet"], "reach_target": "kitten"}],
+        "prop_state_transitions": [{"prop_id": "scarf", "from_state": "bag", "transition_action": "take out", "to_state": "hand", "actor_id": "girl", "required_resources": ["right hand"], "support_or_handoff": null}, {"prop_id": "scarf", "from_state": "hand", "transition_action": "wrap kitten", "to_state": "wrapped_on_kitten", "actor_id": "girl", "required_resources": ["right hand"], "support_or_handoff": "kitten supported"}],
+        "scene": {"clip_ids": ["C05"], "coverage_required": false, "coverage_bindings": []},
+        "semantic_preflight": {
+          "input_character_limit": 1200, "output_character_limit": 250, "max_findings": 3,
+          "risk_packet": {"clip_id": "C05", "scene": "covered outdoor stop", "start_state": "girl crouches with umbrella", "timeline": [{"start_seconds": 0.0, "end_seconds": 7.0, "action": "take scarf, touch and support kitten"}], "end_state": "kitten supported and wrapped", "characters_involved": ["girl", "kitten"], "props_and_state_changes": [{"prop_id": "scarf", "from": "bag", "to": "wrapped_on_kitten"}], "metaphorical_clauses": []},
+          "evaluator_result": {"source": "llm", "run_id": "fixture-semantic-pass-2", "status": "passed", "confidence": "high", "evidence": ["The declared prop lifecycle and action causality are coherent."], "failures": [], "repair_targets": [], "affects_semantics": false, "summary": "PASS"}
+        }
+      }
+    },
+    {
+      "case_id": "body-resource-conflict",
+      "expected_result": "blocked",
+      "input": {
+        "clip_id": "C06",
+        "continuity": {"predecessor_clip_id": null, "source_state_type": "first_clip", "state_record_id": null, "ledger": []},
+        "timeline": [{"start_seconds": 0.0, "end_seconds": 5.0}],
+        "body_resource_timeline": [{"start_seconds": 0.0, "end_seconds": 5.0, "character_id": "girl", "posture": "standing", "left_hand_or_limb": "holds kitten", "right_hand_or_limb": "holds umbrella and takes scarf", "other_support": [], "reach_target": "scarf"}],
+        "prop_state_transitions": [],
+        "scene": {"clip_ids": ["C06"], "coverage_required": false, "coverage_bindings": []}
+      }
+    },
+    {
+      "case_id": "prop-state-transition-gap",
+      "expected_result": "blocked",
+      "input": {
+        "clip_id": "C07",
+        "continuity": {"predecessor_clip_id": null, "source_state_type": "first_clip", "state_record_id": null, "ledger": []},
+        "timeline": [{"start_seconds": 0.0, "end_seconds": 5.0}],
+        "body_resource_timeline": [],
+        "prop_state_transitions": [{"prop_id": "scarf", "from_state": "bag", "transition_action": "wrap directly", "to_state": "wrapped_on_kitten", "actor_id": "girl", "required_resources": [], "support_or_handoff": null}],
+        "scene": {"clip_ids": ["C07"], "coverage_required": false, "coverage_bindings": []}
+      }
+    },
+    {
+      "case_id": "shared-scene-approved-coverage",
+      "expected_result": "passed",
+      "input": {
+        "clip_id": "C08",
+        "continuity": {"predecessor_clip_id": null, "source_state_type": "first_clip", "state_record_id": null, "ledger": []},
+        "timeline": [{"start_seconds": 0.0, "end_seconds": 5.0}],
+        "body_resource_timeline": [], "prop_state_transitions": [],
+        "scene": {"clip_ids": ["C08", "C09"], "coverage_required": true, "required_coverage_ids": ["COV-FRONT", "COV-REVERSE"], "coverage": [{"coverage_id": "COV-FRONT", "axis_group_id": "AX-F", "visible_zone_ids": ["road", "box"], "reveals_new_space": false}, {"coverage_id": "COV-REVERSE", "axis_group_id": "AX-R", "visible_zone_ids": ["bench", "house"], "reveals_new_space": true}], "coverage_bindings": [{"baseline_id": "SB-001", "coverage_ids": ["COV-FRONT", "COV-REVERSE"], "status": "approved_baseline_ready"}]},
+        "semantic_preflight": {
+          "input_character_limit": 1200, "output_character_limit": 250, "max_findings": 3,
+          "risk_packet": {"clip_id": "C08", "scene": "approved front and reverse coverage", "start_state": "scene established", "timeline": [{"start_seconds": 0.0, "end_seconds": 5.0, "action": "show approved reverse coverage"}], "end_state": "scene geography remains coherent", "characters_involved": [], "props_and_state_changes": [], "metaphorical_clauses": []},
+          "evaluator_result": {"source": "llm", "run_id": "fixture-semantic-pass-3", "status": "passed", "confidence": "high", "evidence": ["The bounded packet contains no common-sense or literalization conflict."], "failures": [], "repair_targets": [], "affects_semantics": false, "summary": "PASS"}
+        }
+      }
+    },
+    {
+      "case_id": "shared-scene-multi-angle-no-setting",
+      "expected_result": "blocked",
+      "input": {
+        "clip_id": "C10",
+        "continuity": {"predecessor_clip_id": null, "source_state_type": "first_clip", "state_record_id": null, "ledger": []},
+        "timeline": [{"start_seconds": 0.0, "end_seconds": 5.0}],
+        "body_resource_timeline": [], "prop_state_transitions": [],
+        "scene": {"clip_ids": ["C10", "C11"], "coverage_required": true, "required_coverage_ids": ["COV-FRONT", "COV-REVERSE"], "coverage": [{"coverage_id": "COV-FRONT", "axis_group_id": "AX-F", "visible_zone_ids": ["road"], "reveals_new_space": false}, {"coverage_id": "COV-REVERSE", "axis_group_id": "AX-R", "visible_zone_ids": ["house"], "reveals_new_space": true}], "coverage_bindings": []}
+      }
+    },
+    {
+      "case_id": "literalization-open-review",
+      "expected_result": "unknown",
+      "input": {
+        "clip_id": "C12",
+        "continuity": {"predecessor_clip_id": null, "source_state_type": "first_clip", "state_record_id": null, "ledger": []},
+        "timeline": [{"start_seconds": 0.0, "end_seconds": 5.0}],
+        "body_resource_timeline": [], "prop_state_transitions": [],
+        "literalization_scan": [{"source_clause": "伞像小太阳", "risk_type": "metaphor", "executable_rewrite": null, "status": "unknown", "source": "llm", "confidence": "low"}],
+        "scene": {"clip_ids": ["C12"], "coverage_required": false, "coverage_bindings": []}
+      }
+    },
+    {
+      "case_id": "semantic-preflight-missing",
+      "expected_result": "needs_semantic_review",
+      "input": {
+        "clip_id": "C13",
+        "continuity": {"predecessor_clip_id": null, "source_state_type": "first_clip", "state_record_id": null, "ledger": []},
+        "timeline": [{"start_seconds": 0.0, "end_seconds": 5.0}],
+        "body_resource_timeline": [], "prop_state_transitions": [],
+        "scene": {"clip_ids": ["C13"], "coverage_required": false, "coverage_bindings": []}
+      }
+    },
+    {
+      "case_id": "semantic-common-sense-blocked",
+      "expected_result": "blocked",
+      "input": {
+        "clip_id": "C14",
+        "continuity": {"predecessor_clip_id": null, "source_state_type": "first_clip", "state_record_id": null, "ledger": []},
+        "timeline": [{"start_seconds": 0.0, "end_seconds": 5.0}],
+        "body_resource_timeline": [], "prop_state_transitions": [],
+        "scene": {"clip_ids": ["C14"], "coverage_required": false, "coverage_bindings": []},
+        "semantic_preflight": {
+          "input_character_limit": 1200, "output_character_limit": 250, "max_findings": 3,
+          "risk_packet": {"clip_id": "C14", "scene": "warm living room with wood floor", "start_state": "characters are indoors", "timeline": [{"start_seconds": 0.0, "end_seconds": 5.0, "action": "wet umbrella drips beside the window"}], "end_state": "water continues dripping on the wood floor", "characters_involved": ["girl", "kitten"], "props_and_state_changes": [{"prop_id": "umbrella", "from": "wet outdoors", "to": "dripping indoors without stand or tray"}], "metaphorical_clauses": ["umbrella glows like a small sun"]},
+          "evaluator_result": {"source": "llm", "run_id": "fixture-semantic-block-1", "status": "blocked", "confidence": "high", "evidence": ["A wet umbrella is shown dripping directly on an interior wood floor without an entrance transition, stand, or tray."], "failures": ["physical_common_sense_violation"], "repair_targets": ["video_production.props_and_state_changes"], "affects_semantics": false, "summary": "REVISE: wet umbrella placement conflicts with the declared living-room floor."}
+        }
+      }
+    },
+    {
+      "case_id": "semantic-output-over-budget",
+      "expected_result": "blocked",
+      "input": {
+        "clip_id": "C15",
+        "continuity": {"predecessor_clip_id": null, "source_state_type": "first_clip", "state_record_id": null, "ledger": []},
+        "timeline": [{"start_seconds": 0.0, "end_seconds": 5.0}],
+        "body_resource_timeline": [], "prop_state_transitions": [],
+        "scene": {"clip_ids": ["C15"], "coverage_required": false, "coverage_bindings": []},
+        "semantic_preflight": {
+          "input_character_limit": 1200, "output_character_limit": 250, "max_findings": 3,
+          "risk_packet": {"clip_id": "C15", "scene": "simple room", "start_state": "subject seated", "timeline": [{"start_seconds": 0.0, "end_seconds": 5.0, "action": "subject remains seated"}], "end_state": "subject seated", "characters_involved": ["subject"], "props_and_state_changes": [], "metaphorical_clauses": []},
+          "evaluator_result": {"source": "llm", "run_id": "fixture-semantic-budget-1", "status": "passed", "confidence": "high", "evidence": ["No conflict."], "failures": [], "repair_targets": [], "affects_semantics": false, "summary": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"}
+        }
+      }
+    },
+    {
+      "case_id": "semantic-impact-routes-human",
+      "expected_result": "needs_human_review",
+      "input": {
+        "clip_id": "C16",
+        "continuity": {"predecessor_clip_id": null, "source_state_type": "first_clip", "state_record_id": null, "ledger": []},
+        "timeline": [{"start_seconds": 0.0, "end_seconds": 5.0}],
+        "body_resource_timeline": [], "prop_state_transitions": [],
+        "scene": {"clip_ids": ["C16"], "coverage_required": false, "coverage_bindings": []},
+        "semantic_preflight": {
+          "input_character_limit": 1200, "output_character_limit": 250, "max_findings": 3,
+          "risk_packet": {"clip_id": "C16", "scene": "family room", "start_state": "two characters disagree", "timeline": [{"start_seconds": 0.0, "end_seconds": 5.0, "action": "draft changes the character decision"}], "end_state": "story motive changes", "characters_involved": ["A", "B"], "props_and_state_changes": [], "metaphorical_clauses": []},
+          "evaluator_result": {"source": "llm", "run_id": "fixture-semantic-human-1", "status": "passed", "confidence": "high", "evidence": ["The proposed repair changes the frozen character decision."], "failures": [], "repair_targets": ["script.story_change_arc"], "affects_semantics": true, "summary": "HUMAN_REVIEW"}
+        }
+      }
+    }
+  ]
+}

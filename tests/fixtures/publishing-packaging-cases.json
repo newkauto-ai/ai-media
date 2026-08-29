@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.2",
+  "cases": [
+    {"case_id": "platform-missing", "expected": "BLOCKED", "assertion": "zero_packages"},
+    {"case_id": "single-platform", "targets": ["youtube_shorts"], "expected_generated": ["youtube_shorts"]},
+    {"case_id": "multi-platform", "targets": ["youtube_shorts", "youtube_long"], "expected_generated": ["youtube_shorts", "youtube_long"]},
+    {"case_id": "source-checksum-mismatch", "expected": "SOURCE_BLOCKED"},
+    {"case_id": "provisional-source", "expected_maximum": "PACKAGE_DRAFT"},
+    {"case_id": "fixture-with-real-files", "expected_maximum": "PACKAGE_DRAFT"},
+    {"case_id": "legacy-packaging-readable", "expected_authority": "publishing_packaging"},
+    {"case_id": "critical-profile-stale", "expected_critical_rules_status": "stale", "expected_ready": false},
+    {"case_id": "heuristic-stale", "expected_timing_confidence": "unknown"},
+    {"case_id": "promise-mismatch", "expected_ready": false, "expected_compliance": "HOLD"},
+    {"case_id": "rights-unknown", "expected_ready": false, "expected_compliance": "UNKNOWN"},
+    {"case_id": "youtube-unknown-booleans", "expected_defaults": ["unknown", "unknown", "unknown"]},
+    {"case_id": "generated-background-no-authorization", "expected_model_calls": 0, "expected_maximum": "PACKAGE_DRAFT"},
+    {"case_id": "external-action-audit", "expected": {"publish": 0, "remote_draft": 0, "paid_generation": 0, "notion_write": 0, "browser_automation": 0}},
+    {"case_id": "cover-early-path-approved-references", "source_artifact": null, "expected_prompt_packages": ["xiaohongshu", "douyin"], "expected_maximum": "PACKAGE_DRAFT"},
+    {"case_id": "cover-source-priority", "expected_order": ["approved_dedicated_cover", "approved_visual_reference", "cover_prompt_package", "supplied_asset", "extracted_frame_optional"]},
+    {"case_id": "title-split", "expected_distinct": ["story_hook", "platform_title", "cover_title"]},
+    {"case_id": "semantic-missing-subject", "content": "rainy-day-kitten", "expected": "withheld"},
+    {"case_id": "semantic-title-occlusion", "content": "rainy-day-kitten", "expected": "withheld"},
+    {"case_id": "semantic-mechanical-crop", "content": "rainy-day-kitten", "expected": "withheld"},
+    {"case_id": "semantic-template-residue", "content": "rainy-day-kitten", "expected": "withheld"},
+    {"case_id": "notion-idempotency", "expected_decisions": ["CREATE", "NO_CHANGE", "UPDATE", "CONFLICT", "DEGRADED"]}
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "provider": "doubao_tts",
+  "description": "本地 Voice_Type 注册表；只保存非敏感的音色选择与推荐元数据，不保存任何凭据。",
+  "voices": [
+    {
+      "voice_id": "doubao-zh-female-wanwanxiaohe-moon-bigtts",
+      "voice_type": "zh_female_wanwanxiaohe_moon_bigtts",
+      "provider": "doubao_tts",
+      "status": "active",
+      "source": "user_supplied",
+      "display_name": null,
+      "language": "zh-CN",
+      "recommendation": {
+        "priority": 100,
+        "use_cases": ["narration", "verification"],
+        "style_tags": ["steady", "informational", "non-dramatic"],
+        "rationale": "用户明确指定的验证音色；数据库当前只有这一条可用记录，因此推荐基于显式选择，不等同于已验证的官方音色能力或价格。"
+      },
+      "notes": "voice_type 由用户提供；display_name、能力、价格和实际音质待真实调用后验证。"
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "captured_at": "2026-08-29T17:00:00+08:00",
+  "workspace_name": "Roy",
+  "video_project_data_source_url": "collection://707cd8be-06d5-4371-b149-444d99692368",
+  "publishing_data_source_url": "collection://fd7bcce7-fedb-4a88-a230-0ee6fa5599fb",
+  "target_project": {
+    "url": "https://app.notion.com/3c6e5d0dfd00814ab073e68023a7806e",
+    "name": "《雨停之前》｜AI软萌3D治愈短片",
+    "status": "软萌3D治愈短片",
+    "aspect_ratio": "16:9"
+  },
+  "publishing_schema": {
+    "Name": "title",
+    "Platform": "select",
+    "项目": "relation",
+    "发布日期": "date",
+    "链接": "url",
+    "时长": "number",
+    "播放": "number",
+    "赞": "number",
+    "评论": "number",
+    "收藏": "number",
+    "分享": "number",
+    "涨粉": "number",
+    "完播率": "number",
+    "7日信号": "select",
+    "决策": "select"
+  },
+  "publishing_rows": [
+    {
+      "url": "https://app.notion.com/3c6e5d0dfd008053852cc0e96991aa17",
+      "Name": null,
+      "Platform": null,
+      "项目": null,
+      "7日信号": "Pending"
+    },
+    {
+      "url": "https://app.notion.com/3c6e5d0dfd00809fb450ee21c80956d5",
+      "Name": null,
+      "Platform": null,
+      "项目": null,
+      "7日信号": null
+    }
+  ],
+  "attachment_capability": {
+    "create_attachment": "available",
+    "create_file_upload": "reported_available_by_self",
+    "local_binary_upload_callable": false,
+    "reason": "Current callable create_attachment accepts inline UTF-8 text or public HTTPS URL, not a local PNG path; no callable local file-upload tool is exposed in this task. No capability test write was attempted."
+  },
+  "read_only_audit": {
+    "notion_fetch_calls": 3,
+    "notion_query_calls": 2,
+    "notion_write_calls": 0,
+    "attachment_upload_calls": 0
+  }
+}

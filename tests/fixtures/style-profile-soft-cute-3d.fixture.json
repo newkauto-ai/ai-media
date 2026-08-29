@@ -1,0 +1,43 @@
+{
+  "fixture_only": true,
+  "normalized_from_source": "软萌 3D 治愈动画.md",
+  "style_profile": {
+    "style_id": "soft_cute_3d_healing",
+    "version": "normalized-fixture-1.0",
+    "classification": "hybrid_style_profile",
+    "pre_content_modules": {
+      "compatibility": {"authority": "medium", "preferred": ["light story", "healing daily life", "gentle interaction"], "avoid": ["complex conflict", "chase combat", "many simultaneous actions"]},
+      "story_direction": {"authority": "medium", "value": "warm opening, small event, gentle interaction, healing payoff"},
+      "character_archetypes": {"authority": "soft", "value": ["small animal", "fantasy creature", "child with animal"]},
+      "theme_expression_rules": {"authority": "medium", "value": "show care through one concrete action rather than explanation"}
+    },
+    "audiovisual_modules": {
+      "visual_identity": {"authority": "hard", "medium": "original soft-cute 3D healing animation", "proportions": "head-to-body 1:1.5 to 1:2; large head, short rounded limbs", "eyes": "25%-35% of face, rounded with visible highlights", "geometry": "rounded beveled edges without sharp corners", "materials": "matte plush, fabric, wood or ceramic; avoid plastic gloss", "palette": "low-saturation warm cream colors", "lighting": "soft front-side diffuse key around 45 degrees", "depth": "shallow depth with clear subject and softened background"},
+      "character_visual": {"authority": "hard", "locks": ["main and secondary colors", "costume and accessory position", "eye shape and highlight", "ear and tail design", "body proportion"]},
+      "environment": {"authority": "hard", "value": "clean functional activity area, limited clutter, warm domestic fairy-tale detail"},
+      "cinematography": {"authority": "hard", "baseline": ["static", "slow push", "slight lateral move", "slow pullback", "stable follow"], "rule": "one primary camera movement per visual unit", "forbidden": ["rapid spin", "mixed push-pan-orbit-zoom", "chaotic handheld"]},
+      "performance": {"authority": "hard", "baseline": "one gentle principal action with fine expression change", "interaction_sequence": ["look", "approach", "contact", "object feedback", "expression change"], "forbidden": ["large acrobatics", "many complex simultaneous actions"]},
+      "editing_rhythm": {"authority": "medium", "value": "slow opening, mild event acceleration, gentle interaction, quiet ending"},
+      "sound_design": {"authority": "hard", "value": "precise small tactile SFX and soft ambience; dialogue/SFX separate from BGM"},
+      "voice_system": {"authority": "hard", "narration": "warm, clear, restrained"},
+      "music_direction": {"authority": "hard", "function": "continuous independent healing bed", "instrumentation": ["soft xylophone", "glockenspiel", "strings", "warm ambience"], "avoid": ["fast rhythm", "famous musician names"]},
+      "continuity_schema": {"authority": "hard", "track": ["color", "costume", "eyes", "ears", "tail", "proportion", "prop state", "emotion"]},
+      "template_bindings": {"authority": "hard", "character_asset": "soft3d-character-source", "scene_asset": "soft3d-scene-source", "prop_asset": "soft3d-prop-source", "first_frame": "soft3d-first-source", "end_frame": "soft3d-end-source", "video": "soft3d-video-source"}
+    },
+    "production_modules": {
+      "asset_prompt_templates": ["GPT Image 2 character", "scene", "prop", "first frame", "end frame"],
+      "video_prompt_templates": ["Seedance 2.5 three-part prompt"],
+      "negative_constraints": ["no text", "no watermark", "no logo", "no duplicate character"],
+      "model_adapter_reference": {"image": "GPT Image 2", "video": "Seedance 2.5 480p", "music": "Suno 5"},
+      "generation_workflow": ["character approval", "asset approval", "opening clip approval", "remaining generation", "assembly"]
+    },
+    "provenance": {
+      "source_documents": [{"file": "软萌 3D 治愈动画.md", "version": "attached-2026-08-20"}],
+      "extracted_modules": [
+        {"field": "pre_content_modules", "source_section": "planner and storyboard_designer", "extraction_type": "normalized"},
+        {"field": "audiovisual_modules", "source_section": "multimodal_analyze_tool and storyboard_designer", "extraction_type": "normalized"},
+        {"field": "production_modules", "source_section": "media_generator, write_the_prompt and video_assembler", "extraction_type": "direct"}
+      ]
+    }
+  }
+}

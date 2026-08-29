@@ -1,0 +1,107 @@
+{
+  "fixture_only": false,
+  "library_status": "pending_review",
+  "normalized_from_source": "Style_Profile_宠物萌娃闯祸喜剧POV_v1.0_中文解析.md",
+  "style_profile": {
+    "style_id": "pet_toddler_mischief_comedy_pov",
+    "version": "v1.0-zh",
+    "classification": "narrative_style_bible",
+    "pre_content_modules": {
+      "story_direction": [
+        "共同欲望或好奇",
+        "可见闯祸过程",
+        "照护者发现",
+        "被抓包或互相出卖"
+      ],
+      "content_constraints": [
+        "双主角关系清楚",
+        "祸的证据可见",
+        "台词指向具体证据",
+        "轻喜剧且无真实伤害"
+      ],
+      "runtime_recommended_safety": [
+        "排除热、锐、电、毒、窒息和高处风险",
+        "成人现场照护",
+        "真实儿童素材确认监护授权"
+      ]
+    },
+    "audiovisual_modules": {
+      "visual_identity": [
+        "低角度照护者 POV",
+        "宠物与萌娃双主体",
+        "手持呼吸感",
+        "证据与反应同框"
+      ],
+      "camera_language": {
+        "baseline": [
+          "低角度中近景",
+          "动作驱动跟随",
+          "受控推近"
+        ],
+        "avoid": [
+          "高位俯拍",
+          "极端甩动",
+          "无动机空镜"
+        ]
+      },
+      "performance": [
+        "情绪转译为具体身体信号",
+        "台词与反应处于同一因果窗口",
+        "被抓包时角色停住但背景继续"
+      ],
+      "physical_rules": [
+        "接触锚定",
+        "接触阴影",
+        "物质状态变化",
+        "体型比例锚定"
+      ],
+      "sound_design": [
+        "照护者画外吐槽",
+        "与动作材质一致的现场拟音",
+        "台词触发反应"
+      ]
+    },
+    "production_modules": {
+      "replaceable": true,
+      "source_references": [
+        "四分区角色设定图",
+        "固定模型、分辨率和十五秒分段",
+        "尾帧续接与参考音频",
+        "超分、封面矩阵和导出"
+      ]
+    },
+    "provenance": {
+      "source_documents": [
+        {
+          "file": "宠物+萌娃双主角互动.md",
+          "sha256": "FA3BEC9F643B77E2498BD3EA746F14349942AF14749997C9BA852F05AFBB03C2",
+          "source_version": "本地文件 2026-07-28"
+        },
+        {
+          "file": "Style_Profile_宠物萌娃闯祸喜剧POV_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "sha256": "995052AA54DCAC6C55C3A12A9F5499F087AC3FBCCE351F59DF09D4BBEC843039",
+          "extraction_type": "source_profile"
+        }
+      ],
+      "extracted_modules": [
+        {
+          "field": "pre_content_modules",
+          "source_section": "planner 与 storyboard_designer",
+          "extraction_type": "normalized"
+        },
+        {
+          "field": "audiovisual_modules",
+          "source_section": "multimodal_analyze_tool、storyboard_designer 与 write_the_prompt",
+          "extraction_type": "normalized"
+        },
+        {
+          "field": "production_modules",
+          "source_section": "media_generator 与 video_assembler",
+          "extraction_type": "direct"
+        }
+      ],
+      "source_sha256": "995052AA54DCAC6C55C3A12A9F5499F087AC3FBCCE351F59DF09D4BBEC843039"
+    }
+  }
+}

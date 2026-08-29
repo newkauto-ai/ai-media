@@ -1,0 +1,122 @@
+{
+  "fixture_only": false,
+  "library_status": "pending_review",
+  "normalized_from_source": "Style_Profile_九十年代热带恐龙惊险片_v1.0_中文解析.md",
+  "style_profile": {
+    "style_id": "nineties_tropical_dinosaur_thriller",
+    "version": "v1.0-zh",
+    "classification": "hybrid_style_profile",
+    "pre_content_modules": {
+      "compatibility": {
+        "authority": "high",
+        "preferred": [
+          "热带恐龙冒险",
+          "探索未知",
+          "技术失控",
+          "生物威胁与逃生"
+        ]
+      },
+      "story_direction": {
+        "authority": "medium",
+        "value": "安全表象 → 微小异常 → 生物揭示 → 追逐或对峙 → 暂时逃脱或敬畏收束"
+      },
+      "theme_expression_rules": {
+        "authority": "soft",
+        "value": "先用环境、声音和人物反应积累悬疑，再完整揭示生物"
+      },
+      "series_content_constraints": {
+        "authority": "hard",
+        "value": "源电影版本规则不是现代古生物学事实"
+      }
+    },
+    "audiovisual_modules": {
+      "visual_identity": {
+        "authority": "hard",
+        "value": "35mm温厚颗粒、低饱和复古绿、柔和电影色阶、自然物理光"
+      },
+      "character_visual": {
+        "authority": "hard",
+        "value": "生物鳞片、体量、颜色分区和运动重量跨镜稳定"
+      },
+      "environment": {
+        "authority": "high",
+        "value": "热带丛林、九十年代公共建筑和围栏林缘为可选强场景域"
+      },
+      "cinematography": {
+        "authority": "hard",
+        "value": "缓推积累张力、低角度强调体量、前景遮挡、反应镜头后揭示"
+      },
+      "performance": {
+        "authority": "high",
+        "value": "人物反应克制可读，生物运动体现重量、惯性与地面反馈"
+      },
+      "editing_rhythm": {
+        "authority": "high",
+        "value": "悬疑段延长，追逐段收紧，默认直切"
+      },
+      "sound_design": {
+        "authority": "high",
+        "value": "先听后见，脚步低频、雨林环境和设备声承担威胁感"
+      },
+      "voice_system": {
+        "authority": "low",
+        "value": "旁白可选；若使用则沉稳克制"
+      },
+      "music_direction": {
+        "authority": "medium",
+        "value": "冒险、敬畏、悬疑的大编制管弦乐，不使用具体作曲家姓名"
+      },
+      "continuity_schema": {
+        "authority": "hard",
+        "track": [
+          "生物体型与皮肤",
+          "天气与光源",
+          "固定场景构件",
+          "生物揭示程度",
+          "人物与车辆位置"
+        ]
+      }
+    },
+    "production_modules": {
+      "source_creature_templates": "source_defined_optional",
+      "source_environment_templates": "source_defined_optional",
+      "asset_prompt_templates": "source_defined",
+      "video_prompt_templates": "source_defined",
+      "model_adapter_reference": "replaceable"
+    },
+    "provenance": {
+      "source_documents": [
+        {
+          "file": "D:/AI 视频/Flova技能/侏罗纪公园风格短片.md",
+          "version": "attached-2026-08-24",
+          "sha256": "67BAB904372A671A8B2C44D070340218AA4761DEAD90C1D41EBCAA1753FF94E8"
+        },
+        {
+          "file": "Style_Profile_九十年代热带恐龙惊险片_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "sha256": "50C34B45B511235CBAD1627BD5B3B92F2EB2E9B04DD327E7B11F644E7849D413",
+          "extraction_type": "source_profile"
+        }
+      ],
+      "extracted_modules": [
+        {
+          "field": "pre_content_modules",
+          "source_section": "planner + storyboard_designer",
+          "extraction_type": "normalized"
+        },
+        {
+          "field": "audiovisual_modules",
+          "source_section": "storyboard_designer + write_the_prompt + video_assembler",
+          "extraction_type": "normalized"
+        },
+        {
+          "field": "production_modules",
+          "source_section": "media_generator + source_templates",
+          "extraction_type": "direct"
+        }
+      ],
+      "source_sha256": "50C34B45B511235CBAD1627BD5B3B92F2EB2E9B04DD327E7B11F644E7849D413",
+      "extraction": "source_grounded"
+    }
+  }
+}

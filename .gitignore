@@ -1,0 +1,13 @@
+# Machine-specific Codex environments and local runtime by-products.
+.codex/environments/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Credentials must stay outside the plugin package.
+.env
+.env.*
+!.env.example
+*.pem
+*.p12
+*.key

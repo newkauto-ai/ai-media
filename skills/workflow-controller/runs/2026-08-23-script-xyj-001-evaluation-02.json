@@ -1,0 +1,27 @@
+{
+  "unit": {
+    "unit_id": "script-xyj-001",
+    "stage": "script_quality",
+    "required": true,
+    "retry_count": 0,
+    "max_retries": 2,
+    "topic_type": "fiction",
+    "production_risk": "medium",
+    "semantic_locked": true
+  },
+  "assessment": {
+    "source": "llm",
+    "run_id": "current-codex-session-2026-08-23",
+    "verdict": "pass",
+    "confidence": "high",
+    "evidence": [
+      "research/西游记_脚本事实核验_2026-08-23.md verifies the four disciples plus accompanying dragon-horse formulation from Chapters 54, 8, and 100, without treating the horse as a fourth disciple.",
+      "The same note verifies at least three independent artifact-owner episodes in Chapters 35, 52, and 66, supporting the bounded claim that the novel repeatedly uses this pattern.",
+      "The frozen script retains its 78-second H-C-E-R-M structure and no semantic lock was rewritten during the evidence step."
+    ],
+    "failure_types": [],
+    "affects_semantics": false,
+    "requires_external_evidence": false,
+    "proposed_capability": "audiovisual-director"
+  }
+}

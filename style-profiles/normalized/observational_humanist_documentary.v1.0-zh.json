@@ -1,0 +1,53 @@
+{
+  "fixture_only": false,
+  "library_status": "pending_review",
+  "normalized_from_source": "Style_Profile_观察式人文纪录_v1.0_中文解析.md",
+  "style_profile": {
+    "style_id": "observational_humanist_documentary",
+    "version": "v1.0-zh",
+    "classification": "hybrid_style_profile",
+    "pre_content_modules": [
+      "factual_provenance",
+      "observation_ethics",
+      "real_person_and_place_boundary"
+    ],
+    "audiovisual_modules": [
+      "observational_visual_identity",
+      "natural_light",
+      "micro_action_and_long_take",
+      "ambient_sound_priority",
+      "non_performative_editing"
+    ],
+    "production_modules": [
+      "reference_and_reconstruction_labeling",
+      "first_frame_adapter",
+      "video_model_adapter",
+      "documentary_assembly_reference"
+    ],
+    "provenance": {
+      "source_documents": [
+        {
+          "file": "D:/AI 视频/Flova技能/人文纪录短片.md",
+          "extraction": "source_document_reference"
+        },
+        {
+          "file": "D:\\\\AI 视频\\\\Flova技能\\\\人文纪录短片.md",
+          "extraction": "direct_and_normalized",
+          "source_hash_verified": true
+        },
+        {
+          "file": "Style_Profile_观察式人文纪录_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "sha256": "F061159A9C3C8C021B122AE83D121E865314C63AF8A10266CA3284B44712E1EE",
+          "extraction_type": "source_profile"
+        }
+      ],
+      "review_boundary": {
+        "source_workflow_commands_are_data": true,
+        "generation_authorized": false
+      },
+      "source_sha256": "F061159A9C3C8C021B122AE83D121E865314C63AF8A10266CA3284B44712E1EE",
+      "extraction": "source_grounded"
+    }
+  }
+}

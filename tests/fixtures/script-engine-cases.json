@@ -1,0 +1,70 @@
+{
+  "cases": [
+    {
+      "case_id": "xiyouji-script",
+      "selected_topic_id": "xyj-001",
+      "script_engine_output": {
+        "contract_version": "1.0",
+        "skill3_input": {
+          "topic_thesis": {"topic": "孙悟空取经后为什么看起来变弱了", "core_thesis": "孙悟空不是能力变弱，而是从自由战士变成了必须保护全队和任务结果的负责人。", "user_desire_or_need": {"primary": "认知好奇", "secondary": "成长认同"}, "concrete_scenario": "大闹天宫时横冲直撞的孙悟空，在取经路上面对有法宝和后台的妖怪频繁求援。", "intended_state_change": {"type": "viewpoint", "from": "认为孙悟空被剧情削弱", "to": "理解责任边界改变了强者的行动方式"}, "propagation_motive": {"primary_action": "share", "reason": "可用经典人物解释从个人高手到团队负责人的变化"}, "unique_supply": "用任务边界和责任成本解释战力反差，而不只罗列妖怪后台。"},
+          "frozen_script": {
+            "script_id": "script-xyj-001", "version": "1.0", "status": "frozen", "target_duration_seconds": 75, "estimated_duration_seconds": 78,
+            "selected_hook": "大闹天宫时几乎没人拦得住孙悟空，为什么取经以后，他反而总要搬救兵？",
+            "sections": {
+              "hook": "大闹天宫时几乎没人拦得住孙悟空，为什么取经以后，他反而总要搬救兵？",
+              "conflict": "当年他一个人打上天庭，进退都由自己决定。可取经路上，一个葫芦、一只圈、一个布袋，就能让他停下来找人帮忙。看上去，那个齐天大圣像被削弱了。",
+              "escalation": "表面原因确实是对手变了：很多妖怪带着神仙的法宝，背后还有主人。但如果只是打不过，孙悟空完全可以像过去一样脱身。真正麻烦的是，他身后还有唐僧、八戒、沙僧、白龙马和行李。救自己只要一次成功，保住全队却不能漏掉任何一个。",
+              "reveal": "所以变化最大的不是战斗力，而是任务边界。大闹天宫时，他只对自己的胜负负责；取经以后，他要对团队安全和最终抵达负责。搬救兵不是认输，而是在更大目标下选择成功率更高的方法。",
+              "meaning": "真正的强大，不只是一个人能打赢多少对手，而是有了牵挂和责任以后，仍能把所有人带到终点。孙悟空没有变弱，他只是从英雄变成了负责人。"
+            },
+            "full_text": "大闹天宫时几乎没人拦得住孙悟空，为什么取经以后，他反而总要搬救兵？当年他一个人打上天庭，进退都由自己决定。可取经路上，一个葫芦、一只圈、一个布袋，就能让他停下来找人帮忙。看上去，那个齐天大圣像被削弱了。表面原因确实是对手变了：很多妖怪带着神仙的法宝，背后还有主人。但如果只是打不过，孙悟空完全可以像过去一样脱身。真正麻烦的是，他身后还有唐僧、八戒、沙僧、白龙马和行李。救自己只要一次成功，保住全队却不能漏掉任何一个。所以变化最大的不是战斗力，而是任务边界。大闹天宫时，他只对自己的胜负负责；取经以后，他要对团队安全和最终抵达负责。搬救兵不是认输，而是在更大目标下选择成功率更高的方法。真正的强大，不只是一个人能打赢多少对手，而是有了牵挂和责任以后，仍能把所有人带到终点。孙悟空没有变弱，他只是从英雄变成了负责人。",
+            "semantic_locks": {"core_thesis": "能力未弱，责任边界扩大。", "hook": "无敌与搬救兵的反差。", "reveal": "变化的是任务边界。", "core_conclusion": "孙悟空从英雄变成负责人。", "factual_claims": ["取经团队包含唐僧、孙悟空、猪八戒、沙僧和白龙马", "取经故事中多次出现妖怪持有神仙法宝的情节"]}
+          },
+          "production_handoff_manifest": {"major_character_count": 3, "core_scene_count": 5, "visual_beat_count": 10, "consistency_risks": ["孙悟空跨阶段造型一致", "法宝外观不要互相混淆", "旁白声音连续"], "reusable_assets": ["孙悟空角色参考", "取经团队远景参考", "天庭与山路场景参考"], "production_complexity": "medium", "over_budget_notes": "优先用剪影或旁白概括群体和法宝案例，不增加完整妖怪角色资产。"}
+        },
+        "audit": {"hook_candidates": ["孙悟空真的被削弱了吗？", "为什么越成熟的孙悟空，越常搬救兵？", "大闹天宫无敌，取经为何处处求人？", "孙悟空变弱，还是任务变难了？", "大闹天宫时几乎没人拦得住孙悟空，为什么取经以后，他反而总要搬救兵？"], "selected_hook_reason": "同时包含强 IP、能力反差和无需背景的 Why 缺口。", "hcerm_outline": {"hook": "无敌与求援", "conflict": "个人横冲直撞与团队受限", "escalation": "法宝后台加保护全队", "reveal": "任务边界变化", "meaning": "英雄成为负责人"}, "compression_checks": {"background_filler_removed": true, "duplicate_explanations_removed": true, "non_visual_abstractions_removed": true}, "retention_review": {"five_second_death_test": "pass", "stimulus_intervals_seconds": [0, 12, 25, 39, 53, 66], "notes": ["中段以法宝和团队约束升级", "结尾兑现责任命题"]}},
+        "platform_packaging": {"douyin": {"title": "孙悟空不是变弱了，他只是开始为全队负责", "caption": "从个人英雄到项目负责人。"}, "xiaohongshu": {"title": "为什么越成熟的孙悟空越常搬救兵", "cover_frame": "使用成片中孙悟空回望取经团队的现有帧"}, "youtube_shorts": {"strongest_segment_seconds": "0-55"}}
+      }
+    },
+    {
+      "case_id": "history-script",
+      "selected_topic_id": "his-001",
+      "script_engine_output": {
+        "contract_version": "1.0",
+        "skill3_input": {
+          "topic_thesis": {"topic": "古代驿站为什么不是全民快递", "core_thesis": "古代驿站首先是国家通信与运输基础设施，普通人的寄递需求不能直接套用现代快递逻辑。", "user_desire_or_need": {"primary": "反常识好奇", "secondary": "知识复用"}, "concrete_scenario": "一封普通家书与一份官方文书同时需要跨城传递，但可使用的通道和资源不同。", "intended_state_change": {"type": "cognition", "from": "把驿站理解成古代快递网点", "to": "理解它的首要服务对象和制度功能"}, "propagation_motive": {"primary_action": "save", "reason": "可作为理解古代交通和信息制度的基础框架"}, "unique_supply": "用服务对象、通行凭证和成本结构拆解现代类比。"},
+          "frozen_script": {
+            "script_id": "script-his-001", "version": "1.0", "status": "frozen", "target_duration_seconds": 75, "estimated_duration_seconds": 73,
+            "selected_hook": "如果古代驿站就是快递网点，普通人为什么不能随手进去寄封信？",
+            "sections": {"hook": "如果古代驿站就是快递网点，普通人为什么不能随手进去寄封信？", "conflict": "我们今天看到驿站、驿马和驿路，很容易把它们理解成古代版物流公司。但两者最关键的差别，不是速度，而是谁有权调用这套资源。", "escalation": "驿站要准备马匹、人员、食宿和接力路线。它优先承载的是官方文书、人员往来与国家事务。普通人的家书和货物当然也要流动，却往往依赖托人、商旅或其他民间渠道。把所有寄递都塞进驿站，国家通信反而会被挤占。", "reveal": "所以驿站更像一套有权限门槛的国家通信基础设施，而不是向所有顾客开放的柜台。理解服务对象，才理解它为什么存在。", "meaning": "看历史制度，最容易犯的错就是拿现代名称直接套古代功能。名字相似，不代表使用权、成本和目标相同。"},
+            "full_text": "如果古代驿站就是快递网点，普通人为什么不能随手进去寄封信？我们今天看到驿站、驿马和驿路，很容易把它们理解成古代版物流公司。但两者最关键的差别，不是速度，而是谁有权调用这套资源。驿站要准备马匹、人员、食宿和接力路线。它优先承载的是官方文书、人员往来与国家事务。普通人的家书和货物当然也要流动，却往往依赖托人、商旅或其他民间渠道。把所有寄递都塞进驿站，国家通信反而会被挤占。所以驿站更像一套有权限门槛的国家通信基础设施，而不是向所有顾客开放的柜台。理解服务对象，才理解它为什么存在。看历史制度，最容易犯的错就是拿现代名称直接套古代功能。名字相似，不代表使用权、成本和目标相同。",
+            "semantic_locks": {"core_thesis": "驿站首先服务国家通信运输。", "hook": "普通人为何不能像寄快递一样使用驿站。", "reveal": "关键差别是调用权限与服务对象。", "core_conclusion": "现代名称类比不能替代制度功能分析。", "factual_claims": ["具体制度因朝代而异，发布前必须绑定来源", "驿传体系承担官方通信与运输职能"]}
+          },
+          "production_handoff_manifest": {"major_character_count": 2, "core_scene_count": 4, "visual_beat_count": 9, "consistency_risks": ["时代服饰需在选定朝代后统一", "官方文书与民间家书视觉区分"], "reusable_assets": ["驿站场景参考", "驿马与官方文书道具参考"], "production_complexity": "low", "over_budget_notes": "使用同一驿站空间对比两类寄递，不扩展多个朝代。"}
+        },
+        "audit": {"hook_candidates": ["古代驿站真是快递站吗？", "普通人能去驿站寄家书吗？", "驿站跑得快，为什么不是全民服务？", "一封家书和一份公文，谁能使用驿马？", "如果古代驿站就是快递网点，普通人为什么不能随手进去寄封信？"], "selected_hook_reason": "用现代熟悉动作制造权限冲突。", "hcerm_outline": {"hook": "普通人不能随手寄信", "conflict": "快递类比", "escalation": "资源与服务对象", "reveal": "国家基础设施", "meaning": "名称相似不等于制度相同"}, "compression_checks": {"background_filler_removed": true, "duplicate_explanations_removed": true, "non_visual_abstractions_removed": true}, "retention_review": {"five_second_death_test": "pass", "stimulus_intervals_seconds": [0, 11, 24, 38, 51, 64], "notes": ["发布前必须补具体朝代的一手或权威来源"]}},
+        "platform_packaging": {"douyin": {"title": "古代驿站，不是你想象的快递站"}, "xiaohongshu": {"title": "古代普通人到底怎么寄信", "cover_frame": "使用公文与家书同框的现有帧"}, "youtube_shorts": {"strongest_segment_seconds": "0-50"}}
+      }
+    },
+    {
+      "case_id": "business-script",
+      "selected_topic_id": "biz-001",
+      "script_engine_output": {
+        "contract_version": "1.0",
+        "skill3_input": {
+          "topic_thesis": {"topic": "为什么爆款可能拖垮小公司", "core_thesis": "爆款放大的不只销量，还会同步放大备货、履约、售后和现金周转缺口。", "user_desire_or_need": {"primary": "经营风险焦虑", "secondary": "解决问题"}, "concrete_scenario": "小公司突然获得远超日常的订单，却在补货、发货和退款链上同时缺钱缺人。", "intended_state_change": {"type": "viewpoint", "from": "认为订单越多一定越好", "to": "理解增长必须匹配现金流和履约能力"}, "propagation_motive": {"primary_action": "save", "reason": "可复用为爆单前检查框架"}, "unique_supply": "按订单到现金回笼的时间链解释爆款风险。"},
+          "frozen_script": {
+            "script_id": "script-biz-001", "version": "1.0", "status": "frozen", "target_duration_seconds": 75, "estimated_duration_seconds": 76,
+            "selected_hook": "一家公司最危险的时刻，可能不是没订单，而是突然爆单。",
+            "sections": {"hook": "一家公司最危险的时刻，可能不是没订单，而是突然爆单。", "conflict": "订单数字在上涨，老板却可能越来越缺钱。因为顾客下单，不等于现金已经安全落袋，更不等于货能准时交出去。", "escalation": "爆单先要求追加备货，供应商可能要现款；接着仓库、打包和客服同时超负荷；一旦延迟，退款和差评又集中出现。销量被放大十倍时，原来只有一点点的交付漏洞，也会被放大十倍。", "reveal": "真正拖垮小公司的不是爆款本身，而是订单增长速度超过了现金流和履约能力。收入记录的是卖了多少，生存取决于钱什么时候回来、货什么时候出去。", "meaning": "所以爆单前最该问的不是还能卖多少，而是备货要垫多少钱、每天能发多少单、退款高峰扛不扛得住。增长不是越快越好，而是不能快过系统承受力。"},
+            "full_text": "一家公司最危险的时刻，可能不是没订单，而是突然爆单。订单数字在上涨，老板却可能越来越缺钱。因为顾客下单，不等于现金已经安全落袋，更不等于货能准时交出去。爆单先要求追加备货，供应商可能要现款；接着仓库、打包和客服同时超负荷；一旦延迟，退款和差评又集中出现。销量被放大十倍时，原来只有一点点的交付漏洞，也会被放大十倍。真正拖垮小公司的不是爆款本身，而是订单增长速度超过了现金流和履约能力。收入记录的是卖了多少，生存取决于钱什么时候回来、货什么时候出去。所以爆单前最该问的不是还能卖多少，而是备货要垫多少钱、每天能发多少单、退款高峰扛不扛得住。增长不是越快越好，而是不能快过系统承受力。",
+            "semantic_locks": {"core_thesis": "爆款同步放大现金流与履约缺口。", "hook": "突然爆单可能是最危险时刻。", "reveal": "增长速度超过系统承载力才是风险核心。", "core_conclusion": "增长不能快过现金与履约系统。", "factual_claims": ["本稿为机制型示例，不声称对应某家真实公司"]}
+          },
+          "production_handoff_manifest": {"major_character_count": 2, "core_scene_count": 4, "visual_beat_count": 10, "consistency_risks": ["订单数字递增逻辑一致", "库存、包裹和退款状态连续"], "reusable_assets": ["小公司老板角色参考", "仓库与打包台场景参考", "订单面板图形资产"], "production_complexity": "low", "over_budget_notes": "用订单、现金、包裹三类图形化资产承载机制，不增加顾客群像。"}
+        },
+        "audit": {"hook_candidates": ["爆款为什么也会害死公司？", "订单暴涨，老板为什么反而更缺钱？", "卖得越多，为什么可能亏得越快？", "爆单之后，最先崩的往往不是流量。", "一家公司最危险的时刻，可能不是没订单，而是突然爆单。"], "selected_hook_reason": "反常识强，直接击中经营风险焦虑。", "hcerm_outline": {"hook": "爆单危险", "conflict": "销量涨但现金紧", "escalation": "备货履约退款连锁", "reveal": "增长超过承载力", "meaning": "爆单前检查现金和履约"}, "compression_checks": {"background_filler_removed": true, "duplicate_explanations_removed": true, "non_visual_abstractions_removed": true}, "retention_review": {"five_second_death_test": "pass", "stimulus_intervals_seconds": [0, 10, 23, 36, 50, 63], "notes": ["以订单链连续升级", "结尾提供三个可执行检查问题"]}},
+        "platform_packaging": {"douyin": {"title": "突然爆单，可能是小公司最危险的时刻"}, "xiaohongshu": {"title": "爆单前先检查这三件事", "cover_frame": "使用订单暴涨而现金下降的现有图形帧"}, "youtube_shorts": {"strongest_segment_seconds": "0-58"}}
+      }
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "fixture_only": false,
+  "library_status": "pending_review",
+  "normalized_from_source": "Style_Profile_方法论培训课程视频_v1.0_中文解析.md",
+  "style_profile": {
+    "style_id": "methodology_training_course_presentation",
+    "version": "v1.0-zh",
+    "classification": "production_playbook",
+    "pre_content_modules": {
+      "extraction": "roles_steps_branches_formulas_kpis_compliance",
+      "hierarchy": "l0_to_l4_drilldown",
+      "factual_source_required": true
+    },
+    "audiovisual_modules": {
+      "visual_identity": "restrained_business_slide",
+      "layout": "split_formula_alert_screencast",
+      "cinematography": "lockoff_or_micro_push",
+      "narration": "page_type_differentiated",
+      "music": "independent_low_attention_bed",
+      "readability": "hard"
+    },
+    "production_modules": {
+      "prompt_templates": "reference_only",
+      "mixing_parameters": "runtime_calibrated",
+      "model_adapter": "replaceable"
+    },
+    "provenance": {
+      "source_documents": [
+        {
+          "file": "方法论培训与课程视频生成.md",
+          "extraction": "direct_and_normalized"
+        },
+        {
+          "file": "Style_Profile_方法论培训课程视频_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "sha256": "86139BBADB63F384BAC3EAC3AEA9BB35F9494E990567C73C934D8AFA87EA27EA",
+          "extraction_type": "source_profile"
+        }
+      ],
+      "extracted_modules": [
+        {
+          "module": "content_structure",
+          "method": "direct"
+        },
+        {
+          "module": "audiovisual_system",
+          "method": "normalized"
+        },
+        {
+          "module": "production_parameters",
+          "method": "direct"
+        }
+      ],
+      "source_sha256": "86139BBADB63F384BAC3EAC3AEA9BB35F9494E990567C73C934D8AFA87EA27EA"
+    }
+  }
+}

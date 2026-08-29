@@ -1,0 +1,74 @@
+{
+  "fixture_only": false,
+  "library_status": "pending_review",
+  "normalized_from_source": "Style_Profile_乐高积木人仔电影动画_v1.0_中文解析.md",
+  "style_profile": {
+    "style_id": "lego_minifigure_cinematic_animation",
+    "version": "v1.0-zh",
+    "classification": "hybrid_style_profile",
+    "pre_content_modules": {
+      "input_analysis": "theme_character_scene_conflict_emotion_audience",
+      "story_canon": null
+    },
+    "audiovisual_modules": {
+      "visual_identity": "lego_minifigure_and_brick_built_world",
+      "material_language": "abs_plastic_like_clean_printed_details",
+      "scene_geometry": "brick_based_geometric_construction",
+      "shot_structure": "sequence_shot_group_shot",
+      "performance": "visible_actions_only",
+      "cinematography": "story_serving_shot_size_and_camera_motion",
+      "audio_layers": "bgm_environment_action_vo",
+      "caption_boundary": "postproduction_only",
+      "continuity": "character_scene_prop_and_state_lock"
+    },
+    "production_modules": {
+      "workflow": "milestone_confirmation_reference",
+      "character_reference": "turnaround_sheet_reference",
+      "scene_reference": "day_night_action_variants_reference",
+      "video_generation": "multimodal_reference_video_adapter",
+      "voice_generation": "narration_adapter_reference",
+      "music_generation": "instrumental_adapter_reference",
+      "final_assembly": "unspecified",
+      "model_and_resolution": "replaceable_runtime_adapter"
+    },
+    "provenance": {
+      "source_documents": [
+        {
+          "file": "D:\\\\AI 视频\\\\Flova技能\\\\乐高风格短片.md",
+          "sha256": "4dd560d3b3d8db064766cbd54bfafdbbe319a40516af4158d1e2821505e610f2",
+          "extraction": "direct_and_normalized"
+        },
+        {
+          "file": "Style_Profile_乐高积木人仔电影动画_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "sha256": "B760FA4B29301978C4D24BC3AC803C5E2E7449244327805D7410829F0DB41E9F",
+          "extraction_type": "source_profile"
+        }
+      ],
+      "extracted_modules": [
+        {
+          "module": "lego_visual_identity",
+          "method": "normalized"
+        },
+        {
+          "module": "character_and_scene_rules",
+          "method": "direct_and_normalized"
+        },
+        {
+          "module": "shot_and_audio_schema",
+          "method": "direct"
+        },
+        {
+          "module": "production_workflow_and_prompt_templates",
+          "method": "direct"
+        },
+        {
+          "module": "conflicts_missing_fields_and_risks",
+          "method": "inferred_structure_only"
+        }
+      ],
+      "source_sha256": "B760FA4B29301978C4D24BC3AC803C5E2E7449244327805D7410829F0DB41E9F",
+      "extraction": "source_grounded"
+    }
+  }
+}

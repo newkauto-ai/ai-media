@@ -1,0 +1,64 @@
+{
+  "fixture_only": false,
+  "library_status": "pending_review",
+  "normalized_from_source": "Style_Profile_第一人称POV沉浸式短片_v1.0_中文解析.md",
+  "style_profile": {
+    "style_id": "strict_first_person_pov_realism",
+    "version": "v1.0-zh",
+    "classification": "hybrid_style_profile",
+    "pre_content_modules": {
+      "compatibility": "关键信息可自然进入主角视野的现实主义叙事",
+      "story_direction": "每段必须有不可替代的 Story Job",
+      "series_content_constraints": "禁止第三人称主角镜头，重大事件必须有视觉锚点"
+    },
+    "audiovisual_modules": {
+      "visual_identity": "低饱和自然光纪实、真实磨损与生活质感",
+      "character_visual": "主角仅局部可见，其他角色用服装、道具和动作识别",
+      "environment": "锁定视野边界、入口、光源、材质和空间锚点",
+      "props": "关键道具必须先进入 POV 可见范围",
+      "cinematography": "视线起点、触发、转向、手部动作、落点",
+      "performance": "用局部动作和物理反馈表达情绪",
+      "editing_rhythm": "视线与声音保证连续性，硬切不得掩盖逻辑断裂",
+      "sound_design": "环境声、动作声、呼吸、停顿和静默优先",
+      "voice_system": "对白后期分轨，旁白按项目选择",
+      "continuity_schema": "视线高度、角色锚点、手部版本、道具状态、空间方向和首尾状态"
+    },
+    "production_modules": {
+      "negative_constraints": "禁止第三人称泄漏、主角正脸全身、可读伪文字、空间反转和参考污染",
+      "model_adapter_reference": "源文档模型、时长和分辨率均需当前适配",
+      "generation_workflow": "资产、总览、分镜确认、逐 Clip 预检、生成、QC、装配"
+    },
+    "provenance": {
+      "source_documents": [
+        {
+          "file": "D:/AI 视频/Flova技能/第一人称 POV 沉浸式短片.md",
+          "sha256": "4C42272193080AF95E3B80CE71E0524F44B3C784EEA2D153726C897C884AFAAF"
+        },
+        {
+          "file": "Style_Profile_第一人称POV沉浸式短片_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "sha256": "FF59D20BCE62FF90403AA1C4722652138699FF064856962A1598C0D644D519D0",
+          "extraction_type": "source_profile"
+        }
+      ],
+      "extracted_modules": [
+        {
+          "field": "pre_content_modules",
+          "source_section": "planner 与 storyboard_designer",
+          "extraction_type": "direct"
+        },
+        {
+          "field": "audiovisual_modules",
+          "source_section": "multimodal_analyze_tool 与 storyboard_designer",
+          "extraction_type": "normalized"
+        },
+        {
+          "field": "production_modules",
+          "source_section": "media_generator、write_the_prompt 与 video_assembler",
+          "extraction_type": "direct"
+        }
+      ],
+      "source_sha256": "FF59D20BCE62FF90403AA1C4722652138699FF064856962A1598C0D644D519D0"
+    }
+  }
+}

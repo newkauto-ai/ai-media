@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0",
+  "content_id": "rainy-day-kitten",
+  "cases": [
+    {
+      "case_id": "girl-missing-while-title-says-she",
+      "cover_title": "她朝雨里走去",
+      "review": {"required_subjects_present": "fail", "title_visual_match": "fail", "key_action_readable": "unknown", "critical_subject_unoccluded": "unknown", "thumbnail_readability": "human_review", "identity_and_style_consistency": "unknown", "platform_native_composition": "unknown", "template_residue": "pass", "verdict": "fail"},
+      "expected": "fail"
+    },
+    {
+      "case_id": "title-occludes-hand-and-kitten",
+      "cover_title": "她为什么转身？",
+      "review": {"required_subjects_present": "pass", "title_visual_match": "pass", "key_action_readable": "fail", "critical_subject_unoccluded": "fail", "thumbnail_readability": "human_review", "identity_and_style_consistency": "pass", "platform_native_composition": "human_review", "template_residue": "pass", "verdict": "fail"},
+      "expected": "fail"
+    },
+    {
+      "case_id": "mechanical-cross-platform-crop",
+      "cover_title": "她朝雨里走去",
+      "review": {"required_subjects_present": "pass", "title_visual_match": "pass", "key_action_readable": "human_review", "critical_subject_unoccluded": "pass", "thumbnail_readability": "human_review", "identity_and_style_consistency": "pass", "platform_native_composition": "fail", "template_residue": "pass", "verdict": "fail"},
+      "expected": "fail"
+    },
+    {
+      "case_id": "template-residue-yellow-frame-badge",
+      "cover_title": "她为什么转身？",
+      "review": {"required_subjects_present": "pass", "title_visual_match": "pass", "key_action_readable": "pass", "critical_subject_unoccluded": "pass", "thumbnail_readability": "human_review", "identity_and_style_consistency": "human_review", "platform_native_composition": "pass", "template_residue": "fail", "verdict": "fail"},
+      "expected": "fail"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "fixture_only": false,
+  "library_status": "pending_review",
+  "normalized_from_source": "Style_Profile_人文美食电影纪录_v1.0_中文解析.md",
+  "style_profile": {
+    "style_id": "humanistic_food_cinematic_documentary",
+    "version": "v1.0-zh",
+    "classification": "audiovisual_style_profile",
+    "pre_content_modules": {
+      "compatibility": "direct",
+      "story_direction": "direct",
+      "narration_style": "direct"
+    },
+    "audiovisual_modules": {
+      "visual_identity": "direct",
+      "cinematography": "direct",
+      "sound_design": "direct",
+      "voice_system": "direct",
+      "editing_rhythm": "direct"
+    },
+    "production_modules": {
+      "prompt_templates": "direct",
+      "model_adapter_reference": "direct",
+      "generation_workflow": "direct"
+    },
+    "provenance": {
+      "source_sha256": "A212E6394630A7754E13DA87E490DDB7CFC9CEB1A531478C1CD4658F953D6CDA",
+      "extraction": "source_grounded",
+      "source_documents": [
+        {
+          "file": "Style_Profile_人文美食电影纪录_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "sha256": "A212E6394630A7754E13DA87E490DDB7CFC9CEB1A531478C1CD4658F953D6CDA",
+          "extraction_type": "source_profile"
+        }
+      ]
+    }
+  }
+}

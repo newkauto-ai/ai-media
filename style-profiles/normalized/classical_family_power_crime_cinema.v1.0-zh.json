@@ -1,0 +1,94 @@
+{
+  "fixture_only": false,
+  "library_status": "pending_review",
+  "normalized_from_source": "Style_Profile_古典家族权力犯罪电影美学_v1.0_中文解析.md",
+  "style_profile": {
+    "style_id": "classical_family_power_crime_cinema",
+    "version": "v1.0-zh",
+    "classification": "hybrid_style_profile",
+    "pre_content_modules": {
+      "主题兼容性": [
+        "家族权力",
+        "忠诚与背叛",
+        "继承与代价",
+        "密室谈判"
+      ],
+      "权威": "soft"
+    },
+    "audiovisual_modules": {
+      "视觉身份": [
+        "低照度暖褐胶片",
+        "深黑阴影",
+        "古典群像",
+        "框中框权力构图"
+      ],
+      "摄影": [
+        "固定机位",
+        "缓慢推进",
+        "克制横移",
+        "轴线一致"
+      ],
+      "表演": [
+        "克制停顿",
+        "细微手势",
+        "视线与座次表达权力"
+      ],
+      "声音": [
+        "低沉室内底噪",
+        "木门与玻璃拟音",
+        "稀疏低频音乐"
+      ],
+      "连续性": [
+        "空间动线",
+        "光线方向",
+        "人物座次",
+        "道具状态"
+      ]
+    },
+    "production_modules": {
+      "可替换参考": [
+        "多格故事板",
+        "空间蓝图",
+        "胶片器材名称",
+        "具体模型",
+        "分辨率",
+        "生成语法"
+      ],
+      "known_source_conflicts": [
+        "30秒时间线仅覆盖15秒",
+        "稳定摄影与手持逻辑冲突",
+        "音乐描述与no_music冲突"
+      ]
+    },
+    "provenance": {
+      "source_documents": [
+        {
+          "路径": "D:/AI 视频/Flova技能/教父电影美学.md",
+          "sha256": "319477933cd69e7c3f66e0205f0b445959e64224a2c9628f6c93b23d4ac4e060"
+        },
+        {
+          "file": "Style_Profile_古典家族权力犯罪电影美学_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "sha256": "572620D54F154D1A116C4978B820FF92716BF585A6F21CE242B4F78D8616F735",
+          "extraction_type": "source_profile"
+        }
+      ],
+      "extracted_modules": [
+        {
+          "模块": "视觉与构图",
+          "extraction": "direct"
+        },
+        {
+          "模块": "主题适配",
+          "extraction": "normalized"
+        },
+        {
+          "模块": "永久风格与生产流程分离",
+          "extraction": "inferred_structure_only"
+        }
+      ],
+      "examples_are_canon": false,
+      "source_sha256": "572620D54F154D1A116C4978B820FF92716BF585A6F21CE242B4F78D8616F735"
+    }
+  }
+}

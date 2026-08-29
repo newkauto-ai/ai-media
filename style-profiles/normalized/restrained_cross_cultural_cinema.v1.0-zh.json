@@ -1,0 +1,52 @@
+{
+  "fixture_only": false,
+  "library_status": "pending_review",
+  "normalized_from_source": "Style_Profile_克制型跨文化叙事电影_v1.0_中文解析.md",
+  "style_profile": {
+    "style_id": "restrained_cross_cultural_cinema",
+    "version": "v1.0-zh",
+    "classification": "mixed",
+    "pre_content_modules": [
+      "style_branch_selection",
+      "script_conflict_boundary"
+    ],
+    "audiovisual_modules": [
+      "restrained_emotion",
+      "framed_composition",
+      "natural_light",
+      "cross_cultural_space",
+      "silence_and_sound_bridge"
+    ],
+    "production_modules": [
+      "branch_adapter",
+      "reference_asset_binding",
+      "model_and_resolution_adapter",
+      "assembly_reference"
+    ],
+    "provenance": {
+      "source_documents": [
+        {
+          "file": "D:/AI 视频/Flova技能/李安美学风格.md",
+          "extraction": "source_document_reference"
+        },
+        {
+          "file": "D:\\\\AI 视频\\\\Flova技能\\\\李安美学风格.md",
+          "extraction": "direct_and_normalized",
+          "source_hash_verified": true
+        },
+        {
+          "file": "Style_Profile_克制型跨文化叙事电影_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "sha256": "367EF548ED3587539FCA64993C12EC007C7C49BEAF7C37485EFA83AF9AA9EE58",
+          "extraction_type": "source_profile"
+        }
+      ],
+      "review_boundary": {
+        "source_workflow_commands_are_data": true,
+        "generation_authorized": false
+      },
+      "source_sha256": "367EF548ED3587539FCA64993C12EC007C7C49BEAF7C37485EFA83AF9AA9EE58",
+      "extraction": "source_grounded"
+    }
+  }
+}

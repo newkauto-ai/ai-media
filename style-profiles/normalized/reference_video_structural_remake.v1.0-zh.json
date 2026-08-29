@@ -1,0 +1,54 @@
+{
+  "fixture_only": false,
+  "library_status": "pending_review",
+  "normalized_from_source": "Style_Profile_参考视频结构复刻_v1.0_中文解析.md",
+  "style_profile": {
+    "style_id": "reference_video_structural_remake",
+    "version": "v1.0-zh",
+    "classification": "production_playbook",
+    "pre_content_modules": {
+      "compatibility": "reference_to_replacement_mapping",
+      "rights_gate": "runtime_recommended"
+    },
+    "audiovisual_modules": {
+      "visual_identity": "runtime_extracted",
+      "cinematography": "reference_transferred",
+      "editing_rhythm": "reference_transferred",
+      "sound_structure": "reference_transferred",
+      "continuity": "replacement_asset_locked"
+    },
+    "production_modules": {
+      "keyframe_workflow": "reference_only",
+      "model_adapter": "replaceable"
+    },
+    "provenance": {
+      "source_documents": [
+        {
+          "file": "复刻视频.md",
+          "extraction": "direct_and_normalized"
+        },
+        {
+          "file": "Style_Profile_参考视频结构复刻_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "sha256": "406F2DF2768FC775230405AE5D8BC54DAAC269E8DE779BFFD032E55D8F93EEAC",
+          "extraction_type": "source_profile"
+        }
+      ],
+      "extracted_modules": [
+        {
+          "module": "reference_decomposition",
+          "method": "direct"
+        },
+        {
+          "module": "structural_transfer",
+          "method": "normalized"
+        },
+        {
+          "module": "rights_gate",
+          "method": "inferred_structure_only"
+        }
+      ],
+      "source_sha256": "406F2DF2768FC775230405AE5D8BC54DAAC269E8DE779BFFD032E55D8F93EEAC"
+    }
+  }
+}

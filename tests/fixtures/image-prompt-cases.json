@@ -1,0 +1,209 @@
+{
+  "fixture_only": true,
+  "cases": [
+    {
+      "case_id": "character-transparent-neutral",
+      "expected_result": "passed",
+      "image_prompt_spec": {
+        "asset_id": "character-monk-turnaround", "asset_type": "character_identity", "prompt_variant": "default", "render_mode": "stylized",
+        "source_locks": [{"field":"face","value":"圆脸短发","provenance":"approved_visual_baseline"}],
+        "decisions": {
+          "subject_action":{"status":"explicit","value":"年轻僧人角色，正面与侧面中性转面设定图，用于角色一致性","reason":"identity asset"},
+          "context":{"status":"explicit","value":"transparent","reason":"compositing"},
+          "composition_camera":{"status":"explicit","value":"半身正面和侧面，平视，留足轮廓","reason":"turnaround"},
+          "lighting_outcome":{"status":"explicit","value":"柔和均匀光，面部和服装材质清晰","reason":"identity readability"},
+          "style_aesthetic":{"status":"inherited","value":"软萌 3D 治愈动画视觉基线","inherited_from":"visual_baseline.soft-cute-3d"},
+          "optics":{"status":"not_applicable","reason":"non-photoreal character sheet"},
+          "color":{"status":"inherited","identity_palette":"米白僧袍与浅棕发色","grade":"无额外 Grade","inherited_from":"visual_baseline.soft-cute-3d"}
+        },
+        "material_texture":{"status":"explicit","value":"棉麻僧袍与柔软短发","reason":"identity material"}, "text_handling":{"status":"not_applicable","reason":"no text"},
+        "consistency_locks":["圆脸短发","米白僧袍","浅棕发色"], "allowed_variation":["正侧角度","中性手势"], "reference_bindings":[], "negative_constraints":["不加入当前场景剧情动作","不增加未批准饰品"],
+        "output_spec":{"aspect_ratio":"1:1","size":"1024x1024","quality":"standard","background":"transparent","output_format":"png","status":"resolved"}
+      }
+    },
+    {
+      "case_id": "scene-usable-space",
+      "expected_result": "passed",
+      "image_prompt_spec": {
+        "asset_id":"scene-mountain-road","asset_type":"scene","prompt_variant":"default","render_mode":"stylized",
+        "source_locks":[{"field":"location","value":"山路驿站","provenance":"ADP.B03"}],
+        "decisions": {
+          "subject_action":{"status":"explicit","value":"山路驿站场景，晨雾后可供人物行进的中景行动区，用于分镜生产","reason":"scene task"},
+          "context":{"status":"explicit","value":"古代山路驿站，薄雾清晨","reason":"ADP"},
+          "composition_camera":{"status":"explicit","value":"前景石阶，中景空旷道路，后景驿站与山峰，平视广角空间关系","reason":"future blocking"},
+          "lighting_outcome":{"status":"explicit","value":"侧向晨光分离前中后景，湿石材质可读","reason":"space readability"},
+          "style_aesthetic":{"status":"inherited","value":"手绘成长叙事视觉基线","inherited_from":"visual_baseline.hand-drawn-growth"},
+          "optics":{"status":"not_applicable","reason":"stylized spatial guide without photographic requirement"},
+          "color":{"status":"explicit","identity_palette":"青灰山体与暖褐驿站","grade":"克制低饱和晨雾 Grade","reason":"scene mood"}
+        },
+        "material_texture":{"status":"explicit","value":"湿石阶、木质驿站、雾气层次","reason":"environment"}, "text_handling":{"status":"not_applicable","reason":"no exact text"},
+        "consistency_locks":["石阶位置","中景行动区","驿站在后景"], "allowed_variation":["雾气密度","行进角色后续加入"], "reference_bindings":[], "negative_constraints":["不堵塞中景行动区","不加入现代标识"],
+        "output_spec":{"aspect_ratio":"9:16","size":"1080x1920","quality":"standard","background":"opaque","output_format":"png","status":"resolved"}
+      }
+    },
+    {
+      "case_id": "story-prop-no-optics",
+      "expected_result": "passed",
+      "image_prompt_spec": {
+        "asset_id":"prop-travel-gourd","asset_type":"prop","prompt_variant":"story_prop","render_mode":"stylized",
+        "source_locks":[{"field":"owner","value":"旅行僧人","provenance":"ADP.asset_plan"}],
+        "decisions": {
+          "subject_action":{"status":"explicit","value":"旅行僧人的旧葫芦道具，正面中性展示，用于连续性资产","reason":"prop task"},
+          "context":{"status":"explicit","value":"neutral_studio","reason":"isolated prop"},
+          "composition_camera":{"status":"explicit","value":"三分之二视角，完整显示葫芦与绳结","reason":"structure"},
+          "lighting_outcome":{"status":"not_applicable","reason":"style baseline carries simple studio light"},
+          "style_aesthetic":{"status":"inherited","value":"手绘成长叙事视觉基线","inherited_from":"visual_baseline.hand-drawn-growth"},
+          "optics":{"status":"not_applicable","reason":"non-photoreal story prop"},
+          "color":{"status":"explicit","identity_palette":"旧木褐与深红绳结","grade":"无额外 Grade","reason":"owner identity"}
+        },
+        "material_texture":{"status":"explicit","value":"旧木质表面与磨旧绳结","reason":"prop state"}, "text_handling":{"status":"not_applicable","reason":"no text"},
+        "consistency_locks":["葫芦比例","深红绳结"], "allowed_variation":["轻微表面磨损","裁切"], "reference_bindings":[], "negative_constraints":["不增加现代瓶盖"],
+        "output_spec":{"aspect_ratio":"1:1","size":"1024x1024","quality":"standard","background":"opaque","output_format":"png","status":"resolved"}
+      }
+    },
+    {
+      "case_id": "product-evidence-laptop",
+      "expected_result": "passed",
+      "image_prompt_spec": {
+        "asset_id":"product-laptop-evidence","asset_type":"prop","prompt_variant":"product_evidence","render_mode":"photorealistic","perspective_sensitive":true,
+        "source_locks":[{"field":"keyboard_layout","value":"US QWERTY","provenance":"inspected_photo.front"},{"field":"ports","value":"左侧两个 USB-C","provenance":"inspected_photo.left"},{"field":"wear","value":"右掌托细小划痕","provenance":"inspected_photo.top"}],
+        "decisions": {
+          "subject_action":{"status":"explicit","value":"已核验的银色二手笔记本，左前方展示并清晰呈现键盘与左侧端口，用于商品证据图","reason":"commercial evidence"},
+          "context":{"status":"explicit","value":"neutral_studio","reason":"controlled evidence background"},
+          "composition_camera":{"status":"explicit","value":"左前方三分之二机位，机身占画面七成，预留右侧信息区","reason":"feature visibility"},
+          "lighting_outcome":{"status":"explicit","value":"柔和侧光显示金属纹理和右掌托细小划痕，不过曝","reason":"wear evidence"},
+          "style_aesthetic":{"status":"explicit","value":"克制真实商品摄影，不夸张风格化","reason":"truth preserving"},
+          "optics":{"status":"explicit","value":"低畸变正常透视，键盘与左侧端口完整清晰，背景轻微虚化","reason":"product geometry"},
+          "color":{"status":"explicit","product_true_color":"银色机身","grade":"仅做不改变银色机身的中性 Grade","reason":"truth preserving"}
+        },
+        "material_texture":{"status":"explicit","value":"铝合金机身、键帽纹理和既有细小划痕","reason":"evidence"}, "text_handling":{"status":"not_applicable","reason":"serial number excluded"},
+        "consistency_locks":["US QWERTY 键盘","左侧两个 USB-C","Logo 位置","银色机身","右掌托细小划痕"], "allowed_variation":["视角","裁切","手部姿势","约束内光线"], "reference_bindings":["inspected_photo.front","inspected_photo.left","inspected_photo.top"], "negative_constraints":["不改型","不换键盘","不增减端口","不移动 Logo","不修复划痕","不新增未核验特征"],
+        "output_spec":{"aspect_ratio":"4:3","size":"1536x1152","quality":"high","background":"opaque","output_format":"png","status":"resolved"}
+      }
+    },
+    {
+      "case_id": "graphic-text-reserve",
+      "expected_result": "passed",
+      "image_prompt_spec": {
+        "asset_id":"graphic-responsibility-card","asset_type":"graphic","prompt_variant":"default","render_mode":"graphic",
+        "source_locks":[{"field":"message","value":"责任边界扩大","provenance":"frozen_script.conclusion"}],
+        "decisions": {
+          "subject_action":{"status":"explicit","value":"传达责任边界扩大的信息卡主视觉，用于竖屏结尾","reason":"information goal"},
+          "context":{"status":"not_applicable","reason":"flat graphic composition"},
+          "composition_camera":{"status":"explicit","value":"中心主视觉，顶部留出精确中文后期文字区","reason":"layout"},
+          "lighting_outcome":{"status":"not_applicable","reason":"non-photographic graphic"},
+          "style_aesthetic":{"status":"inherited","value":"软萌 3D 治愈动画视觉基线","inherited_from":"visual_baseline.soft-cute-3d"},
+          "optics":{"status":"not_applicable","reason":"graphic has no camera decision"},
+          "color":{"status":"explicit","identity_palette":"暖米白和深棕高对比","grade":"无额外 Grade","reason":"readability"}
+        },
+        "material_texture":{"status":"not_applicable","reason":"flat graphic"}, "text_handling":{"status":"explicit","value":"仅生成视觉框架和留字区，精确中文后期排字","reason":"text reliability"},
+        "consistency_locks":["顶部留字区","结论信息层级"], "allowed_variation":["抽象图形细节"], "reference_bindings":[], "negative_constraints":["不生成错误中文","不塞满留字区"],
+        "output_spec":{"aspect_ratio":"9:16","size":"1080x1920","quality":"standard","background":"opaque","output_format":"png","status":"resolved"}
+      }
+    },
+    {
+      "case_id": "keyframe-current-first",
+      "expected_result": "passed",
+      "image_prompt_spec": {
+        "asset_id":"keyframe-road-turn","asset_type":"keyframe","prompt_variant":"default","render_mode":"stylized",
+        "source_locks":[{"field":"start_state","value":"僧人已走到石阶中段","provenance":"ADP.B04.expected_end_state"}],
+        "decisions": {
+          "subject_action":{"status":"explicit","value":"僧人站在石阶中段回望驿站，手持旧葫芦，作为转场关键帧","reason":"current frame"},
+          "context":{"status":"inherited","value":"山路驿站晨雾环境","inherited_from":"scene-mountain-road"},
+          "composition_camera":{"status":"explicit","value":"竖屏中景，略低机位，石阶引导至后景驿站","reason":"continuity"},
+          "lighting_outcome":{"status":"inherited","value":"侧向晨光分离人物与湿石阶","inherited_from":"scene-mountain-road"},
+          "style_aesthetic":{"status":"inherited","value":"手绘成长叙事视觉基线","inherited_from":"visual_baseline.hand-drawn-growth"},
+          "optics":{"status":"not_applicable","reason":"stylized keyframe"},
+          "color":{"status":"inherited","identity_palette":"青灰山体与暖褐驿站","grade":"克制低饱和晨雾 Grade","inherited_from":"scene-mountain-road"}
+        },
+        "material_texture":{"status":"inherited","value":"湿石阶、木质驿站、旧木葫芦","inherited_from":"asset registry"}, "text_handling":{"status":"not_applicable","reason":"no text"},
+        "consistency_locks":["僧人服装","旧葫芦","石阶中段起始状态"], "allowed_variation":["轻微回头角度","雾气密度"], "reference_bindings":["character-monk-turnaround","scene-mountain-road","prop-travel-gourd"], "negative_constraints":["不改变葫芦绳结","不跳变到未检验结束状态"],
+        "output_spec":{"aspect_ratio":"9:16","size":"1080x1920","quality":"standard","background":"opaque","output_format":"png","status":"resolved"}
+      }
+    },
+    {
+      "case_id": "product-grade-conflict",
+      "expected_result": "blocked",
+      "image_prompt_spec": {
+        "asset_id":"product-color-conflict","asset_type":"prop","prompt_variant":"product_evidence","render_mode":"photorealistic",
+        "source_locks":[{"field":"color","value":"银色机身","provenance":"inspected_photo"}],
+        "decisions": {
+          "subject_action":{"status":"explicit","value":"银色笔记本证据图，用于商品展示","reason":"evidence"}, "context":{"status":"explicit","value":"neutral_studio","reason":"evidence"}, "composition_camera":{"status":"explicit","value":"三分之二机位显示键盘","reason":"evidence"}, "lighting_outcome":{"status":"explicit","value":"显示金属纹理","reason":"evidence"}, "style_aesthetic":{"status":"explicit","value":"真实商品摄影","reason":"evidence"}, "optics":{"status":"explicit","value":"低畸变正常透视","reason":"hard trigger"},
+          "color":{"status":"explicit","product_true_color":"银色机身","grade":"改变真实色为豪华金","reason":"intentional conflict"}
+        },
+        "material_texture":{"status":"explicit","value":"铝合金机身","reason":"evidence"}, "text_handling":{"status":"not_applicable","reason":"no text"}, "consistency_locks":["银色机身","Logo 位置"], "allowed_variation":["裁切"], "reference_bindings":["inspected_photo"], "negative_constraints":["不改型"],
+        "output_spec":{"aspect_ratio":"4:3","size":"1536x1152","quality":"high","background":"opaque","output_format":"png","status":"resolved"}
+      }
+    },
+    {
+      "case_id": "product-optics-not-applicable",
+      "expected_result": "blocked",
+      "image_prompt_spec": {
+        "asset_id":"product-optics-conflict","asset_type":"prop","prompt_variant":"product_evidence","render_mode":"photorealistic",
+        "source_locks":[{"field":"ports","value":"两个 USB-C","provenance":"inspected_photo"}],
+        "decisions": {
+          "subject_action":{"status":"explicit","value":"笔记本证据图，显示左侧端口","reason":"evidence"}, "context":{"status":"explicit","value":"neutral_studio","reason":"evidence"}, "composition_camera":{"status":"explicit","value":"左前方机位","reason":"ports"}, "lighting_outcome":{"status":"explicit","value":"显示端口边缘","reason":"evidence"}, "style_aesthetic":{"status":"explicit","value":"真实商品摄影","reason":"evidence"}, "optics":{"status":"not_applicable","reason":"intentional negative fixture"},
+          "color":{"status":"explicit","product_true_color":"银色机身","grade":"中性 Grade","reason":"evidence"}
+        },
+        "material_texture":{"status":"explicit","value":"铝合金机身","reason":"evidence"}, "text_handling":{"status":"not_applicable","reason":"no text"}, "consistency_locks":["两个 USB-C","银色机身"], "allowed_variation":["裁切"], "reference_bindings":["inspected_photo"], "negative_constraints":["不增减端口"],
+        "output_spec":{"aspect_ratio":"4:3","size":"1536x1152","quality":"high","background":"opaque","output_format":"png","status":"resolved"}
+      }
+    },
+    {
+      "case_id": "cover-visual-xiaohongshu",
+      "expected_result": "passed",
+      "image_prompt_spec": {
+        "asset_id": "cover-rainy-xhs",
+        "asset_type": "keyframe",
+        "prompt_variant": "cover_visual",
+        "render_mode": "stylized",
+        "source_locks": [{"field": "required_subjects", "value": "米粒与团子", "provenance": "rainy-day-kitten approved assets"}],
+        "decisions": {
+          "subject_action": {"status": "explicit", "value": "女孩与奶猫同时出现，女孩在黄色雨伞下低低伸手等待", "reason": "cover thesis"},
+          "context": {"status": "explicit", "value": "inherit_reference", "reason": "approved rainy scene"},
+          "composition_camera": {"status": "explicit", "value": "3:4 关系型编辑构图，女孩与奶猫都可读，保留两行标题区", "reason": "xiaohongshu native"},
+          "lighting_outcome": {"status": "inherited", "value": "冷蓝灰雨暮与暖黄色伞下反光", "inherited_from": "LD-A03"},
+          "style_aesthetic": {"status": "inherited", "value": "软萌3D治愈风格", "inherited_from": "LD-A03"},
+          "optics": {"status": "explicit", "value": "低畸变正常透视，人物与猫在缩略图可读", "reason": "thumbnail"},
+          "color": {"status": "explicit", "identity_palette": "薄荷绿、奶油白、暖黄雨伞", "grade": "保持身份配色不变", "reason": "identity"}
+        },
+        "material_texture": {"status": "inherited", "value": "哑光雨衣、湿石地、短毛奶猫", "inherited_from": "LD-A03"},
+        "text_handling": {"status": "explicit", "value": "generate_text_in_image=false；精确中文后期排字", "reason": "text accuracy"},
+        "consistency_locks": ["米粒服装", "团子右耳杏色斑", "黄色雨伞"],
+        "allowed_variation": ["雨滴位置", "轻微表情"],
+        "reference_bindings": [{"asset_id": "LD-A03", "version": "v2", "checksum_sha256": "81A43016CCDFEAFD97C9D2C3CE51C57A96449E4E0FEC77350AA189C4455D93B5", "reference_role": "action"}],
+        "negative_constraints": ["女孩缺失", "标题遮挡手或猫", "黑底板", "黄框", "模板残留"],
+        "output_spec": {"aspect_ratio": "3:4", "size": "1080x1440", "quality": "review_draft", "background": "opaque", "output_format": "png", "status": "resolved"},
+        "cover_context": {"platform": "xiaohongshu", "platform_native_composition": "3:4 关系型编辑构图，不从 9:16 机械裁切", "title_safe_zone": "top-left clean area", "platform_ui_avoidance": ["outer crop tolerance"], "thumbnail_priority": "女孩选择与奶猫处境同时可读", "generate_text_in_image": false}
+      }
+    },
+    {
+      "case_id": "cover-visual-douyin",
+      "expected_result": "passed",
+      "image_prompt_spec": {
+        "asset_id": "cover-rainy-douyin",
+        "asset_type": "keyframe",
+        "prompt_variant": "cover_visual",
+        "render_mode": "stylized",
+        "source_locks": [{"field": "required_subjects", "value": "米粒与团子", "provenance": "rainy-day-kitten approved assets"}],
+        "decisions": {
+          "subject_action": {"status": "explicit", "value": "女孩与奶猫同时出现，女孩在黄色雨伞下低低伸手等待", "reason": "cover thesis"},
+          "context": {"status": "explicit", "value": "inherit_reference", "reason": "approved rainy scene"},
+          "composition_camera": {"status": "explicit", "value": "9:16 集中动作构图，女孩手势和奶猫在中央安全列", "reason": "douyin native"},
+          "lighting_outcome": {"status": "inherited", "value": "冷蓝灰雨暮与暖黄色伞下反光", "inherited_from": "LD-A03"},
+          "style_aesthetic": {"status": "inherited", "value": "软萌3D治愈风格", "inherited_from": "LD-A03"},
+          "optics": {"status": "explicit", "value": "低畸变正常透视，动作在信息流缩略图可读", "reason": "thumbnail"},
+          "color": {"status": "explicit", "identity_palette": "薄荷绿、奶油白、暖黄雨伞", "grade": "保持身份配色不变", "reason": "identity"}
+        },
+        "material_texture": {"status": "inherited", "value": "哑光雨衣、湿石地、短毛奶猫", "inherited_from": "LD-A03"},
+        "text_handling": {"status": "explicit", "value": "generate_text_in_image=false；精确中文后期排字", "reason": "text accuracy"},
+        "consistency_locks": ["米粒服装", "团子右耳杏色斑", "黄色雨伞"],
+        "allowed_variation": ["雨滴位置", "轻微表情"],
+        "reference_bindings": [{"asset_id": "LD-A03", "version": "v2", "checksum_sha256": "81A43016CCDFEAFD97C9D2C3CE51C57A96449E4E0FEC77350AA189C4455D93B5", "reference_role": "action"}],
+        "negative_constraints": ["女孩缺失", "标题遮挡手或猫", "黑底板", "黄框", "模板残留"],
+        "output_spec": {"aspect_ratio": "9:16", "size": "1080x1920", "quality": "review_draft", "background": "opaque", "output_format": "png", "status": "resolved"},
+        "cover_context": {"platform": "douyin", "platform_native_composition": "9:16 集中动作构图，不从 3:4 机械延展", "title_safe_zone": "upper-left clean area", "platform_ui_avoidance": ["top avatar", "right controls", "bottom caption"], "thumbnail_priority": "一眼读懂女孩转身保护奶猫", "generate_text_in_image": false}
+      }
+    }
+  ]
+}

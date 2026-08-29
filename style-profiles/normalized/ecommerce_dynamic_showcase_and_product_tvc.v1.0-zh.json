@@ -1,0 +1,70 @@
+{
+  "fixture_only": false,
+  "library_status": "pending_review",
+  "normalized_from_source": "Style_Profile_电商产品TVC展示_v1.0_中文解析.md",
+  "style_profile": {
+    "style_id": "ecommerce_dynamic_showcase_and_product_tvc",
+    "version": "v1.0-zh",
+    "classification": "mixed",
+    "pre_content_modules": {
+      "compatibility": "根据主体类型与传播目标选择唯一视觉域",
+      "series_content_constraints": "产品真值与用户素材优先，不生成未经证实的卖点"
+    },
+    "audiovisual_modules": {
+      "visual_identity": {
+        "dynamic_teto": "冷青高对比、深暗部、锐利高光、粗颗粒和速度冲击",
+        "product_tvc": "莫兰迪低饱和、柔和扩散光、真实产品色和高级灰"
+      },
+      "cinematography": {
+        "dynamic_teto": "急推急拉、甩镜、俯冲、短弧环绕和主体类型机位",
+        "product_tvc": "缓慢环绕、平滑推拉、卖点静定微距和景别循环"
+      },
+      "editing_rhythm": {
+        "dynamic_teto": "重拍快剪与爆发加速度",
+        "product_tvc": "从容三段式与叠化过渡"
+      },
+      "music_direction": {
+        "dynamic_teto": "节奏驱动画面切点",
+        "product_tvc": "低存在感氛围底层，不要求卡点"
+      },
+      "continuity_schema": "主体形体、颜色、材质、Logo、卖点、焦点清晰度和背景受光"
+    },
+    "production_modules": {
+      "negative_constraints": "两个视觉域禁止混用",
+      "model_adapter_reference": "模型、BPM 模板、时码、像素阈值和超分仅作适配参考",
+      "generation_workflow": "主体分析、模式选择、背景决策、焦点确认、分镜、生成、QC、装配"
+    },
+    "provenance": {
+      "source_documents": [
+        {
+          "file": "D:/AI 视频/Flova技能/电商产品TVC展示视频.md",
+          "sha256": "111453C6B0B1F428C06B947844EB6C5712802EB372AD6155C2D9C11814319836"
+        },
+        {
+          "file": "Style_Profile_电商产品TVC展示_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "sha256": "EB6281F22976487D693854B163465CC67C8A07A8CCE844F3562076D0D71F83B2",
+          "extraction_type": "source_profile"
+        }
+      ],
+      "extracted_modules": [
+        {
+          "field": "pre_content_modules",
+          "source_section": "planner 与 multimodal_analyze_tool",
+          "extraction_type": "normalized"
+        },
+        {
+          "field": "audiovisual_modules",
+          "source_section": "storyboard_designer",
+          "extraction_type": "normalized"
+        },
+        {
+          "field": "production_modules",
+          "source_section": "media_generator、write_the_prompt 与 video_assembler",
+          "extraction_type": "direct"
+        }
+      ],
+      "source_sha256": "EB6281F22976487D693854B163465CC67C8A07A8CCE844F3562076D0D71F83B2"
+    }
+  }
+}

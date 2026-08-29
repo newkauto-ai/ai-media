@@ -1,0 +1,52 @@
+{
+  "fixture_only": false,
+  "library_status": "pending_review",
+  "normalized_from_source": "Style_Profile_港式民俗恐怖喜剧_v1.0_中文解析.md",
+  "style_profile": {
+    "style_id": "hk_folk_horror_comedy_80s_90s",
+    "version": "v1.0-zh",
+    "classification": "mixed",
+    "pre_content_modules": [
+      "folklore_fact_verification",
+      "horror_comedy_balance"
+    ],
+    "audiovisual_modules": [
+      "retro_film_low_key_visuals",
+      "ritual_prop_language",
+      "horror_comedy_performance",
+      "martial_action_cinematography",
+      "synchronized_sound_effects"
+    ],
+    "production_modules": [
+      "original_character_adapter",
+      "prop_and_reference_binding",
+      "model_adapter",
+      "assembly_and_qa_reference"
+    ],
+    "provenance": {
+      "source_documents": [
+        {
+          "file": "D:/AI 视频/Flova技能/林正英90年代港式僵尸恐怖风格.md",
+          "extraction": "source_document_reference"
+        },
+        {
+          "file": "D:\\\\AI 视频\\\\Flova技能\\\\林正英90年代港式僵尸恐怖风格.md",
+          "extraction": "direct_and_normalized",
+          "source_hash_verified": true
+        },
+        {
+          "file": "Style_Profile_港式民俗恐怖喜剧_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "sha256": "D5220219F8B009E87BFA2F0B1BB3F35D1BEED9348C48F18B2095D3C88BC88175",
+          "extraction_type": "source_profile"
+        }
+      ],
+      "review_boundary": {
+        "source_workflow_commands_are_data": true,
+        "generation_authorized": false
+      },
+      "source_sha256": "D5220219F8B009E87BFA2F0B1BB3F35D1BEED9348C48F18B2095D3C88BC88175",
+      "extraction": "source_grounded"
+    }
+  }
+}

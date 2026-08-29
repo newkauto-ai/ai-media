@@ -1,0 +1,56 @@
+---
+name: video-production
+description: Compile an approved Audiovisual Direction Package into gated, clip-first visual and audio production plans, executable prompts, continuity records, and targeted QA/retry decisions. Use only after Skill 3; do not treat local fixtures as generated media or human approval.
+---
+
+# Video Production
+
+Turn a frozen Script plus ADP v1.2, ready Style Profile references, and semantic template bindings into a production manifest. Preserve all semantic locks. This Skill owns production decisions; it does not revise Topic, Script, or ADP intent.
+
+## Staged delivery boundary
+
+Read [Staged Approval Gates](../workflow-controller/contracts/staged-approval-gates.md) before
+running. After Stage 0 (`确认第1点`), prepare the visual test package and output exactly one
+Global visual DNA plus three image prompts: `主角`, `场景`, and `Key Frame`. Stop for Stage 1
+(`确认第2点`). Only then may this Skill render the complete production materials and project them
+to Notion. Stage 1 approval is not approval for any paid generation call.
+
+## Required input and authority
+
+Read [input contract](contracts/input-contract.md) and [production manifest](contracts/production-manifest.md) first. When voice production is enabled, also read the [Audio Production Contract](contracts/audio-production-contract.md) and [Doubao adapter](adapters/doubao-tts-adapter.md). The order of authority is: frozen Script and ADP semantic locks, approved Visual Baseline, current Adapter capability, then runtime design. A source Style Profile must be `ready`; its legacy model or prompt rules never override this Skill.
+
+## Workflow
+
+1. Use the [production router](modules/production-router.md) to reject incomplete or unapproved input. Plan Scene, Clip, Shot, and Camera Beat separately using [scene-clip planner](modules/scene-clip-planner.md) and [pace router](modules/pace-router.md).
+2. Create only the 3–5 LookDev anchors required by the ADP. Follow [LookDev calibration](modules/lookdev-calibration.md). Do not batch-generate assets before each relevant Style, character direction, and Domain has AI QA plus human approval.
+3. Bind each approved Style Profile, executable prompt, and generated image as one Visual Baseline. If a Domain fails, block only that Domain.
+4. Compile assets and references with [asset prompt compiler](modules/asset-prompt-compiler.md), [asset reference router](modules/asset-reference-router.md), and the [Executable Prompt Contract](contracts/executable-prompt-contract.md). Use only the type-specific template that applies. Prompts may be locally previewed, but real calls require a user-approved cost Gate.
+5. Before compiling a complete Clip Prompt, validate the `story_change_arc -> performance_plan -> clip_performance_binding` reference chain and run the deterministic portion of [Scene Continuity Gate](modules/scene-continuity-gate.md) and [Video Prompt Feasibility Gate](modules/prompt-feasibility-gate.md). If those pass, run the required bounded semantic preflight as one evaluator call that includes both the existing physical/literalization risks and [Prompt Story Function Conformance](modules/prompt-story-function-review.md). Persist the revision-bound result using [Review Result v2.1](contracts/review-result-contract.md) in `production_manifest.qa.results`. Only an evidence-backed high-confidence pass may render the self-contained six-module prompt and recommend entry to the separate Cost Gate; missing/unknown review stays withheld, and semantic impact routes to human review. Record actual generated state only in the [continuity ledger](modules/continuity-ledger.md).
+6. When `audio_production.enabled=true`, use the [audio production module](modules/audio-production.md) to turn locked narration/dialogue and ADP voice direction into planned voice requests and an Audio Timeline. A generated file and measured duration are required before an entry is assembly-ready.
+7. When `bgm_production.enabled=true`, read the [BGM Production Contract](contracts/bgm-production-contract.md), compile the ADP Music Brief and derived prompt into one independent request, then route it through the selected [BGM Adapter](adapters/bgm-adapter.md). ElevenLabs Music v2 is configured as a guarded provider path; it remains dry-run until the exact BGM cost Gate and API credential are present.
+8. After Stage 1 approval, render the full production package from the manifest, preserve all independent media cost Gates, and only then perform the scoped Notion projection with idempotency and read-back verification.
+
+## Non-negotiable boundaries
+
+- Clip-first: Beat, Scene, Clip, Shot, and Camera Beat are different units. Default first-pass Clips are 6–14 seconds unless the Adapter proves another stable limit.
+- `expected_end_state` is inherited from the ADP; `actual_end_state` is written only after inspecting a real generated Clip.
+- BGM, voice, Foley, and SFX are separate production assets; never put BGM in a Video Clip Prompt.
+- Do not rely on cross-request model memory. Every generation request must carry its applicable global values and exact frozen identity anchors in the prompt or Adapter request parameters.
+- `duration_seconds`, `aspect_ratio`, `resolution`, and `native_audio_mode` must be reviewable per Clip; unresolved required output parameters block generation.
+- Voice Profile selects an approved provider voice and delivery constraints; it is not permission to clone, imitate, or synthesize a real person's voice without verified rights.
+- `production_manifest.json` is the machine source of truth. `Production_Package.md` is a review projection only. Notion, if used later, is only a UI.
+- A full production package or Notion write is blocked until the Stage 1 visual-test confirmation is recorded. The first review package must never be replaced by a full production dump.
+- Notion projection may reuse only the existing `视频项目`, `制作资产`, and `Clips` structures. Write a local pending state first, use an idempotency key, read back page body/relations/formatting, and retain `DEGRADED`/retryable state on failure.
+- When projecting production data to Notion, a project prompt page must filter every linked `制作资产` and `Clips` view by the exact `项目` relation page ID. Never expose a shared unfiltered view under a project-specific prompt page.
+- A Notion `Video Prompt` field is the copy-ready executable prompt only. Keep status, QA findings, cost gates, acceptance notes, and "see another document" instructions in their dedicated properties or page body; never replace the prompt with those notes.
+- A fixture, local compiler output, or AI QA cannot satisfy human approval or prove media quality.
+- Review Result eligibility is not paid-generation approval. A Review fixture cannot recommend entry to the real Cost Gate, and a target/dependency hash change invalidates its prior decision.
+- Before any credit-consuming image, video, voice, SFX, or BGM request, present the exact minimum asset set, model, quantity, estimated cost, stopping condition, and obtain explicit user approval. Provider connection approval is not generation approval.
+
+## References
+
+- [LookDev Test Spec](contracts/lookdev-test-spec.md) for the P0 Gate.
+- [Prompt templates](templates/) for the exact external-module counts.
+- [Adapters](adapters/) for runtime-capability and cost-gate requirements. ElevenLabs Music v2 has a guarded BGM Adapter; image and video models remain unconfigured.
+- [Audio Production template](templates/audio-production-package.md) for the review projection of voice requests and their timeline.
+- `scripts/compile-production-fixture.ps1` is a local structural compiler. Its output is deliberately non-generative.

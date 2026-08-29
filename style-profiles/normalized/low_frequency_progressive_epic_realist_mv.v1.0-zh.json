@@ -1,0 +1,98 @@
+{
+  "fixture_only": false,
+  "library_status": "pending_review",
+  "normalized_from_source": "Style_Profile_低频渐进史诗写实MV_v1.0_中文解析.md",
+  "style_profile": {
+    "style_id": "low_frequency_progressive_epic_realist_mv",
+    "version": "v1.0-zh",
+    "classification": "audiovisual_style_profile",
+    "pre_content_modules": {
+      "叙事建议": [
+        "平静",
+        "蓄力",
+        "高潮",
+        "余韵"
+      ],
+      "音频分析优先": true,
+      "权威": "advisory"
+    },
+    "audiovisual_modules": {
+      "视觉身份": [
+        "写实实拍",
+        "低饱和高反差",
+        "蓝灰暗部",
+        "琥珀亮部",
+        "逆光与体积雾"
+      ],
+      "景别": [
+        "大远景建立尺度",
+        "局部特写建立情绪"
+      ],
+      "音画映射": [
+        "低频扩大空间",
+        "高频引导上升",
+        "重复动机逐轮递进"
+      ],
+      "摄影": [
+        "慢速推拉与航拍",
+        "快切横移与短促手持"
+      ],
+      "声音": [
+        "原音乐主轨",
+        "可选低电平环境声",
+        "无旁白与口型"
+      ],
+      "连续性": [
+        "光源方向",
+        "色温",
+        "运动方向",
+        "场景锚点"
+      ]
+    },
+    "production_modules": {
+      "可替换参考": [
+        "具体图像模型",
+        "视频模型",
+        "480p",
+        "2K",
+        "英文提示词语法"
+      ],
+      "known_source_conflicts": [
+        "1080p输出与480p生成冲突",
+        "失败兜底重复同一模型",
+        "长音频与固定镜头数不匹配",
+        "含人声音频边界未定义"
+      ]
+    },
+    "provenance": {
+      "source_documents": [
+        {
+          "路径": "D:/AI 视频/Flova技能/汉斯季默风格史诗MV.md",
+          "sha256": "55eed3da89b880a44da964682044473aa979d24e7151843057009e2958ae62ea"
+        },
+        {
+          "file": "Style_Profile_低频渐进史诗写实MV_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "sha256": "BD82CE4D34C7B073E7489C9AB24E38C818F59998EE146053169914D54DE0F54F",
+          "extraction_type": "source_profile"
+        }
+      ],
+      "extracted_modules": [
+        {
+          "模块": "音画映射",
+          "extraction": "direct"
+        },
+        {
+          "模块": "去人名化视觉身份",
+          "extraction": "normalized"
+        },
+        {
+          "模块": "永久风格与执行适配分离",
+          "extraction": "inferred_structure_only"
+        }
+      ],
+      "examples_are_canon": false,
+      "source_sha256": "BD82CE4D34C7B073E7489C9AB24E38C818F59998EE146053169914D54DE0F54F"
+    }
+  }
+}

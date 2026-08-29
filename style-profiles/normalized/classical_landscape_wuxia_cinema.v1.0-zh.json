@@ -1,0 +1,98 @@
+{
+  "fixture_only": false,
+  "library_status": "pending_review",
+  "normalized_from_source": "Style_Profile_古典山水武侠电影美学_v1.0_中文解析.md",
+  "style_profile": {
+    "style_id": "classical_landscape_wuxia_cinema",
+    "version": "v1.0-zh",
+    "classification": "audiovisual_style_profile",
+    "pre_content_modules": {
+      "叙事建议": [
+        "起承转合",
+        "慢快慢",
+        "以静衬动",
+        "回归留白"
+      ],
+      "历史边界": "朝代服饰和器物必须由当前资料确认"
+    },
+    "audiovisual_modules": {
+      "视觉身份": [
+        "山水留白",
+        "三层纵深",
+        "框中框",
+        "低饱和大地色",
+        "偏青阴影",
+        "胶片颗粒"
+      ],
+      "摄影": [
+        "固定凝视",
+        "缓慢横移",
+        "纵深缓推",
+        "动作短镜硬切"
+      ],
+      "表演": [
+        "戏曲身段",
+        "预备爆发收势",
+        "克制表情"
+      ],
+      "声音": [
+        "古琴箫笛",
+        "中阮琵琶",
+        "京剧锣鼓",
+        "山林与寺钟环境声"
+      ],
+      "连续性": [
+        "角色服饰兵器",
+        "空间层级",
+        "光色颗粒",
+        "运动方向",
+        "锣鼓剪辑点"
+      ]
+    },
+    "production_modules": {
+      "可替换参考": [
+        "具体图像与视频模型",
+        "480p",
+        "提示词标记",
+        "音频模型",
+        "角色板格式"
+      ],
+      "known_source_conflicts": [
+        "多画幅与固定1.85比1冲突",
+        "明代内容锁被混入风格",
+        "480p升级表述无效",
+        "内嵌音乐与独立BGM冲突"
+      ]
+    },
+    "provenance": {
+      "source_documents": [
+        {
+          "路径": "D:/AI 视频/Flova技能/胡金铨电影美学风格.md",
+          "sha256": "239e206dcc648878db2bca5d7fcfe62a4e579f158a69b0de7abaf59807771f24"
+        },
+        {
+          "file": "Style_Profile_古典山水武侠电影美学_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "sha256": "B3926E11AF68FB514FE39F1BA81E4E79AD038379978FB60137B7712A7B7FB0D7",
+          "extraction_type": "source_profile"
+        }
+      ],
+      "extracted_modules": [
+        {
+          "模块": "视听风格与动作剪辑",
+          "extraction": "direct"
+        },
+        {
+          "模块": "朝代与风格分离",
+          "extraction": "normalized"
+        },
+        {
+          "模块": "固定词串降级为视觉DNA",
+          "extraction": "inferred_structure_only"
+        }
+      ],
+      "examples_are_canon": false,
+      "source_sha256": "B3926E11AF68FB514FE39F1BA81E4E79AD038379978FB60137B7712A7B7FB0D7"
+    }
+  }
+}

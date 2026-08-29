@@ -1,0 +1,116 @@
+{
+  "fixture_only": false,
+  "library_status": "pending_review",
+  "normalized_from_source": "Style_Profile_手工粘土微缩世界_v1.0_中文解析.md",
+  "style_profile": {
+    "style_id": "handcrafted_clay_diorama",
+    "version": "v1.0-zh",
+    "classification": "hybrid_style_profile",
+    "pre_content_modules": {
+      "compatibility": {
+        "authority": "medium",
+        "preferred": [
+          "治愈日常",
+          "生活方式",
+          "手作与空间展示"
+        ],
+        "avoid": [
+          "高速多人动作",
+          "依赖写实材质证据的内容"
+        ]
+      },
+      "story_direction": {
+        "authority": "soft",
+        "value": "场景建立 → 具体动作 → 材质细节 → 温和收束"
+      }
+    },
+    "audiovisual_modules": {
+      "visual_identity": {
+        "authority": "hard",
+        "value": "统一手工粘土材质、圆润厚实轮廓、可见塑形痕迹、哑光表面、微缩空间感"
+      },
+      "character_visual": {
+        "authority": "medium",
+        "value": "身份优先；皮肤、头发和服装统一转化为粘土体积与压纹"
+      },
+      "environment": {
+        "authority": "hard",
+        "value": "保留原空间结构与识别要素，统一粘土化并保持层级清楚"
+      },
+      "cinematography": {
+        "authority": "medium",
+        "value": "固定、缓推、缓拉、轻环绕和材质特写"
+      },
+      "performance": {
+        "authority": "medium",
+        "value": "温和、自然、动作可读，避免高速夸张运动"
+      },
+      "editing_rhythm": {
+        "authority": "medium",
+        "value": "舒缓，简单直切或轻淡入淡出"
+      },
+      "sound_design": {
+        "authority": "medium",
+        "value": "轻粘土摩擦、厚实接触与柔和环境声"
+      },
+      "voice_system": {
+        "authority": "medium",
+        "value": "旁白可选；温和、亲切、舒缓"
+      },
+      "music_direction": {
+        "authority": "medium",
+        "value": "轻柔治愈底层，避开强攻击性节奏"
+      },
+      "continuity_schema": {
+        "authority": "hard",
+        "track": [
+          "人物身份",
+          "材质统一",
+          "空间布局",
+          "道具位置",
+          "光源方向"
+        ]
+      }
+    },
+    "production_modules": {
+      "asset_prompt_templates": "source_defined",
+      "video_prompt_templates": "source_defined",
+      "model_adapter_reference": "replaceable",
+      "generation_workflow": "ignored_in_style_core"
+    },
+    "provenance": {
+      "source_documents": [
+        {
+          "file": "D:/AI 视频/Flova技能/粘土3D动画风格.md",
+          "version": "attached-2026-08-24",
+          "sha256": "1FE7613AD1F8C046FAC8925F73EE5905011720C3EB6FF7389A941DF68F60DC47"
+        },
+        {
+          "file": "Style_Profile_手工粘土微缩世界_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "sha256": "90197ABABF5F808E1B3F102AE6D30A8AEE5C8853328322DBC5D96C5B3B42E9D2",
+          "extraction_type": "source_profile"
+        }
+      ],
+      "extracted_modules": [
+        {
+          "field": "pre_content_modules",
+          "source_section": "planner",
+          "extraction_type": "normalized"
+        },
+        {
+          "field": "audiovisual_modules",
+          "source_section": "storyboard_designer + write_the_prompt + video_assembler",
+          "extraction_type": "normalized"
+        },
+        {
+          "field": "production_modules",
+          "source_section": "media_generator + planner",
+          "extraction_type": "direct"
+        }
+      ],
+      "source_sha256": "90197ABABF5F808E1B3F102AE6D30A8AEE5C8853328322DBC5D96C5B3B42E9D2",
+      "extraction": "source_grounded"
+    }
+  }
+}

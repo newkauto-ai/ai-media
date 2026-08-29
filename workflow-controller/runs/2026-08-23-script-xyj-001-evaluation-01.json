@@ -1,0 +1,27 @@
+{
+  "unit": {
+    "unit_id": "script-xyj-001",
+    "stage": "script_quality",
+    "required": true,
+    "retry_count": 0,
+    "max_retries": 2,
+    "topic_type": "fiction",
+    "production_risk": "medium",
+    "semantic_locked": true
+  },
+  "assessment": {
+    "source": "llm",
+    "run_id": "current-codex-session-2026-08-23",
+    "verdict": "blocked",
+    "confidence": "high",
+    "evidence": [
+      "The frozen script reports 78 seconds against a 75-second target and retains a Hook, Conflict, Escalation, Reveal, and Meaning section.",
+      "The Hook states the Wukong strength-versus-seeking-help contrast in its first sentence; later sections visibly progress from artifacts to team responsibility.",
+      "The frozen semantic-lock list contains two factual claims, but the script fixture contains no primary-source citation or chapter reference for either claim."
+    ],
+    "failure_types": ["evidence_missing"],
+    "affects_semantics": false,
+    "requires_external_evidence": true,
+    "proposed_capability": "research"
+  }
+}

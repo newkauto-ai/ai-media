@@ -1,0 +1,54 @@
+{
+  "fixture_only": false,
+  "library_status": "pending_review",
+  "normalized_from_source": "Style_Profile_第一人称FPV穿越视角_v1.0_中文解析.md",
+  "style_profile": {
+    "style_id": "first_person_fpv_flythrough",
+    "version": "v1.0-zh",
+    "classification": "production_playbook",
+    "pre_content_modules": {
+      "compatibility": "建筑、风景、车辆及具有可穿越空间结构的主体"
+    },
+    "audiovisual_modules": {
+      "cinematography": "连续 FPV 飞行路径，包含高度、方向、速度与穿越动作",
+      "editing_rhythm": "分段拼接保持运动惯性和轨迹顺序",
+      "continuity_schema": "主体外观、光源方向、入口状态、出口状态与飞行方向"
+    },
+    "production_modules": {
+      "model_adapter_reference": "单段十五秒限制仅为源平台参考",
+      "generation_workflow": "素材分析、轨迹分镜、用户确认、分段生成、连续拼接"
+    },
+    "provenance": {
+      "source_documents": [
+        {
+          "file": "D:/AI 视频/Flova技能/第一人称 FPV 穿越视角.md",
+          "sha256": "2B90FC20C6B38C5921AA42AE31D7022A3AD240AAF5A3D7C3F442467BBC899046"
+        },
+        {
+          "file": "Style_Profile_第一人称FPV穿越视角_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "sha256": "4DA1D205CABC237CF42E17757B5706ED2AC8C488717BBD46021A6CFC699168FB",
+          "extraction_type": "source_profile"
+        }
+      ],
+      "extracted_modules": [
+        {
+          "field": "pre_content_modules",
+          "source_section": "planner",
+          "extraction_type": "normalized"
+        },
+        {
+          "field": "audiovisual_modules",
+          "source_section": "planner",
+          "extraction_type": "inferred_structure_only"
+        },
+        {
+          "field": "production_modules",
+          "source_section": "planner",
+          "extraction_type": "direct"
+        }
+      ],
+      "source_sha256": "4DA1D205CABC237CF42E17757B5706ED2AC8C488717BBD46021A6CFC699168FB"
+    }
+  }
+}

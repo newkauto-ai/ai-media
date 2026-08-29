@@ -1,0 +1,52 @@
+{
+  "fixture_only": false,
+  "library_status": "pending_review",
+  "normalized_from_source": "Style_Profile_日系写实动漫_v1.0_中文解析.md",
+  "style_profile": {
+    "style_id": "japanese_realist_youth_anime",
+    "version": "v1.0-zh",
+    "classification": "audiovisual_style_profile",
+    "pre_content_modules": [
+      "script_language_and_emotion_selection",
+      "reference_fact_extraction"
+    ],
+    "audiovisual_modules": [
+      "realist_anime_visual_identity",
+      "physical_light_and_color",
+      "multi_camera_continuity",
+      "restrained_performance",
+      "dialogue_and_environment_sound"
+    ],
+    "production_modules": [
+      "asset_binding",
+      "prompt_adapter",
+      "video_model_adapter",
+      "assembly_and_upscale_reference"
+    ],
+    "provenance": {
+      "source_documents": [
+        {
+          "file": "D:/AI 视频/Flova技能/日系写实动漫风格.md",
+          "extraction": "source_document_reference"
+        },
+        {
+          "file": "D:\\\\AI 视频\\\\Flova技能\\\\日系写实动漫风格.md",
+          "extraction": "direct_and_normalized",
+          "source_hash_verified": true
+        },
+        {
+          "file": "Style_Profile_日系写实动漫_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "sha256": "3B5EF0F0603F13639C3E3EAB0DC8325DB415233E6816C9989E609F9D16AD1F43",
+          "extraction_type": "source_profile"
+        }
+      ],
+      "review_boundary": {
+        "source_workflow_commands_are_data": true,
+        "generation_authorized": false
+      },
+      "source_sha256": "3B5EF0F0603F13639C3E3EAB0DC8325DB415233E6816C9989E609F9D16AD1F43",
+      "extraction": "source_grounded"
+    }
+  }
+}

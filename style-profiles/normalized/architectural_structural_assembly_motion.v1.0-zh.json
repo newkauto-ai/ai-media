@@ -1,0 +1,93 @@
+{
+  "fixture_only": false,
+  "library_status": "pending_review",
+  "normalized_from_source": "Style_Profile_建筑结构组装动效_v1.0_中文解析.md",
+  "style_profile": {
+    "style_id": "architectural_structural_assembly_motion",
+    "version": "v1.0-zh",
+    "classification": "production_playbook",
+    "pre_content_modules": {
+      "输入要求": [
+        "至少一张建筑参考图",
+        "明确展示目的"
+      ],
+      "事实边界": "不从外观图推断真实隐藏结构"
+    },
+    "audiovisual_modules": {
+      "视觉身份": [
+        "结构逐层显现",
+        "内部构件可见",
+        "中性背景",
+        "光影揭示层次"
+      ],
+      "组装语法": [
+        "由内到外",
+        "由下到上",
+        "接近",
+        "对齐",
+        "嵌合",
+        "稳定"
+      ],
+      "摄影": [
+        "缓慢自旋",
+        "环绕或推拉择一为主",
+        "完成态展示"
+      ],
+      "声音": [
+        "材质匹配的装配声",
+        "轻快有序的辅助音乐"
+      ],
+      "连续性": [
+        "建筑比例",
+        "构件状态",
+        "组装顺序",
+        "旋转与光源方向"
+      ]
+    },
+    "production_modules": {
+      "可替换参考": [
+        "具体视频模型",
+        "720p",
+        "时长拆分",
+        "参考图占位符",
+        "BGM生成路径"
+      ],
+      "known_source_conflicts": [
+        "九种互斥组装方式被固定串联",
+        "31到33秒尾镜不足4秒",
+        "冲突参考图无筛选机制",
+        "双重运动过载"
+      ]
+    },
+    "provenance": {
+      "source_documents": [
+        {
+          "路径": "D:/AI 视频/Flova技能/建筑结构组装动效.md",
+          "sha256": "8b53a2d4064c62521de7b18cc32731788c01b37b29f31ee242a029bd2a4bfa13"
+        },
+        {
+          "file": "Style_Profile_建筑结构组装动效_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "sha256": "1CCE4FCD7A4819E8C7964880375E2E498CE5D756823CCA7252E60CA615FB6D2D",
+          "extraction_type": "source_profile"
+        }
+      ],
+      "extracted_modules": [
+        {
+          "模块": "结构组装视听语法",
+          "extraction": "direct"
+        },
+        {
+          "模块": "结构事实边界",
+          "extraction": "normalized"
+        },
+        {
+          "模块": "组装机制互斥规则",
+          "extraction": "inferred_structure_only"
+        }
+      ],
+      "examples_are_canon": false,
+      "source_sha256": "1CCE4FCD7A4819E8C7964880375E2E498CE5D756823CCA7252E60CA615FB6D2D"
+    }
+  }
+}

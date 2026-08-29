@@ -1,0 +1,77 @@
+{
+  "fixture_only": false,
+  "library_status": "pending_review",
+  "normalized_from_source": "Style_Profile_东方天宫云上古典幻想_v1.0_中文解析.md",
+  "style_profile": {
+    "style_id": "eastern_cloud_celestial_palace",
+    "version": "v1.0-zh",
+    "classification": "audiovisual_style_profile",
+    "pre_content_modules": {
+      "subject_use_and_aspect_ratio": "runtime_selected",
+      "composition_family": "five_family_reference",
+      "story_canon": null,
+      "person_presence": "optional"
+    },
+    "audiovisual_modules": {
+      "visual_identity": "cloud_above_eastern_classical_celestial_palace",
+      "environment_dominance": "hard",
+      "character_scale": "tiny_scale_anchor",
+      "color_system": "low_saturation_cool_neutral_with_local_amber_light",
+      "spatial_depth": "foreground_midground_destination_cloud_sea",
+      "atmosphere": "volumetric_clouds_air_perspective_clear_silhouettes",
+      "performance": "slow_restrained_ritualized_actions",
+      "sound_design": null,
+      "music_direction": null,
+      "clean_frame": "no_text_no_logo_no_watermark_no_border_no_ui",
+      "continuity": "architecture_material_scale_light_and_cloud_layer"
+    },
+    "production_modules": {
+      "reference_dependency": "references_not_supplied",
+      "prompt_recipe": "replaceable",
+      "image_generation": "replaceable",
+      "video_or_motion_generation": "replaceable",
+      "variation_strategy": "change_composition_family_first",
+      "review_checklist": "source_defined_visual_and_clean_frame_checks",
+      "generation_authorized": false
+    },
+    "provenance": {
+      "source_documents": [
+        {
+          "file": "C:\\\\Users\\\\Roy\\\\Downloads\\\\天宫画面&视频_Skill介绍.md",
+          "sha256": "11e72b578215a9566b811c283af5e67ff0158bb6f503c09f472d0d14567a5eef",
+          "extraction": "direct_and_normalized"
+        },
+        {
+          "file": "Style_Profile_东方天宫云上古典幻想_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "sha256": "1C36A02FD40DC4E0731DD7B7D86057AA7A2D84474AFD821906DF32A5B6FE2953",
+          "extraction_type": "source_profile"
+        }
+      ],
+      "extracted_modules": [
+        {
+          "module": "environmental_visual_identity",
+          "method": "direct_and_normalized"
+        },
+        {
+          "module": "composition_and_scale_rules",
+          "method": "direct_and_normalized"
+        },
+        {
+          "module": "clean_frame_constraints",
+          "method": "direct"
+        },
+        {
+          "module": "workflow_and_prompt_reference",
+          "method": "direct"
+        },
+        {
+          "module": "missing_fields_and_risks",
+          "method": "inferred_structure_only"
+        }
+      ],
+      "source_sha256": "1C36A02FD40DC4E0731DD7B7D86057AA7A2D84474AFD821906DF32A5B6FE2953",
+      "extraction": "source_grounded"
+    }
+  }
+}

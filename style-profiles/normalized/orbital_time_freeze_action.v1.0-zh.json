@@ -1,0 +1,119 @@
+{
+  "fixture_only": false,
+  "library_status": "pending_review",
+  "normalized_from_source": "Style_Profile_环绕冻结子弹时间动作_v1.0_中文解析.md",
+  "style_profile": {
+    "style_id": "orbital_time_freeze_action",
+    "version": "v1.0-zh",
+    "classification": "audiovisual_style_profile",
+    "pre_content_modules": {
+      "compatibility": {
+        "authority": "medium",
+        "preferred": [
+          "动作高潮",
+          "危机与抉择",
+          "时间感主题",
+          "需要观察决定性瞬间的内容"
+        ]
+      },
+      "story_direction": {
+        "authority": "soft",
+        "value": "正常速度铺垫 → 危机触发 → 极慢/冻结观察 → 恢复速度与结果"
+      },
+      "theme_expression_rules": {
+        "authority": "soft",
+        "value": "子弹时间只用于最关键瞬间，不平均铺满全片"
+      }
+    },
+    "audiovisual_modules": {
+      "visual_identity": {
+        "authority": "partial",
+        "visual_medium": "runtime_required",
+        "value": "子弹时间本身不规定画种、时代或固定色彩"
+      },
+      "character_visual": {
+        "authority": "hard",
+        "value": "身份、服装、身体比例和冻结姿态跨镜稳定"
+      },
+      "environment": {
+        "authority": "hard",
+        "value": "场景子区域、承载面、边界、主光与陈设明确"
+      },
+      "cinematography": {
+        "authority": "hard",
+        "value": "指定方向、起止角度、轨迹和速度的平滑摄影机环绕"
+      },
+      "performance": {
+        "authority": "high",
+        "value": "精确肢体姿态、重心、视线和情绪四要素"
+      },
+      "editing_rhythm": {
+        "authority": "high",
+        "value": "正常 → 减速 → 冻结观察 → 恢复 → 结果"
+      },
+      "sound_design": {
+        "authority": "high",
+        "value": "触发点静默或拉长，冻结时放大细节声，恢复时回归速度感"
+      },
+      "voice_system": {
+        "authority": "medium",
+        "value": "台词可在镜头内，旁白独立，二者不得重复"
+      },
+      "music_direction": {
+        "authority": "medium",
+        "value": "背景音乐服务速度曲线，触发点主动闪避或截断"
+      },
+      "continuity_schema": {
+        "authority": "hard",
+        "track": [
+          "时间速度状态",
+          "摄影机环绕参数",
+          "冻结姿态",
+          "悬浮物轨迹",
+          "场景承载关系",
+          "声音归属"
+        ]
+      }
+    },
+    "production_modules": {
+      "asset_prompt_templates": "source_defined",
+      "video_prompt_templates": "source_defined",
+      "model_adapter_reference": "replaceable",
+      "generation_workflow": "ignored_in_style_core"
+    },
+    "provenance": {
+      "source_documents": [
+        {
+          "file": "D:/AI 视频/Flova技能/子弹时间风格短片.md",
+          "version": "attached-2026-08-24",
+          "sha256": "BAC31D0FC24AE691224D84F30C2FD899C587A5EBE68D2ACE7A14974C0B3499A9"
+        },
+        {
+          "file": "Style_Profile_环绕冻结子弹时间动作_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "sha256": "66925474229B45750D72FCAFD7FB4BC4073C2E4953C47689CF18F5057AB59924",
+          "extraction_type": "source_profile"
+        }
+      ],
+      "extracted_modules": [
+        {
+          "field": "pre_content_modules",
+          "source_section": "planner + storyboard_designer",
+          "extraction_type": "normalized"
+        },
+        {
+          "field": "audiovisual_modules",
+          "source_section": "storyboard_designer + write_the_prompt + video_assembler",
+          "extraction_type": "normalized"
+        },
+        {
+          "field": "production_modules",
+          "source_section": "media_generator + planner",
+          "extraction_type": "direct"
+        }
+      ],
+      "source_sha256": "66925474229B45750D72FCAFD7FB4BC4073C2E4953C47689CF18F5057AB59924",
+      "extraction": "source_grounded"
+    }
+  }
+}

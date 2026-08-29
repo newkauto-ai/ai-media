@@ -1,0 +1,427 @@
+{
+  "registry_version": "1.0",
+  "source_directory": "style-profiles/source",
+  "normalized_directory": "style-profiles/normalized",
+  "profiles": [
+    {
+      "profile_id": "soft_cute_3d_healing",
+      "source_file": "Style_Profile_软萌3D治愈动画_v1.1_中文重解析.md",
+      "source_sha256": "EFCD65142C5B88C75E59A5CA3CBD46823934FBFDC23AD98AE84C4202875E40ED",
+      "normalized_file": "soft-cute-3d-healing.v1.1-zh.json",
+      "normalized_version": "v1.1-zh",
+      "classification": "hybrid_style_profile",
+      "status": "ready",
+      "provenance_verified": true
+    },
+    {
+      "profile_id": "hand_drawn_nature_growth_fantasy",
+      "source_file": "Style_Profile_手绘自然成长奇幻_v1.1_中文重解析.md",
+      "source_sha256": "A80EE95C408972D12F8B0F6CDA759F37EDAD7CD28536C120A22A1A2667BECF17",
+      "normalized_file": "hand-drawn-nature-growth-fantasy.v1.1-zh.json",
+      "normalized_version": "v1.1-zh",
+      "classification": "narrative_style_bible",
+      "status": "pending_review",
+      "provenance_verified": true
+    },
+    {
+      "profile_id": "fpv_continuous_flight_take",
+      "source_file": "Style_Profile_FPV连续穿越运镜_v1.0_中文解析.md",
+      "source_sha256": "B95909310BEF83FF30C6F117DD896EF2370C92925E3F90FFD80C3060EFFB9068",
+      "normalized_file": "fpv_continuous_flight_take.v1.0-zh.json",
+      "normalized_version": "v1.0-zh",
+      "classification": "production_playbook",
+      "status": "ready",
+      "provenance_verified": true
+    },
+    {
+      "profile_id": "traditional_craft_cinematic_documentary",
+      "source_file": "Style_Profile_传统手工艺电影纪录_v1.0_中文解析.md",
+      "source_sha256": "D0B73FA8F1236A0C60378D806F493266D16226056D19C5E233D69357782F7086",
+      "normalized_file": "traditional_craft_cinematic_documentary.v1.0-zh.json",
+      "normalized_version": "v1.0-zh",
+      "classification": "mixed",
+      "status": "pending_review",
+      "provenance_verified": true
+    },
+    {
+      "profile_id": "low_frequency_progressive_epic_realist_mv",
+      "source_file": "Style_Profile_低频渐进史诗写实MV_v1.0_中文解析.md",
+      "source_sha256": "BD82CE4D34C7B073E7489C9AB24E38C818F59998EE146053169914D54DE0F54F",
+      "normalized_file": "low_frequency_progressive_epic_realist_mv.v1.0-zh.json",
+      "normalized_version": "v1.0-zh",
+      "classification": "audiovisual_style_profile",
+      "status": "pending_review",
+      "provenance_verified": true
+    },
+    {
+      "profile_id": "full_scale_wool_felt_world",
+      "source_file": "Style_Profile_全尺寸羊毛毡世界_v1.0_中文解析.md",
+      "source_sha256": "4D5F359AC7164E7AB0E75EC10579FDE02D7C4E24DC495FF3DB04BEEBE48FC6DF",
+      "normalized_file": "full_scale_wool_felt_world.v1.0-zh.json",
+      "normalized_version": "v1.0-zh",
+      "classification": "material_style_profile",
+      "status": "ready",
+      "provenance_verified": true
+    },
+    {
+      "profile_id": "expressive_fantasy_wuxia_action_family",
+      "source_file": "Style_Profile_写意奇幻武侠动作风格族_v1.0_中文解析.md",
+      "source_sha256": "A88B33A05F18EE6F637A7B9F509E77A0A721D450D94C33BF2ABD669595FD93F6",
+      "normalized_file": "expressive_fantasy_wuxia_action_family.v1.0-zh.json",
+      "normalized_version": "v1.0-zh",
+      "classification": "hybrid_style_profile",
+      "status": "ready",
+      "provenance_verified": true
+    },
+    {
+      "profile_id": "creative_process_craft_short",
+      "source_file": "Style_Profile_创作工艺过程短片_v1.0_中文解析.md",
+      "source_sha256": "2CD532074495F4B1DB8100DAF7B3A44EDEEAF893D9130E27F4B41CA57E30072F",
+      "normalized_file": "creative_process_craft_short.v1.0-zh.json",
+      "normalized_version": "v1.0-zh",
+      "classification": "production_playbook",
+      "status": "pending_review",
+      "provenance_verified": true
+    },
+    {
+      "profile_id": "reference_video_structural_remake",
+      "source_file": "Style_Profile_参考视频结构复刻_v1.0_中文解析.md",
+      "source_sha256": "406F2DF2768FC775230405AE5D8BC54DAAC269E8DE779BFFD032E55D8F93EEAC",
+      "normalized_file": "reference_video_structural_remake.v1.0-zh.json",
+      "normalized_version": "v1.0-zh",
+      "classification": "production_playbook",
+      "status": "pending_review",
+      "provenance_verified": true
+    },
+    {
+      "profile_id": "classical_family_power_crime_cinema",
+      "source_file": "Style_Profile_古典家族权力犯罪电影美学_v1.0_中文解析.md",
+      "source_sha256": "572620D54F154D1A116C4978B820FF92716BF585A6F21CE242B4F78D8616F735",
+      "normalized_file": "classical_family_power_crime_cinema.v1.0-zh.json",
+      "normalized_version": "v1.0-zh",
+      "classification": "hybrid_style_profile",
+      "status": "pending_review",
+      "provenance_verified": true
+    },
+    {
+      "profile_id": "classical_landscape_wuxia_cinema",
+      "source_file": "Style_Profile_古典山水武侠电影美学_v1.0_中文解析.md",
+      "source_sha256": "B3926E11AF68FB514FE39F1BA81E4E79AD038379978FB60137B7712A7B7FB0D7",
+      "normalized_file": "classical_landscape_wuxia_cinema.v1.0-zh.json",
+      "normalized_version": "v1.0-zh",
+      "classification": "audiovisual_style_profile",
+      "status": "pending_review",
+      "provenance_verified": true
+    },
+    {
+      "profile_id": "multi_character_ensemble_entrance",
+      "source_file": "Style_Profile_多角色集结出场动画_v1.0_中文解析.md",
+      "source_sha256": "16665FD95C9E8A8AC1AEFF1F5D5D6B1FF64B076548CED8C3D1FC503819873DB1",
+      "normalized_file": "multi_character_ensemble_entrance.v1.0-zh.json",
+      "normalized_version": "v1.0-zh",
+      "classification": "production_playbook",
+      "status": "pending_review",
+      "provenance_verified": true
+    },
+    {
+      "profile_id": "pet_toddler_mischief_comedy_pov",
+      "source_file": "Style_Profile_宠物萌娃闯祸喜剧POV_v1.0_中文解析.md",
+      "source_sha256": "995052AA54DCAC6C55C3A12A9F5499F087AC3FBCCE351F59DF09D4BBEC843039",
+      "normalized_file": "pet_toddler_mischief_comedy_pov.v1.0-zh.json",
+      "normalized_version": "v1.0-zh",
+      "classification": "narrative_style_bible",
+      "status": "pending_review",
+      "provenance_verified": true
+    },
+    {
+      "profile_id": "monumental_slow_burn_brutalist_scifi",
+      "source_file": "Style_Profile_巨构慢燃粗野主义科幻_v1.0_中文解析.md",
+      "source_sha256": "4A4E0494162FD208F9C1DDD1A6D7B6DDB42D34874893288E680FA78ACF9EE965",
+      "normalized_file": "monumental_slow_burn_brutalist_scifi.v1.0-zh.json",
+      "normalized_version": "v1.0-zh",
+      "classification": "hybrid_style_profile",
+      "status": "ready",
+      "provenance_verified": true
+    },
+    {
+      "profile_id": "architectural_structural_assembly_motion",
+      "source_file": "Style_Profile_建筑结构组装动效_v1.0_中文解析.md",
+      "source_sha256": "1CCE4FCD7A4819E8C7964880375E2E498CE5D756823CCA7252E60CA615FB6D2D",
+      "normalized_file": "architectural_structural_assembly_motion.v1.0-zh.json",
+      "normalized_version": "v1.0-zh",
+      "classification": "production_playbook",
+      "status": "pending_review",
+      "provenance_verified": true
+    },
+    {
+      "profile_id": "miniature_tilt_shift_tender_story",
+      "source_file": "Style_Profile_微缩模型温柔叙事_v1.0_中文解析.md",
+      "source_sha256": "14B7B3D2345F2469E915F00723F10A17B57782F2C1BD07E1AC9796D8BC0CC54B",
+      "normalized_file": "miniature_tilt_shift_tender_story.v1.0-zh.json",
+      "normalized_version": "v1.0-zh",
+      "classification": "hybrid_style_profile",
+      "status": "ready",
+      "provenance_verified": true
+    },
+    {
+      "profile_id": "brand_emotion_tvc_framework",
+      "source_file": "Style_Profile_新品品牌情绪TVC生产框架_v1.0_中文解析.md",
+      "source_sha256": "79295D074539A2B6A1A4D9D1852DDB15361D6200D4A39B7537D48FF9E6536BF7",
+      "normalized_file": "brand_emotion_tvc_framework.v1.0-zh.json",
+      "normalized_version": "v1.0-zh",
+      "classification": "production_playbook",
+      "status": "ready",
+      "provenance_verified": true
+    },
+    {
+      "profile_id": "methodology_training_course_presentation",
+      "source_file": "Style_Profile_方法论培训课程视频_v1.0_中文解析.md",
+      "source_sha256": "86139BBADB63F384BAC3EAC3AEA9BB35F9494E990567C73C934D8AFA87EA27EA",
+      "normalized_file": "methodology_training_course_presentation.v1.0-zh.json",
+      "normalized_version": "v1.0-zh",
+      "classification": "production_playbook",
+      "status": "pending_review",
+      "provenance_verified": true
+    },
+    {
+      "profile_id": "dark_eastern_mythic_ruins",
+      "source_file": "Style_Profile_暗黑东方神话废墟奇幻_v1.0_中文解析.md",
+      "source_sha256": "D897C3B65BAD41AACD5518A1FC94958C37E6063700B9C6473E42C4749A6E5E11",
+      "normalized_file": "dark_eastern_mythic_ruins.v1.0-zh.json",
+      "normalized_version": "v1.0-zh",
+      "classification": "mixed",
+      "status": "pending_review",
+      "provenance_verified": true
+    },
+    {
+      "profile_id": "minimal_stick_figure_explainer_story",
+      "source_file": "Style_Profile_极简火柴人科普叙事_v1.0_中文解析.md",
+      "source_sha256": "BFF1773E830D87A8A3181B60E717EE71EC74908BD21A5BFDD04B595FF6EF9978",
+      "normalized_file": "minimal_stick_figure_explainer_story.v1.0-zh.json",
+      "normalized_version": "v1.0-zh",
+      "classification": "hybrid_style_profile",
+      "status": "pending_review",
+      "provenance_verified": true
+    },
+    {
+      "profile_id": "annotated_route_continuous_take",
+      "source_file": "Style_Profile_标注路线一镜到底_v1.0_中文解析.md",
+      "source_sha256": "A701C961CCE23692BA96FE12C66B21F82E2712C375935C090AD769DFAAAC01FE",
+      "normalized_file": "annotated_route_continuous_take.v1.0-zh.json",
+      "normalized_version": "v1.0-zh",
+      "classification": "production_playbook",
+      "status": "pending_review",
+      "provenance_verified": true
+    },
+    {
+      "profile_id": "immersive_single_subject_intimate_pov",
+      "source_file": "Style_Profile_沉浸式单主体亲密POV互动_v1.0_中文解析.md",
+      "source_sha256": "52A62680A581CD3EB7350231E1D8DF55104C26B016391C717086669232A9FE52",
+      "normalized_file": "immersive_single_subject_intimate_pov.v1.0-zh.json",
+      "normalized_version": "v1.0-zh",
+      "classification": "narrative_style_bible",
+      "status": "pending_review",
+      "provenance_verified": true
+    },
+    {
+      "profile_id": "ecommerce_dynamic_showcase_and_product_tvc",
+      "source_file": "Style_Profile_电商产品TVC展示_v1.0_中文解析.md",
+      "source_sha256": "EB6281F22976487D693854B163465CC67C8A07A8CCE844F3562076D0D71F83B2",
+      "normalized_file": "ecommerce_dynamic_showcase_and_product_tvc.v1.0-zh.json",
+      "normalized_version": "v1.0-zh",
+      "classification": "mixed",
+      "status": "pending_review",
+      "provenance_verified": true
+    },
+    {
+      "profile_id": "ecommerce_product_image_suite",
+      "source_file": "Style_Profile_电商产品主图详情_v1.0_中文解析.md",
+      "source_sha256": "2A3AC870476B17CBDB72B762614535024B8973B4D53E0E547BC8CA10E2911D2D",
+      "normalized_file": "ecommerce_product_image_suite.v1.0-zh.json",
+      "normalized_version": "v1.0-zh",
+      "classification": "production_playbook",
+      "status": "pending_review",
+      "provenance_verified": true
+    },
+    {
+      "profile_id": "ecommerce_digital_human_product_pitch",
+      "source_file": "Style_Profile_电商数字人商品口播_v1.0_中文解析.md",
+      "source_sha256": "B13D3C16F0DCF6A8C600D3B58766265F02555A9DA159CBBF119F14DA60215F16",
+      "normalized_file": "ecommerce_digital_human_product_pitch.v1.0-zh.json",
+      "normalized_version": "v1.0-zh",
+      "classification": "hybrid_style_profile",
+      "status": "pending_review",
+      "provenance_verified": true
+    },
+    {
+      "profile_id": "broadway_stage_musical",
+      "source_file": "Style_Profile_百老汇舞台音乐剧_v1.0_中文解析.md",
+      "source_sha256": "4526D0F6B9C082D6E809A79EA5891F992FA0E33712A73CCDA139AC8CAFE76125",
+      "normalized_file": "broadway_stage_musical.v1.0-zh.json",
+      "normalized_version": "v1.0-zh",
+      "classification": "mixed",
+      "status": "pending_review",
+      "provenance_verified": true
+    },
+    {
+      "profile_id": "live_action_lyrical_travel_film",
+      "source_file": "Style_Profile_真人唯美旅拍电影_v1.0_中文解析.md",
+      "source_sha256": "121678BFCF820109254829C6AF78C668BDF17B205BE89C78C48AC9CA9E9D1988",
+      "normalized_file": "live_action_lyrical_travel_film.v1.0-zh.json",
+      "normalized_version": "v1.0-zh",
+      "classification": "hybrid_style_profile",
+      "status": "ready",
+      "provenance_verified": true
+    },
+    {
+      "profile_id": "authentic_unboxing_review_commerce",
+      "source_file": "Style_Profile_真实开箱测评种草广告_v1.0_中文解析.md",
+      "source_sha256": "EC8164EAE0399F0D3CBE927BAEA5C49AF4C560987E9E1DD30669DF3A05A7F871",
+      "normalized_file": "authentic_unboxing_review_commerce.v1.0-zh.json",
+      "normalized_version": "v1.0-zh",
+      "classification": "hybrid_style_profile",
+      "status": "pending_review",
+      "provenance_verified": true
+    },
+    {
+      "profile_id": "short_drama_preproduction_visual_development",
+      "source_file": "Style_Profile_短剧前期视觉开发定调_v1.0_中文解析.md",
+      "source_sha256": "6B1081ADF23412AC6EA3CA2EA0E88BDCF8024F6D4839B8E824985D794799C712",
+      "normalized_file": "short_drama_preproduction_visual_development.v1.0-zh.json",
+      "normalized_version": "v1.0-zh",
+      "classification": "production_playbook",
+      "status": "pending_review",
+      "provenance_verified": true
+    },
+    {
+      "profile_id": "first_person_fpv_flythrough",
+      "source_file": "Style_Profile_第一人称FPV穿越视角_v1.0_中文解析.md",
+      "source_sha256": "4DA1D205CABC237CF42E17757B5706ED2AC8C488717BBD46021A6CFC699168FB",
+      "normalized_file": "first_person_fpv_flythrough.v1.0-zh.json",
+      "normalized_version": "v1.0-zh",
+      "classification": "production_playbook",
+      "status": "pending_review",
+      "provenance_verified": true
+    },
+    {
+      "profile_id": "strict_first_person_pov_realism",
+      "source_file": "Style_Profile_第一人称POV沉浸式短片_v1.0_中文解析.md",
+      "source_sha256": "FF59D20BCE62FF90403AA1C4722652138699FF064856962A1598C0D644D519D0",
+      "normalized_file": "strict_first_person_pov_realism.v1.0-zh.json",
+      "normalized_version": "v1.0-zh",
+      "classification": "hybrid_style_profile",
+      "status": "pending_review",
+      "provenance_verified": true
+    },
+    {
+      "profile_id": "photoreal_future_scifi_family",
+      "source_file": "Style_Profile_超写实未来科幻风格族_v1.0_中文解析.md",
+      "source_sha256": "4E55F1AD80791EE0EEDDFA7B56DDC73680EF2DA3245F0E11CE87EEF4F342A054",
+      "normalized_file": "photoreal_future_scifi_family.v1.0-zh.json",
+      "normalized_version": "v1.0-zh",
+      "classification": "hybrid_style_profile",
+      "status": "ready",
+      "provenance_verified": true
+    },
+    {
+      "profile_id": "golden_americana_art_deco_melancholy",
+      "source_file": "Style_Profile_金色美式怀旧装饰艺术_v1.0_中文解析.md",
+      "source_sha256": "B4A775CA1C3DA4EFF5F2E2FF324A1D649BEE43B58079305BDBCFF3754AEE44B0",
+      "normalized_file": "golden_americana_art_deco_melancholy.v1.0-zh.json",
+      "normalized_version": "v1.0-zh",
+      "classification": "hybrid_style_profile",
+      "status": "pending_review",
+      "provenance_verified": true
+    },
+    {
+      "profile_id": "youth_weather_luminous_anime",
+      "source_file": "Style_Profile_青春天气光影动画电影_v1.0_中文解析.md",
+      "source_sha256": "BC745529D802A32618FC6710EB8D55D3BF7E15A84B323BC7CDFE95522F0EBE9F",
+      "normalized_file": "youth_weather_luminous_anime.v1.0-zh.json",
+      "normalized_version": "v1.0-zh",
+      "classification": "audiovisual_style_profile",
+      "status": "ready",
+      "provenance_verified": true
+    },
+    {
+      "profile_id": "dynamic_beat_showcase_with_product_tvc",
+      "source_file": "Style_Profile_高能卡点与产品TVC展示_v1.0_中文解析.md",
+      "source_sha256": "F48B5C67565FB9F1B5D7020896A41FBF9FD0C4343C6C5BBF7414283BD1FE99AB",
+      "normalized_file": "dynamic_beat_showcase_with_product_tvc.v1.0-zh.json",
+      "normalized_version": "v1.0-zh",
+      "classification": "mixed",
+      "status": "pending_review",
+      "provenance_verified": true
+    },
+    {
+      "profile_id": "urban_neon_fragmented_poetic_cinema",
+      "source_file": "Style_Profile_都市霓虹碎片诗电影_v1.0_中文解析.md",
+      "source_sha256": "CAF2A65DA21C203E3F380455040C2C96EE60A499D4611920F251E4F8F1811E10",
+      "normalized_file": "urban_neon_fragmented_poetic_cinema.1.0-zh.json",
+      "normalized_version": "v1.0-zh",
+      "classification": "narrative_style_bible",
+      "status": "pending_review",
+      "provenance_verified": true
+    },
+    {
+      "profile_id": "high_energy_ink_wash_wuxia_animation",
+      "source_file": "Style_Profile_高能水墨武侠动画_v1.0_中文解析.md",
+      "source_sha256": "178336B5AB19C87EEBDC9284A9170DAB16F2764F9A96F2EFCA1731EFB50F645B",
+      "normalized_file": "high_energy_ink_wash_wuxia_animation.1.0-zh.json",
+      "normalized_version": "v1.0-zh",
+      "classification": "hybrid_style_profile",
+      "status": "pending_review",
+      "provenance_verified": true
+    },
+    {
+      "profile_id": "humanistic_food_cinematic_documentary",
+      "source_file": "Style_Profile_人文美食电影纪录_v1.0_中文解析.md",
+      "source_sha256": "A212E6394630A7754E13DA87E490DDB7CFC9CEB1A531478C1CD4658F953D6CDA",
+      "normalized_file": "humanistic_food_cinematic_documentary.1.0-zh.json",
+      "normalized_version": "v1.0-zh",
+      "classification": "audiovisual_style_profile",
+      "status": "pending_review",
+      "provenance_verified": true
+    },
+    {
+      "profile_id": "immersive_living_space_pov",
+      "source_file": "Style_Profile_生活空间沉浸式POV_v1.0_中文解析.md",
+      "source_sha256": "B48DD8BA1B06473B1713548CA6752B54258B629C8696C58B7C678835F7C5B1EB",
+      "normalized_file": "immersive_living_space_pov.1.0-zh.json",
+      "normalized_version": "v1.0-zh",
+      "classification": "production_playbook",
+      "status": "pending_review",
+      "provenance_verified": true
+    },
+    {
+      "profile_id": "epic_kaiju_mecha_disaster_cinema",
+      "source_file": "Style_Profile_史诗巨兽机甲灾难电影_v1.0_中文解析.md",
+      "source_sha256": "9EEB5972743EDCB41094F45EE5D4E5949C713901D5EFEC35321ED02D6BA906F9",
+      "normalized_file": "epic_kaiju_mecha_disaster_cinema.1.0-zh.json",
+      "normalized_version": "v1.0-zh",
+      "classification": "hybrid_style_profile",
+      "status": "pending_review",
+      "provenance_verified": true
+    },
+    {
+      "profile_id": "classic_chinese_art_animation_collection",
+      "source_file": "Style_Profile_中国经典美术动画复合风格_v1.0_中文解析.md",
+      "source_sha256": "CE96B694A8F759597FD365341D97666A79BB4A2025046D737706666B7EE44DB0",
+      "normalized_file": "classic_chinese_art_animation_collection.1.0-zh.json",
+      "normalized_version": "v1.0-zh",
+      "classification": "mixed",
+      "status": "pending_review",
+      "provenance_verified": true
+    },
+    {
+      "profile_id": "cyber_gargantuan_hard_scifi",
+      "source_file": "Style_Profile_赛博巨物硬科幻_v1.0_中文解析.md",
+      "source_sha256": "04CFDB121DAD1071B54943577788C5465A9FD464D7DC3A4581F54DF5421C0868",
+      "normalized_file": "cyber_gargantuan_hard_scifi.1.0-zh.json",
+      "normalized_version": "v1.0-zh",
+      "classification": "mixed",
+      "status": "pending_review",
+      "provenance_verified": true
+    }
+  ]
+}

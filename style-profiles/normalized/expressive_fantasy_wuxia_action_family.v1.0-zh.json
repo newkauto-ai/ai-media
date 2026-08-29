@@ -1,0 +1,57 @@
+{
+  "fixture_only": false,
+  "library_status": "ready",
+  "normalized_from_source": "Style_Profile_写意奇幻武侠动作风格族_v1.0_中文解析.md",
+  "style_profile": {
+    "style_id": "expressive_fantasy_wuxia_action_family",
+    "version": "v1.0-zh",
+    "classification": "hybrid_style_profile",
+    "pre_content_modules": {
+      "required_decision": "sub_style",
+      "domains": [
+        "new_classical_wuxia",
+        "liaozhai_fantasy_ghost",
+        "modern_kung_fu"
+      ],
+      "world_physics_must_be_explicit": true
+    },
+    "audiovisual_modules": {
+      "global_visual_dna": "写意空间、冷暖对照、空气介质、极静极动与动作声画同步",
+      "cinematography": "低机位、倾斜构图、变焦、甩镜、俯视和击打点特写",
+      "action": "明确主体、方向、能量中心、环境反馈和结束状态",
+      "music": "按三个分支选择不同国风配器",
+      "editing": "动作方向匹配、撞击点硬切和声音瞬态对齐"
+    },
+    "production_modules": {
+      "adapter_reference": "replaceable",
+      "load_one_domain_only": true,
+      "creator_name_runtime_dependency": false
+    },
+    "provenance": {
+      "source_documents": [
+        {
+          "file": "徐克电影美学：新派武侠、聊斋玄幻与近代功夫短片.md",
+          "sha256": "C951F1041EA1B5B3AFCD2DC7B62190F9A0B84C736E7AEA60A20B144FB1C0C987"
+        },
+        {
+          "file": "Style_Profile_写意奇幻武侠动作风格族_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "sha256": "A88B33A05F18EE6F637A7B9F509E77A0A721D450D94C33BF2ABD669595FD93F6",
+          "extraction_type": "source_profile"
+        }
+      ],
+      "extracted_modules": [
+        {
+          "module": "分支视觉、动作、表演、声音与剪辑",
+          "extraction": "normalized"
+        },
+        {
+          "module": "模型、分辨率、超分、提示词和混音数值",
+          "extraction": "direct",
+          "routed_to": "production_modules"
+        }
+      ],
+      "source_sha256": "A88B33A05F18EE6F637A7B9F509E77A0A721D450D94C33BF2ABD669595FD93F6"
+    }
+  }
+}

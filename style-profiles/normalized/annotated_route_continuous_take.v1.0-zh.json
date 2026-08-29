@@ -1,0 +1,105 @@
+{
+  "fixture_only": false,
+  "library_status": "pending_review",
+  "normalized_from_source": "Style_Profile_标注路线一镜到底_v1.0_中文解析.md",
+  "style_profile": {
+    "style_id": "annotated_route_continuous_take",
+    "version": "v1.0-zh",
+    "classification": "production_playbook",
+    "pre_content_modules": {
+      "compatibility": {
+        "strong": [
+          "多人物同场一镜到底",
+          "空间导览",
+          "连续跟拍"
+        ],
+        "weak": [
+          "蒙太奇叙事",
+          "多时间跳跃",
+          "不可通行空间"
+        ]
+      },
+      "content_constraints": [
+        "明确必须覆盖的人物与区域",
+        "一镜到底不得改写冻结事件顺序"
+      ]
+    },
+    "audiovisual_modules": {
+      "camera_language": {
+        "baseline": "手持第一人称连续前进",
+        "route": "单一起点、单条路径、单一终点",
+        "avoid": [
+          "跳切",
+          "重置机位",
+          "瞬移",
+          "穿墙",
+          "无动机悬停"
+        ]
+      },
+      "spatial_blocking": [
+        "前中后景分层",
+        "家具间保留可通行间隙",
+        "人物站位为路线让路"
+      ],
+      "performance": [
+        "每位关键人物至少清晰呈现一次",
+        "镜头接近时有自然微反应"
+      ],
+      "continuity": [
+        "人物位置与尺度稳定",
+        "家具、透视与镜头高度稳定"
+      ]
+    },
+    "production_modules": {
+      "replaceable": true,
+      "planning_assets": [
+        "干净空场景图",
+        "干净群像主图",
+        "红线箭头路线图"
+      ],
+      "final_frame_constraints": [
+        "不出现红线",
+        "不出现箭头",
+        "不出现规划覆盖层"
+      ],
+      "source_references": [
+        "具体模型和分辨率",
+        "多模态参考绑定字段",
+        "角色参考图版式"
+      ]
+    },
+    "provenance": {
+      "source_documents": [
+        {
+          "file": "标注路线一镜到底风格.md",
+          "sha256": "3A1A7850B8AA3F4338145BB0FFE2CD8A67F00057EC5060AF1FCF1BFAC815CFAB",
+          "source_version": "本地文件 2026-07-28"
+        },
+        {
+          "file": "Style_Profile_标注路线一镜到底_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "sha256": "A701C961CCE23692BA96FE12C66B21F82E2712C375935C090AD769DFAAAC01FE",
+          "extraction_type": "source_profile"
+        }
+      ],
+      "extracted_modules": [
+        {
+          "field": "pre_content_modules",
+          "source_section": "planner",
+          "extraction_type": "normalized"
+        },
+        {
+          "field": "audiovisual_modules",
+          "source_section": "planner 与 storyboard_designer",
+          "extraction_type": "normalized"
+        },
+        {
+          "field": "production_modules",
+          "source_section": "media_generator 与 write_the_prompt",
+          "extraction_type": "direct"
+        }
+      ],
+      "source_sha256": "A701C961CCE23692BA96FE12C66B21F82E2712C375935C090AD769DFAAAC01FE"
+    }
+  }
+}

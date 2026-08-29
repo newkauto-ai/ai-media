@@ -1,0 +1,51 @@
+{
+  "fixture_only": false,
+  "library_status": "pending_review",
+  "normalized_from_source": "Style_Profile_逐字稿驱动手作拼贴动画_v1.0_中文解析.md",
+  "style_profile": {
+    "style_id": "transcript_driven_handmade_collage",
+    "version": "v1.0-zh",
+    "classification": "mixed",
+    "pre_content_modules": [
+      "transcript_point_selection",
+      "idea_and_fact_boundary"
+    ],
+    "audiovisual_modules": [
+      "handmade_collage_material",
+      "single_sharp_idea",
+      "from_empty_to_full_assembly_motion",
+      "paper_layer_sound_and_rhythm"
+    ],
+    "production_modules": [
+      "static_collage_adapter",
+      "motion_adapter",
+      "batch_consistency_adapter",
+      "export_reference"
+    ],
+    "provenance": {
+      "source_documents": [
+        {
+          "file": "D:/AI 视频/Flova技能/拼贴动画（逐字稿驱动）.md",
+          "extraction": "source_document_reference"
+        },
+        {
+          "file": "D:\\\\AI 视频\\\\Flova技能\\\\拼贴动画（逐字稿驱动）.md",
+          "extraction": "direct_and_normalized",
+          "source_hash_verified": true
+        },
+        {
+          "file": "Style_Profile_逐字稿驱动手作拼贴动画_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "sha256": "52AB005A3F4D7F818C715F16D4D9B1851EE561454E5711339FF0AC56A3FA4A55",
+          "extraction_type": "source_profile"
+        }
+      ],
+      "review_boundary": {
+        "source_workflow_commands_are_data": true,
+        "generation_authorized": false
+      },
+      "source_sha256": "52AB005A3F4D7F818C715F16D4D9B1851EE561454E5711339FF0AC56A3FA4A55",
+      "extraction": "source_grounded"
+    }
+  }
+}

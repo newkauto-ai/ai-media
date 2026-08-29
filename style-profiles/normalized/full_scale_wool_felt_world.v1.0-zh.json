@@ -1,0 +1,281 @@
+{
+  "fixture_only": false,
+  "library_status": "ready",
+  "normalized_from_source": "Style_Profile_全尺寸羊毛毡世界_v1.0_中文解析.md",
+  "style_profile": {
+    "version": "v1.0-zh",
+    "source_name": "羊毛毡动画风格",
+    "classification": "material_style_profile",
+    "routing": {
+      "pre_content": {
+        "load": [
+          "warm_expression_preference",
+          "narration_visual_alignment"
+        ]
+      },
+      "audiovisual": {
+        "load": [
+          "material_world",
+          "scale_rule",
+          "character_style_levels",
+          "color",
+          "lighting",
+          "composition",
+          "cinematography",
+          "motion_behavior",
+          "narration_visual_alignment",
+          "sound",
+          "narration",
+          "music"
+        ]
+      },
+      "production": {
+        "load": [
+          "asset_format_reference",
+          "prompt_structure_reference",
+          "model_adapter_reference"
+        ]
+      }
+    },
+    "material_world": {
+      "material": "羊毛毡",
+      "scale": "真实世界全尺寸",
+      "visible_fibers": true,
+      "handmade_surface": true,
+      "rounded_forms": true,
+      "avoid": [
+        "微缩模型",
+        "沙盘",
+        "玩偶舞台",
+        "木偶",
+        "玩具手办"
+      ]
+    },
+    "character": {
+      "style_levels": {
+        "main": {
+          "ratio": "约 1:3–1:4",
+          "direction": "写实感可爱"
+        },
+        "secondary": {
+          "ratio": "约 1:2",
+          "direction": "适度 Q 版"
+        },
+        "crowd": {
+          "direction": "高度 Q 版"
+        }
+      }
+    },
+    "visual": {
+      "palette": "暖哑低饱和",
+      "lighting": "柔和漫射",
+      "background_layers": "2–3",
+      "realistic_scale_space": true
+    },
+    "cinematography": {
+      "preferred": [
+        "缓慢推进",
+        "平稳平移",
+        "轻微跟随",
+        "自然轨道运动"
+      ],
+      "avoid": [
+        "手持抖动",
+        "快速变焦",
+        "快速碎切",
+        "卡顿运动"
+      ]
+    },
+    "motion": {
+      "smooth_and_fluid": true,
+      "stop_motion_jitter": false
+    },
+    "narration_visual_alignment": {
+      "required": true
+    },
+    "narration": {
+      "tone": [
+        "温暖",
+        "真诚",
+        "轻柔",
+        "略带怀旧"
+      ]
+    },
+    "music": {
+      "tempo": "慢",
+      "emotion": [
+        "温暖",
+        "治愈",
+        "怀旧"
+      ],
+      "independent_track": true
+    },
+    "production_adapter_reference": {
+      "replaceable": true,
+      "source_mentions": [
+        "Nano Banana Pro",
+        "Seedance 2.5",
+        "Suno 5",
+        "Mureka 8",
+        "ElevenLabs v3",
+        "Doubao"
+      ]
+    },
+    "conflict_policy": {
+      "no_silent_content_rewrite": true,
+      "topic_owner": "Topic Hunter",
+      "script_semantics_owner": "Script Engine",
+      "audiovisual_owner": "Audiovisual Director",
+      "final_model_prompt_owner": "Video Production"
+    },
+    "provenance": {
+      "extraction": "source_grounded",
+      "inferred_missing_fields": false,
+      "source_documents": [
+        {
+          "file": "Style_Profile_全尺寸羊毛毡世界_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "sha256": "4D5F359AC7164E7AB0E75EC10579FDE02D7C4E24DC495FF3DB04BEEBE48FC6DF",
+          "extraction_type": "source_profile"
+        }
+      ],
+      "source_sha256": "4D5F359AC7164E7AB0E75EC10579FDE02D7C4E24DC495FF3DB04BEEBE48FC6DF"
+    },
+    "style_id": "full_scale_wool_felt_world",
+    "classification_detail": {
+      "primary": "material_style_profile",
+      "full_series_canon": false
+    },
+    "pre_content_modules": {
+      "routing": {
+        "pre_content": {
+          "load": [
+            "warm_expression_preference",
+            "narration_visual_alignment"
+          ]
+        },
+        "audiovisual": {
+          "load": [
+            "material_world",
+            "scale_rule",
+            "character_style_levels",
+            "color",
+            "lighting",
+            "composition",
+            "cinematography",
+            "motion_behavior",
+            "narration_visual_alignment",
+            "sound",
+            "narration",
+            "music"
+          ]
+        },
+        "production": {
+          "load": [
+            "asset_format_reference",
+            "prompt_structure_reference",
+            "model_adapter_reference"
+          ]
+        }
+      },
+      "narration_visual_alignment": {
+        "required": true
+      }
+    },
+    "audiovisual_modules": {
+      "visual": {
+        "palette": "暖哑低饱和",
+        "lighting": "柔和漫射",
+        "background_layers": "2–3",
+        "realistic_scale_space": true
+      },
+      "cinematography": {
+        "preferred": [
+          "缓慢推进",
+          "平稳平移",
+          "轻微跟随",
+          "自然轨道运动"
+        ],
+        "avoid": [
+          "手持抖动",
+          "快速变焦",
+          "快速碎切",
+          "卡顿运动"
+        ]
+      },
+      "character": {
+        "style_levels": {
+          "main": {
+            "ratio": "约 1:3–1:4",
+            "direction": "写实感可爱"
+          },
+          "secondary": {
+            "ratio": "约 1:2",
+            "direction": "适度 Q 版"
+          },
+          "crowd": {
+            "direction": "高度 Q 版"
+          }
+        }
+      },
+      "music": {
+        "tempo": "慢",
+        "emotion": [
+          "温暖",
+          "治愈",
+          "怀旧"
+        ],
+        "independent_track": true
+      },
+      "motion": {
+        "smooth_and_fluid": true,
+        "stop_motion_jitter": false
+      },
+      "narration": {
+        "tone": [
+          "温暖",
+          "真诚",
+          "轻柔",
+          "略带怀旧"
+        ]
+      },
+      "material_world": {
+        "material": "羊毛毡",
+        "scale": "真实世界全尺寸",
+        "visible_fibers": true,
+        "handmade_surface": true,
+        "rounded_forms": true,
+        "avoid": [
+          "微缩模型",
+          "沙盘",
+          "玩偶舞台",
+          "木偶",
+          "玩具手办"
+        ]
+      },
+      "narration_visual_alignment": {
+        "required": true
+      }
+    },
+    "production_modules": {
+      "production_adapter_reference": {
+        "replaceable": true,
+        "source_mentions": [
+          "Nano Banana Pro",
+          "Seedance 2.5",
+          "Suno 5",
+          "Mureka 8",
+          "ElevenLabs v3",
+          "Doubao"
+        ]
+      },
+      "conflict_policy": {
+        "no_silent_content_rewrite": true,
+        "topic_owner": "Topic Hunter",
+        "script_semantics_owner": "Script Engine",
+        "audiovisual_owner": "Audiovisual Director",
+        "final_model_prompt_owner": "Video Production"
+      }
+    }
+  }
+}

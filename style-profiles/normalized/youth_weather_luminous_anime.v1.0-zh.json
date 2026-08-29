@@ -1,0 +1,260 @@
+{
+  "fixture_only": false,
+  "library_status": "ready",
+  "normalized_from_source": "Style_Profile_青春天气光影动画电影_v1.0_中文解析.md",
+  "style_profile": {
+    "version": "v1.0-zh",
+    "source_name": "新海诚动画电影风格",
+    "classification": "audiovisual_style_profile",
+    "scope": {
+      "topic_direction": true,
+      "story_direction": true,
+      "visual_style": true,
+      "weather_system": true,
+      "cinematography": true,
+      "narration": true,
+      "bgm": true,
+      "sound_design": "partial",
+      "character_canon": false
+    },
+    "routing": {
+      "pre_content": {
+        "load": [
+          "preferred_themes",
+          "preferred_emotional_arcs",
+          "weather_as_story_device"
+        ]
+      },
+      "audiovisual": {
+        "load": [
+          "visual_identity",
+          "color_system",
+          "weather_system",
+          "light_system",
+          "scene_archetypes",
+          "cinematography",
+          "narration_style",
+          "music_direction",
+          "continuity"
+        ]
+      },
+      "production": {
+        "load": [
+          "asset_reference",
+          "model_adapter_reference"
+        ]
+      }
+    },
+    "visual_identity": {
+      "format": "高质量二维动画电影",
+      "environment_detail": "high",
+      "sky_importance": "very_high",
+      "weather_driven": true,
+      "character_look": "普通、自然、生活化"
+    },
+    "color_system": {
+      "clear_sky": "天空蓝 + 云白 + 阳光金",
+      "dusk": "橙金 + 紫红 + 深蓝",
+      "rain": "青灰蓝 + 雨雾白 + 暖色人造光",
+      "night": "深蓝 + 月光白 + 城市灯光橙"
+    },
+    "weather": {
+      "preferred": [
+        "黄昏",
+        "流星",
+        "云海",
+        "星空",
+        "雨后放晴",
+        "暴雨",
+        "晚霞",
+        "雪景",
+        "晨曦"
+      ]
+    },
+    "cinematography": {
+      "motifs": [
+        "风吹",
+        "云层",
+        "列车经过",
+        "仰望天空",
+        "雨滴积水",
+        "逆光体积光",
+        "回忆慢动作",
+        "背影行走",
+        "奔跑寻找"
+      ]
+    },
+    "narration": {
+      "point_of_view": "第一人称",
+      "tone": [
+        "克制",
+        "青春",
+        "轻微伤感",
+        "回忆感"
+      ]
+    },
+    "music": {
+      "core": "钢琴",
+      "optional": [
+        "环境氛围",
+        "弦乐",
+        "轻电子",
+        "无词人声"
+      ],
+      "independent_track": true
+    },
+    "production_adapter_reference": {
+      "replaceable": true,
+      "source_mentions": [
+        "Nano Banana Pro",
+        "Seedance 2.5",
+        "Suno 5"
+      ]
+    },
+    "conflict_policy": {
+      "no_silent_content_rewrite": true,
+      "topic_owner": "Topic Hunter",
+      "script_semantics_owner": "Script Engine",
+      "audiovisual_owner": "Audiovisual Director",
+      "final_model_prompt_owner": "Video Production"
+    },
+    "provenance": {
+      "extraction": "source_grounded",
+      "creator_name_runtime_dependency": false,
+      "specific_work_runtime_dependency": false,
+      "inferred_missing_fields": false,
+      "source_documents": [
+        {
+          "file": "Style_Profile_青春天气光影动画电影_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "sha256": "BC745529D802A32618FC6710EB8D55D3BF7E15A84B323BC7CDFE95522F0EBE9F",
+          "extraction_type": "source_profile"
+        }
+      ],
+      "source_sha256": "BC745529D802A32618FC6710EB8D55D3BF7E15A84B323BC7CDFE95522F0EBE9F"
+    },
+    "style_id": "youth_weather_luminous_anime",
+    "classification_detail": {
+      "primary": "audiovisual_style_profile",
+      "full_series_canon": false
+    },
+    "pre_content_modules": {
+      "scope": {
+        "topic_direction": true,
+        "story_direction": true,
+        "visual_style": true,
+        "weather_system": true,
+        "cinematography": true,
+        "narration": true,
+        "bgm": true,
+        "sound_design": "partial",
+        "character_canon": false
+      },
+      "routing": {
+        "pre_content": {
+          "load": [
+            "preferred_themes",
+            "preferred_emotional_arcs",
+            "weather_as_story_device"
+          ]
+        },
+        "audiovisual": {
+          "load": [
+            "visual_identity",
+            "color_system",
+            "weather_system",
+            "light_system",
+            "scene_archetypes",
+            "cinematography",
+            "narration_style",
+            "music_direction",
+            "continuity"
+          ]
+        },
+        "production": {
+          "load": [
+            "asset_reference",
+            "model_adapter_reference"
+          ]
+        }
+      }
+    },
+    "audiovisual_modules": {
+      "visual_identity": {
+        "format": "高质量二维动画电影",
+        "environment_detail": "high",
+        "sky_importance": "very_high",
+        "weather_driven": true,
+        "character_look": "普通、自然、生活化"
+      },
+      "color_system": {
+        "clear_sky": "天空蓝 + 云白 + 阳光金",
+        "dusk": "橙金 + 紫红 + 深蓝",
+        "rain": "青灰蓝 + 雨雾白 + 暖色人造光",
+        "night": "深蓝 + 月光白 + 城市灯光橙"
+      },
+      "weather": {
+        "preferred": [
+          "黄昏",
+          "流星",
+          "云海",
+          "星空",
+          "雨后放晴",
+          "暴雨",
+          "晚霞",
+          "雪景",
+          "晨曦"
+        ]
+      },
+      "cinematography": {
+        "motifs": [
+          "风吹",
+          "云层",
+          "列车经过",
+          "仰望天空",
+          "雨滴积水",
+          "逆光体积光",
+          "回忆慢动作",
+          "背影行走",
+          "奔跑寻找"
+        ]
+      },
+      "music": {
+        "core": "钢琴",
+        "optional": [
+          "环境氛围",
+          "弦乐",
+          "轻电子",
+          "无词人声"
+        ],
+        "independent_track": true
+      },
+      "narration": {
+        "point_of_view": "第一人称",
+        "tone": [
+          "克制",
+          "青春",
+          "轻微伤感",
+          "回忆感"
+        ]
+      }
+    },
+    "production_modules": {
+      "production_adapter_reference": {
+        "replaceable": true,
+        "source_mentions": [
+          "Nano Banana Pro",
+          "Seedance 2.5",
+          "Suno 5"
+        ]
+      },
+      "conflict_policy": {
+        "no_silent_content_rewrite": true,
+        "topic_owner": "Topic Hunter",
+        "script_semantics_owner": "Script Engine",
+        "audiovisual_owner": "Audiovisual Director",
+        "final_model_prompt_owner": "Video Production"
+      }
+    }
+  }
+}

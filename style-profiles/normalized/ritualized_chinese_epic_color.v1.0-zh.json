@@ -1,0 +1,121 @@
+{
+  "fixture_only": false,
+  "library_status": "pending_review",
+  "normalized_from_source": "Style_Profile_浓彩仪式化国风史诗_v1.0_中文解析.md",
+  "style_profile": {
+    "style_id": "ritualized_chinese_epic_color",
+    "version": "v1.0-zh",
+    "classification": "audiovisual_style_profile",
+    "pre_content_modules": {
+      "compatibility": {
+        "authority": "medium",
+        "preferred": [
+          "国风武侠",
+          "历史史诗",
+          "仪式化品牌叙事"
+        ]
+      },
+      "themes": {
+        "authority": "soft",
+        "value": [
+          "宿命",
+          "牺牲",
+          "权力",
+          "抉择"
+        ]
+      },
+      "theme_expression_rules": {
+        "authority": "soft",
+        "value": "以色彩、自然媒介和克制动作表达，少用解释性台词"
+      }
+    },
+    "audiovisual_modules": {
+      "visual_identity": {
+        "authority": "hard",
+        "value": "单一主色统治、对称或框架构图、强侧逆光、深暗部、真实材质与轻胶片颗粒"
+      },
+      "character_visual": {
+        "authority": "hard",
+        "value": "骨骼轮廓、服装材质、主色和标志性道具锁定"
+      },
+      "environment": {
+        "authority": "hard",
+        "value": "固定建筑锚点与一种主要自然媒介共同构成空间"
+      },
+      "cinematography": {
+        "authority": "high",
+        "value": "固定长镜、缓推缓拉、升格和有限手持"
+      },
+      "performance": {
+        "authority": "hard",
+        "value": "仪式化克制动作，以生理细节代替抽象情绪词"
+      },
+      "editing_rhythm": {
+        "authority": "medium",
+        "value": "慢节奏为基线，高潮允许有限快切，默认直切"
+      },
+      "sound_design": {
+        "authority": "high",
+        "value": "环境和材质声优先，跨镜保持空间连续"
+      },
+      "voice_system": {
+        "authority": "low",
+        "value": "默认无旁白、无字幕"
+      },
+      "music_direction": {
+        "authority": "medium",
+        "value": "可选沉郁史诗底层，弦乐和低沉打击为主"
+      },
+      "continuity_schema": {
+        "authority": "hard",
+        "track": [
+          "主色域",
+          "光源方向",
+          "自然媒介方向与强度",
+          "服装与道具",
+          "动作惯性"
+        ]
+      }
+    },
+    "production_modules": {
+      "asset_prompt_templates": "source_defined",
+      "video_prompt_templates": "source_defined",
+      "model_adapter_reference": "replaceable",
+      "generation_workflow": "ignored_in_style_core"
+    },
+    "provenance": {
+      "source_documents": [
+        {
+          "file": "D:/AI 视频/Flova技能/张艺谋电影美学-国风武侠史诗历史.md",
+          "version": "attached-2026-08-24",
+          "sha256": "F09882EF77A37E975EA9D2798F22E613CBBE63B40B3061A94876AFBA6BC125CF"
+        },
+        {
+          "file": "Style_Profile_浓彩仪式化国风史诗_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "sha256": "25C25C611CC5BE17D51BBA2EC21EEBC7416AB02E4D55B689C6CC3EF48ED8714F",
+          "extraction_type": "source_profile"
+        }
+      ],
+      "extracted_modules": [
+        {
+          "field": "pre_content_modules",
+          "source_section": "planner + storyboard_designer",
+          "extraction_type": "normalized"
+        },
+        {
+          "field": "audiovisual_modules",
+          "source_section": "storyboard_designer + write_the_prompt + video_assembler",
+          "extraction_type": "normalized"
+        },
+        {
+          "field": "production_modules",
+          "source_section": "media_generator + planner",
+          "extraction_type": "direct"
+        }
+      ],
+      "source_sha256": "25C25C611CC5BE17D51BBA2EC21EEBC7416AB02E4D55B689C6CC3EF48ED8714F",
+      "extraction": "source_grounded"
+    }
+  }
+}

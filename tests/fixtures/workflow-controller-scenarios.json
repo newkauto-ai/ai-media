@@ -1,0 +1,38 @@
+[
+  {
+    "name": "script-quality-retry",
+    "unit": {"unit_id": "script-001", "stage": "script_quality", "required": true, "retry_count": 0, "max_retries": 2, "topic_type": "business", "production_risk": "low", "semantic_locked": false},
+    "assessment": {"source": "fixture", "run_id": null, "verdict": "retry", "confidence": "high", "evidence": ["Hook lacks a concrete conflict in sentence 1"], "failure_types": ["hook_weak"], "affects_semantics": false, "requires_external_evidence": false, "proposed_capability": null},
+    "expected": {"state": "retry_scheduled", "selected_capability": "script-engine", "next_action": "rerun_failed_unit_only", "retry_count": 1}
+  },
+  {
+    "name": "historical-evidence-route",
+    "unit": {"unit_id": "topic-001", "stage": "topic_selection", "required": true, "retry_count": 0, "max_retries": 2, "topic_type": "historical", "production_risk": "low", "semantic_locked": false},
+    "assessment": {"source": "fixture", "run_id": null, "verdict": "pass", "confidence": "high", "evidence": ["Topic thesis has a historical factual claim"], "failure_types": [], "affects_semantics": false, "requires_external_evidence": true, "proposed_capability": null},
+    "expected": {"state": "blocked", "selected_capability": "research", "next_action": "collect_external_evidence", "retry_count": 0}
+  },
+  {
+    "name": "low-risk-storyboard-skip",
+    "unit": {"unit_id": "board-001", "stage": "storyboard", "required": false, "retry_count": 0, "max_retries": 2, "topic_type": "explainer", "production_risk": "low", "semantic_locked": true},
+    "assessment": {"source": "fixture", "run_id": null, "verdict": "skip", "confidence": "high", "evidence": ["Single-character static spatial relationship"], "failure_types": [], "affects_semantics": false, "requires_external_evidence": false, "proposed_capability": null},
+    "expected": {"state": "skipped", "selected_capability": "video-production", "next_action": "advance_to_keyframe_planning", "retry_count": 0}
+  },
+  {
+    "name": "production-domain-retry",
+    "unit": {"unit_id": "clip-009", "stage": "production_qa", "required": true, "retry_count": 1, "max_retries": 2, "topic_type": "fiction", "production_risk": "medium", "semantic_locked": true},
+    "assessment": {"source": "fixture", "run_id": null, "verdict": "retry", "confidence": "high", "evidence": ["Domain architecture overlaps with another world"], "failure_types": ["domain_identity_failure"], "affects_semantics": false, "requires_external_evidence": false, "proposed_capability": null},
+    "expected": {"state": "retry_scheduled", "selected_capability": "video-production", "next_action": "rerun_failed_unit_only", "retry_count": 2}
+  },
+  {
+    "name": "semantic-change-escalates",
+    "unit": {"unit_id": "script-locked", "stage": "script_quality", "required": true, "retry_count": 0, "max_retries": 2, "topic_type": "explainer", "production_risk": "low", "semantic_locked": true},
+    "assessment": {"source": "fixture", "run_id": null, "verdict": "retry", "confidence": "high", "evidence": ["Proposed rewrite changes the frozen conclusion"], "failure_types": ["semantic_mismatch"], "affects_semantics": true, "requires_external_evidence": false, "proposed_capability": "script-engine"},
+    "expected": {"state": "human_review", "selected_capability": null, "next_action": "request_human_decision", "retry_count": 0}
+  },
+  {
+    "name": "exhausted-budget-escalates",
+    "unit": {"unit_id": "script-002", "stage": "script_quality", "required": true, "retry_count": 2, "max_retries": 2, "topic_type": "business", "production_risk": "low", "semantic_locked": false},
+    "assessment": {"source": "fixture", "run_id": null, "verdict": "retry", "confidence": "high", "evidence": ["Two attempts did not meet the hook criterion"], "failure_types": ["hook_weak"], "affects_semantics": false, "requires_external_evidence": false, "proposed_capability": null},
+    "expected": {"state": "human_review", "selected_capability": null, "next_action": "request_human_decision", "retry_count": 2}
+  }
+]

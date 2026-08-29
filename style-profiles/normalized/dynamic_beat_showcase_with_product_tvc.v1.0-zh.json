@@ -1,0 +1,67 @@
+{
+  "fixture_only": false,
+  "library_status": "pending_review",
+  "normalized_from_source": "Style_Profile_高能卡点与产品TVC展示_v1.0_中文解析.md",
+  "style_profile": {
+    "style_id": "dynamic_beat_showcase_with_product_tvc",
+    "version": "v1.0-zh",
+    "classification": "mixed",
+    "pre_content_modules": {
+      "subject_classification": "required",
+      "mode_gate": "required",
+      "reference_coverage_risk": "required"
+    },
+    "audiovisual_modules": {
+      "style_variants": {
+        "teto_dynamic_showcase": {
+          "visual_identity": "cool_high_contrast_kinetic",
+          "cinematography": "accelerated_multi_direction",
+          "editing": "beat_synchronized_hard_cut",
+          "effects": "restrained_peak_only"
+        },
+        "premium_product_tvc": {
+          "visual_identity": "muted_soft_light_premium",
+          "cinematography": "smooth_selling_point_oriented",
+          "editing": "dissolve_and_fade",
+          "effects": "minimal"
+        }
+      },
+      "continuity": "semantic_anchor_region_and_subject_lock"
+    },
+    "production_modules": {
+      "bpm_parameters": "runtime_only",
+      "tracking_threshold": "qc_reference",
+      "effect_parameters": "runtime_only",
+      "model_adapter": "replaceable"
+    },
+    "provenance": {
+      "source_documents": [
+        {
+          "file": "高能卡点运镜展示.md",
+          "extraction": "direct_and_normalized"
+        },
+        {
+          "file": "Style_Profile_高能卡点与产品TVC展示_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "sha256": "F48B5C67565FB9F1B5D7020896A41FBF9FD0C4343C6C5BBF7414283BD1FE99AB",
+          "extraction_type": "source_profile"
+        }
+      ],
+      "extracted_modules": [
+        {
+          "module": "teto_dynamic_showcase",
+          "method": "normalized"
+        },
+        {
+          "module": "premium_product_tvc",
+          "method": "normalized"
+        },
+        {
+          "module": "source_conflicts",
+          "method": "direct"
+        }
+      ],
+      "source_sha256": "F48B5C67565FB9F1B5D7020896A41FBF9FD0C4343C6C5BBF7414283BD1FE99AB"
+    }
+  }
+}

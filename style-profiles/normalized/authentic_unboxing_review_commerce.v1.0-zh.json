@@ -1,0 +1,102 @@
+{
+  "fixture_only": false,
+  "library_status": "pending_review",
+  "normalized_from_source": "Style_Profile_真实开箱测评种草广告_v1.0_中文解析.md",
+  "style_profile": {
+    "style_id": "authentic_unboxing_review_commerce",
+    "version": "v1.0-zh",
+    "classification": "hybrid_style_profile",
+    "pre_content_modules": {
+      "内容结构": [
+        "开箱初见",
+        "深度体验",
+        "总结建议"
+      ],
+      "运行模式": [
+        "沉浸式开箱",
+        "快节奏测评",
+        "对比横评",
+        "场景化体验"
+      ],
+      "事实边界": "所有产品事实和购买结论需要已核验来源"
+    },
+    "audiovisual_modules": {
+      "视觉身份": [
+        "真实博主拍摄感",
+        "自然窗光",
+        "生活痕迹",
+        "产品真实色彩与材质"
+      ],
+      "摄影": [
+        "POV",
+        "产品特写",
+        "使用过程近景",
+        "固定机位对比",
+        "桌面全景"
+      ],
+      "表演": [
+        "自然手部操作",
+        "完整动作因果",
+        "不夸张反应"
+      ],
+      "声音": [
+        "口语旁白",
+        "动作同步拟音",
+        "低存在感BGM"
+      ],
+      "文字": "生成与文字分离",
+      "连续性": [
+        "产品身份",
+        "包装状态",
+        "操作方向",
+        "对比条件",
+        "场景道具"
+      ]
+    },
+    "production_modules": {
+      "可替换参考": [
+        "具体图像与视频模型",
+        "分辨率",
+        "时长档位",
+        "提示词语法",
+        "混音数值"
+      ],
+      "known_source_conflicts": [
+        "720p规格与480p生成冲突",
+        "产品图必填与无图生成冲突",
+        "保留Logo与no_logos冲突",
+        "AI演示与真实实测边界未充分定义"
+      ]
+    },
+    "provenance": {
+      "source_documents": [
+        {
+          "路径": "D:/AI 视频/Flova技能/开箱测评种草广告视频.md",
+          "sha256": "22df344f60738c25a8516134f949d00d3ba97913082b2ad476a71a85d717d64b"
+        },
+        {
+          "file": "Style_Profile_真实开箱测评种草广告_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "sha256": "EC8164EAE0399F0D3CBE927BAEA5C49AF4C560987E9E1DD30669DF3A05A7F871",
+          "extraction_type": "source_profile"
+        }
+      ],
+      "extracted_modules": [
+        {
+          "模块": "多模式测评视听系统",
+          "extraction": "direct"
+        },
+        {
+          "模块": "产品证据与合规边界",
+          "extraction": "normalized"
+        },
+        {
+          "模块": "AI演示和真实测试分离",
+          "extraction": "inferred_structure_only"
+        }
+      ],
+      "examples_are_canon": false,
+      "source_sha256": "EC8164EAE0399F0D3CBE927BAEA5C49AF4C560987E9E1DD30669DF3A05A7F871"
+    }
+  }
+}

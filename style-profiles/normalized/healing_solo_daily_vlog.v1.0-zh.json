@@ -1,0 +1,127 @@
+{
+  "fixture_only": false,
+  "library_status": "pending_review",
+  "normalized_from_source": "Style_Profile_治愈系独居日常Vlog_v1.0_中文解析.md",
+  "style_profile": {
+    "style_id": "healing_solo_daily_vlog",
+    "version": "v1.0-zh",
+    "classification": "narrative_style_bible",
+    "pre_content_modules": {
+      "compatibility": {
+        "authority": "high",
+        "preferred": [
+          "独居日常",
+          "自我照料",
+          "低冲突生活片段"
+        ]
+      },
+      "topic_direction": {
+        "authority": "medium",
+        "value": [
+          "清晨准备",
+          "一人料理",
+          "雨天居家",
+          "夜间阅读",
+          "整理与照料"
+        ]
+      },
+      "story_direction": {
+        "authority": "high",
+        "value": "具体生活目标 → 缓慢准备 → 细节完成 → 安静满足"
+      },
+      "theme_expression_rules": {
+        "authority": "high",
+        "value": "依靠动作、物件状态和环境变化，不使用旁白解释"
+      }
+    },
+    "audiovisual_modules": {
+      "visual_identity": {
+        "authority": "partial",
+        "visual_medium": "runtime_required",
+        "value": "低饱和暖色、柔和漫反射、主体清楚、生活空间整洁"
+      },
+      "character_visual": {
+        "authority": "hard",
+        "value": "身份与Look分离锁定，镜头不得重定义外观"
+      },
+      "environment": {
+        "authority": "hard",
+        "value": "空间布局、光源、色温和道具位置跨镜稳定"
+      },
+      "cinematography": {
+        "authority": "hard",
+        "value": "固定机位或极缓推拉，使用全景、中近景和生活细节特写"
+      },
+      "performance": {
+        "authority": "high",
+        "value": "微小、具体、连续的生活动作与物件反馈"
+      },
+      "editing_rhythm": {
+        "authority": "hard",
+        "value": "舒缓，避免快切，默认柔和淡入淡出"
+      },
+      "sound_design": {
+        "authority": "high",
+        "value": "保留生活环境和小尺度拟音"
+      },
+      "voice_system": {
+        "authority": "hard",
+        "value": "默认无旁白，以画面和声音叙事"
+      },
+      "music_direction": {
+        "authority": "high",
+        "value": "无人声、低密度、温暖治愈，不压过自然声"
+      },
+      "continuity_schema": {
+        "authority": "hard",
+        "track": [
+          "角色身份",
+          "Look",
+          "场景布局",
+          "道具位置",
+          "光源方向与色温"
+        ]
+      }
+    },
+    "production_modules": {
+      "asset_prompt_templates": "source_defined",
+      "video_prompt_templates": "source_defined",
+      "model_adapter_reference": "replaceable",
+      "generation_workflow": "ignored_in_style_core"
+    },
+    "provenance": {
+      "source_documents": [
+        {
+          "file": "D:/AI 视频/Flova技能/治愈系日常系独居生活风格Vlog.md",
+          "version": "attached-2026-08-24",
+          "sha256": "14E3E30895ABCA548EE0E711D06CCF477194A1A8667DC14DEF43D662FF5C95DA"
+        },
+        {
+          "file": "Style_Profile_治愈系独居日常Vlog_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "sha256": "4A609A042F49BF446FFFD01A522A718B9D1A8ED4D4B3ECFAB4CDF0BC7CBF2AA3",
+          "extraction_type": "source_profile"
+        }
+      ],
+      "extracted_modules": [
+        {
+          "field": "pre_content_modules",
+          "source_section": "planner + storyboard_designer",
+          "extraction_type": "normalized"
+        },
+        {
+          "field": "audiovisual_modules",
+          "source_section": "storyboard_designer + write_the_prompt + video_assembler",
+          "extraction_type": "normalized"
+        },
+        {
+          "field": "production_modules",
+          "source_section": "media_generator",
+          "extraction_type": "direct"
+        }
+      ],
+      "source_sha256": "4A609A042F49BF446FFFD01A522A718B9D1A8ED4D4B3ECFAB4CDF0BC7CBF2AA3",
+      "extraction": "source_grounded"
+    }
+  }
+}

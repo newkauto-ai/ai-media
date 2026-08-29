@@ -1,0 +1,64 @@
+{
+  "fixture_only": false,
+  "library_status": "pending_review",
+  "normalized_from_source": "Style_Profile_电商数字人商品口播_v1.0_中文解析.md",
+  "style_profile": {
+    "style_id": "ecommerce_digital_human_product_pitch",
+    "version": "v1.0-zh",
+    "classification": "hybrid_style_profile",
+    "pre_content_modules": {
+      "compatibility": "单场景、单构图、音频驱动的电商口播",
+      "dialogue_style": "清晰、直接、按完整句子切分",
+      "series_content_constraints": "产品卖点必须来自用户确认资料"
+    },
+    "audiovisual_modules": {
+      "visual_identity": "写实手机摄影感、干净光线、自然肤色和克制美化",
+      "character_visual": "锁定面部、发型、服装、配饰和授权参考特征",
+      "environment": "全片固定一个主场景",
+      "props": "产品始终清晰并保持包装、颜色、Logo 和拿取方式一致",
+      "cinematography": "单一中近景或胸像构图，避免多机位变化",
+      "performance": "情绪、说话状态、清晰发音和少量可见身体动作",
+      "sound_design": "口播、BGM 与生成片段音频分层",
+      "voice_system": "音频时间线是镜头时长的唯一事实来源",
+      "continuity_schema": "数字人身份、产品、场景、构图、光线和持物方式"
+    },
+    "production_modules": {
+      "asset_prompt_templates": "数字人、产品、场景、主关键帧与音频驱动视频",
+      "negative_constraints": "禁止产品过小、脸部不清、背景跳变、重磨皮和重复音频",
+      "model_adapter_reference": "模型、分辨率、时长与语言能力需执行前验证",
+      "generation_workflow": "规格、故事板、元素、主关键帧、音频、分段视频、装配"
+    },
+    "provenance": {
+      "source_documents": [
+        {
+          "file": "D:/AI 视频/Flova技能/电商数字人商品口播.md",
+          "sha256": "99D4F238D03E2745A4294194704BE2E844E5BAB6EC76CB50801B274B8C3FB9B5"
+        },
+        {
+          "file": "Style_Profile_电商数字人商品口播_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "sha256": "B13D3C16F0DCF6A8C600D3B58766265F02555A9DA159CBBF119F14DA60215F16",
+          "extraction_type": "source_profile"
+        }
+      ],
+      "extracted_modules": [
+        {
+          "field": "pre_content_modules",
+          "source_section": "planner 与 storyboard_designer",
+          "extraction_type": "normalized"
+        },
+        {
+          "field": "audiovisual_modules",
+          "source_section": "storyboard_designer 与 write_the_prompt",
+          "extraction_type": "normalized"
+        },
+        {
+          "field": "production_modules",
+          "source_section": "media_generator、write_the_prompt 与 video_assembler",
+          "extraction_type": "direct"
+        }
+      ],
+      "source_sha256": "B13D3C16F0DCF6A8C600D3B58766265F02555A9DA159CBBF119F14DA60215F16"
+    }
+  }
+}

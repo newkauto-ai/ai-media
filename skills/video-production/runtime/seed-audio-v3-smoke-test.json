@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0",
+  "provider": "volcengine_seed_audio_v3",
+  "endpoint": "https://openspeech.bytedance.com/api/v3/tts/create",
+  "model": "seed-audio-1.0",
+  "api_key_environment_variable": "VOLCENGINE_TTS_V3_API_KEY",
+  "test_date": "2026-08-23",
+  "text_prompt": "先是一声手机震动的声音，环境中持续的鸟鸣声。音乐以马林巴为主奏乐器，加入合成器lead、电贝斯、打击乐，整体情绪紧张悬疑。男子1（中青年男性，台湾口音，嗓音低沉，浑厚）用严肃语气说道：“钟sir，你是什么时候被收买的？”",
+  "audio_config": {
+    "format": "mp3",
+    "sample_rate": 48000,
+    "pitch_rate": 0,
+    "speech_rate": 0,
+    "loudness_rate": 0
+  },
+  "result": {
+    "status": "downloaded",
+    "asset_path": "video-production\\assets\\tts-test\\seed-audio-v3-smoke.mp3",
+    "provider_reported_duration_seconds": 20.6,
+    "measured_duration_seconds": 20.64,
+    "byte_length": 331053,
+    "sha256": "f2832228840d6862cce8d9b6ac3b95db27cd76393b1065bf21b3dd9e7776b70e",
+    "container": "mp3",
+    "sample_rate": 48000,
+    "channels": 2,
+    "file_decode_check": "passed"
+  },
+  "qa_boundary": {
+    "verified": ["provider returned inline audio", "nonzero file", "ffprobe metadata", "ffmpeg full decode", "checksum"],
+    "not_verified": ["human listening approval", "ASR semantic match", "voice likeness/quality", "music and SFX editorial approval"]
+  }
+}

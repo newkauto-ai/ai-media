@@ -1,0 +1,3 @@
+# Continuity Ledger
+
+Initialize each planned Clip with upstream `expected_end_state` and empty `actual_end_state`. Assign a stable `state_record_id`; Clip and Handshake objects store only that reference. After reviewing a real selected generation, record actual start/end state plus character, costume, prop, scene, lighting, emotion, continuity delta, selected generation reference, and usability in the ledger record. The next Clip resolves `actual_end_state` from the ledger before any approved Resume Frame and before frozen planned state. Never manufacture an actual state for a Fixture, rejected clip, or pending generation.

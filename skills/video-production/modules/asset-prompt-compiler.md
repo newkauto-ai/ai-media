@@ -1,0 +1,11 @@
+# Asset Prompt Compiler
+
+Follow the [Executable Prompt Contract](../contracts/executable-prompt-contract.md) v1.3. Resolve source locks, reference responsibilities, seven decision statuses, type/Adapter triggers, and conflicts before rendering one frozen type-specific template. Emit an internal `image_prompt_spec`, an external `executable_prompt`, a sentence-level clause map, and a reviewable `call_package`; never serialize raw spec YAML to a model.
+
+The first effective sentence is the subject plus action or production function. Character Identity uses only neutral view/pose work, not a current Scene's plot action. Scene states environment and usable space. Graphic starts with the information goal. Context absence is an explicit background choice, never null.
+
+Use `product_evidence` only for inspected truth-preserving product work. It forces optics and true-color decisions, locks approved logo/layout/ports/proportions/wear, and blocks grade, negative-rule, or variation conflicts. Story Props remain compact and do not receive product photography detail without a trigger. Graphic does not receive photography filler.
+
+For `cover_visual`, reuse the Key Frame template for current action, identity/scene/style reference responsibilities, and continuity locks; reuse Graphic rules only for clean title-space reservation and post-layout exact Chinese. Require platform-native composition, UI avoidance, thumbnail readability intent, and `generate_text_in_image=false`. Do not add another Prompt compiler or Adapter.
+
+For every rendered sentence record its decision paths and acceptance effect. Fail closed for unresolved mandatory values, invalid statuses, missing inherited source, optics hard-trigger violations, true-color/grade conflicts, background conflicts, variation/lock conflicts, unverified product additions, or unmapped sentences. Local previews and Fixtures do not call a provider and do not prove visual quality.

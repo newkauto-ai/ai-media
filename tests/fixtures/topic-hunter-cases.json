@@ -1,0 +1,83 @@
+{
+  "cases": [
+    {
+      "case_id": "xiyouji",
+      "direction": "西游解读",
+      "candidate_titles": [
+        "孙悟空取经后为什么看起来变弱了", "真假美猴王真正难辨的是什么", "唐僧为什么总在关键时刻误判孙悟空", "猪八戒为什么总想散伙却从未真正离队", "沙僧最被低估的能力是什么", "观音为什么频繁出手救取经团队", "紧箍咒到底约束了谁", "天庭为什么招安孙悟空两次", "取经团队为什么必须是四个人", "白龙马为什么很少说话", "妖怪为什么大多有后台", "孙悟空为什么越来越会搬救兵", "唐僧最强的能力真的是慈悲吗", "女儿国一难真正考验的是谁", "红孩儿为什么能逼退孙悟空", "牛魔王为什么拒绝借扇", "八十一难是谁的绩效考核", "如来为什么不直接完成取经", "取经成功后谁付出的代价最大", "西游记里最稳定的合作关系是什么"
+      ],
+      "output": {
+        "contract_version": "1.0",
+        "candidate_count": 20,
+        "screening_summary": {"rejected_count": 12, "deep_screened_count": 8, "rejection_reasons": ["角度过宽", "缺少反转", "制作经济性弱"]},
+        "recommendations": [
+          {
+            "rank": 1,
+            "topic_id": "xyj-001",
+            "topic": "孙悟空取经后为什么看起来变弱了",
+            "topic_thesis": {
+              "topic": "孙悟空取经后为什么看起来变弱了",
+              "core_thesis": "孙悟空不是能力变弱，而是从自由战士变成了必须保护全队和任务结果的负责人。",
+              "user_desire_or_need": {"primary": "认知好奇", "secondary": "成长认同"},
+              "concrete_scenario": "大闹天宫时横冲直撞的孙悟空，在取经路上面对有法宝和后台的妖怪频繁求援。",
+              "intended_state_change": {"type": "viewpoint", "from": "认为孙悟空被剧情削弱", "to": "理解责任边界改变了强者的行动方式"},
+              "propagation_motive": {"primary_action": "share", "reason": "可用经典人物解释从个人高手到团队负责人的变化"},
+              "unique_supply": "用任务边界和责任成本解释战力反差，而不只罗列妖怪后台。"
+            },
+            "gate_1": {"clear_dimensions": 5, "result": "pass"},
+            "content_potential_score": {"conflict": 2, "curiosity": 2, "reversal": 2, "resonance": 2, "extension": 2, "total": 10},
+            "click_trigger": "high", "ai_production_difficulty": "medium",
+            "long_form_extension": "可扩展为任务、法宝、责任边界三章分析。",
+            "core_conflict": "昔日无敌与取经频繁求援的反差。",
+            "recommendation": "冲突直观、现实映射自然、可控制在少角色少场景。"
+          },
+          {
+            "rank": 2, "topic_id": "xyj-002", "topic": "猪八戒为什么总想散伙却从未真正离队",
+            "topic_thesis": {"topic": "猪八戒为什么总想散伙却从未真正离队", "core_thesis": "抱怨和退出意愿不等于真正背叛，八戒用低承诺表达保护了自己，却持续留在团队。", "user_desire_or_need": {"primary": "身份代入", "secondary": "认知好奇"}, "concrete_scenario": "团队遇险时八戒反复提出分行李，却仍参与后续行动。", "intended_state_change": {"type": "viewpoint", "from": "把八戒视为纯粹的逃兵", "to": "看见抱怨型成员的复杂忠诚"}, "propagation_motive": {"primary_action": "comment", "reason": "容易引发对职场中抱怨型同事的经验讨论"}, "unique_supply": "区分口头退出、风险防御与实际行动。"},
+            "gate_1": {"clear_dimensions": 5, "result": "pass"}, "content_potential_score": {"conflict": 2, "curiosity": 2, "reversal": 2, "resonance": 2, "extension": 1, "total": 9}, "click_trigger": "high", "ai_production_difficulty": "low", "long_form_extension": "可扩展为取经团队四类成员角色。", "core_conflict": "嘴上散伙与行动留下的矛盾。", "recommendation": "人物辨识度强，评论潜力高。"
+          },
+          {
+            "rank": 3, "topic_id": "xyj-003", "topic": "妖怪为什么大多有后台",
+            "topic_thesis": {"topic": "妖怪为什么大多有后台", "core_thesis": "有后台的妖怪集中出现，是取经路线与神仙秩序交叠的结果，不只是简单的关系户讽刺。", "user_desire_or_need": {"primary": "认知缺口", "secondary": null}, "concrete_scenario": "孙悟空查明多名强敌来自神仙坐骑、童子或法宝。", "intended_state_change": {"type": "cognition", "from": "只把后台妖怪当作段子", "to": "理解取经任务与既有秩序的交叉"}, "propagation_motive": {"primary_action": "save", "reason": "可形成妖怪来源与取经节点的解释框架"}, "unique_supply": "从路线与制度交叠解释重复现象。"},
+            "gate_1": {"clear_dimensions": 5, "result": "pass"}, "content_potential_score": {"conflict": 2, "curiosity": 2, "reversal": 1, "resonance": 2, "extension": 2, "total": 9}, "click_trigger": "high", "ai_production_difficulty": "high", "long_form_extension": "可扩展为妖怪来源分类与秩序分析。", "core_conflict": "除妖任务与神仙体系内部资产反复冲突。", "recommendation": "延展强但角色多，需先缩小案例范围。"
+          }
+        ],
+        "selected_topic_id": "xyj-001", "selection_reason": "内容势能满分且可用有限场景表达责任边界反转。"
+      }
+    },
+    {
+      "case_id": "history",
+      "direction": "历史反常识",
+      "candidate_titles": [
+        "古代驿站为什么不是全民快递", "古人真的比现代人睡得早吗", "一纸圣旨为什么未必立刻执行", "古代城门每天关闭意味着什么", "科举中榜为什么不是人生终点", "古代银票为何不能到处通用", "县令为什么管不了所有本地事务", "古代战争最先消耗的为什么不是兵器", "盐为什么长期是国家大事", "古代商人为什么需要会馆", "驿卒为什么不是普通邮差", "古代地图为什么不追求现代精度", "朝廷赈灾为何常先处理运输", "古代夜市并非处处都有", "城墙最重要的作用只是防守吗", "古人出远门为什么先处理身份凭证", "古代消息传播为何可能比想象中快", "纸币为什么多次出现又多次失败", "粮仓为何决定城市安全", "古代官员为什么频繁调任"
+      ],
+      "output": {
+        "contract_version": "1.0", "candidate_count": 20,
+        "screening_summary": {"rejected_count": 13, "deep_screened_count": 7, "rejection_reasons": ["需要过多时代限定", "证据门槛高", "难在短视频内给出单一答案"]},
+        "recommendations": [
+          {"rank": 1, "topic_id": "his-001", "topic": "古代驿站为什么不是全民快递", "topic_thesis": {"topic": "古代驿站为什么不是全民快递", "core_thesis": "古代驿站首先是国家通信与运输基础设施，普通人的寄递需求不能直接套用现代快递逻辑。", "user_desire_or_need": {"primary": "反常识好奇", "secondary": "知识复用"}, "concrete_scenario": "一封普通家书与一份官方文书同时需要跨城传递，但可使用的通道和资源不同。", "intended_state_change": {"type": "cognition", "from": "把驿站理解成古代快递网点", "to": "理解它的首要服务对象和制度功能"}, "propagation_motive": {"primary_action": "save", "reason": "可作为理解古代交通和信息制度的基础框架"}, "unique_supply": "用服务对象、通行凭证和成本结构拆解现代类比。"}, "gate_1": {"clear_dimensions": 5, "result": "pass"}, "content_potential_score": {"conflict": 2, "curiosity": 2, "reversal": 2, "resonance": 1, "extension": 2, "total": 9}, "click_trigger": "high", "ai_production_difficulty": "low", "long_form_extension": "可扩展为驿传、民间递送与商业运输对比。", "core_conflict": "现代快递类比与国家基础设施本质冲突。", "recommendation": "单一场景可视化强，适合低成本解释。"},
+          {"rank": 2, "topic_id": "his-002", "topic": "一纸圣旨为什么未必立刻执行", "topic_thesis": {"topic": "一纸圣旨为什么未必立刻执行", "core_thesis": "命令从发出到落地还受信息、资源和地方执行链约束。", "user_desire_or_need": {"primary": "权力机制好奇", "secondary": null}, "concrete_scenario": "中央命令抵达地方后仍需筹措人员、粮饷与运输。", "intended_state_change": {"type": "viewpoint", "from": "认为最高命令等于即时结果", "to": "理解权力需要执行系统才能兑现"}, "propagation_motive": {"primary_action": "share", "reason": "可映射现代组织的战略与执行差距"}, "unique_supply": "把权力强度与执行能力分开解释。"}, "gate_1": {"clear_dimensions": 5, "result": "pass"}, "content_potential_score": {"conflict": 2, "curiosity": 2, "reversal": 2, "resonance": 2, "extension": 1, "total": 9}, "click_trigger": "high", "ai_production_difficulty": "medium", "long_form_extension": "可扩展为命令传递、地方资源和反馈链。", "core_conflict": "最高权威与有限执行力。", "recommendation": "现实映射强，但发布前需限定具体朝代和证据。"},
+          {"rank": 3, "topic_id": "his-003", "topic": "古代战争最先消耗的为什么不是兵器", "topic_thesis": {"topic": "古代战争最先消耗的为什么不是兵器", "core_thesis": "持续战争首先考验的是粮食、运输和组织，而不是单件武器。", "user_desire_or_need": {"primary": "反常识好奇", "secondary": null}, "concrete_scenario": "军队离开驻地后每天都要获得粮草并维持运输线。", "intended_state_change": {"type": "cognition", "from": "只关注武器与战斗", "to": "理解后勤决定持续作战能力"}, "propagation_motive": {"primary_action": "save", "reason": "形成理解战争史的后勤框架"}, "unique_supply": "用每日消耗链代替武器崇拜叙事。"}, "gate_1": {"clear_dimensions": 5, "result": "pass"}, "content_potential_score": {"conflict": 2, "curiosity": 2, "reversal": 1, "resonance": 2, "extension": 2, "total": 9}, "click_trigger": "medium", "ai_production_difficulty": "high", "long_form_extension": "可扩展多个战役的后勤差异。", "core_conflict": "战场胜负表象与后勤系统实质。", "recommendation": "知识密度高，但战争画面制作成本高。"}
+        ],
+        "selected_topic_id": "his-001", "selection_reason": "反常识清晰、生产难度低，且可在单一寄递场景中讲透。"
+      }
+    },
+    {
+      "case_id": "business",
+      "direction": "商业故事",
+      "candidate_titles": [
+        "为什么排队很长的店也可能不赚钱", "低价引流品为什么不能单独看毛利", "一家店最忙的时候为何最容易亏钱", "免费试用真正卖的是什么", "为什么爆款可能拖垮小公司", "会员制为什么先筛选顾客", "涨价为什么有时反而减少投诉", "库存不是资产吗为什么会害死现金流", "复购高为什么仍可能没有利润", "平台流量上涨为什么老板更焦虑", "小店为什么不该一开始做全品类", "预售为什么既救现金流又伤信任", "优惠券为什么会训练顾客等待", "销量第一为什么不等于生意最好", "创始人亲自客服何时是优势", "标准化为什么会损失一部分顾客", "门店扩张为什么先复制问题", "品牌联名为什么容易高开低走", "团购爆单为什么可能制造差评", "内容流量为什么没有自动变成订单"
+      ],
+      "output": {
+        "contract_version": "1.0", "candidate_count": 20,
+        "screening_summary": {"rejected_count": 11, "deep_screened_count": 9, "rejection_reasons": ["缺少具体经营场景", "结论过于常识", "需要私有经营数据"]},
+        "recommendations": [
+          {"rank": 1, "topic_id": "biz-001", "topic": "为什么爆款可能拖垮小公司", "topic_thesis": {"topic": "为什么爆款可能拖垮小公司", "core_thesis": "爆款放大的不只销量，还会同步放大备货、履约、售后和现金周转缺口。", "user_desire_or_need": {"primary": "经营风险焦虑", "secondary": "解决问题"}, "concrete_scenario": "小公司突然获得远超日常的订单，却在补货、发货和退款链上同时缺钱缺人。", "intended_state_change": {"type": "viewpoint", "from": "认为订单越多一定越好", "to": "理解增长必须匹配现金流和履约能力"}, "propagation_motive": {"primary_action": "save", "reason": "可复用为爆单前检查框架"}, "unique_supply": "按订单到现金回笼的时间链解释爆款风险。"}, "gate_1": {"clear_dimensions": 5, "result": "pass"}, "content_potential_score": {"conflict": 2, "curiosity": 2, "reversal": 2, "resonance": 2, "extension": 2, "total": 10}, "click_trigger": "high", "ai_production_difficulty": "low", "long_form_extension": "可扩展为备货、履约、退款、账期四段。", "core_conflict": "销量成功与现金流失败同时发生。", "recommendation": "商业反差强，可用一条订单链低成本可视化。"},
+          {"rank": 2, "topic_id": "biz-002", "topic": "为什么排队很长的店也可能不赚钱", "topic_thesis": {"topic": "为什么排队很长的店也可能不赚钱", "core_thesis": "排队证明某时段需求集中，不直接证明客单、毛利和产能组合能赚钱。", "user_desire_or_need": {"primary": "商业反常识", "secondary": null}, "concrete_scenario": "门店门口排长队，但店内低价单品占比高且出餐产能受限。", "intended_state_change": {"type": "cognition", "from": "把排队视为盈利证据", "to": "区分流量、营收与利润"}, "propagation_motive": {"primary_action": "comment", "reason": "观众可分享自己见过的网红店案例"}, "unique_supply": "用单位时间贡献毛利拆解排队幻觉。"}, "gate_1": {"clear_dimensions": 5, "result": "pass"}, "content_potential_score": {"conflict": 2, "curiosity": 2, "reversal": 2, "resonance": 2, "extension": 1, "total": 9}, "click_trigger": "high", "ai_production_difficulty": "low", "long_form_extension": "可扩展门店单位经济模型。", "core_conflict": "可见人气与不可见利润。", "recommendation": "画面明确、讨论性强。"},
+          {"rank": 3, "topic_id": "biz-003", "topic": "库存不是资产吗为什么会害死现金流", "topic_thesis": {"topic": "库存不是资产吗为什么会害死现金流", "core_thesis": "库存会计上可以是资产，但在卖出回款前持续占用现金并承担滞销风险。", "user_desire_or_need": {"primary": "解决问题", "secondary": "风险焦虑"}, "concrete_scenario": "仓库堆满货，账面有资产，工资和供应商账款却到期。", "intended_state_change": {"type": "cognition", "from": "认为库存越多资产越厚", "to": "理解资产质量取决于周转和变现"}, "propagation_motive": {"primary_action": "save", "reason": "可作为库存决策提醒"}, "unique_supply": "把会计分类与真实现金时点放在同一时间线上。"}, "gate_1": {"clear_dimensions": 5, "result": "pass"}, "content_potential_score": {"conflict": 2, "curiosity": 2, "reversal": 2, "resonance": 2, "extension": 1, "total": 9}, "click_trigger": "medium", "ai_production_difficulty": "low", "long_form_extension": "可扩展周转天数、账期与促销决策。", "core_conflict": "账面资产与现实缺钱。", "recommendation": "实用性强，但标题点击力略低于爆款主题。"}
+        ],
+        "selected_topic_id": "biz-001", "selection_reason": "满分内容势能、低制作难度，并直连小企业经营痛点。"
+      }
+    }
+  ]
+}

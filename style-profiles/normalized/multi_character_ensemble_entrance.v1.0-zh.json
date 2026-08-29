@@ -1,0 +1,54 @@
+{
+  "fixture_only": false,
+  "library_status": "pending_review",
+  "normalized_from_source": "Style_Profile_多角色集结出场动画_v1.0_中文解析.md",
+  "style_profile": {
+    "style_id": "multi_character_ensemble_entrance",
+    "version": "v1.0-zh",
+    "classification": "production_playbook",
+    "pre_content_modules": {
+      "compatibility": "reference_image_ensemble",
+      "feasibility_gate": "character_count_vs_duration"
+    },
+    "audiovisual_modules": {
+      "visual_identity": "painterly_cinematic_cg",
+      "cinematography": "differentiated_dynamic_entrances",
+      "performance": "weapon_and_attribute_matched",
+      "environment_motion": "unified_strong_wind",
+      "continuity": "reference_identity_and_final_staging"
+    },
+    "production_modules": {
+      "generation_pattern": "single_pass_reference",
+      "model_adapter": "replaceable"
+    },
+    "provenance": {
+      "source_documents": [
+        {
+          "file": "多角色出场动画.md",
+          "extraction": "direct_and_normalized"
+        },
+        {
+          "file": "Style_Profile_多角色集结出场动画_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "sha256": "16665FD95C9E8A8AC1AEFF1F5D5D6B1FF64B076548CED8C3D1FC503819873DB1",
+          "extraction_type": "source_profile"
+        }
+      ],
+      "extracted_modules": [
+        {
+          "module": "audiovisual_grammar",
+          "method": "normalized"
+        },
+        {
+          "module": "production_template",
+          "method": "direct"
+        },
+        {
+          "module": "risk_notes",
+          "method": "inferred_structure_only"
+        }
+      ],
+      "source_sha256": "16665FD95C9E8A8AC1AEFF1F5D5D6B1FF64B076548CED8C3D1FC503819873DB1"
+    }
+  }
+}
