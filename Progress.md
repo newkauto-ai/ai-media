@@ -2,7 +2,7 @@
 
 ## Current Goal
 
-Operate the installed `ai-media` plugin with auditable, self-contained image/video Executable Prompts, while retaining the verified Seed Audio V3 route and its unresolved editorial checks.
+Maintain the complete `ai-media` plugin as a private, reproducible GitHub backup while retaining auditable image/video prompts and the verified Seed Audio V3 route.
 
 ## Completed & Key Decisions
 
@@ -14,6 +14,8 @@ Operate the installed `ai-media` plugin with auditable, self-contained image/vid
 - Production Manifest and Skill 4 Input Contract advanced to v1.3. Prompt under-specification, non-discriminating text, lock violations, output mismatch, and unintended text/brand output are now targeted QA failure classes.
 - The source and `skills/` mirrors are synchronized. The personal plugin source was backed up before deployment and reinstalled as `ai-media@personal` version `0.1.0+codex.20260823093856`.
 - Seed Audio V3 remains the verified active Volcengine generation route. The retired legacy App ID/Access Token path remains removed, and the non-secret Voice_Type registry remains separate for future provider-specific mapping.
+- Created private repository `newkauto-ai/ai-media` and pushed the complete source package at initial commit `351cb97` on `master`. The package includes the Codex manifest, skills, contracts, tests, and style-profile library; machine environments and credential-file patterns are ignored.
+- Updated legacy Manifest test expectations and the v1.2 minimal fixture required for independent source-package verification. This changed tests/fixtures only; it did not invoke media generation, Notion writes, uploads, or other external production actions.
 
 ## Core Files
 
@@ -39,6 +41,7 @@ Operate the installed `ai-media` plugin with auditable, self-contained image/vid
 - The installed-cache Skill 4 regression test passed. `codex plugin list` reports `ai-media@personal` installed and enabled at `0.1.0+codex.20260823093856`.
 - Deployment rollback copy: `C:\Users\Roy\plugins\ai-media.backups\20260823T093957Z`.
 - The earlier real Seed Audio V3 smoke asset remains file-QA-passed: provider duration `20.6s`; local MP3 duration `20.640000`; SHA-256 `f2832228840d6862cce8d9b6ac3b95db27cd76393b1065bf21b3dd9e7776b70e`.
+- Before the GitHub backup, all 16 source-package regression scripts and the plugin manifest validator passed locally.
 
 ## Known Issues
 
@@ -46,9 +49,10 @@ Operate the installed `ai-media` plugin with auditable, self-contained image/vid
 - No image or video model is configured by default. Adapter-specific prompt syntax, persistent-context behavior, supported resolutions, and cost still require current declaration plus user approval before a paid call.
 - Seed Audio V3 output has not received human listening approval or ASR confirmation. Its combined dialogue/music/SFX result is not final-production-ready.
 - The Voice_Type recommendation is not yet mapped to the V3 prompt-only route.
+- GitHub backup is source evidence, not evidence that the currently installed plugin cache has been reinstalled or revalidated at this commit.
 
 ## Next
 
-1. Start a new Codex task before testing so it loads the reinstalled plugin version.
+1. For a new local plugin deployment, use the bounded cachebuster/reinstall flow and validate the installed cache against this repository commit.
 2. On the next real production, run only 1–3 representative image/Clip calls and compare lock adherence, output specifications, and clause deletion impact before scaling.
 3. Complete human listening or ASR/editorial review for the Seed Audio V3 smoke asset if that route will be used in a final video.
