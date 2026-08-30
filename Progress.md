@@ -12,7 +12,8 @@
 - `script_quality.max_retries` 固定为 1。一次局部修复后的 recheck 必须 READY 或转人工；结构性语义变化、低置信度或矛盾证据直接转人工。用户显式重开时一次请求只执行一轮，且不重置旧 retry history。
 - `decide-next-action.ps1` 未修改；现有 pass → Audiovisual Director、局部 retry → Script Engine、语义/耗尽 → human review 路由已满足要求。
 - 独立 Plugin Deployment Gate 已按“权威源码备份 → 官方 cachebuster → reinstall → installed-cache parity/validator/regression 回读”完成；完整回滚备份位于 `C:\Users\Roy\plugins\ai-media.backups\script-quality-deploy-20260830T091246Z`。
-- 既有 Previsualization v1.1、Review Result v2.1、Manifest v1.7、Skill 5 v1.2.1 和用户确认的《雨停之前》状态保持不变。本轮未执行付费生成、Notion 写入、上传、发布、commit 或 push。
+- 既有 Previsualization v1.1、Review Result v2.1、Manifest v1.7、Skill 5 v1.2.1 和用户确认的《雨停之前》状态保持不变。本轮未执行付费生成、Notion 写入、上传或公开发布。
+- 私有 GitHub 源码仓库现包含 `.agents/plugins/marketplace.json`；它通过同一仓库根目录的 `source: "url"` 声明 `ai-media`，供 ChatGPT Workspace 的 GitHub marketplace import 使用，不复制 Skill 或引入 MCP。
 
 ## Core Files
 
@@ -23,6 +24,7 @@
 - `tests/fixtures/workflow-controller-scenarios.json`
 - `tests/verify-contracts.ps1`
 - `workflow-controller/scripts/decide-next-action.ps1`（复用，未修改）
+- `.agents/plugins/marketplace.json`
 
 ## Verification
 
@@ -32,6 +34,7 @@
 - 部署前备份为 806/806 文件、零缺失、零额外、零 SHA-256 mismatch。安装前 source/cache 都是 432 个非 Git 文件，仅 10 个本轮预期 mismatch；安装及测试后为 432/432、零缺失、零额外、零 mismatch。
 - installed-cache plugin validator PASS；root 与 `skills/` 的 Script Engine quick validator 在 UTF-8 模式下 PASS；Script policy、template 和 Execution State mirrors hash 一致。
 - installed cache 的全部 `tests/verify-*.ps1` 为 17/17 PASS，覆盖 Script Quality、Controller、Stage gates、ADP/Video、Storyboard、Review v2.1、Audio/BGM、Publishing 和 Notion dry run，且没有执行外部生成或写入。
+- 权威源码在 `3703543` 推送前完整运行全部 17 个 `tests/verify-*.ps1`，均 PASS；marketplace JSON 可解析且 `git diff --check` 通过。
 
 ## Known Issues
 
@@ -39,7 +42,7 @@
 - 当前任务启动时加载的是部署前 Skill 上下文；磁盘回读证明新版本已安装，但应在新任务中验证实际调用新 Policy。
 - installed cache 内的 `Progress.md` 是 reinstall 时的部署前快照，不是 runtime 输入；部署后的当前状态以 workspace 与权威源码的 `Progress.md` 为准。
 - `codex plugin list` 仍报告 stale arg0 临时目录 ACL warning；由于 installed/enabled 状态、432/432 parity、validators 和 17/17 回归独立通过，该 warning 当前为非阻塞。
-- 权威源码 Git worktree 仍包含本轮及此前未提交变更；本轮没有整理、commit 或 push 这些内容。
+- ChatGPT Web 尚未自动获得该插件：Workspace 管理员仍需从 GitHub 导入 marketplace，并把插件设为 Available/Installed；这是 ChatGPT 管理面操作，不是仓库提交可替代的步骤。
 
 ## Rejected / Failed Approaches
 
@@ -51,4 +54,4 @@
 
 1. 新建任务并调用 `@AI 自媒体`，用一个无付费生成的完整 Draft 验证新加载 Skill 的 Lite/Full 选择、READY/REVISE 投影和一次 retry 边界。
 2. 只有后续另行授权真实生产时，才评估该 Review Policy 对返工与生成成本的实际 ROI。
-3. 如需版本备份，再单独确认 Git commit/push 范围；本次部署不等于私有仓库已更新。
+3. 在 ChatGPT Workspace 的 Admin → Plugins → Import marketplace 导入 `https://github.com/newkauto-ai/ai-media`，随后为目标角色启用 `ai-media` 并在新的 Web Chat 中验证调用。
