@@ -30,10 +30,25 @@ label = module.PLATFORM_LABELS[package["identity"]["platform"]]
 
 create = module.build_notion_projection(package, base)
 assert create["row_decision"] == "CREATE" and create["execution_status"] == "CANDIDATE"
+required_sections = (
+    "## Publish Package Snapshot", "### Package", "### Source Binding", "### 文案", "### Cover Prompt",
+    "### 封面", "### 发布窗口", "### Review & Gate", "### Manual Upload", "### Projection History",
+    "Body:", "Topics / Hashtags:", "Metadata Relevance:", "Editorial Evidence:",
+)
+assert all(section in create["page_body_snapshot"] for section in required_sections)
+assert "Generated At:" not in create["page_body_snapshot"]
 
-same_row = {"url": "row-1", "投影键": key, "Package Hash": package["package_hash"], "项目": [base["target_project"]["url"]], "Platform": label, "snapshot_heading_count": 1}
+same_row = {"url": "row-1", "投影键": key, "Package Hash": package["package_hash"], "项目": [base["target_project"]["url"]], "Platform": label, "snapshot_heading_count": 1, "managed_snapshot_body": create["page_body_snapshot"]}
 no_change = module.build_notion_projection(package, {**base, "publishing_rows": [same_row]})
 assert no_change["row_decision"] == "NO_CHANGE" and no_change["execution_status"] == "NO_CHANGE"
+
+body_drift = module.build_notion_projection(package, {**base, "publishing_rows": [{**same_row, "managed_snapshot_body": create["page_body_snapshot"] + "\nmanual drift"}]})
+assert body_drift["row_decision"] == "UPDATE" and body_drift["execution_status"] == "DEGRADED"
+assert "managed_snapshot_mismatch" in body_drift["blocking_reasons"]
+
+body_unknown = module.build_notion_projection(package, {**base, "publishing_rows": [{key: value for key, value in same_row.items() if key != "managed_snapshot_body"}]})
+assert body_unknown["row_decision"] == "UPDATE" and body_unknown["execution_status"] == "DEGRADED"
+assert "managed_snapshot_unavailable" in body_unknown["blocking_reasons"]
 
 changed = module.build_notion_projection(package, {**base, "publishing_rows": [{**same_row, "Package Hash": "B" * 64}]})
 assert changed["row_decision"] == "UPDATE" and changed["execution_status"] == "CANDIDATE"
@@ -57,4 +72,4 @@ assert readback_mismatch["row_decision"] == "UPDATE" and readback_mismatch["exec
 assert set(create["properties_candidate"]) == {"Name", "Platform", "项目", "阶段", "投影键", "Package Hash", "准备状态"}
 assert create["attachment"]["status"] == "degraded_local_binary_upload_unavailable"
 assert create["external_action_audit"]["notion_write"] == 0 and create["external_action_audit"]["upload"] == 0
-print(json.dumps({"create": "CREATE", "same_hash": "NO_CHANGE", "changed_hash": "UPDATE", "duplicate": "CONFLICT", "schema_missing": "DEGRADED", "readback_mismatch": "DEGRADED"}))
+print(json.dumps({"create": "CREATE", "same_hash_and_body": "NO_CHANGE", "body_drift": "DEGRADED", "body_unknown": "DEGRADED", "changed_hash": "UPDATE", "duplicate": "CONFLICT", "schema_missing": "DEGRADED", "readback_mismatch": "DEGRADED"}))

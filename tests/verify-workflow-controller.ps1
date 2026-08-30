@@ -27,7 +27,7 @@ try {
         }
         Assert-True (@($result.evidence).Count -gt 0) "$($scenario.name): decision must preserve evidence."
     }
-    Write-Output 'PASS: Workflow controller validates bounded script retry, evidence routing, optional-step skip, production retry, semantic escalation, and retry-budget escalation.'
+    Write-Output 'PASS: Workflow controller validates bounded script retry, evidence routing, optional-step skip, production accept/edit/regeneration-cost-gate policy, semantic escalation, and retry-budget authority.'
 }
 finally {
     if (Test-Path -LiteralPath $tempDirectory) { Remove-Item -LiteralPath $tempDirectory -Recurse -Force }

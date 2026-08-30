@@ -85,6 +85,8 @@ publishing_packaging_input:
   rights_and_disclosure: object
   review_inputs:
     promise_match: pass | fail | unknown | human_review
+    metadata_relevance: pass | fail | unknown | human_review
+    evidence_refs: [string]
     performance_assessment: object | null
     evaluator_result: object | null
     cover_semantic_review_by_platform: object | null
@@ -108,5 +110,6 @@ publishing_packaging_input:
 - `legacy_packaging` may be supplied for compatibility. It is a hint source only and never owns final output.
 - v1.1 input remains readable. Historical files are never rewritten in place. The `hook` field is read only as a compatibility fallback for `story_hook`.
 - `fixture_only` and `shadow_only` are explicit safety flags. Either flag withholds runtime Ready.
+- `promise_match=pass` requires traceable evidence that the selected platform title, body, and cover preserve the frozen Topic Thesis, Core Promise, and Hook-Reveal. `metadata_relevance=pass` requires traceable evidence that title, body, and Topics/Hashtags fit the platform audience plus discovery/share intent. Missing evidence or either unresolved value withholds `COPY_READY`; performance assessment remains advisory.
 
 Secrets, tokens, cookies, account credentials, remote upload URLs, and external-action authorization must not appear in this input.

@@ -33,7 +33,7 @@ try {
     $manifest = Get-Content -LiteralPath $manifestPath -Raw -Encoding UTF8 | ConvertFrom-Json
     $production = $manifest.production_manifest
 
-    Assert-True ($production.contract_version -eq '1.6') 'Production Manifest must use v1.6.'
+    Assert-True ($production.contract_version -eq '1.7') 'Production Manifest must use v1.7.'
     Assert-True ($production.prompt_policy.contract_version -eq '1.2' -and $production.prompt_policy.independent_request_policy -eq 'self_contained') 'Executable Prompt policy must require self-contained independent requests.'
     Assert-True ($production.prompt_policy.delivery_defaults.aspect_ratio -eq '9:16' -and $production.prompt_policy.delivery_defaults.video_resolution -eq '1080x1920') 'Prompt policy must retain resolved delivery parameters.'
     Assert-True (-not $production.audio_production.enabled -and $production.audio_production.status -eq 'disabled') 'Audio Production must remain opt-in by default.'
@@ -48,12 +48,12 @@ try {
     Assert-True ($production.generation_gate.state -eq 'awaiting_user_approval') 'No generation may proceed without the user cost Gate.'
     Assert-True (@($production.lookdev.anchors | Where-Object { $_.generated_image -ne $null -or $_.human_approval -ne $null }).Count -eq 0) 'Fixture must not claim generated images or human approval.'
     Assert-True ($production.input_provenance.adp_read_mode -eq 'read_only_compatibility') 'Legacy ADP v1.1 input must be marked read-only compatibility.'
-    Assert-True (@($production.clips | Where-Object { $_.state_record_id -eq $null -or $_.video_prompt_spec.contract_version -ne '1.0' }).Count -eq 0) 'v1.6 Clips must reference ledger state and carry the feasibility spec.'
+    Assert-True (@($production.clips | Where-Object { $_.state_record_id -eq $null -or $_.video_prompt_spec.contract_version -ne '1.0' }).Count -eq 0) 'v1.7 Clips must reference ledger state and carry the feasibility spec.'
     Assert-True (@($production.continuity_ledger | Where-Object { $_.actual_end_state -ne $null -or $_.selected_generation -ne $null }).Count -eq 0) 'Fixture must not fabricate actual continuity or generation evidence.'
 
     & $compilerPath -FixturePath $currentFixturePath -OutputPath $currentManifestPath -AspectRatio '16:9' -VideoResolution '720p'
     $currentProduction = (Get-Content -LiteralPath $currentManifestPath -Raw -Encoding UTF8 | ConvertFrom-Json).production_manifest
-    Assert-True ($currentProduction.contract_version -eq '1.6' -and $currentProduction.input_provenance.adp_read_mode -eq 'current') 'Current ADP v1.2 input must compile to a new v1.6 revision.'
+    Assert-True ($currentProduction.contract_version -eq '1.7' -and $currentProduction.input_provenance.adp_read_mode -eq 'current') 'Current ADP v1.2 input must compile to a new v1.7 revision.'
     Assert-True ($currentProduction.clips[0].clip_performance_binding.performance_plan_id -eq 'PP-FIXTURE-001') 'Current ADP v1.2 performance plan must remain a referenced Clip binding.'
 
     $templateExpectations = @{
@@ -118,7 +118,7 @@ try {
     Assert-True ($blocked.qa.failure_taxonomy -contains 'domain_identity_failure') 'Failure taxonomy must include domain identity.'
     Assert-True ($blocked.qa.failure_taxonomy -contains 'prompt_under_specified' -and $blocked.qa.failure_taxonomy -contains 'prompt_non_discriminating' -and $blocked.qa.failure_taxonomy -contains 'consistency_lock_violation' -and $blocked.qa.failure_taxonomy -contains 'output_spec_mismatch' -and $blocked.qa.failure_taxonomy -contains 'unintended_text_or_brand') 'Failure taxonomy must include Executable Prompt QA failures.'
 
-    Write-Output 'PASS: Skill 4 v1.6 fixture validates legacy ADP compatibility, self-contained video layers, per-Clip output specs, exact identity anchors, Clip planning, LookDev Gate, image-template registry, Audio and BGM opt-in boundaries, timelines, state references, feasibility fields, Domain isolation, continuity boundaries, failure taxonomy, and no-generation boundary.'
+    Write-Output 'PASS: Skill 4 v1.7 fixture validates legacy ADP compatibility, self-contained video layers, per-Clip output specs, exact identity anchors, Clip planning, LookDev Gate, image-template registry, Audio and BGM opt-in boundaries, timelines, state references, feasibility fields, Domain isolation, continuity boundaries, failure taxonomy, and no-generation boundary.'
 }
 finally {
     if (Test-Path -LiteralPath $tempDirectory) { Remove-Item -LiteralPath $tempDirectory -Recurse -Force }

@@ -2,57 +2,53 @@
 
 ## Current Goal
 
-Maintain the complete `ai-media` plugin as a private, reproducible GitHub backup while retaining auditable image/video prompts and the verified Seed Audio V3 route.
+`Script Quality Review Policy Implementation Brief v1.1` 已完成 workspace、权威插件源码和独立 Plugin Deployment Gate。Script Engine 把 Review 放在有效 Stage 0 批准后的完整 Draft 与 Freeze 之间，并复用现有 `script_quality`、Evaluator Result、Execution State 和 Controller route。`ai-media@personal` 当前 installed/enabled 版本为 `0.1.0+codex.20260830091301`。
 
 ## Completed & Key Decisions
 
-- Added Executable Prompt Contract v1.0: a prompt must pass both coverage and deletion tests. The seven image dimensions are a review checklist, not a universal field cap or a reason to expand every type-specific template.
-- Image Prompt Specs now require explicit `consistency_locks`, `allowed_variation`, output specifications, references, and failure-driven negative constraints. Truth-preserving product work locks observed keyboard layout, ports, authentic marks, chassis features, and wear; a generic no-logo rule must not falsify the product.
-- Video prompts retain the six-module external format while compiling three logical layers: one Manifest-level global layer delivered to every independent request, exact frozen identity anchors copied without paraphrase, and Clip-specific variables.
-- Every Clip now records and displays `duration_seconds`, `aspect_ratio`, `resolution`, and `native_audio_mode`. Missing aspect ratio or resolution remains visible and blocks generation.
-- Separate-track video prompts explicitly prohibit generated subtitles, screen text, watermarks, and background music. Unintended bystanders or unrelated third-party marks remain conditional constraints, not universal defaults.
-- Production Manifest and Skill 4 Input Contract advanced to v1.3. Prompt under-specification, non-discriminating text, lock violations, output mismatch, and unintended text/brand output are now targeted QA failure classes.
-- The source and `skills/` mirrors are synchronized. The personal plugin source was backed up before deployment and reinstalled as `ai-media@personal` version `0.1.0+codex.20260823093856`.
-- Seed Audio V3 remains the verified active Volcengine generation route. The retired legacy App ID/Access Token path remains removed, and the non-secret Voice_Type registry remains separate for future provider-specific mapping.
-- Created private repository `newkauto-ai/ai-media` and pushed the complete source package at initial commit `351cb97` on `master`. The package includes the Codex manifest, skills, contracts, tests, and style-profile library; machine environments and credential-file patterns are ignored.
-- Updated legacy Manifest test expectations and the v1.2 minimal fixture required for independent source-package verification. This changed tests/fixtures only; it did not invoke media generation, Notion writes, uploads, or other external production actions.
+- Script Quality Review 是现有 Freeze Gate 的内部 policy，不是新 Skill、Review Core/Result、Controller stage、状态机、Beat Map、Manifest 字段、retry ledger 或 Rewrite Engine。
+- Lite 只检查 Promise / Progression / Payoff；Full 额外检查功能性冲突、有效升级、悬念、支持充分的变化/揭示、高潮/释放，以及有因果的情绪变化、氛围功能和共鸣基础。
+- Reviewer 只输出有具体证据的 finding 与 repair target；最多三个 Must Fix。Optional-only 必须 READY 并停止优化；Script Engine 是唯一修改者。
+- `script_quality.max_retries` 固定为 1。一次局部修复后的 recheck 必须 READY 或转人工；结构性语义变化、低置信度或矛盾证据直接转人工。用户显式重开时一次请求只执行一轮，且不重置旧 retry history。
+- `decide-next-action.ps1` 未修改；现有 pass → Audiovisual Director、局部 retry → Script Engine、语义/耗尽 → human review 路由已满足要求。
+- 独立 Plugin Deployment Gate 已按“权威源码备份 → 官方 cachebuster → reinstall → installed-cache parity/validator/regression 回读”完成；完整回滚备份位于 `C:\Users\Roy\plugins\ai-media.backups\script-quality-deploy-20260830T091246Z`。
+- 既有 Previsualization v1.1、Review Result v2.1、Manifest v1.7、Skill 5 v1.2.1 和用户确认的《雨停之前》状态保持不变。本轮未执行付费生成、Notion 写入、上传、发布、commit 或 push。
 
 ## Core Files
 
-- `video-production/contracts/executable-prompt-contract.md`
-- `video-production/contracts/input-contract.md`
-- `video-production/contracts/production-manifest.md`
-- `video-production/modules/asset-prompt-compiler.md`
-- `video-production/modules/clip-prompt-compiler.md`
-- `video-production/templates/`
-- `video-production/scripts/compile-production-fixture.ps1`
-- `tests/verify-skill4-contracts.ps1`
-- `video-production/adapters/seed-audio-v3-adapter.md`
-- `video-production/scripts/invoke-seed-audio-v3.ps1`
-- `.codex-plugin/plugin.json`
-- `skills/video-production/`
+- `script-engine/SKILL.md`
+- `script-engine/templates/script-package.md`
+- `workflow-controller/contracts/execution-state.md`
+- `tests/fixtures/script-engine-cases.json`
+- `tests/fixtures/workflow-controller-scenarios.json`
+- `tests/verify-contracts.ps1`
+- `workflow-controller/scripts/decide-next-action.ps1`（复用，未修改）
 
 ## Verification
 
-- All six project regression suites passed: Topic/Script contracts, Skill 3 contracts, Style Profile library, Skill 4 contracts, Audio Production, and Workflow Controller.
-- Skill 4 v1.3 Fixture tests verify explicit image lock slots, self-contained global layers, exact cross-Clip identity anchors, per-Clip output specifications, unresolved-spec blocking, continuous 0.1-second timelines, and the expanded prompt QA taxonomy.
-- Root and mirrored `video-production` files have matching SHA-256 hashes. Both Skill copies passed the skill validator.
-- The workspace plugin, personal plugin source, and installed cache passed the plugin validator. Selected deployed files match the workspace hashes.
-- The installed-cache Skill 4 regression test passed. `codex plugin list` reports `ai-media@personal` installed and enabled at `0.1.0+codex.20260823093856`.
-- Deployment rollback copy: `C:\Users\Roy\plugins\ai-media.backups\20260823T093957Z`.
-- The earlier real Seed Audio V3 smoke asset remains file-QA-passed: provider duration `20.6s`; local MP3 duration `20.640000`; SHA-256 `f2832228840d6862cce8d9b6ac3b95db27cd76393b1065bf21b3dd9e7776b70e`.
-- Before the GitHub backup, all 16 source-package regression scripts and the plugin manifest validator passed locally.
+- workspace `tests/verify-contracts.ps1` PASS：3 个 Topic、3 个 Script handoff、8 个 Script Quality Review fixture 通过 Draft/Freeze 顺序、Lite/Full、Must Fix/Optional、结构性人工升级与一次 retry 边界检查。
+- workspace `tests/verify-workflow-controller.ps1` PASS：`script_quality` 首次局部 retry 增至 1，`retry_count=1/max_retries=1` 时转人工且计数不变；既有 research、Storyboard、production routing 同时通过。
+- 权威源码运行同两项测试均 PASS。workspace 与权威源码的五个共享修改文件 hash 一致；两边的 root/`skills/` Script policy、template、Execution State mirrors 均一致。
+- 部署前备份为 806/806 文件、零缺失、零额外、零 SHA-256 mismatch。安装前 source/cache 都是 432 个非 Git 文件，仅 10 个本轮预期 mismatch；安装及测试后为 432/432、零缺失、零额外、零 mismatch。
+- installed-cache plugin validator PASS；root 与 `skills/` 的 Script Engine quick validator 在 UTF-8 模式下 PASS；Script policy、template 和 Execution State mirrors hash 一致。
+- installed cache 的全部 `tests/verify-*.ps1` 为 17/17 PASS，覆盖 Script Quality、Controller、Stage gates、ADP/Video、Storyboard、Review v2.1、Audio/BGM、Publishing 和 Notion dry run，且没有执行外部生成或写入。
 
 ## Known Issues
 
-- The new prompt policy is structurally and behaviorally verified with local Fixtures, but it has not yet been A/B tested against real image or video generations. Do not claim lower drift or higher visual quality until a small real run is inspected.
-- No image or video model is configured by default. Adapter-specific prompt syntax, persistent-context behavior, supported resolutions, and cost still require current declaration plus user approval before a paid call.
-- Seed Audio V3 output has not received human listening approval or ASR confirmation. Its combined dialogue/music/SFX result is not final-production-ready.
-- The Voice_Type recommendation is not yet mapped to the V3 prompt-only route.
-- GitHub backup is source evidence, not evidence that the currently installed plugin cache has been reinstalled or revalidated at this commit.
+- Fixture 与合同回归证明 policy、结构和路由，不证明真实 LLM Review 质量、返工率或生产 ROI。
+- 当前任务启动时加载的是部署前 Skill 上下文；磁盘回读证明新版本已安装，但应在新任务中验证实际调用新 Policy。
+- installed cache 内的 `Progress.md` 是 reinstall 时的部署前快照，不是 runtime 输入；部署后的当前状态以 workspace 与权威源码的 `Progress.md` 为准。
+- `codex plugin list` 仍报告 stale arg0 临时目录 ACL warning；由于 installed/enabled 状态、432/432 parity、validators 和 17/17 回归独立通过，该 warning 当前为非阻塞。
+- 权威源码 Git worktree 仍包含本轮及此前未提交变更；本轮没有整理、commit 或 push 这些内容。
+
+## Rejected / Failed Approaches
+
+- 未采用 Brief v1.0 的独立 Script Preflight；现有 Script Engine 与 Controller 已能承担所有权和 bounded routing。
+- 权威源码的整文件覆盖同步因可能覆盖既有未提交修改而被拒绝；改用逐 hunk 补丁，保留了前序 Previsualization/Publishing 变更。
+- Skill quick validator 首次受 Windows GBK 默认编码影响而失败；以 `python -X utf8` 按相同文件重跑后 root/mirror 均 PASS，不应把编码启动错误误判为 Skill 内容失败。
 
 ## Next
 
-1. For a new local plugin deployment, use the bounded cachebuster/reinstall flow and validate the installed cache against this repository commit.
-2. On the next real production, run only 1–3 representative image/Clip calls and compare lock adherence, output specifications, and clause deletion impact before scaling.
-3. Complete human listening or ASR/editorial review for the Seed Audio V3 smoke asset if that route will be used in a final video.
+1. 新建任务并调用 `@AI 自媒体`，用一个无付费生成的完整 Draft 验证新加载 Skill 的 Lite/Full 选择、READY/REVISE 投影和一次 retry 边界。
+2. 只有后续另行授权真实生产时，才评估该 Review Policy 对返工与生成成本的实际 ROI。
+3. 如需版本备份，再单独确认 Git commit/push 范围；本次部署不等于私有仓库已更新。

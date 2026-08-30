@@ -36,9 +36,10 @@ List at least five candidates, select one, and explain the choice briefly.
 - Reveal:
 - Meaning:
 
-## Frozen 60–90 second master script
+## Complete 60–90 second master script Draft
 
 - Script ID / version:
+- Draft status: `draft` (do not mark `frozen` before Review READY)
 - Estimated duration:
 - Full text:
 - Semantic locks: core thesis, Hook, Reveal, core conclusion, factual claims.
@@ -49,6 +50,37 @@ List at least five candidates, select one, and explain the choice briefly.
 - 5-second death test:
 - New-stimulus intervals:
 - Sentence-function exceptions:
+
+## Script Quality Review (between Draft and Freeze)
+
+```yaml
+script_quality_review:
+  mode: lite | full
+  decision: READY | REVISE
+  revision_scope: none | local | structural
+  must_fix:
+    - failure_type:
+      evidence:
+      repair_target:
+      owner: script_engine | human_decision
+  optional:
+    - note:
+  do_not_optimize:
+    - preserved_strength:
+  stop_reason:
+```
+
+The Reviewer only reports evidence-backed findings and repair targets. It does not rewrite the Script. Include at most three Must Fix findings. Optional-only results are READY and must say `STOP SCRIPT OPTIMIZATION`. A local repair may run once through the existing `script_quality` retry budget; structural change or a failed recheck stops for human review.
+
+## Frozen 60–90 second master script
+
+Complete this projection only after the Script Quality Review returns READY.
+
+- Script ID / version:
+- Frozen status: `frozen`
+- Estimated duration:
+- Full text:
+- Semantic locks: core thesis, Hook, Reveal, core conclusion, factual claims.
 
 ## Production Handoff Manifest
 

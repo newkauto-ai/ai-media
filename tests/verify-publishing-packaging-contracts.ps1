@@ -13,14 +13,16 @@ try {
     $python = Get-Skill5Python
     & $python -m py_compile (Join-Path $root 'publishing-packaging\scripts\publishing_packaging_runtime.py')
     Assert-True ($LASTEXITCODE -eq 0) 'Python runtime must compile.'
+    & $python (Join-Path $root 'tests\helpers\verify_editorial_gate.py') (Join-Path $root 'publishing-packaging\scripts\publishing_packaging_runtime.py') | Out-Null
+    Assert-True ($LASTEXITCODE -eq 0) 'COPY_READY must require passed Thesis-first editorial review and evidence.'
 
     $skill = Get-Content -LiteralPath (Join-Path $root 'publishing-packaging\SKILL.md') -Raw -Encoding UTF8
     $inputContract = Get-Content -LiteralPath (Join-Path $root 'publishing-packaging\contracts\input-contract.md') -Raw -Encoding UTF8
     $packageContract = Get-Content -LiteralPath (Join-Path $root 'publishing-packaging\contracts\publish-package-contract.md') -Raw -Encoding UTF8
     $legacyContract = Get-Content -LiteralPath (Join-Path $root 'script-engine\contracts\skill3-handoff-contract.md') -Raw -Encoding UTF8
     Assert-True ($skill.Contains('READY_FOR_MANUAL_UPLOAD') -and $skill.Contains('never calls a model')) 'Skill entry must preserve local-only and generation boundaries.'
-    Assert-True ($inputContract.Contains('fixture_only') -and $inputContract.Contains('shadow_only') -and $inputContract.Contains('SOURCE_BLOCKED')) 'Input contract must declare safety and source gates.'
-    Assert-True ($packageContract.Contains('No V1 state may be named') -and $packageContract.Contains('package_hash')) 'Package contract must exclude publish states and bind hashes.'
+    Assert-True ($inputContract.Contains('fixture_only') -and $inputContract.Contains('shadow_only') -and $inputContract.Contains('SOURCE_BLOCKED') -and $inputContract.Contains('metadata_relevance')) 'Input contract must declare safety, source and editorial gates.'
+    Assert-True ($packageContract.Contains('No V1 state may be named') -and $packageContract.Contains('package_hash') -and $packageContract.Contains('editorial `evidence_refs`')) 'Package contract must exclude publish states and bind hashes plus editorial evidence.'
     Assert-True ($legacyContract.Contains('legacy/provisional') -and $legacyContract.Contains('final_owner: publishing_packaging')) 'Skill 2 packaging must remain readable but migrate final authority.'
 
     $missing = [ordered]@{ schema_version = '1.1'; publishing_context = @{ target_platforms = @() } }
@@ -39,7 +41,7 @@ try {
     Assert-True ($legacyPackage.copy.source -eq 'skill2_legacy_provisional_hint') 'Skill 2 hint must be readable.'
     Assert-True ($legacyPackage.strategy.final_packaging_authority -eq 'publishing_packaging') 'Skill 5 must own final output.'
     Assert-True ($legacyPackage.readiness.status -eq 'PACKAGE_DRAFT') 'A Fixture must never become Ready.'
-    Assert-True (@($legacyPackage.review.upstream_review_refs).Count -eq 1 -and $legacyPackage.review.review_policy_version -eq 'publishing-packaging-v1.2') 'Upstream Review v2.1 must remain a reference, not the package review.'
+    Assert-True (@($legacyPackage.review.upstream_review_refs).Count -eq 1 -and $legacyPackage.review.review_policy_version -eq 'publishing-packaging-v1.2.1') 'Upstream Review v2.1 must remain a reference, not the package review.'
     Assert-True (-not ($legacyPackage.PSObject.Properties.Name -contains 'retry_count')) 'Skill 5 must not own or modify retry count.'
 
     $bad = New-Skill5BaseInput -VideoPath $video -Platforms @('youtube_shorts') -FixtureOnly $true

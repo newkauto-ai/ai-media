@@ -19,4 +19,8 @@ Minimum validity: at least one evidence item; `retry` has at least one failure t
 
 Review Result v2.1 is an accepted richer input for `pre_generation_prompt_review`. The controller validates its hashes, evidence, gate, fixture boundary, and explicit `controller_mapping`, then normalizes it to this assessment shape. It does not accept Gate 2 or Gate 3 results until their real-media implementations exist. Evaluator Result remains the compatibility input; it is not a second persisted Review authority.
 
+Review Result v2.1 `previsualization_storyboard` is also accepted for the existing `storyboard` stage. It requires immutable media identity and a current `unit.review_context`; PASS advances only to Prompt planning and never recommends a Cost Gate. This bounded target is not Gate 2 or Gate 3.
+
+For evidence-bound `production_qa`, an optional `repair_assessment` may add `severity`, `core_story_function_satisfied`, `can_edit_or_reuse`, `expected_improvement`, `target_revision_id`, and `media_checksum`. It selects the existing accept/edit/request-Cost-Gate/human route; it does not create a new state or retry authority.
+
 Recommended evaluator instruction: assess only the named unit against its contract; cite observable evidence; choose one verdict; enumerate failures using the owning Skill taxonomy; never revise frozen semantic locks.

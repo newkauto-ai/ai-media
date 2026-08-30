@@ -10,10 +10,13 @@ $topicPath = Join-Path $testRoot 'fixtures\topic-hunter-cases.json'
 $scriptPath = Join-Path $testRoot 'fixtures\script-engine-cases.json'
 
 $topicCases = (Get-Content -LiteralPath $topicPath -Raw | ConvertFrom-Json).cases
-$scriptCases = (Get-Content -LiteralPath $scriptPath -Raw | ConvertFrom-Json).cases
+$scriptFixture = Get-Content -LiteralPath $scriptPath -Raw | ConvertFrom-Json
+$scriptCases = $scriptFixture.cases
+$scriptQualityCases = $scriptFixture.script_quality_review_cases
 
 Assert-True ($topicCases.Count -ge 3) 'Topic Hunter requires at least three real content directions.'
 Assert-True ($scriptCases.Count -ge 3) 'Script Engine requires at least three selected-topic scripts.'
+Assert-True ($scriptQualityCases.Count -ge 8) 'Script Quality Review Policy requires the eight minimum behavior fixtures.'
 
 $selectedTopicIds = @()
 foreach ($case in $topicCases) {
@@ -68,4 +71,59 @@ foreach ($case in $scriptCases) {
     }
 }
 
-Write-Output "PASS: $($topicCases.Count) Topic Hunter directions and $($scriptCases.Count) Script Engine handoffs satisfy the Skill 1-2 contracts and downstream boundary checks."
+$allowedMustFix = @(
+    'promise_unclear_or_mismatched', 'progression_missing', 'same_function_repetition',
+    'causal_payoff_gap', 'promise_not_paid_off', 'conflict_not_functional',
+    'tension_not_escalating', 'resolution_overpredictable', 'reveal_unsupported_or_random',
+    'climax_without_build_or_release', 'emotional_turn_unearned', 'critical_dialogue_dependency'
+)
+$forbiddenReviewFields = @('tension_score', 'emotional_waveform', 'attention_budget', 'emotion_budget', 'comedy_budget', 'atmosphere_timeline', 'resonance_score', 'audience_prediction_score', 'beat_map', 'production_feasibility')
+foreach ($case in $scriptQualityCases) {
+    $review = $case.script_quality_review
+    $assessment = $case.assessment
+    Assert-True ($case.review_input.stage_0_approved -and $case.review_input.complete_draft) "$($case.case_id): Review requires Stage 0 approval and a complete Draft."
+    Assert-True ($case.review_input.draft_status -eq 'draft' -and $case.review_input.review_position -eq 'before_freeze') "$($case.case_id): Review must run on an unfrozen Draft immediately before Freeze."
+    Assert-True (@('lite','full') -contains $review.mode) "$($case.case_id): invalid Review mode."
+    Assert-True (@('READY','REVISE') -contains $review.decision) "$($case.case_id): invalid human Review decision."
+    Assert-True (@('none','local','structural') -contains $review.revision_scope) "$($case.case_id): invalid revision scope."
+    Assert-True (@($review.must_fix).Count -le 3) "$($case.case_id): more than three Must Fix findings."
+    Assert-True ($case.routing_expectation.max_retries -eq 1) "$($case.case_id): script_quality must use one automatic local-repair attempt."
+
+    foreach ($finding in @($review.must_fix)) {
+        Assert-True ($allowedMustFix -contains $finding.failure_type) "$($case.case_id): unsupported Must Fix type '$($finding.failure_type)'."
+        Assert-True (-not [string]::IsNullOrWhiteSpace($finding.evidence)) "$($case.case_id): Must Fix requires specific evidence."
+        Assert-True (-not [string]::IsNullOrWhiteSpace($finding.repair_target)) "$($case.case_id): Must Fix requires a repair target."
+        Assert-True (@('script_engine','human_decision') -contains $finding.owner) "$($case.case_id): invalid Must Fix owner."
+    }
+
+    if (@($review.must_fix).Count -eq 0) {
+        Assert-True ($review.decision -eq 'READY' -and $review.revision_scope -eq 'none') "$($case.case_id): no Must Fix must project READY/none."
+        Assert-True ($assessment.verdict -eq 'pass' -and @($assessment.failure_types).Count -eq 0) "$($case.case_id): Optional-only or clean Review must map to pass, never retry."
+        Assert-True ($review.stop_reason -eq 'STOP SCRIPT OPTIMIZATION') "$($case.case_id): READY must stop optimization."
+    }
+    if ($review.revision_scope -eq 'local') {
+        Assert-True (@($review.must_fix).Count -gt 0) "$($case.case_id): local revise requires a Must Fix."
+    }
+    if ($review.revision_scope -eq 'structural') {
+        Assert-True ($assessment.verdict -eq 'human_review' -and $assessment.affects_semantics) "$($case.case_id): structural revise must route to semantic human review."
+        Assert-True (@($review.must_fix | Where-Object owner -eq 'human_decision').Count -gt 0) "$($case.case_id): structural revise requires human ownership."
+    }
+
+    $reviewSerialized = $review | ConvertTo-Json -Depth 10
+    foreach ($field in $forbiddenReviewFields) {
+        Assert-True ($reviewSerialized -notmatch ('"' + [regex]::Escape($field) + '"\s*:')) "$($case.case_id): Review persisted forbidden field '$field'."
+    }
+}
+
+$liteCase = $scriptQualityCases | Where-Object case_id -eq 'lite-explainer-ready'
+Assert-True (($liteCase.required_lenses -join ',') -eq 'promise,progression,payoff') 'Lite Review must not require dramatic or emotional lenses.'
+$repetitionCase = $scriptQualityCases | Where-Object case_id -eq 'full-same-function-repetition'
+Assert-True ($repetitionCase.script_quality_review.must_fix[0].failure_type -eq 'same_function_repetition' -and $repetitionCase.script_quality_review.revision_scope -eq 'local') 'Same-function repetition must target a local Script Engine repair.'
+$slowCase = $scriptQualityCases | Where-Object case_id -eq 'full-slow-healing-ready'
+Assert-True ($slowCase.script_quality_review.decision -eq 'READY') 'Slow healing content must not fail because action frequency is low.'
+$emotionalCase = $scriptQualityCases | Where-Object case_id -eq 'full-emotional-promise-unpaid'
+Assert-True ($emotionalCase.script_quality_review.must_fix[0].failure_type -eq 'emotional_turn_unearned') 'An uncaused emotional payoff must be identifiable.'
+$exhaustedCase = $scriptQualityCases | Where-Object case_id -eq 'full-auto-retry-exhausted'
+Assert-True ($exhaustedCase.routing_expectation.next -eq 'human_review' -and $exhaustedCase.routing_expectation.expected_retry_count -eq 1) 'A failed recheck must escalate without incrementing retry history.'
+
+Write-Output "PASS: $($topicCases.Count) Topic Hunter directions, $($scriptCases.Count) Script Engine handoffs, and $($scriptQualityCases.Count) Script Quality Review cases satisfy contracts, bounded repair, and downstream boundaries."

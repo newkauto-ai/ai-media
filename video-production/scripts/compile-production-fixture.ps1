@@ -21,7 +21,9 @@ param(
 
     [switch]$EnableBgm,
 
-    [string]$BgmAssetRoot
+    [string]$BgmAssetRoot,
+
+    [string]$PrevisualizationPath
 )
 
 Set-StrictMode -Version Latest
@@ -546,10 +548,47 @@ else {
     }
 }
 
+$previsualization = $null
+$storyboardBlocksProduction = $false
+if (-not [string]::IsNullOrWhiteSpace($PrevisualizationPath)) {
+    if (-not (Test-Path -LiteralPath $PrevisualizationPath -PathType Leaf)) { throw "Previsualization input not found: $PrevisualizationPath" }
+    $previsualizationInput = Get-Content -LiteralPath $PrevisualizationPath -Raw -Encoding UTF8 | ConvertFrom-Json
+    $previsualizationProperty = $previsualizationInput.PSObject.Properties['previsualization']
+    $previsualization = if ($null -ne $previsualizationProperty) { $previsualizationProperty.Value } else { $previsualizationInput }
+    if ($null -eq $previsualization.applicability -or [string]$previsualization.applicability.decision -notin @('skip', 'retain')) {
+        throw 'Previsualization applicability decision must be skip or retain.'
+    }
+    if (@($previsualization.applicability.evidence_refs).Count -lt 1) { throw 'Previsualization applicability requires evidence_refs.' }
+    if ([string]$previsualization.applicability.decision -eq 'skip') {
+        if ($null -ne $previsualization.storyboard_plan -or $null -ne $previsualization.prompt_ref -or $null -ne $previsualization.asset_ref -or $null -ne $previsualization.review_result_ref) {
+            throw 'A Storyboard skip path may not fabricate Plan, Prompt, asset, or Review objects.'
+        }
+    }
+    else {
+        foreach ($field in @('storyboard_plan', 'prompt_ref', 'cost_gate')) {
+            if ($null -eq $previsualization.PSObject.Properties[$field] -or $null -eq $previsualization.$field) { throw "Previsualization retain requires $field." }
+        }
+        foreach ($field in @('plan_id', 'revision_id', 'content_hash', 'panel_refs')) {
+            if ($null -eq $previsualization.storyboard_plan.PSObject.Properties[$field] -or $null -eq $previsualization.storyboard_plan.$field) { throw "Storyboard Plan requires $field." }
+        }
+        $hasRealAsset = $null -ne $previsualization.asset_ref -and -not [string]::IsNullOrWhiteSpace([string]$previsualization.asset_ref.asset_id) -and -not [string]::IsNullOrWhiteSpace([string]$previsualization.asset_ref.media_checksum)
+        $hasCurrentReview = -not [string]::IsNullOrWhiteSpace([string]$previsualization.review_result_ref)
+        $isFixture = [bool]$previsualization.fixture_only
+        $storyboardBlocksProduction = $isFixture -or -not ($hasRealAsset -and $hasCurrentReview)
+    }
+}
+
+if ($storyboardBlocksProduction) {
+    foreach ($clip in @($clipPlans)) {
+        $clip.generation_status = 'blocked_by_storyboard_review'
+        $clip.block_reason = 'Retained Storyboard lacks current non-fixture media evidence and Review Result; Prompt preview cannot authorize generation.'
+    }
+}
+
 $manifest = [pscustomobject]@{
     production_manifest = [pscustomobject]@{
-        contract_version = '1.6'
-        meta = [pscustomobject]@{ project_id = $adp.meta.project_id; script_id = $adp.meta.script_id; fixture_only = $true; generated_at = (Get-Date).ToUniversalTime().ToString('o'); revision = 'fixture-v1.6'; source_revision = if ($legacyAdpInput) { 'ADP-v1.1-read-only' } else { 'ADP-v1.2' } }
+        contract_version = '1.7'
+        meta = [pscustomobject]@{ project_id = $adp.meta.project_id; script_id = $adp.meta.script_id; fixture_only = $true; generated_at = (Get-Date).ToUniversalTime().ToString('o'); revision = 'fixture-v1.7'; source_revision = if ($legacyAdpInput) { 'ADP-v1.1-read-only' } else { 'ADP-v1.2' } }
         semantic_locks = $adp.semantic_locks
         input_provenance = [pscustomobject]@{ adp_contract_version = $adp.contract_version; adp_read_mode = if ($legacyAdpInput) { 'read_only_compatibility' } else { 'current' }; style_profile_ids = @($adp.meta.selected_style_profiles); template_bindings = $adp.template_bindings; performance_provenance = 'story_change_arc -> performance_plan -> clip_performance_binding' }
         adapters = @(
@@ -571,6 +610,7 @@ $manifest = [pscustomobject]@{
         generation_gate = [pscustomobject]@{ state = 'awaiting_user_approval'; minimum_generation_set = @($lookdevAnchors | ForEach-Object { $_.anchor_id }); model = $null; estimated_cost = $null; stopping_condition = 'Stop after the approved 3-5 anchor set; do not batch-generate.'; approval_evidence = $null }
         lookdev = [pscustomobject]@{ status = if ($BlockDomainId) { 'domain_blocked' } else { 'awaiting_generation' }; validation_dimensions = @($adp.production_handoff.lookdev_test_spec.validation_dimensions); anchors = $lookdevAnchors }
         visual_baselines = @()
+        previsualization = $previsualization
         scenes = $sceneManifestPlans
         clips = $clipPlans
         assets = @()

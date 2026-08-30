@@ -1,4 +1,4 @@
-# Notion Publish Package Projection Contract v1.0
+# Notion Publish Package Projection Contract v1.1
 
 This contract produces a local Dry Run only. `publish-package.json` remains authoritative; Notion is a human-readable projection and cannot change Package readiness, authorize generation, or authorize publication.
 
@@ -20,8 +20,9 @@ The minimal schema delta is exactly:
 ```text
 projection_key missing                 -> BLOCKED
 0 matching rows                        -> CREATE candidate
-1 matching row + same hash             -> NO_CHANGE
-1 matching row + changed hash          -> UPDATE candidate
+1 matching row + same hash + same managed Snapshot -> NO_CHANGE
+1 matching row + changed hash                   -> UPDATE candidate
+1 matching row + same hash + Snapshot drift/unknown -> UPDATE / DEGRADED
 more than 1 matching row               -> CONFLICT / HOLD
 project/platform mismatch              -> CONFLICT / HOLD
 schema drift or required field missing -> DEGRADED / HOLD
@@ -31,7 +32,9 @@ The Dry Run records both the row decision and execution status. A valid CREATE o
 
 ## Snapshot body
 
-The page body candidate contains exactly one `## Publish Package Snapshot` section with Package, Source Binding, 文案, Cover Prompt, 封面, 发布窗口, Review & Gate, Manual Upload, and Projection History subsections. A missing section may be appended. Multiple matching headings are CONFLICT; no whole-page replacement is proposed.
+The page body candidate contains exactly one `## Publish Package Snapshot` section with Package, Source Binding, 文案, Cover Prompt, 封面, 发布窗口, Review & Gate, Manual Upload, and Projection History subsections. An authorized writer must write the emitted `page_body_snapshot` as this managed section and read the full section back. A missing section may be appended; a handwritten substitute is invalid. Multiple matching headings are CONFLICT; no whole-page replacement is proposed.
+
+`NO_CHANGE` requires the same `projection_key`, the same `Package Hash`, and an exact managed Snapshot match after line-ending and outer-whitespace normalization. If the live snapshot body is absent or differs, the Dry Run emits an UPDATE candidate with `DEGRADED`; matching properties alone are insufficient.
 
 Local PNG paths are never emitted as `file://` or claimed as uploaded. When no callable local-binary upload capability has been verified, attachment status is `degraded_local_binary_upload_unavailable`, with path, checksum, and dimensions only.
 

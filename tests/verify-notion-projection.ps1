@@ -18,7 +18,7 @@ try {
     $packageRoot = $run.OutputPath
     $samplePackage = Join-Path $packageRoot 'xiaohongshu\publish-package.json'
     & $python (Join-Path $root 'tests\helpers\verify_notion_projection_cases.py') $runtime $samplePackage | Out-Null
-    Assert-True ($LASTEXITCODE -eq 0) 'Projection decision matrix must simulate CREATE, NO_CHANGE, UPDATE, CONFLICT, DEGRADED and read-back mismatch.'
+    Assert-True ($LASTEXITCODE -eq 0) 'Projection decision matrix must require both hash and managed Snapshot for NO_CHANGE and degrade on body drift.'
 
     $snapshot = Join-Path $root 'tests\fixtures\notion-publishing-schema-missing-v1.2.snapshot.json'
     & (Join-Path $root 'publishing-packaging\scripts\prepare-notion-projection.ps1') -PackageRoot $packageRoot -LiveSnapshot $snapshot -OutputPath $temp | Out-Null

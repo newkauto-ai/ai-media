@@ -1,8 +1,8 @@
 [
   {
     "name": "script-quality-retry",
-    "unit": {"unit_id": "script-001", "stage": "script_quality", "required": true, "retry_count": 0, "max_retries": 2, "topic_type": "business", "production_risk": "low", "semantic_locked": false},
-    "assessment": {"source": "fixture", "run_id": null, "verdict": "retry", "confidence": "high", "evidence": ["Hook lacks a concrete conflict in sentence 1"], "failure_types": ["hook_weak"], "affects_semantics": false, "requires_external_evidence": false, "proposed_capability": null},
+    "unit": {"unit_id": "script-001", "stage": "script_quality", "required": true, "retry_count": 0, "max_retries": 1, "topic_type": "business", "production_risk": "low", "semantic_locked": false},
+    "assessment": {"source": "fixture", "run_id": null, "verdict": "retry", "confidence": "high", "evidence": ["Escalation paragraphs 2-4 repeat the same function without a new obstacle, fact, relationship change, or choice."], "failure_types": ["same_function_repetition"], "affects_semantics": false, "requires_external_evidence": false, "proposed_capability": null},
     "expected": {"state": "retry_scheduled", "selected_capability": "script-engine", "next_action": "rerun_failed_unit_only", "retry_count": 1}
   },
   {
@@ -25,14 +25,44 @@
   },
   {
     "name": "semantic-change-escalates",
-    "unit": {"unit_id": "script-locked", "stage": "script_quality", "required": true, "retry_count": 0, "max_retries": 2, "topic_type": "explainer", "production_risk": "low", "semantic_locked": true},
+    "unit": {"unit_id": "script-locked", "stage": "script_quality", "required": true, "retry_count": 0, "max_retries": 1, "topic_type": "explainer", "production_risk": "low", "semantic_locked": true},
     "assessment": {"source": "fixture", "run_id": null, "verdict": "retry", "confidence": "high", "evidence": ["Proposed rewrite changes the frozen conclusion"], "failure_types": ["semantic_mismatch"], "affects_semantics": true, "requires_external_evidence": false, "proposed_capability": "script-engine"},
     "expected": {"state": "human_review", "selected_capability": null, "next_action": "request_human_decision", "retry_count": 0}
   },
   {
     "name": "exhausted-budget-escalates",
-    "unit": {"unit_id": "script-002", "stage": "script_quality", "required": true, "retry_count": 2, "max_retries": 2, "topic_type": "business", "production_risk": "low", "semantic_locked": false},
-    "assessment": {"source": "fixture", "run_id": null, "verdict": "retry", "confidence": "high", "evidence": ["Two attempts did not meet the hook criterion"], "failure_types": ["hook_weak"], "affects_semantics": false, "requires_external_evidence": false, "proposed_capability": null},
+    "unit": {"unit_id": "script-002", "stage": "script_quality", "required": true, "retry_count": 1, "max_retries": 1, "topic_type": "business", "production_risk": "low", "semantic_locked": false},
+    "assessment": {"source": "fixture", "run_id": null, "verdict": "retry", "confidence": "high", "evidence": ["The named Must Fix remains after one targeted local repair."], "failure_types": ["tension_not_escalating"], "affects_semantics": false, "requires_external_evidence": false, "proposed_capability": null},
+    "expected": {"state": "human_review", "selected_capability": null, "next_action": "request_human_decision", "retry_count": 1}
+  },
+  {
+    "name": "production-optional-stops-optimizing",
+    "unit": {"unit_id": "clip-optional", "stage": "production_qa", "required": true, "retry_count": 0, "max_retries": 2, "topic_type": "fiction", "production_risk": "medium", "semantic_locked": true},
+    "assessment": {"source": "fixture", "run_id": null, "verdict": "retry", "confidence": "high", "evidence": ["Core story function is readable; only a minor texture preference remains."], "failure_types": ["style_drift"], "affects_semantics": false, "requires_external_evidence": false, "proposed_capability": "video-production", "repair_assessment": {"severity": "optional", "core_story_function_satisfied": true, "can_edit_or_reuse": false, "expected_improvement": "low", "target_revision_id": "clip-optional-r1", "media_checksum": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"}},
+    "expected": {"state": "complete", "selected_capability": "video-production", "next_action": "accept_current_stop_optimizing", "retry_count": 0}
+  },
+  {
+    "name": "production-local-edit-first",
+    "unit": {"unit_id": "clip-edit", "stage": "production_qa", "required": true, "retry_count": 0, "max_retries": 2, "topic_type": "fiction", "production_risk": "medium", "semantic_locked": true},
+    "assessment": {"source": "fixture", "run_id": null, "verdict": "retry", "confidence": "high", "evidence": ["A removable corner artifact does not affect the subject or motion."], "failure_types": ["artifact"], "affects_semantics": false, "requires_external_evidence": false, "proposed_capability": "video-production", "repair_assessment": {"severity": "must_fix", "core_story_function_satisfied": true, "can_edit_or_reuse": true, "expected_improvement": "high", "target_revision_id": "clip-edit-r1", "media_checksum": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"}},
+    "expected": {"state": "retry_scheduled", "selected_capability": "video-production", "next_action": "edit_or_reuse_failed_unit", "retry_count": 1}
+  },
+  {
+    "name": "production-regeneration-needs-cost-gate",
+    "unit": {"unit_id": "clip-regen", "stage": "production_qa", "required": true, "retry_count": 0, "max_retries": 2, "topic_type": "fiction", "production_risk": "high", "semantic_locked": true},
+    "assessment": {"source": "fixture", "run_id": null, "verdict": "retry", "confidence": "high", "evidence": ["The only character is duplicated throughout the generated Clip and cannot be reliably removed."], "failure_types": ["duplicate_or_extra_character"], "affects_semantics": false, "requires_external_evidence": false, "proposed_capability": "video-production", "repair_assessment": {"severity": "must_fix", "core_story_function_satisfied": false, "can_edit_or_reuse": false, "expected_improvement": "high", "target_revision_id": "clip-regen-r1", "media_checksum": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"}},
+    "expected": {"state": "retry_scheduled", "selected_capability": "video-production", "next_action": "request_separate_regeneration_cost_gate", "retry_count": 1}
+  },
+  {
+    "name": "production-regeneration-budget-exhausted",
+    "unit": {"unit_id": "clip-exhausted", "stage": "production_qa", "required": true, "retry_count": 2, "max_retries": 2, "topic_type": "fiction", "production_risk": "high", "semantic_locked": true},
+    "assessment": {"source": "fixture", "run_id": null, "verdict": "retry", "confidence": "high", "evidence": ["The confirmed continuity mismatch remains after two attempts."], "failure_types": ["continuity_mismatch"], "affects_semantics": false, "requires_external_evidence": false, "proposed_capability": "video-production", "repair_assessment": {"severity": "must_fix", "core_story_function_satisfied": false, "can_edit_or_reuse": false, "expected_improvement": "medium", "target_revision_id": "clip-exhausted-r3", "media_checksum": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"}},
     "expected": {"state": "human_review", "selected_capability": null, "next_action": "request_human_decision", "retry_count": 2}
+  },
+  {
+    "name": "production-missing-media-identity",
+    "unit": {"unit_id": "clip-missing-evidence", "stage": "production_qa", "required": true, "retry_count": 0, "max_retries": 2, "topic_type": "fiction", "production_risk": "medium", "semantic_locked": true},
+    "assessment": {"source": "fixture", "run_id": null, "verdict": "retry", "confidence": "high", "evidence": ["A defect was reported without immutable media identity."], "failure_types": ["artifact"], "affects_semantics": false, "requires_external_evidence": false, "proposed_capability": "video-production", "repair_assessment": {"severity": "must_fix", "core_story_function_satisfied": false, "can_edit_or_reuse": false, "expected_improvement": "high", "target_revision_id": "", "media_checksum": ""}},
+    "expected": {"state": "human_review", "selected_capability": null, "next_action": "request_human_decision", "retry_count": 0}
   }
 ]

@@ -64,10 +64,10 @@ Existing Review Result v2.1 identifiers remain `review.upstream_review_refs`. Th
 
 ## Readiness invariants
 
-- `COPY_READY`: final copy exists; cover may be absent.
+- `COPY_READY`: final copy exists; `promise_match=pass`, `metadata_relevance=pass`, and editorial `evidence_refs` are present; cover may be absent.
 - `ASSET_READY`: actual local media and cover exist, checksums match, deterministic asset QA passes, and checksum-bound semantic visual review is `pass` or has traceable human approval. Prompt review never substitutes for actual-cover review.
 - `REVIEW_HOLD`: critical profile, compliance, Promise Match, rights/disclosure, OCR/watermark, or other required evidence is HOLD/UNKNOWN.
-- `READY_FOR_MANUAL_UPLOAD`: accepted non-fixture/non-shadow source, current bindings, copy ready, actual media and cover files, current checksums, current critical rules, deterministic QA PASS, compliance PASS/WARN, Promise Match `pass`, and a manual UI checklist.
+- `READY_FOR_MANUAL_UPLOAD`: accepted non-fixture/non-shadow source, current bindings, copy ready, actual media and cover files, current checksums, current critical rules, deterministic QA PASS, compliance PASS/WARN, Promise Match `pass`, metadata relevance `pass`, editorial evidence, and a manual UI checklist.
 - No V1 state may be named `PUBLISH_AUTHORIZED`, `SCHEDULED`, or `PUBLISHED`.
 - Without final media, Cover Prompt and even an independently supplied cover may exist, but Publish Package readiness remains `PACKAGE_DRAFT`.
 - A v1.1 Package remains readable; the runtime does not mutate it to v1.2 in place.

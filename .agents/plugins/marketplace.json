@@ -1,0 +1,21 @@
+{
+  "name": "ai-media-workspace",
+  "interface": {
+    "displayName": "AI 自媒体"
+  },
+  "plugins": [
+    {
+      "name": "ai-media",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/newkauto-ai/ai-media.git",
+        "ref": "master"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

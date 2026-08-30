@@ -22,7 +22,7 @@ from PIL import Image, ImageDraw, ImageFont, ImageOps, PngImagePlugin, ImageStat
 
 
 SCHEMA_VERSION = "1.2"
-REVIEW_POLICY_VERSION = "publishing-packaging-v1.2"
+REVIEW_POLICY_VERSION = "publishing-packaging-v1.2.1"
 SUPPORTED_PLATFORMS = ("xiaohongshu", "douyin", "youtube_shorts", "youtube_long")
 PLATFORM_LABELS = {"xiaohongshu": "小红书", "douyin": "抖音", "youtube_shorts": "YouTube Shorts", "youtube_long": "YouTube Long"}
 VIDEO_EXTENSIONS = {".mp4", ".mov", ".mkv", ".webm", ".m4v"}
@@ -1296,18 +1296,27 @@ def compliance_and_performance(
         "compliance_status": compliance_status,
         "compliance_findings": findings,
         "promise_match": promise,
+        "metadata_relevance": metadata_relevance,
         "performance_assessment": performance_assessment,
         "performance_advisory": performance,
         "evidence_refs": normalize_list((input_data.get("review_inputs") or {}).get("evidence_refs")),
     }
 
 
-def copy_is_ready(platform: str, packaged_copy: dict[str, Any]) -> bool:
+def copy_is_complete(platform: str, packaged_copy: dict[str, Any]) -> bool:
     if not packaged_copy.get("title_or_caption") or packaged_copy.get("length_findings"):
         return False
     if platform in {"xiaohongshu", "youtube_shorts", "youtube_long"} and not packaged_copy.get("body_or_description"):
         return False
     return True
+
+
+def editorial_review_is_ready(review: dict[str, Any]) -> bool:
+    return (
+        review.get("promise_match") == "pass"
+        and review.get("metadata_relevance") == "pass"
+        and bool(review.get("evidence_refs"))
+    )
 
 
 def package_hash_payload(package: dict[str, Any]) -> dict[str, Any]:
@@ -1333,8 +1342,18 @@ def readiness(
     reasons = list(source_reasons)
     if source_reasons:
         return {"status": "SOURCE_BLOCKED", "blocking_reasons": sorted(set(reasons)), "stale": stale}
-    if not copy_is_ready(platform, packaged_copy):
+    copy_complete = copy_is_complete(platform, packaged_copy)
+    editorial_ready = editorial_review_is_ready(review)
+    if not copy_complete:
         reasons.append("final_platform_copy_incomplete")
+    promise_match = review.get("promise_match")
+    if promise_match != "pass":
+        reasons.append("promise_mismatch" if promise_match == "fail" else "promise_match_unresolved")
+    metadata_relevance = review.get("metadata_relevance")
+    if metadata_relevance != "pass":
+        reasons.append("metadata_irrelevant" if metadata_relevance == "fail" else "metadata_relevance_unresolved")
+    if not review.get("evidence_refs"):
+        reasons.append("editorial_evidence_missing")
     cover_ready = cover.get("qa", {}).get("overall") == "pass" and bool(cover.get("composed_asset_path"))
     if not cover_ready:
         reasons.extend(cover.get("qa", {}).get("blocking_reasons") or ["cover_asset_not_ready"])
@@ -1352,11 +1371,11 @@ def readiness(
         reasons.append("final_media_missing_cover_prompt_only")
     if binding.get("final_qa_status") != "accepted" or safety.get("fixture_only") or safety.get("shadow_only"):
         return {"status": "PACKAGE_DRAFT", "blocking_reasons": sorted(set(reasons)), "stale": stale}
-    if not copy_is_ready(platform, packaged_copy):
+    if not copy_complete or not editorial_ready:
         return {"status": "PACKAGE_DRAFT", "blocking_reasons": sorted(set(reasons)), "stale": stale}
     if not cover_ready:
         return {"status": "COPY_READY", "blocking_reasons": sorted(set(reasons)), "stale": stale}
-    review_block = snapshot.get("critical_rules_status") != "current" or review.get("compliance_status") in {"HOLD", "UNKNOWN"} or review.get("promise_match") != "pass" or not semantic_ready
+    review_block = snapshot.get("critical_rules_status") != "current" or review.get("compliance_status") in {"HOLD", "UNKNOWN"} or not editorial_ready or not semantic_ready
     if review_block:
         reasons.append("package_review_or_profile_hold")
         return {"status": "REVIEW_HOLD", "blocking_reasons": sorted(set(reasons)), "stale": stale}
@@ -1447,7 +1466,6 @@ def notion_snapshot_body(package: dict[str, Any], attachment_status: str) -> str
         f"Package ID: `{package.get('package_id')}`  ",
         f"Version: `{package.get('package_version')}`  ",
         f"Hash: `{package.get('package_hash')}`  ",
-        f"Generated At: `{package.get('generated_at')}`  ",
         f"Platform: `{package.get('identity', {}).get('platform')}`  ",
         f"Readiness: `{package.get('readiness', {}).get('status')}`",
         "",
@@ -1485,7 +1503,8 @@ def notion_snapshot_body(package: dict[str, Any], attachment_status: str) -> str
         "### Review & Gate",
         f"Technical QA: `{cover.get('qa', {}).get('overall')}`  ",
         f"Semantic Review: `{review.get('cover_semantic_review', {}).get('verdict')}`  ",
-        f"Compliance / Promise Match: `{review.get('compliance_status')}` / `{review.get('promise_match')}`  ",
+        f"Compliance / Promise Match / Metadata Relevance: `{review.get('compliance_status')}` / `{review.get('promise_match')}` / `{review.get('metadata_relevance')}`  ",
+        f"Editorial Evidence: {', '.join(review.get('evidence_refs') or [])}  ",
         f"Blocking Reasons: {', '.join(package.get('readiness', {}).get('blocking_reasons') or [])}",
         "",
         "### Manual Upload",
@@ -1512,6 +1531,9 @@ def build_notion_projection(package: dict[str, Any], snapshot: dict[str, Any]) -
     matches = [row for row in rows if projection_key and row.get("投影键") == projection_key]
     relation_url = (snapshot.get("target_project") or {}).get("url")
     platform_label = PLATFORM_LABELS.get(str(platform), str(platform))
+    local_binary_callable = bool((snapshot.get("attachment_capability") or {}).get("local_binary_upload_callable"))
+    attachment_status = "candidate_not_uploaded" if local_binary_callable else "degraded_local_binary_upload_unavailable"
+    snapshot_body = notion_snapshot_body(package, attachment_status)
     reasons: list[str] = []
     target_row = None
     if not projection_key:
@@ -1531,7 +1553,15 @@ def build_notion_projection(package: dict[str, Any], snapshot: dict[str, Any]) -
             row_decision = "CONFLICT"
             reasons.append("project_or_platform_relation_mismatch")
         elif normalize_hash(matches[0].get("Package Hash")) == normalize_hash(package.get("package_hash")):
-            row_decision = "NO_CHANGE"
+            managed_snapshot_body = matches[0].get("managed_snapshot_body")
+            if managed_snapshot_body is None:
+                row_decision = "UPDATE"
+                reasons.append("managed_snapshot_unavailable")
+            elif str(managed_snapshot_body).replace("\r\n", "\n").strip() != snapshot_body.replace("\r\n", "\n").strip():
+                row_decision = "UPDATE"
+                reasons.append("managed_snapshot_mismatch")
+            else:
+                row_decision = "NO_CHANGE"
         else:
             row_decision = "UPDATE"
     else:
@@ -1544,15 +1574,12 @@ def build_notion_projection(package: dict[str, Any], snapshot: dict[str, Any]) -
         reasons.append("simulated_readback_mismatch")
     if row_decision in {"BLOCKED", "CONFLICT"} or base_missing:
         execution_status = "HOLD"
-    elif delta_missing or "simulated_readback_mismatch" in reasons:
+    elif delta_missing or any(reason in reasons for reason in {"simulated_readback_mismatch", "managed_snapshot_unavailable", "managed_snapshot_mismatch"}):
         execution_status = "DEGRADED"
     elif row_decision == "NO_CHANGE":
         execution_status = "NO_CHANGE"
     else:
         execution_status = "CANDIDATE"
-    local_binary_callable = bool((snapshot.get("attachment_capability") or {}).get("local_binary_upload_callable"))
-    attachment_status = "candidate_not_uploaded" if local_binary_callable else "degraded_local_binary_upload_unavailable"
-    snapshot_body = notion_snapshot_body(package, attachment_status)
     properties = {
         "Name": f"《雨停之前》｜{platform_label}｜发布准备",
         "Platform": platform_label,
@@ -1563,7 +1590,7 @@ def build_notion_projection(package: dict[str, Any], snapshot: dict[str, Any]) -
         "准备状态": package.get("readiness", {}).get("status"),
     }
     return {
-        "contract_version": "1.0", "projection_key": projection_key, "data_source_url": snapshot.get("publishing_data_source_url"),
+        "contract_version": "1.1", "projection_key": projection_key, "data_source_url": snapshot.get("publishing_data_source_url"),
         "schema_snapshot_hash": snapshot.get("snapshot_hash"), "schema_captured_at": snapshot.get("captured_at"), "proposed_schema_delta": proposed_delta,
         "missing_schema_delta": delta_missing, "row_decision": row_decision, "execution_status": execution_status, "blocking_reasons": sorted(set(reasons)),
         "target_row": target_row, "properties_candidate": properties, "page_body_snapshot": snapshot_body,
@@ -1733,6 +1760,16 @@ def validate_package(package: dict[str, Any]) -> dict[str, Any]:
         if safety.get(key) is not False:
             errors.append(f"safety_flag_invalid:{key}")
     status = (package.get("readiness") or {}).get("status")
+    if status in {"COPY_READY", "ASSET_READY", "READY_FOR_MANUAL_UPLOAD"}:
+        review = package.get("review") or {}
+        if not copy_is_complete(platform, package.get("copy") or {}):
+            errors.append("copy_ready_state_missing_complete_copy")
+        if review.get("promise_match") != "pass":
+            errors.append("copy_ready_state_promise_not_pass")
+        if review.get("metadata_relevance") != "pass":
+            errors.append("copy_ready_state_metadata_not_pass")
+        if not review.get("evidence_refs"):
+            errors.append("copy_ready_state_editorial_evidence_missing")
     if status == "READY_FOR_MANUAL_UPLOAD":
         if safety.get("fixture_only") or safety.get("shadow_only"):
             errors.append("fixture_or_shadow_claimed_ready")

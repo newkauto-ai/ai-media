@@ -66,5 +66,71 @@
         "platform_packaging": {"douyin": {"title": "突然爆单，可能是小公司最危险的时刻"}, "xiaohongshu": {"title": "爆单前先检查这三件事", "cover_frame": "使用订单暴涨而现金下降的现有图形帧"}, "youtube_shorts": {"strongest_segment_seconds": "0-58"}}
       }
     }
+  ],
+  "script_quality_review_cases": [
+    {
+      "case_id": "lite-explainer-ready",
+      "review_input": {"stage_0_approved": true, "complete_draft": true, "draft_status": "draft", "review_position": "before_freeze", "content_type": "explainer"},
+      "required_lenses": ["promise", "progression", "payoff"],
+      "script_quality_review": {"mode": "lite", "decision": "READY", "revision_scope": "none", "must_fix": [], "optional": [], "do_not_optimize": [{"preserved_strength": "The direct conclusion fully answers the opening information promise without invented conflict."}], "stop_reason": "STOP SCRIPT OPTIMIZATION"},
+      "assessment": {"source": "fixture", "verdict": "pass", "confidence": "high", "evidence": ["Each section adds a new causal step and the conclusion answers the opening question."], "failure_types": [], "affects_semantics": false, "requires_external_evidence": false, "proposed_capability": null},
+      "routing_expectation": {"retry_count": 0, "max_retries": 1, "next": "audiovisual-director"}
+    },
+    {
+      "case_id": "full-same-function-repetition",
+      "review_input": {"stage_0_approved": true, "complete_draft": true, "draft_status": "draft", "review_position": "before_freeze", "content_type": "fiction"},
+      "required_lenses": ["promise", "progression", "payoff", "dramatic_tension", "audience_impact"],
+      "script_quality_review": {"mode": "full", "decision": "REVISE", "revision_scope": "local", "must_fix": [{"failure_type": "same_function_repetition", "evidence": "Escalation paragraphs 2-4 repeat three failed door-opening attempts without a new obstacle, fact, relationship change, or choice.", "repair_target": "Escalation paragraphs 2-4 only: make one attempt change the obstacle or force a choice.", "owner": "script_engine"}], "optional": [], "do_not_optimize": [], "stop_reason": "One localized progression defect is repairable without changing locked semantics."},
+      "assessment": {"source": "fixture", "verdict": "retry", "confidence": "high", "evidence": ["Escalation paragraphs 2-4 perform the same narrative function."], "failure_types": ["same_function_repetition"], "affects_semantics": false, "requires_external_evidence": false, "proposed_capability": "script-engine"},
+      "routing_expectation": {"retry_count": 0, "max_retries": 1, "next": "script-engine-local-repair"}
+    },
+    {
+      "case_id": "full-dramatic-ready",
+      "review_input": {"stage_0_approved": true, "complete_draft": true, "draft_status": "draft", "review_position": "before_freeze", "content_type": "fiction"},
+      "required_lenses": ["promise", "progression", "payoff", "dramatic_tension", "audience_impact"],
+      "script_quality_review": {"mode": "full", "decision": "READY", "revision_scope": "none", "must_fix": [], "optional": [], "do_not_optimize": [{"preserved_strength": "Conflict escalates into a choice, the supported reveal changes interpretation, and the climax pays off the emotional question."}], "stop_reason": "STOP SCRIPT OPTIMIZATION"},
+      "assessment": {"source": "fixture", "verdict": "pass", "confidence": "high", "evidence": ["The obstacle strengthens, the first plan fails, a choice changes the relationship, and the setup supports the reveal and release."], "failure_types": [], "affects_semantics": false, "requires_external_evidence": false, "proposed_capability": null},
+      "routing_expectation": {"retry_count": 0, "max_retries": 1, "next": "audiovisual-director"}
+    },
+    {
+      "case_id": "full-slow-healing-ready",
+      "review_input": {"stage_0_approved": true, "complete_draft": true, "draft_status": "draft", "review_position": "before_freeze", "content_type": "fiction"},
+      "required_lenses": ["promise", "progression", "payoff", "dramatic_tension", "audience_impact"],
+      "script_quality_review": {"mode": "full", "decision": "READY", "revision_scope": "none", "must_fix": [], "optional": [{"note": "The quiet pauses could be tuned later by Audiovisual Director without changing Script semantics."}], "do_not_optimize": [{"preserved_strength": "Low action frequency preserves the healing atmosphere while expectation and relationship state keep changing."}], "stop_reason": "STOP SCRIPT OPTIMIZATION"},
+      "assessment": {"source": "fixture", "verdict": "pass", "confidence": "high", "evidence": ["Each quiet beat changes trust or expectation and the final shared action releases the established emotional gap."], "failure_types": [], "affects_semantics": false, "requires_external_evidence": false, "proposed_capability": null},
+      "routing_expectation": {"retry_count": 0, "max_retries": 1, "next": "audiovisual-director"}
+    },
+    {
+      "case_id": "full-emotional-promise-unpaid",
+      "review_input": {"stage_0_approved": true, "complete_draft": true, "draft_status": "draft", "review_position": "before_freeze", "content_type": "fiction"},
+      "required_lenses": ["promise", "progression", "payoff", "dramatic_tension", "audience_impact"],
+      "script_quality_review": {"mode": "full", "decision": "REVISE", "revision_scope": "local", "must_fix": [{"failure_type": "emotional_turn_unearned", "evidence": "Reveal and Meaning say the relationship healed, but the Turning Point contains no choice, action, or state change between the characters.", "repair_target": "Turning Point section only: ground the claimed change in one observable choice or consequence.", "owner": "script_engine"}], "optional": [], "do_not_optimize": [], "stop_reason": "The emotional promise is asserted by narration rather than caused by the Draft."},
+      "assessment": {"source": "fixture", "verdict": "retry", "confidence": "high", "evidence": ["The Turning Point leaves both characters in the same state while the ending announces reconciliation."], "failure_types": ["emotional_turn_unearned"], "affects_semantics": false, "requires_external_evidence": false, "proposed_capability": "script-engine"},
+      "routing_expectation": {"retry_count": 0, "max_retries": 1, "next": "script-engine-local-repair"}
+    },
+    {
+      "case_id": "full-optional-only-ready",
+      "review_input": {"stage_0_approved": true, "complete_draft": true, "draft_status": "draft", "review_position": "before_freeze", "content_type": "fiction"},
+      "required_lenses": ["promise", "progression", "payoff", "dramatic_tension", "audience_impact"],
+      "script_quality_review": {"mode": "full", "decision": "READY", "revision_scope": "none", "must_fix": [], "optional": [{"note": "A second twist or stronger Memory Image could be explored, but neither is required by the current promise."}], "do_not_optimize": [{"preserved_strength": "The existing reveal and emotional payoff already resolve the main question."}], "stop_reason": "STOP SCRIPT OPTIMIZATION"},
+      "assessment": {"source": "fixture", "verdict": "pass", "confidence": "high", "evidence": ["All promised story and emotional functions are already paid off; the remaining note is preference only."], "failure_types": [], "affects_semantics": false, "requires_external_evidence": false, "proposed_capability": null},
+      "routing_expectation": {"retry_count": 0, "max_retries": 1, "next": "audiovisual-director"}
+    },
+    {
+      "case_id": "full-structural-change-human",
+      "review_input": {"stage_0_approved": true, "complete_draft": true, "draft_status": "draft", "review_position": "before_freeze", "content_type": "fiction"},
+      "required_lenses": ["promise", "progression", "payoff", "dramatic_tension", "audience_impact"],
+      "script_quality_review": {"mode": "full", "decision": "REVISE", "revision_scope": "structural", "must_fix": [{"failure_type": "promise_not_paid_off", "evidence": "The approved Hook promises that the apparent betrayal will be disproved, while the locked Reveal confirms the betrayal.", "repair_target": "User must choose whether to change the approved Hook or the locked Reveal before Script Engine edits.", "owner": "human_decision"}], "optional": [], "do_not_optimize": [], "stop_reason": "Repair would change approved Stage 0 semantics."},
+      "assessment": {"source": "fixture", "verdict": "human_review", "confidence": "high", "evidence": ["Hook and Reveal semantic locks make incompatible promises."], "failure_types": ["promise_not_paid_off"], "affects_semantics": true, "requires_external_evidence": false, "proposed_capability": null},
+      "routing_expectation": {"retry_count": 0, "max_retries": 1, "next": "human_review"}
+    },
+    {
+      "case_id": "full-auto-retry-exhausted",
+      "review_input": {"stage_0_approved": true, "complete_draft": true, "draft_status": "draft", "review_position": "before_freeze", "content_type": "fiction"},
+      "required_lenses": ["promise", "progression", "payoff", "dramatic_tension", "audience_impact"],
+      "script_quality_review": {"mode": "full", "decision": "REVISE", "revision_scope": "local", "must_fix": [{"failure_type": "tension_not_escalating", "evidence": "After the one authorized local repair, Escalation still adds events without increasing obstacle, cost, information, relationship change, or choice.", "repair_target": "Stop automatic repair and request a human decision on the current Escalation.", "owner": "human_decision"}], "optional": [], "do_not_optimize": [], "stop_reason": "The single automatic local-repair budget is exhausted."},
+      "assessment": {"source": "fixture", "verdict": "retry", "confidence": "high", "evidence": ["The named Must Fix remains after one targeted local repair."], "failure_types": ["tension_not_escalating"], "affects_semantics": false, "requires_external_evidence": false, "proposed_capability": "script-engine"},
+      "routing_expectation": {"retry_count": 1, "max_retries": 1, "next": "human_review", "expected_retry_count": 1}
+    }
   ]
 }
