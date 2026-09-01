@@ -14,6 +14,16 @@ $scriptFixture = Get-Content -LiteralPath $scriptPath -Raw | ConvertFrom-Json
 $scriptCases = $scriptFixture.cases
 $scriptQualityCases = $scriptFixture.script_quality_review_cases
 
+$controllerSkill = Get-Content -LiteralPath (Join-Path $testRoot '..\workflow-controller\SKILL.md') -Raw -Encoding UTF8
+$specialistSkills = @(
+    'topic-hunter\SKILL.md',
+    'script-engine\SKILL.md',
+    'audiovisual-director\SKILL.md',
+    'video-production\SKILL.md',
+    'publishing-packaging\SKILL.md'
+)
+$pluginManifest = Get-Content -LiteralPath (Join-Path $testRoot '..\.codex-plugin\plugin.json') -Raw -Encoding UTF8 | ConvertFrom-Json
+
 Assert-True ($topicCases.Count -ge 3) 'Topic Hunter requires at least three real content directions.'
 Assert-True ($scriptCases.Count -ge 3) 'Script Engine requires at least three selected-topic scripts.'
 Assert-True ($scriptQualityCases.Count -ge 8) 'Script Quality Review Policy requires the eight minimum behavior fixtures.'
@@ -126,4 +136,22 @@ Assert-True ($emotionalCase.script_quality_review.must_fix[0].failure_type -eq '
 $exhaustedCase = $scriptQualityCases | Where-Object case_id -eq 'full-auto-retry-exhausted'
 Assert-True ($exhaustedCase.routing_expectation.next -eq 'human_review' -and $exhaustedCase.routing_expectation.expected_retry_count -eq 1) 'A failed recheck must escalate without incrementing retry history.'
 
-Write-Output "PASS: $($topicCases.Count) Topic Hunter directions, $($scriptCases.Count) Script Engine handoffs, and $($scriptQualityCases.Count) Script Quality Review cases satisfy contracts, bounded repair, and downstream boundaries."
+foreach ($requiredField in @('source_skill','task_scope','outcome','artifact_refs','review_refs','approval_state','unresolved_evidence','external_actions','recommended_next_action','controller_reobserve_required')) {
+    Assert-True ($controllerSkill -match [regex]::Escape($requiredField)) "Controller Return Envelope is missing '$requiredField'."
+}
+Assert-True ($controllerSkill -match 'Start and resume reconciliation') 'Controller must define bounded start/resume reconciliation.'
+Assert-True ($controllerSkill -match 'media-intake') 'Controller must define reported-media intake before Production QA.'
+Assert-True ($controllerSkill -match 'one owning capability and one action') 'Controller must select only one owner and action.'
+foreach ($relativePath in $specialistSkills) {
+    $skillText = Get-Content -LiteralPath (Join-Path $testRoot ('..\' + $relativePath)) -Raw -Encoding UTF8
+    Assert-True ($skillText -match '## Controller return') "$relativePath must define its return boundary."
+    Assert-True ($skillText -match 'controller_return') "$relativePath must use the shared Controller Return Envelope."
+    Assert-True ($skillText -match 'awaiting_controller_resume') "$relativePath must stop when Controller cannot be re-entered."
+    Assert-True ($skillText -match 'Stop after the envelope') "$relativePath must not progress across Skills after returning."
+}
+Assert-True ($pluginManifest.interface.defaultPrompt.Count -eq 3) 'Plugin manifest must expose exactly the three UI-supported activation prompts.'
+Assert-True ((@($pluginManifest.interface.defaultPrompt) -join "`n") -match '唯一下一步') 'Plugin manifest must expose a resume/next-action prompt.'
+Assert-True ((@($pluginManifest.interface.defaultPrompt) -join "`n") -match '新 Clip') 'Plugin manifest must expose a reported-media Review prompt.'
+Assert-True ((@($pluginManifest.interface.defaultPrompt) -join "`n") -match '上游剧本改版') 'Plugin manifest must expose a dependency-change prompt.'
+
+Write-Output "PASS: $($topicCases.Count) Topic Hunter directions, $($scriptCases.Count) Script Engine handoffs, $($scriptQualityCases.Count) Script Quality Review cases, and five Specialist Controller-return boundaries satisfy the contracts."

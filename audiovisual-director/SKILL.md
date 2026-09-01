@@ -1,6 +1,6 @@
 ---
 name: audiovisual-director
-description: Translate a frozen Topic Thesis, master script, production handoff, and optional normalized style inputs into a model-independent Audiovisual Direction Package. Use after Script Engine and before Video Production; do not generate media or model-specific prompts.
+description: Translate a frozen Topic Thesis, master script, production handoff, and newly frozen character, genre, or style semantics into a model-independent Audiovisual Direction Package, returning conflicts upstream. Use after Script Engine; do not generate media or model-specific prompts.
 ---
 
 # Audiovisual Director
@@ -38,6 +38,10 @@ Own SEE + HEAR + PERFORM. Translate frozen content semantics into a unified, mod
 - Keep BGM independent from video prompt planning.
 - Do not record actual generation state, perform production QA, retry assets, edit, mix, publish, or create a Final Master.
 - Do not split this Skill into Agents.
+
+## Controller return
+
+Use this Skill directly for a bounded ADP explanation, read-only Review, or explicitly scoped direction artifact that does not advance Stage. Any new/revised ADP, semantic conflict, or Stage 1 package must return the `controller_return` envelope defined by Workflow Controller. Include the ADP artifact/version/hash/status, semantic-lock refs, unresolved conflicts, Stage 1 approval state, external-action boundary, and one recommended next action. Stage 1 readiness returns `awaiting_user_confirmation`; conflicts return `blocked` or `human_review`. Stop after the envelope and never invoke Video Production directly. If reliable Controller re-entry is unavailable, use `awaiting_controller_resume`.
 
 ## Completion gate
 

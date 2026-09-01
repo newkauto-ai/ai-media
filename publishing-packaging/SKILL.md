@@ -1,6 +1,6 @@
 ---
 name: publishing-packaging
-description: Compile approved visual references into platform-native Cover Prompt Packages before final media, and compile completed media into local manual-upload packages plus Notion Projection Dry Runs. Use only for explicitly selected platforms; do not publish, upload, write Notion, save remote drafts, generate paid media, or treat provisional evidence as ready.
+description: Compile approved references into Cover Prompt Packages and completed media into local manual-upload packages plus Notion Projection Dry Runs, while keeping package readiness distinct from actual publication. Use only for selected platforms; do not publish, upload, write Notion, save remote drafts, or generate paid media.
 ---
 
 # Publishing & Packaging
@@ -37,3 +37,7 @@ Persist deterministic checks and any supplied evaluator projection inside `publi
 ## External action boundary
 
 Do not call platform APIs, browsers, CAPTCHA/MFA flows, remote draft endpoints, Notion, or paid image/video/audio generation. Manual UI checklists are instructions for a later user action, not authorization or evidence that the action occurred.
+
+## Controller return
+
+Use this Skill directly for one bounded Cover Prompt, platform package, validation, or local Notion dry-run task. Any project package or formal readiness result must return the `controller_return` envelope defined by Workflow Controller. Include local artifact refs/version/hash/status, selected platform scope, Review refs, unresolved evidence, and the complete external-action boundary. `READY_FOR_MANUAL_UPLOAD` is package readiness only; actual upload, publication, Notion write, and business outcome remain unperformed unless separately evidenced. Stop after the envelope and do not call an uploader, publisher, Notion writer, or another Specialist. If reliable Controller re-entry is unavailable, use `awaiting_controller_resume`.

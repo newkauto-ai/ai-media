@@ -64,5 +64,11 @@
     "unit": {"unit_id": "clip-missing-evidence", "stage": "production_qa", "required": true, "retry_count": 0, "max_retries": 2, "topic_type": "fiction", "production_risk": "medium", "semantic_locked": true},
     "assessment": {"source": "fixture", "run_id": null, "verdict": "retry", "confidence": "high", "evidence": ["A defect was reported without immutable media identity."], "failure_types": ["artifact"], "affects_semantics": false, "requires_external_evidence": false, "proposed_capability": "video-production", "repair_assessment": {"severity": "must_fix", "core_story_function_satisfied": false, "can_edit_or_reuse": false, "expected_improvement": "high", "target_revision_id": "", "media_checksum": ""}},
     "expected": {"state": "human_review", "selected_capability": null, "next_action": "request_human_decision", "retry_count": 0}
+  },
+  {
+    "name": "production-pass-records-and-returns",
+    "unit": {"unit_id": "clip-pass", "stage": "production_qa", "required": true, "retry_count": 0, "max_retries": 2, "topic_type": "fiction", "production_risk": "medium", "semantic_locked": true},
+    "assessment": {"source": "fixture", "run_id": null, "verdict": "pass", "confidence": "high", "evidence": ["The checksum-bound generated Clip passed current Production QA."], "failure_types": [], "affects_semantics": false, "requires_external_evidence": false, "proposed_capability": "video-production"},
+    "expected": {"state": "complete", "selected_capability": "video-production", "next_action": "record_actual_end_state_and_return_controller", "retry_count": 0}
   }
 ]

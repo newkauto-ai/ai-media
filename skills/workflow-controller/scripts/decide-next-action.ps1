@@ -255,7 +255,7 @@ elseif ($assessment.verdict -eq 'pass') {
         'lookdev' { $decision.selected_capability = 'video-production'; $decision.next_action = 'unlock_approved_domains_only' }
         'storyboard' { $decision.selected_capability = 'video-production'; $decision.next_action = 'advance_to_prompt_planning' }
         'pre_generation_prompt_review' { $decision.selected_capability = 'video-production'; $decision.next_action = 'request_separate_cost_gate' }
-        'production_qa' { $decision.selected_capability = 'video-production'; $decision.next_action = 'record_actual_end_state_and_advance' }
+        'production_qa' { $decision.selected_capability = 'video-production'; $decision.next_action = 'record_actual_end_state_and_return_controller' }
         default { $decision.next_action = 'advance_to_next_policy_stage' }
     }
     if ($null -eq $decision.next_action) { $decision.next_action = 'advance_to_selected_capability' }

@@ -15,7 +15,7 @@ unit:
   status: planned | evaluated | retry_scheduled | skipped | blocked | human_review | complete
 ```
 
-The controller appends a decision record with `observed_at`, evaluator source, evidence references, failure types, selected capability, next action, reason, and retry count. This is the machine state required for a loop; prose plans alone are insufficient.
+The controller appends a decision record with `observed_at`, evaluator source, evidence references, failure types, selected capability, next action, reason, and retry count. Start/resume reconciliation stays a turn-level observation and writes only its artifact checks, drift, and evidence references into this existing decision evidence; it does not create a second state object or change this contract version. This is the machine state required for a loop; prose plans alone are insufficient.
 
 `script_quality` is the existing Script Engine Freeze review unit, not a new stage. Set `max_retries: 1`: the first high-confidence, named, non-semantic local Must Fix may schedule one targeted Script Engine repair; a remaining Must Fix at `retry_count: 1`, any structural/semantic change, or low/contradictory confidence routes to `human_review` without incrementing the count. Optional-only findings must be assessed as `pass` and cannot consume retry budget. User-requested re-review/revise records its request and target revision as decision evidence but runs one round only and does not reset prior retry history.
 

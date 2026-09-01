@@ -1,14 +1,14 @@
-# Route Policy v1.1
+# Route Policy v1.2
 
 | Condition | Permitted next action |
 |---|---|
 | Topic selection passes | `script-engine` |
 | Script plan is ready | stop at `stage_1_script_architecture` and request explicit user confirmation |
-| Stage 0 confirmation is explicit and valid | `audiovisual-director` then `video-production` LookDev test package |
+| Stage 0 confirmation is explicit and valid | route one `audiovisual-director` action; re-observe its return before selecting LookDev |
 | Historical, science, or health topic requires unresolved evidence | block and route `research`; do not freeze a script |
 | Script-quality retry with a named, non-semantic failure and remaining budget | retry `script-engine` |
 | Stage 1 visual test package is ready | stop at `stage_2_visual_test` and request explicit user confirmation |
-| Stage 1 confirmation is explicit and valid | compile full production package, then project to Notion |
+| Stage 1 confirmation is explicit and valid | route one `video-production` action to compile the full production package; any Notion projection remains a separately selected action |
 | Direction pass without Stage 0 approval | block; do not emit visual DNA or image prompts |
 | Production package without Stage 1 approval | block; do not write Notion |
 | Script-quality pass | `audiovisual-director` |
@@ -27,5 +27,15 @@
 | Pre-generation Review UNKNOWN or stale hash | block for review evidence; do not consume retry budget |
 | Pre-generation WARNING/FAIL with one named non-semantic repair and budget remaining | retry only the owning Video Production unit |
 | Any semantic impact, low confidence, unknown capability, contradictory evidence, or exhausted budget | `human_review` |
+| Full workflow, resume, status, or next-step intent with project context | run one bounded reconciliation, then select one existing action |
+| User reports generated or edited media not uniquely bound in Manifest | route one `video-production` media-intake action; stop and return Controller |
+| Reported media has a unique Manifest target, revision, and checksum and awaits Review | route one `video-production` `production_qa` action |
+| User accepts or rejects media without exact target or checksum | `human_review`; request exact target binding |
+| Specialist returns a project artifact or formal Review | re-observe artifact and approval state before any advancement |
+| Claimed artifact is missing, unreadable, or has unknown schema/hash/version | block for evidence; do not consume retry budget |
+| Target or dependency hash changed | mark prior Review stale through existing lineage rules; do not consume retry budget |
+| Current Stage waits for explicit approval | stop and request the exact Stage confirmation; generic “continue” is insufficient |
+| User asks to propagate beyond the validated sample | check risk coverage, Clip-first scope, and Cost Gate; do not batch automatically |
+| Bounded specialist-only question has no stage, lineage, approval, or external-action mutation | route directly to the owning Specialist; Controller optional |
 
-This policy chooses capabilities, not hidden implementation tools. The selected Skill still validates its own input and must obey all cost and approval Gates. Stage 2 approval authorizes only the scoped Notion projection; it never grants paid media generation approval.
+This policy chooses capabilities, not hidden implementation tools. Each decision selects one owning capability and one atomic next action, then stops before another Skill, Gate, unit, or external action. The selected Skill still validates its own input and must obey all cost and approval Gates. Stage 2 approval authorizes only the scoped Notion projection; it never grants paid media generation approval.

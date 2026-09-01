@@ -1,0 +1,105 @@
+{
+  "contract_version": "1.0",
+  "cases": [
+    {
+      "case_id": "resume_consistent_project",
+      "surface_mode": "indirect",
+      "intent": "resume",
+      "project_context": true,
+      "observation": {"artifact_state": "consistent", "current_gate": "none", "target_binding": "not_applicable", "cost_scope": "not_applicable"},
+      "expected_entry": "controller",
+      "expected_route": "select_one_existing_action",
+      "expected_stop_reason": "one_action_selected"
+    },
+    {
+      "case_id": "reported_media_missing_from_manifest",
+      "surface_mode": "indirect",
+      "intent": "reported_media",
+      "project_context": true,
+      "observation": {"artifact_state": "exists", "current_gate": "none", "target_binding": "missing", "cost_scope": "not_applicable"},
+      "expected_entry": "controller",
+      "expected_route": "video-production.media_intake",
+      "expected_stop_reason": "awaiting_controller_reobserve"
+    },
+    {
+      "case_id": "claimed_frozen_script_file_missing",
+      "surface_mode": "direct",
+      "intent": "dependency_change",
+      "project_context": true,
+      "observation": {"artifact_state": "missing", "current_gate": "none", "target_binding": "not_applicable", "cost_scope": "not_applicable"},
+      "expected_entry": "controller",
+      "expected_route": "block_for_evidence",
+      "expected_stop_reason": "artifact_missing"
+    },
+    {
+      "case_id": "script_hash_changed_prompt_review_stale",
+      "surface_mode": "indirect",
+      "intent": "dependency_change",
+      "project_context": true,
+      "observation": {"artifact_state": "hash_mismatch", "current_gate": "none", "target_binding": "unique", "cost_scope": "not_applicable"},
+      "expected_entry": "controller",
+      "expected_route": "block_for_current_review",
+      "expected_stop_reason": "stale_review_no_retry"
+    },
+    {
+      "case_id": "stage0_waiting_user_says_continue",
+      "surface_mode": "indirect",
+      "intent": "continue",
+      "project_context": true,
+      "observation": {"artifact_state": "consistent", "current_gate": "stage_0_waiting", "target_binding": "not_applicable", "cost_scope": "not_applicable"},
+      "expected_entry": "controller",
+      "expected_route": "request_exact_stage_confirmation",
+      "expected_stop_reason": "generic_continue_is_not_approval"
+    },
+    {
+      "case_id": "stage0_exact_approval",
+      "surface_mode": "direct",
+      "intent": "stage_confirmation",
+      "project_context": true,
+      "observation": {"artifact_state": "consistent", "current_gate": "stage_0_waiting", "target_binding": "not_applicable", "cost_scope": "not_applicable"},
+      "expected_entry": "controller",
+      "expected_route": "audiovisual-director",
+      "expected_stop_reason": "one_owner_selected"
+    },
+    {
+      "case_id": "accepted_media_target_ambiguous",
+      "surface_mode": "indirect",
+      "intent": "media_acceptance",
+      "project_context": true,
+      "observation": {"artifact_state": "exists", "current_gate": "none", "target_binding": "ambiguous", "cost_scope": "not_applicable"},
+      "expected_entry": "controller",
+      "expected_route": "human_review",
+      "expected_stop_reason": "request_exact_target_binding"
+    },
+    {
+      "case_id": "propagate_all_clips_no_cost_scope",
+      "surface_mode": "indirect",
+      "intent": "propagate",
+      "project_context": true,
+      "observation": {"artifact_state": "consistent", "current_gate": "none", "target_binding": "unique", "cost_scope": "missing"},
+      "expected_entry": "controller",
+      "expected_route": "maintain_clip_first_and_cost_gate",
+      "expected_stop_reason": "no_automatic_batch"
+    },
+    {
+      "case_id": "simple_contract_question",
+      "surface_mode": "negative",
+      "intent": "specialist_question",
+      "project_context": false,
+      "observation": {"artifact_state": "not_applicable", "current_gate": "none", "target_binding": "not_applicable", "cost_scope": "not_applicable"},
+      "expected_entry": "specialist_direct",
+      "expected_route": "answer_bounded_question",
+      "expected_stop_reason": "no_project_mutation"
+    },
+    {
+      "case_id": "user_stop",
+      "surface_mode": "negative",
+      "intent": "stop",
+      "project_context": true,
+      "observation": {"artifact_state": "unknown", "current_gate": "none", "target_binding": "not_applicable", "cost_scope": "not_applicable"},
+      "expected_entry": "stop",
+      "expected_route": "no_action",
+      "expected_stop_reason": "user_stop"
+    }
+  ]
+}

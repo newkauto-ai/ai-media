@@ -1,6 +1,6 @@
 ---
 name: script-engine
-description: Convert an approved Topic Thesis Card into a frozen 60-90 second short-video master script and a Skill 3 production handoff. Use after topic selection; do not use for full storyboards, model prompts, or media generation.
+description: Draft, review, revise, and freeze a 60-90 second short-video master script from an approved Topic Thesis Card, then prepare a Skill 3 handoff. Use for bounded narrative Script work; do not use for full storyboards, model prompts, or media generation.
 ---
 
 # Script Engine
@@ -72,6 +72,10 @@ An explicit user request may reopen one read-only Review, one focused Review usi
 - Visual beat count in the manifest is only an estimated production envelope. Skill 3 owns Audiovisual Beat design.
 - `story_change_arc` is Script authority. Script Engine alone freezes `pivotal_change`, motive, choice, resulting action, and semantic locks; downstream Skills may only reference the frozen arc or return a proposal/缺口.
 - Platform adaptation here is a low-cost legacy/provisional handoff only: title, caption, tags, and an existing-frame cover hint. When Publishing & Packaging v1.1 is available, Skill 5 is the final authority for platform copy, actual cover assets, publish windows, compliance projection, and Package readiness. Do not create a separate Xiaohongshu edit.
+
+## Controller return
+
+Use this Skill directly for a bounded Script explanation, read-only Review, or explicitly scoped Draft/revision that does not itself advance the project. Any Stage 0 package, frozen Script, formal Script Quality Review, version change, or downstream-lineage impact must return the `controller_return` envelope defined by Workflow Controller. Include the Script artifact/version/hash/status, Review refs, Stage 0 evidence, unresolved conflicts, external-action boundary, and one recommended next action. A Stage 0 proposal returns `awaiting_user_confirmation`; a semantic or structural conflict returns `human_review`; a completed frozen Script still requires Controller re-observation. Stop after the envelope and never invoke Audiovisual Director directly. If reliable Controller re-entry is unavailable, use `awaiting_controller_resume`.
 
 ## Freeze gate
 

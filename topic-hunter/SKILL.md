@@ -36,6 +36,10 @@ Turn one content direction into a forced Top 3 decision and a single recommended
 - Do not change score weights from fewer than five valid published samples.
 - Style constraints may filter compatibility, but may not silently replace the Content Thesis.
 
+## Controller return
+
+Use this Skill directly for bounded topic generation, comparison, or explanation. When it creates or selects a project Topic Thesis, return the `controller_return` envelope defined by Workflow Controller with the Topic Thesis artifact/ref, evidence gaps, approval state, external-action boundary, and one recommended next action. Use `awaiting_user_confirmation` until the topic is explicitly approved. Stop after the envelope: do not call Script Engine or cross Stage 0 unless Controller has re-observed the artifact and selected that action. If Controller cannot be re-entered reliably, use `awaiting_controller_resume`.
+
 ## Quality gate
 
 Before delivery, verify that every Top 3 entry has all Topic Thesis fields, a score arithmetic check, click trigger, production difficulty, long-form extension, and recommendation. The Top 1 must be unambiguous.

@@ -1,6 +1,6 @@
 ---
 name: video-production
-description: Compile an approved Audiovisual Direction Package into gated, clip-first visual and audio production plans, executable prompts, continuity records, and targeted QA/retry decisions. Use only after Skill 3; do not treat local fixtures as generated media or human approval.
+description: Compile an approved Audiovisual Direction Package into gated, clip-first plans and prompts; intake or review real generated Clips, record observed continuity, and route one targeted edit, reuse, retry, or human decision. Use only after Skill 3; do not treat fixtures as media or approval.
 ---
 
 # Video Production
@@ -49,6 +49,10 @@ Read [input contract](contracts/input-contract.md) and [production manifest](con
 - A fixture, local compiler output, or AI QA cannot satisfy human approval or prove media quality.
 - Review Result eligibility is not paid-generation approval. A Review fixture cannot recommend entry to the real Cost Gate, and a target/dependency hash change invalidates its prior decision.
 - Before any credit-consuming image, video, voice, SFX, or BGM request, present the exact minimum asset set, model, quantity, estimated cost, stopping condition, and obtain explicit user approval. Provider connection approval is not generation approval.
+
+## Controller return
+
+Use this Skill directly for one bounded Prompt, media-intake, real-media QA, continuity, audio, or packaging subtask selected within existing Gates. Any Manifest/Prompt/Review/media/QA/Continuity change must return the `controller_return` envelope defined by Workflow Controller. Include exact artifact refs and SHA-256 where observed, Review/Continuity refs, approval state, unresolved evidence, external-action boundary, and one recommended next action. Report new media as planned versus observed; intake must bind target/revision/checksum without creating `actual_end_state`, QA PASS, human approval, or selected-media status. Production QA may recommend exactly one of accept/stop, edit/reuse, separate regeneration Cost Gate, or human decision. Stop after the envelope and never generate the next Clip or invoke another Specialist. If reliable Controller re-entry is unavailable, use `awaiting_controller_resume`.
 
 ## References
 
