@@ -62,6 +62,10 @@ try {
     Assert-True ($overBudget.actual_result -eq 'blocked' -and $overBudget.feasibility_gate.failures -contains 'semantic_preflight_invalid_or_over_budget') 'Semantic evidence plus summary over 250 characters must be rejected.'
     $semanticImpact = $result.cases | Where-Object { $_.case_id -eq 'semantic-impact-routes-human' } | Select-Object -First 1
     Assert-True ($semanticImpact.actual_result -eq 'needs_human_review' -and $semanticImpact.executable_prompt -eq $null) 'A semantic-impacting proposal must route to human review even when an evaluator labels it passed.'
+    $durationRisk = $result.cases | Where-Object { $_.case_id -eq 'duration-legibility-risk' } | Select-Object -First 1
+    Assert-True ($durationRisk.actual_result -eq 'blocked' -and $durationRisk.feasibility_gate.failures -contains 'timing_failure') 'Duration Fit must map declared legibility risk through existing timing_failure without action counting or auto-splitting.'
+    $durationPass = $result.cases | Where-Object { $_.case_id -eq 'duration-complex-but-coherent' } | Select-Object -First 1
+    Assert-True ($durationPass.actual_result -eq 'passed') 'Complex but coherent duration evidence must remain one PASS rather than action-count failure.'
 
     Write-Output 'PASS: Video Prompt Feasibility v1.1 validates deterministic-first routing, bounded semantic preflight, common-sense blocking, unknown withholding, complex actions, six-module output, and no semantic keyword gate.'
 }

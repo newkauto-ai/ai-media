@@ -18,6 +18,17 @@ Each Panel records its ID, Script/ADP/Scene/Clip refs, time range, narrative fun
 
 Compile one Contact Sheet first with [the Storyboard template](../templates/storyboard-contact-sheet-prompt.md). It must preserve reading order and identity/spatial anchors, simplify detail, exclude provider syntax, and stop after one sheet. A local compiler or Fixture never calls a provider.
 
+### Project anchors assembly
+
+Compile the existing `Project anchors / CONSISTENCY_ANCHORS` in this order:
+
+1. Preserve the selected Panels' applicable identity, spatial, prop, screen-direction, and continuity anchors first.
+2. Then append only the non-duplicative, cross-Panel Story Direction anchors that reduce a named Storyboard risk: `Dramatic task`, `Visual progression`, `Emotional progression`, and/or `Interpretation guardrails`. These are optional (`0–4`), not required slots.
+
+Derive a `Dramatic task` only by compacting the frozen Script, ADP semantic locks, and assigned story functions; do not rewrite Hook, Reveal, conclusion, facts, motives, or choices. A referenced Topic Thesis may assist checking when already available, but its absence neither blocks planning nor creates a new input requirement. Derive `Visual progression` only from the selected Beats' observable visual/material/spatial state and `expected_end_state`; do not create a parallel state in the Style Blueprint. Derive `Emotional progression` only from existing Beat performance or approved performance plans; ordinary action is not evidence of an invented motivation, hesitation, choice, or psychological turn. Collect `Interpretation guardrails` only for real, current cross-Panel misreading risks, not a generic negative-prompt list.
+
+Omit any direction anchor with no reliable upstream evidence, no cross-Panel value, or content already covered by a consistency anchor. Keep Panel-specific constraints in that Panel's existing continuity notes, visual event, action/expression, or lighting/mood; never elevate them into Project anchors or copy them to other Panels. Source conflict, semantic ambiguity, or a needed story change routes upstream or to human review rather than being repaired in Storyboard. Keep this as concise natural language, not a schema or fixed template.
+
 Only a Review with a named `must_fix`, evidence, Panel ID, repair target, and owner may request a Single Panel repair. Preserve every non-target Panel by reference. A real Contact Sheet or repair call always requires a separate Cost Gate.
 
 ## Evidence and Review

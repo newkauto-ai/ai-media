@@ -592,6 +592,36 @@
       "classification": "pure_visual_style",
       "status": "pending_review",
       "provenance_verified": true
+    },
+    {
+      "profile_id": "miniature_kitchen_cooking",
+      "source_file": "Style_Profile_迷你厨房烹饪_v1.0_中文解析.md",
+      "source_sha256": "AF435E1162A7503A0BE7C15E78E6EADE798EE9D6A0FA2D2EC218C2550EFA9F4A",
+      "normalized_file": "miniature_kitchen_cooking.v1.0-zh.json",
+      "normalized_version": "v1.0-zh",
+      "classification": "audiovisual_style_profile",
+      "status": "ready",
+      "provenance_verified": true
+    },
+    {
+      "profile_id": "cardboard_make_anything",
+      "source_file": "Style_Profile_纸板制作任意物品_v1.0_中文解析.md",
+      "source_sha256": "6BEAAAEF97A94487148372500ED5C66BC33310E5C9E8462127FE286BC2032FFC",
+      "normalized_file": "cardboard_make_anything.v1.0-zh.json",
+      "normalized_version": "v1.0-zh",
+      "classification": "audiovisual_style_profile",
+      "status": "ready",
+      "provenance_verified": true
+    },
+    {
+      "profile_id": "female_dance_beat_outfit_transition",
+      "source_file": "Style_Profile_美女跳舞卡点变装_v1.0_中文解析.md",
+      "source_sha256": "8C581A843668F306CAB45FBFB83162AD4DAD898513998C141C439FE05571BCD9",
+      "normalized_file": "female_dance_beat_outfit_transition.v1.0-zh.json",
+      "normalized_version": "v1.0-zh",
+      "classification": "audiovisual_style_profile",
+      "status": "ready",
+      "provenance_verified": true
     }
   ]
 }

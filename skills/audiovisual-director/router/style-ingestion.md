@@ -32,3 +32,15 @@ mixed
 A normalized Style Profile should separate `pre_content_modules`, `audiovisual_modules`, and `production_modules`. Preserve source file/version and label extraction as `direct`, `normalized`, or `inferred_structure_only`.
 
 Do not treat examples as Canon. Do not invent missing source rules. Missing fields stay `null`; a current-video recommendation must be labeled `runtime_recommended`.
+
+## Viral Feed named-style resolution
+
+For `workflow_mode: external_prompt_only`, resolve these exact user-visible names before the existing Style Profile selection step:
+
+| Exact user-visible name | Registry profile ID |
+| --- | --- |
+| `迷你厨房烹饪` | `miniature_kitchen_cooking` |
+| `纸板制作任意物品` | `cardboard_make_anything` |
+| `美女跳舞卡点变装` | `female_dance_beat_outfit_transition` |
+
+The match is exact and maps to one profile only. Bind it through the existing `selected_style_profiles` field as exactly one `{id, registry_status: ready}` value. Do not add a routing field, family identifier, tag, or parent Profile. If the name is not exact, resolves to more than one profile, or the registry entry is not `ready`, do not guess: return the existing style-confirmation or missing-content route. Do not auto-stack a second Profile. The selected Profile may supply only its normalized required inputs, compatibility, visible state change, payoff, composition, material/subject locks, physical progression, continuity, sound direction, failure constraints, and replaceable production modules; current Adapter facts remain authoritative for model and execution parameters.

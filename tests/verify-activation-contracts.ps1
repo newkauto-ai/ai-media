@@ -39,9 +39,11 @@ foreach ($case in $fixture.cases) {
 
 Assert-True ((@($fixture.cases.case_id | Sort-Object) -join ',') -eq (@($requiredIds | Sort-Object) -join ',')) 'Activation fixture IDs do not match the frozen minimum set.'
 Assert-True ($routePolicy -match 'media-intake') 'Route Policy must cover unbound reported media intake.'
+Assert-True ($routePolicy -match 'Video Adapter intake' -and $routePolicy -match 'platform/access route' -and $routePolicy -match 'native-audio strategy') 'Route Policy must request the minimum Video Adapter facts at project start.'
 Assert-True ($routePolicy -match 'generic “continue” is insufficient') 'Route Policy must preserve explicit Stage confirmation.'
 Assert-True ($routePolicy -match 'do not batch automatically') 'Route Policy must preserve Clip-first and Cost Gate boundaries.'
 Assert-True ($controllerSkill -match 'Natural-language intent is sufficient') 'Controller activation must support indirect natural-language entry.'
+Assert-True ($controllerSkill -match 'before creative-stage routing' -and $controllerSkill -match 'exact model/version' -and $controllerSkill -match 'target resolution') 'Controller must resolve Video Adapter identity and output requirements before creative-stage routing.'
 Assert-True ($controllerSkill -match 'It is not a second persistent state source') 'Reconciliation must not create a second state owner.'
 Assert-True ($controllerSkill -match 'must not create `actual_end_state`') 'Reported-media intake must not manufacture selected continuity state.'
 

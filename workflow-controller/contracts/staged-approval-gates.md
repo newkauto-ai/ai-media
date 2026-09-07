@@ -4,6 +4,10 @@ The AI-media workflow is human-gated in three stages. A stage is not complete be
 downstream artifact exists; it is complete only when the user gives an explicit approval for
 that stage.
 
+## External Prompt Fast Path exception
+
+`workflow_mode: external_prompt_only` is not an abbreviated managed-production run. It has exactly one Gate: an explicit S1–S4 strategy selection, unless the user already supplied that strategy. It outputs only a local, copy-ready manual-use Prompt Package and may end at `prompt_ready_for_external_use` after one bounded `pre_generation_prompt` check. It must not create a production Manifest, require Script Architecture or the three Visual Tests, enter Full Production, write Notion, request a Cost Gate, call a provider, or claim generated/reviewed media. All three stages below remain mandatory and unchanged for managed production.
+
 ## Stage 0 — Script architecture review
 
 When the script plan is ready, output only these review modules, in this order:

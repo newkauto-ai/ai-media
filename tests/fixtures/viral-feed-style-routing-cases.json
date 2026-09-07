@@ -1,0 +1,9 @@
+{
+  "contract_version": "1.0",
+  "cases": [
+    {"visible_name": "迷你厨房烹饪", "profile_id": "miniature_kitchen_cooking", "must_not_contain": ["corrugated", "candidate_stickers"], "adapter": {"model_id": "runtime-model", "duration_seconds": 11, "aspect_ratio": "9:16"}},
+    {"visible_name": "纸板制作任意物品", "profile_id": "cardboard_make_anything", "must_not_contain": ["miniature_food", "candidate_stickers"], "adapter": {"model_id": "runtime-model", "duration_seconds": 11, "aspect_ratio": "9:16"}},
+    {"visible_name": "美女跳舞卡点变装", "profile_id": "female_dance_beat_outfit_transition", "must_not_contain": ["corrugated", "miniature_food"], "adapter": {"model_id": "runtime-model", "duration_seconds": 11, "aspect_ratio": "9:16"}}
+  ],
+  "negative_cases": ["迷你厨房", "未知类型"]
+}

@@ -1,0 +1,14 @@
+{
+  "fixture_only": false,
+  "library_status": "ready",
+  "normalized_from_source": "Style_Profile_迷你厨房烹饪_v1.0_中文解析.md",
+  "style_profile": {
+    "style_id": "miniature_kitchen_cooking",
+    "version": "v1.0-zh",
+    "classification": "audiovisual_style_profile",
+    "pre_content_modules": {"required_inputs": ["dish", "ingredients_or_recipe_scope"], "compatibility": "miniature_food_process_with_visible_causality"},
+    "audiovisual_modules": {"visible_initial_state": "uncooked_or_unassembled_miniature_food", "necessary_state_change": "ingredient_to_prepared_cooked_and_plated_food", "ending_payoff": "finished_dish_hero_view", "composition": "stable_scale_contrast_of_hands_food_and_tools", "continuity": "hands_tools_scale_lighting_and_food_progress", "sound_direction": "synchronized_cooking_asmr_when_supported", "failure_constraints": ["no_teleporting_cooked_food", "no_hand_or_scale_drift", "no_unsynchronized_action_sound"]},
+    "production_modules": {"adapter_reference": "replaceable", "prompt_compiler": "existing_owner", "fixed_duration": null, "fixed_resolution": null},
+    "provenance": {"source_documents": [{"file": "D:/文档/AI视频项目/Viral Feed Video/迷你厨房烹饪/迷你厨房烹饪 Skill.md", "extraction_type": "direct_and_normalized"}, {"file": "Style_Profile_迷你厨房烹饪_v1.0_中文解析.md", "version": "v1.0-zh", "sha256": "AF435E1162A7503A0BE7C15E78E6EADE798EE9D6A0FA2D2EC218C2550EFA9F4A", "extraction_type": "source_profile"}, {"file": "D:/文档/AI视频项目/Viral Feed Video/迷你厨房烹饪/迷你厨房烹饪.mp4", "evidence_type": "observed_video", "duration_seconds": 10.773}], "extracted_modules": [{"module": "visible_process_and_continuity", "method": "normalized"}, {"module": "model_duration_and_approval_flow", "method": "direct", "routed_to": "replaceable_production_modules"}], "source_sha256": "AF435E1162A7503A0BE7C15E78E6EADE798EE9D6A0FA2D2EC218C2550EFA9F4A"}
+  }
+}

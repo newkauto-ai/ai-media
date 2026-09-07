@@ -17,8 +17,14 @@ function Get-TemplateModuleCount {
 $root = Split-Path -Parent $PSScriptRoot
 $clipCompilerPolicy = Get-Content -Raw -LiteralPath (Join-Path $root 'video-production\modules\clip-prompt-compiler.md') -Encoding UTF8
 $clipTemplatePolicy = Get-Content -Raw -LiteralPath (Join-Path $root 'video-production\templates\video-clip-prompt.md') -Encoding UTF8
+$videoAdapterPolicy = Get-Content -Raw -LiteralPath (Join-Path $root 'video-production\adapters\video-adapter.md') -Encoding UTF8
+$videoProductionSkill = Get-Content -Raw -LiteralPath (Join-Path $root 'video-production\SKILL.md') -Encoding UTF8
 Assert-True ($clipCompilerPolicy -match 'exact project page ID' -and $clipCompilerPolicy -match '已接受片段' -and $clipCompilerPolicy -match '正文另见') 'Notion projection must require exact project isolation and reject status/placeholder Video Prompt text.'
 Assert-True ($clipTemplatePolicy -match 'copy-ready external prompt' -and $clipTemplatePolicy -match 'Clip Brief') 'Video Clip template must identify copy-ready output and reject placeholder prompts.'
+Assert-True ($videoAdapterPolicy -match 'At project start' -and $videoAdapterPolicy -match 'provider or platform and access route' -and $videoAdapterPolicy -match 'target resolution') 'Video Adapter must capture execution-surface identity and output facts at project start.'
+Assert-True ($videoAdapterPolicy -match 'prefer native locked dialogue' -and $videoAdapterPolicy -match 'approved per-character samples' -and $videoAdapterPolicy -match 'voice continuity') 'Native-audio policy must prefer low-post dialogue when supported and retain reference plus QA safeguards.'
+Assert-True ($videoProductionSkill -match 'prioritizes less post-production' -and $clipCompilerPolicy -match 'failed audio routes to independent replacement') 'Video Production must not default supported native audio to silence or regenerate passing video for an isolated audio failure.'
+Assert-True ($clipCompilerPolicy -match 'seedance_prompt_package' -and $clipCompilerPolicy -match 'timestamp_edit' -and $clipCompilerPolicy -match 'prompt_ready_for_external_use') 'Fast Path must compile a bounded external prompt package and preserve its non-generation terminal.'
 $fixturePath = Join-Path $root 'tests\fixtures\audiovisual-director-xiyouji.fixture.json'
 $currentFixturePath = Join-Path $root 'tests\fixtures\audiovisual-director-v1.2-minimal.fixture.json'
 $compilerPath = Join-Path $root 'video-production\scripts\compile-production-fixture.ps1'

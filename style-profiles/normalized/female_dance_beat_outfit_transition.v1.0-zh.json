@@ -1,0 +1,14 @@
+{
+  "fixture_only": false,
+  "library_status": "ready",
+  "normalized_from_source": "Style_Profile_美女跳舞卡点变装_v1.0_中文解析.md",
+  "style_profile": {
+    "style_id": "female_dance_beat_outfit_transition",
+    "version": "v1.0-zh",
+    "classification": "audiovisual_style_profile",
+    "pre_content_modules": {"required_inputs": ["adult_identity_anchor", "initial_outfit", "candidate_outfits"], "compatibility": "single_adult_subject_with_candidate_driven_outfit_transitions"},
+    "audiovisual_modules": {"visible_initial_state": "one_center_subject_with_initial_outfit_and_candidate_stickers", "necessary_state_change": "each_selected_candidate_merges_and_changes_center_outfit", "ending_payoff": "final_outfit_with_continuous_motion", "composition": "one_large_center_subject_and_smaller_complete_candidate_stickers", "identity_lock": "same_adult_face_age_appearance_hair_body_and_accessory_anchors", "continuity": "one_center_subject_with_continuous_pose_motion_hair_and_cloth_physics", "sound_direction": "beat_click_flyin_and_cloth_foley_when_supported", "failure_constraints": ["no_second_center_subject", "no_reused_candidate_sticker", "no_identity_or_pose_reset"]},
+    "production_modules": {"adapter_reference": "replaceable", "prompt_compiler": "existing_owner", "candidate_count_drives_transitions": true, "fixed_duration": null},
+    "provenance": {"source_documents": [{"file": "D:/文档/AI视频项目/Viral Feed Video/美女跳舞卡点变装/skill.md", "extraction_type": "direct_and_normalized"}, {"file": "Style_Profile_美女跳舞卡点变装_v1.0_中文解析.md", "version": "v1.0-zh", "sha256": "8C581A843668F306CAB45FBFB83162AD4DAD898513998C141C439FE05571BCD9", "extraction_type": "source_profile"}, {"file": "D:/文档/AI视频项目/Viral Feed Video/美女跳舞卡点变装/美女跳舞卡点变装.mp4", "evidence_type": "observed_video", "duration_seconds": 13.955}], "extracted_modules": [{"module": "identity_transition_and_continuity", "method": "normalized"}, {"module": "seven_person_layout_fixed_timing_and_dialogue", "method": "direct", "routed_to": "replaceable_production_modules"}], "source_sha256": "8C581A843668F306CAB45FBFB83162AD4DAD898513998C141C439FE05571BCD9"}
+  }
+}

@@ -191,6 +191,38 @@
           "evaluator_result": {"source": "llm", "run_id": "fixture-semantic-human-1", "status": "passed", "confidence": "high", "evidence": ["The proposed repair changes the frozen character decision."], "failures": [], "repair_targets": ["script.story_change_arc"], "affects_semantics": true, "summary": "HUMAN_REVIEW"}
         }
       }
+    },
+    {
+      "case_id": "duration-legibility-risk",
+      "expected_result": "blocked",
+      "input": {
+        "clip_id": "C17",
+        "continuity": {"predecessor_clip_id": null, "source_state_type": "first_clip", "state_record_id": null, "ledger": []},
+        "timeline": [{"start_seconds": 0.0, "end_seconds": 29.0}],
+        "body_resource_timeline": [], "prop_state_transitions": [],
+        "scene": {"clip_ids": ["C17"], "coverage_required": false, "coverage_bindings": []},
+        "semantic_preflight": {
+          "input_character_limit": 1200, "output_character_limit": 250, "max_findings": 3,
+          "risk_packet": {"clip_id": "C17", "scene": "kitchen", "start_state": "cake chills in mold", "timeline": [{"start_seconds": 0.0, "end_seconds": 29.0, "action": "remove, slice, and show final texture"}], "end_state": "clean sliced cake holds for payoff", "characters_involved": [], "props_and_state_changes": [], "metaphorical_clauses": [], "duration_fit": {"current_duration_seconds": 29, "visible_state_changes": ["cold cake leaves mold", "slice separates cleanly", "final texture is held"], "ending_hold": "final slice remains readable", "adapter_duration_evidence": null}},
+          "evaluator_result": {"source": "llm", "run_id": "fixture-duration-risk-1", "status": "passed", "confidence": "high", "evidence": ["At the declared 29 seconds, the chilled release, clean cut, and ending texture hold cannot all be made legible without rushing."], "failures": [], "repair_targets": [], "affects_semantics": false, "duration_fit_status": "blocked", "summary": "duration_legibility_risk"}
+        }
+      }
+    },
+    {
+      "case_id": "duration-complex-but-coherent",
+      "expected_result": "passed",
+      "input": {
+        "clip_id": "C18",
+        "continuity": {"predecessor_clip_id": null, "source_state_type": "first_clip", "state_record_id": null, "ledger": []},
+        "timeline": [{"start_seconds": 0.0, "end_seconds": 18.0}],
+        "body_resource_timeline": [], "prop_state_transitions": [],
+        "scene": {"clip_ids": ["C18"], "coverage_required": false, "coverage_bindings": []},
+        "semantic_preflight": {
+          "input_character_limit": 1200, "output_character_limit": 250, "max_findings": 3,
+          "risk_packet": {"clip_id": "C18", "scene": "single kitchen counter", "start_state": "prepared cake on tray", "timeline": [{"start_seconds": 0.0, "end_seconds": 18.0, "action": "one continuous reveal and slice"}], "end_state": "one clean slice holds in frame", "characters_involved": [], "props_and_state_changes": [], "metaphorical_clauses": [], "duration_fit": {"current_duration_seconds": 18, "visible_state_changes": ["slice separates", "texture is revealed"], "ending_hold": "one stable final slice", "adapter_duration_evidence": "current duration selected on observed surface"}},
+          "evaluator_result": {"source": "human", "run_id": "fixture-duration-pass-1", "status": "passed", "confidence": "high", "evidence": ["The single continuous counter action preserves causal order and leaves a readable final hold."], "failures": [], "repair_targets": [], "affects_semantics": false, "duration_fit_status": "passed", "summary": "PASS"}
+        }
+      }
     }
   ]
 }

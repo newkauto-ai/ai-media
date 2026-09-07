@@ -28,6 +28,16 @@ Turn an approved Topic Thesis into a high-retention master script, then freeze t
 9. Produce the lightweight Production Handoff Manifest. It constrains scale; it does not create scenes, shots, storyboards, audiovisual beats, or model prompts.
 10. Pass the approved frozen handoff to Audiovisual Director. Do not advance the workflow merely because the script artifact is technically complete; the Stage 0 approval record and READY review are mandatory.
 
+## Short-form legibility
+
+The theme may be deep, but the audience-facing conflict and causality must be explicit enough to understand on first viewing.
+
+- For every major conflict, turn, Reveal, and payoff, make the audience directly see or hear the `trigger -> immediate reaction -> choice/action -> visible result` chain.
+- Use the strongest suitable combination of action, facial expression, concise dialogue, and prop or situation state change. Do not make a pivotal causal link depend on stacked glances, a subtly moved object, an unstated motive, or other weak cues that only become meaningful after explanation.
+- If a causal link is still unclear without explanatory prose, replace it with a direct observable action or line. Route a genuinely unresolved semantic choice to human decision instead of hiding the gap in performance or camera direction.
+- Camera language serves clarity: show cause, reaction, and consequence at readable shot scales; change shot scale or viewpoint at motivated action/reaction turns; avoid long static fixed coverage and unmotivated decorative cutting.
+- Do not add dialogue merely to repeat an action that is already clear. Dialogue should clarify intent, conflict, choice, or reversal that the image alone cannot convey efficiently.
+
 ## Script Quality Review Policy
 
 Run this policy automatically once for each new complete Draft after Stage 0 approval and before Freeze. Do not run it on an outline, an unchanged frozen Script, or a downstream visual, Prompt, media, or packaging issue. Read only the current Topic Thesis, selected Hook, Draft sections/full text, semantic locks, and existing `story_change_arc` entries.
@@ -38,6 +48,8 @@ Select one review mode, not a new stage or evaluator:
 - `full` only when the content promise genuinely depends on character goals and obstacles, relationship or emotional change, a key choice, Reveal, Setup/Payoff, suspense, story, or emotional experience. In mixed content, apply Full lenses only to narrative sections; visual complexity or generation cost never selects Full.
 
 For both modes, identify the opening promise, test whether each major section contributes new information or a real state change, and verify that the ending pays off the established question. Treat surface-varied events with no change in obstacle, information, relationship, choice, or audience judgment as `same_function_repetition`. A temporary function/state-change breakdown may support a finding but must not be persisted as a Beat Map.
+
+In either mode, an essential cause, turn, or payoff that depends on stacked implicit cues instead of an observable causal chain is not presentation polish. Diagnose it with the closest existing failure type, usually `progression_missing`, `causal_payoff_gap`, `emotional_turn_unearned`, or `critical_dialogue_dependency`; do not create a new taxonomy.
 
 For `full`, additionally check:
 

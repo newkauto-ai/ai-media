@@ -42,6 +42,7 @@ video_prompt_spec:
       characters_involved: [string]
       props_and_state_changes: [object]
       metaphorical_clauses: [string]
+      duration_fit: {current_duration_seconds: number | null, visible_state_changes: [string], ending_hold: string | null, adapter_duration_evidence: string | null}
     evaluator_result:
       source: llm | human
       run_id: string | null
@@ -88,6 +89,7 @@ The semantic preflight checks only:
 - setting/prop compatibility and a complete prop lifecycle;
 - visible action causality from start state through end state;
 - metaphor, anthropomorphism, or symbolic language that could be literalized into an implausible image.
+- Duration Fit: whether the declared current duration makes each required visible state transition and ending hold legible. This is a story-function finding, not action counting, a fixed-seconds rule, or an automatic split instruction. `duration_legibility_risk` maps through the existing `timing_failure` meaning; absent current duration or Adapter duration capability evidence remains `unknown` only for the affected conclusion.
 
 A high-confidence `blocked` result must cite observable evidence, a named failure, and a repair target. One targeted repair and one recheck are allowed only when `affects_semantics=false`; otherwise route to human review. Missing, low-confidence, contradictory, `unknown`, or `needs_human_review` results cannot produce a copy-ready prompt. A Fixture may test routing with declared evaluator data, but it never proves that a real semantic evaluation occurred.
 

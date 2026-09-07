@@ -153,6 +153,54 @@ $decision = [ordered]@{
     reason = $null
 }
 
+$externalResultProperty = $inputState.PSObject.Properties['external_result_review']
+$externalResult = if ($null -ne $externalResultProperty) { $externalResultProperty.Value } else { $null }
+if ([string]$unit.stage -eq 'external_result_review') {
+    if ($null -eq $externalResult) { throw 'external_result_review is required for unit.stage=external_result_review.' }
+    foreach ($field in @('media_checksum', 'technical_spec_read', 'binding_status', 'finding_scope')) {
+        if ($null -eq $externalResult.PSObject.Properties[$field] -or $null -eq $externalResult.$field) { throw "external_result_review.$field is required." }
+    }
+    if ([string]::IsNullOrWhiteSpace([string]$externalResult.media_checksum) -or -not [bool]$externalResult.technical_spec_read) {
+        $decision.state = 'blocked'
+        $decision.selected_capability = 'video-production'
+        $decision.next_action = 'collect_technical_evidence'
+        $decision.reason = 'External Result Review must re-read final media checksum and technical specification.'
+    }
+    elseif ([string]$externalResult.binding_status -ne 'confirmed_external_prompt') {
+        $decision.state = 'blocked'
+        $decision.selected_capability = 'video-production'
+        $decision.next_action = 'technical_only_request_binding'
+        $decision.reason = 'Unconfirmed or contradictory Fast Path attribution permits technical checks only.'
+    }
+    else {
+        switch ([string]$externalResult.finding_scope) {
+            'no_issue' {
+                $decision.state = 'complete'; $decision.selected_capability = 'video-production'; $decision.next_action = 'accept_current_stop_optimizing'
+                $decision.reason = 'Bound external review found the required story function intact with no actionable finding.'
+            }
+            'local' {
+                $decision.state = 'complete'; $decision.selected_capability = 'video-production'; $decision.next_action = 'edit_or_reuse_failed_unit'
+                $decision.reason = 'One evidence-backed local failure can be addressed without claiming a managed retry.'
+            }
+            'global' {
+                $decision.state = 'complete'; $decision.selected_capability = 'video-production'; $decision.next_action = 'request_new_master_take_prompt'
+                $decision.reason = 'Global identity, space, output, or core-story failure has no reliable local repair.'
+            }
+            'unknown' {
+                $decision.state = 'human_review'; $decision.next_action = 'request_human_decision'
+                $decision.reason = 'External semantic evidence is missing, contradictory, or out of scope.'
+            }
+            default { throw 'external_result_review.finding_scope is invalid.' }
+        }
+    }
+    $result = [ordered]@{ decision_contract_version = '1.0'; decision = [pscustomobject]$decision }
+    $outputParent = Split-Path -Parent $OutputPath
+    if ($outputParent -and -not (Test-Path -LiteralPath $outputParent)) { New-Item -ItemType Directory -Force -Path $outputParent | Out-Null }
+    $result | ConvertTo-Json -Depth 10 | Set-Content -LiteralPath $OutputPath -Encoding UTF8
+    Write-Output "PASS: External Result Review decision written for $($unit.unit_id): $($decision.next_action)"
+    return
+}
+
 $reviewStages = @('pre_generation_prompt_review', 'storyboard')
 $requiresResearch = (($unit.stage -notin $reviewStages) -and $assessment.requires_external_evidence) -or (($unit.topic_type -in @('historical', 'science', 'health')) -and $unit.stage -in @('topic_selection', 'research'))
 if ($assessment.affects_semantics -or $assessment.confidence -eq 'low' -or $assessment.verdict -eq 'human_review') {

@@ -1,0 +1,14 @@
+{
+  "fixture_only": false,
+  "library_status": "ready",
+  "normalized_from_source": "Style_Profile_纸板制作任意物品_v1.0_中文解析.md",
+  "style_profile": {
+    "style_id": "cardboard_make_anything",
+    "version": "v1.0-zh",
+    "classification": "audiovisual_style_profile",
+    "pre_content_modules": {"required_inputs": ["target_object"], "compatibility": "single_cardboard_object_with_visible_build_progress"},
+    "audiovisual_modules": {"visible_initial_state": "flat_or_sorted_brown_corrugated_cardboard", "necessary_state_change": "cut_fold_glue_and_assemble_into_object", "ending_payoff": "completed_object_with_corrugated_detail", "composition": "clean_stable_process_view_with_readable_assembly", "material_lock": "natural_brown_corrugated_cardboard_for_visible_object_structure", "continuity": "hands_parts_structure_and_build_progress", "sound_direction": "synchronized_cardboard_asmr_when_supported", "failure_constraints": ["no_non_cardboard_visible_object_parts", "no_teleporting_assembly_progress", "no_hand_or_structure_drift"]},
+    "production_modules": {"adapter_reference": "replaceable", "prompt_compiler": "existing_owner", "fixed_duration": null, "fixed_resolution": null},
+    "provenance": {"source_documents": [{"file": "D:/文档/AI视频项目/Viral Feed Video/纸板制作任意物品/Prompt.txt", "extraction_type": "direct_and_normalized"}, {"file": "Style_Profile_纸板制作任意物品_v1.0_中文解析.md", "version": "v1.0-zh", "sha256": "6BEAAAEF97A94487148372500ED5C66BC33310E5C9E8462127FE286BC2032FFC", "extraction_type": "source_profile"}, {"file": "D:/文档/AI视频项目/Viral Feed Video/纸板制作任意物品/纸板制作火车.mp4", "evidence_type": "observed_video", "duration_seconds": 20.155}], "extracted_modules": [{"module": "material_process_and_continuity", "method": "normalized"}, {"module": "named_object_duration_and_camera_template", "method": "direct", "routed_to": "replaceable_production_modules"}], "source_sha256": "6BEAAAEF97A94487148372500ED5C66BC33310E5C9E8462127FE286BC2032FFC"}
+  }
+}

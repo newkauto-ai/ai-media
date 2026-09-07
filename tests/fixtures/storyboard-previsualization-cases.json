@@ -124,6 +124,65 @@
       ]
     },
     {
+      "case_id": "ajiao-cake-direction-projection",
+      "stage1_approved": true,
+      "production_risk": "medium",
+      "risk_triggers": ["important_transition", "continuity_sensitive_payoff"],
+      "evidence_refs": ["Prewritten fixture projection for existing Project anchors pass-through only; it is not semantic-derivation evidence."],
+      "consistency_anchors": ["Identity/space: 同一位女性、同一服装、同一家庭厨房与窗边区域；人物、器具和空间方向保持一致。", "Dramatic task: 在不足 30 秒内，通过连续可辨认的物质变化，让观众相信她亲手完成红枣阿胶糕并在窗边享用。", "Visual progression: 干燥分散食材 → 浸润熬化胶体 → 配料聚合 → 压实凝固 → 切片 → 清晰咬痕。", "Emotional progression: 安静专注 → 耐心等待 → 细致操作 → 期待 → 满足松弛。", "Interpretation guardrails: 避免广告式展示、看镜头表演、品牌露出、工序倒置、食材凭空变形、人物/厨房漂移或没有真实咬痕。"],
+      "output_spec": "One horizontal 3-panel contact sheet with readable material-state transitions.",
+      "panels": [
+        {
+          "panel_id": "A1",
+          "source_refs": {"script_refs": ["script.hook"], "adp_beat_refs": ["BEAT-A1"], "scene_ref": "S-AJIAO", "clip_ref": "C-A1", "story_change_arc_refs": [], "performance_plan_refs": []},
+          "time_range": "0-8s",
+          "narrative_function": "Establish ingredients and cooking task",
+          "assigned_hook": true, "assigned_turning_point": false, "assigned_payoff": false,
+          "named_risk_reduced": ["material_state_readability"],
+          "core_visual_event": "Woman arranges dry ingredients before heating the mixture.",
+          "shot_size_and_composition": "Medium kitchen worktop view.",
+          "character_position": "Woman remains by the same worktop.",
+          "action_and_expression": "Calm, focused preparation.",
+          "environment_key_elements": "Same family kitchen, pot, tray, and window-side area.",
+          "lighting_and_mood": "Soft daylight, quiet concentration.",
+          "continuity_notes": ["Same outfit and kitchen topology"],
+          "non_realistic_aids": []
+        },
+        {
+          "panel_id": "A2",
+          "source_refs": {"script_refs": ["script.reveal"], "adp_beat_refs": ["BEAT-A2"], "scene_ref": "S-AJIAO", "clip_ref": "C-A2", "story_change_arc_refs": [], "performance_plan_refs": []},
+          "time_range": "8-20s",
+          "narrative_function": "Show aggregation and setting transition",
+          "assigned_hook": false, "assigned_turning_point": true, "assigned_payoff": false,
+          "named_risk_reduced": ["process_order"],
+          "core_visual_event": "The hydrated mixture gathers with ingredients and is pressed into a tray to set.",
+          "shot_size_and_composition": "Close overhead worktop view.",
+          "character_position": "Woman remains on the established side of the tray.",
+          "action_and_expression": "Patient, careful pressing.",
+          "environment_key_elements": "Same pot, tray, and kitchen worktop.",
+          "lighting_and_mood": "Warm focused task light.",
+          "continuity_notes": ["No ingredient appears without a prior process step"],
+          "non_realistic_aids": []
+        },
+        {
+          "panel_id": "A3",
+          "source_refs": {"script_refs": ["script.meaning"], "adp_beat_refs": ["BEAT-A3"], "scene_ref": "S-AJIAO", "clip_ref": "C-A3", "story_change_arc_refs": [], "performance_plan_refs": []},
+          "time_range": "20-30s",
+          "narrative_function": "Visible finished-food payoff",
+          "assigned_hook": false, "assigned_turning_point": false, "assigned_payoff": true,
+          "named_risk_reduced": ["payoff_readability"],
+          "core_visual_event": "Woman slices the set cake and enjoys it by the window with a clear bite mark.",
+          "shot_size_and_composition": "Medium window-side payoff view.",
+          "character_position": "Woman moves from the same kitchen area to the established window side.",
+          "action_and_expression": "Relaxed satisfaction after the careful work.",
+          "environment_key_elements": "Same kitchen and window-side area.",
+          "lighting_and_mood": "Soft warm daylight.",
+          "continuity_notes": ["Visible bite mark; no branding or direct-to-camera pose"],
+          "non_realistic_aids": []
+        }
+      ]
+    },
+    {
       "case_id": "fast-coherent-multishot",
       "stage1_approved": true,
       "production_risk": "low",

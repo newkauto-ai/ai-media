@@ -1,5 +1,7 @@
 # Production Router
 
+For `workflow_mode: external_prompt_only`, validate the selected S1–S4 strategy and current Adapter evidence first. This route owns only operation selection, reference binding, compact Prompt Package compilation, and one bounded Feed-first preflight. It does not create a Manifest, visual-test package, LookDev, Storyboard, Keyframe, Clip plan, Notion projection, Cost Gate, provider call, or generated-media status. S1/S2 with complete user content may proceed directly; route only missing topic, script/fact, or compact audiovisual direction to the existing owner. S4 names at most three primary precision targets, delegates camera variation/transitions/micro-performance/visual surprise to the model, and prefers one supported story unit over automatic shot splitting. A PASS returns `prompt_ready_for_external_use` to the Controller; any semantic change, unknown factual claim, low confidence, or contradictory Adapter evidence returns `blocked` or `human_review`.
+
 1. Validate the Input Contract and confirm the staged approval state. Without Stage 0 approval, block before visual output; without Stage 1 approval, block before the full package and any Notion write. Before Clip compilation, run the deterministic Scene Continuity and Feasibility gates and preserve open semantic states.
 2. Resolve only ready Style Profiles and record their registry IDs and source provenance.
 3. Load Adapter capabilities without inheriting legacy profile production syntax.

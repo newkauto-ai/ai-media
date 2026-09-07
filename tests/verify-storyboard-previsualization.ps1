@@ -140,7 +140,7 @@ try {
     $low = $compiled.cases | Where-Object { $_.case_id -eq 'low-risk-single-scene' } | Select-Object -First 1
     Assert-True ($low.previsualization.applicability.decision -eq 'skip' -and $low.previsualization.storyboard_plan -eq $null -and $low.contact_sheet_prompt -eq $null) 'Low-risk/no-trigger case must skip without fake Storyboard fields.'
 
-    foreach ($caseId in @('medium-risk-parent-child', 'high-risk-multi-character-blocking', 'fast-coherent-multishot', 'repeated-composition-repair')) {
+    foreach ($caseId in @('medium-risk-parent-child', 'high-risk-multi-character-blocking', 'ajiao-cake-direction-projection', 'fast-coherent-multishot', 'repeated-composition-repair')) {
         $case = $compiled.cases | Where-Object { $_.case_id -eq $caseId } | Select-Object -First 1
         Assert-True ($case.previsualization.applicability.decision -eq 'retain') "$caseId must retain Storyboard."
         Assert-True ($case.previsualization.generation_status -eq 'planned_awaiting_cost_gate' -and $case.previsualization.cost_gate.state -eq 'awaiting_user_approval' -and $case.previsualization.cost_gate.approval_evidence -eq $null) "$caseId must stop at the separate Storyboard Cost Gate."
@@ -153,6 +153,15 @@ try {
     $medium = $compiled.cases | Where-Object { $_.case_id -eq 'medium-risk-parent-child' } | Select-Object -First 1
     Assert-True (@($medium.previsualization.storyboard_plan.panel_refs).Count -eq 3) 'Medium narrative must use the risk-selected Panel count rather than a fixed grid enum.'
     Assert-True (@($medium.previsualization.storyboard_plan.panels | Where-Object { $_.assigned_turning_point }).Count -eq 1 -and @($medium.previsualization.storyboard_plan.panels | Where-Object { $_.assigned_payoff }).Count -eq 1) 'Turning Point and Payoff must remain distinct upstream-assigned roles.'
+
+    $ajiao = $compiled.cases | Where-Object { $_.case_id -eq 'ajiao-cake-direction-projection' } | Select-Object -First 1
+    $directionLabels = @('Dramatic task:', 'Visual progression:', 'Emotional progression:', 'Interpretation guardrails:')
+    Assert-True ($ajiao.contact_sheet_prompt.Contains('Identity/space: 同一位女性') -and $ajiao.contact_sheet_prompt.Contains('Project anchors:')) 'Ajiao fixture must retain its identity/space anchor in existing Project anchors.'
+    foreach ($label in $directionLabels) {
+        Assert-True (([regex]::Matches($ajiao.contact_sheet_prompt, [regex]::Escape($label))).Count -eq 1) "Ajiao fixture must project $label exactly once."
+        Assert-True (-not (($ajiao.previsualization.storyboard_plan.panels | ConvertTo-Json -Depth 20) -match [regex]::Escape($label))) "Ajiao fixture must not copy $label into Panel blocks."
+    }
+    Assert-True ($medium.contact_sheet_prompt -notmatch 'Visual progression:') 'A retained case without Visual progression must remain valid and unblocked.'
 
     $fast = $compiled.cases | Where-Object { $_.case_id -eq 'fast-coherent-multishot' } | Select-Object -First 1
     Assert-True (@($fast.previsualization.storyboard_plan.panel_refs).Count -eq 3) 'Fast coherent action must retain risk coverage without a maximum-shots rejection.'
@@ -192,6 +201,7 @@ try {
     $qa = Get-Content -LiteralPath $qaPath -Raw -Encoding UTF8
     Assert-True ($template.Contains('previsualization only') -and $template.Contains('separate Cost Gate')) 'Storyboard template must preserve its non-production and authorization boundary.'
     Assert-True ($planner.Contains('Do not require one Panel per Shot') -and $planner.Contains('never create a Creative Handoff Snapshot')) 'Existing Storyboard Planner must own the lean extension without a new state owner.'
+    Assert-True ($planner.Contains('Preserve the selected Panels') -and $planner.Contains('optional (`0–4`)') -and $planner.Contains('non-duplicative') -and $planner.Contains('no reliable upstream evidence') -and $planner.Contains('do not rewrite Hook') -and $planner.Contains('Keep Panel-specific constraints')) 'Planner must keep original anchors first, append only evidence-bounded non-duplicate directions, preserve frozen semantics, and retain Panel-specific constraints locally.'
     Assert-True ($manifestContract.Contains('Contract v1.7') -and $manifestContract.Contains('previsualization') -and $manifestContract.Contains('second approval state')) 'Manifest v1.7 must add only the lightweight previsualization subtree.'
     Assert-True ($reviewContract.Contains('previsualization_storyboard') -and $reviewContract.Contains('not Production Clip Review Gate 2')) 'Review Result v2.1 must namespace Storyboard without implementing Gate 2/3.'
     Assert-True ($qa.Contains('accept_current_stop_optimizing') -and $qa.Contains('request_separate_regeneration_cost_gate') -and $qa.Contains('Do not create a separate Regeneration Gate')) 'QA must merge regeneration advice into existing retry authority.'

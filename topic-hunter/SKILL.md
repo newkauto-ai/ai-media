@@ -28,6 +28,15 @@ Turn one content direction into a forced Top 3 decision and a single recommended
 7. Apply production economics: prefer one core character, one core question, 3–6 core scenes, and one conclusion. High difficulty triggers angle simplification before rejection.
 8. Output only Top 3 and force a Top 1 recommendation with a specific reason.
 
+## Short-form legibility
+
+A topic may carry a nuanced or deep thesis, but its short-form expression route must be direct and quickly legible.
+
+- During deep screening, require the core conflict, immediate cause, audience question, and intended state change to be expressible through observable actions, reactions, concise dialogue, or object/situation state changes in the concrete scenario.
+- Improve or reject a candidate when its pivotal turn depends mainly on an unstated motive, an off-screen event, abstract symbolism, or several weak cues that viewers must combine before the causal link makes sense.
+- Record the simplest visible `trigger -> response -> change` route in `concrete_scenario` or `unique_supply` without writing Script prose, shots, or audiovisual beats.
+- Direct expression does not require a shallow thesis. Keep the depth in the idea and meaning; make the audience-facing conflict and causality easy to grasp on first viewing.
+
 ## Boundaries
 
 - Own WHAT: topic choice and why the audience cares.

@@ -1,0 +1,33 @@
+{
+  "fixture_only": true,
+  "cases": [
+    {
+      "case_id": "external-unbound-technical-only",
+      "unit": {"unit_id": "external-001", "stage": "external_result_review", "required": true, "retry_count": 0, "max_retries": 2},
+      "assessment": {"source": "fixture", "run_id": null, "verdict": "blocked", "confidence": "high", "evidence": ["Final MP4 checksum and dimensions were read."], "failure_types": [], "affects_semantics": false, "requires_external_evidence": false, "proposed_capability": "video-production"},
+      "external_result_review": {"media_checksum": "fixture-checksum-001", "technical_spec_read": true, "binding_status": "unbound", "finding_scope": "unknown"},
+      "expected_next_action": "technical_only_request_binding"
+    },
+    {
+      "case_id": "external-local-failure",
+      "unit": {"unit_id": "external-002", "stage": "external_result_review", "required": true, "retry_count": 0, "max_retries": 2},
+      "assessment": {"source": "fixture", "run_id": null, "verdict": "retry", "confidence": "high", "evidence": ["Bound package shows the required chilled-cake reveal, but the final output omits that one state change."], "failure_types": ["timing_failure"], "affects_semantics": false, "requires_external_evidence": false, "proposed_capability": "video-production"},
+      "external_result_review": {"media_checksum": "fixture-checksum-002", "technical_spec_read": true, "binding_status": "confirmed_external_prompt", "finding_scope": "local"},
+      "expected_next_action": "edit_or_reuse_failed_unit"
+    },
+    {
+      "case_id": "external-global-failure",
+      "unit": {"unit_id": "external-003", "stage": "external_result_review", "required": true, "retry_count": 0, "max_retries": 2},
+      "assessment": {"source": "fixture", "run_id": null, "verdict": "retry", "confidence": "high", "evidence": ["Bound package identity and space both drift in the final file."], "failure_types": ["consistency_lock_violation"], "affects_semantics": false, "requires_external_evidence": false, "proposed_capability": "video-production"},
+      "external_result_review": {"media_checksum": "fixture-checksum-003", "technical_spec_read": true, "binding_status": "confirmed_external_prompt", "finding_scope": "global"},
+      "expected_next_action": "request_new_master_take_prompt"
+    },
+    {
+      "case_id": "external-final-file-not-read",
+      "unit": {"unit_id": "external-004", "stage": "external_result_review", "required": true, "retry_count": 0, "max_retries": 2},
+      "assessment": {"source": "fixture", "run_id": null, "verdict": "blocked", "confidence": "high", "evidence": ["An edit is reported but the final file has not been re-read."], "failure_types": [], "affects_semantics": false, "requires_external_evidence": false, "proposed_capability": "video-production"},
+      "external_result_review": {"media_checksum": "fixture-checksum-004", "technical_spec_read": false, "binding_status": "confirmed_external_prompt", "finding_scope": "unknown"},
+      "expected_next_action": "collect_technical_evidence"
+    }
+  ]
+}

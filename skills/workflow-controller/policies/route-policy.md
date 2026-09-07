@@ -2,6 +2,13 @@
 
 | Condition | Permitted next action |
 |---|---|
+| New or resumed video project has no current evidenced Video Adapter | request one Video Adapter intake before creative-stage routing: platform/access route, exact model/version, target resolution, aspect ratio/duration choices, reference modes, and native-audio strategy |
+| `workflow_mode=external_prompt_only` and strategy is absent | recommend S1–S4 plus at most one meaningful alternative; request one strategy choice and stop |
+| `workflow_mode=external_prompt_only`, strategy selected, and explicit S1/S2 content is sufficient | route one `video-production` Fast Path compilation; do not request Script Architecture, LookDev, Storyboard, Manifest, Notion, or a Cost Gate |
+| `workflow_mode=external_prompt_only` has missing topic, script/dialogue/fact, or compact-direction content | route only the missing work to `topic-hunter`, `script-engine`, or `audiovisual-director`; return to Controller after its envelope |
+| `workflow_mode=external_prompt_only` pre-generation prompt check passes | stop at `prompt_ready_for_external_use`; no provider call, Cost Gate, or media-QA claim |
+| User reports media with uniquely confirmed `external_prompt_only` Prompt Package, input hash, actual request parameters, and reference roles | re-read final media checksum and technical specification, then route one Manifest-free `external_result_review`; return one recommendation and stop |
+| User reports media with no or contradictory Fast Path attribution | route technical checks only; request the exact Prompt Package/request/reference binding or human decision; do not route Manifest intake or semantic QA |
 | Topic selection passes | `script-engine` |
 | Script plan is ready | stop at `stage_1_script_architecture` and request explicit user confirmation |
 | Stage 0 confirmation is explicit and valid | route one `audiovisual-director` action; re-observe its return before selecting LookDev |
@@ -38,4 +45,4 @@
 | User asks to propagate beyond the validated sample | check risk coverage, Clip-first scope, and Cost Gate; do not batch automatically |
 | Bounded specialist-only question has no stage, lineage, approval, or external-action mutation | route directly to the owning Specialist; Controller optional |
 
-This policy chooses capabilities, not hidden implementation tools. Each decision selects one owning capability and one atomic next action, then stops before another Skill, Gate, unit, or external action. The selected Skill still validates its own input and must obey all cost and approval Gates. Stage 2 approval authorizes only the scoped Notion projection; it never grants paid media generation approval.
+This policy chooses capabilities, not hidden implementation tools. Each decision selects one owning capability and one atomic next action, then stops before another Skill, Gate, unit, or external action. The selected Skill still validates its own input and must obey all cost and approval Gates. `external_prompt_only` is the documented exception: its only Gate is strategy selection, and its PASS is a manual-use prompt package rather than generation authority. Its later External Result Review is Manifest-free and never changes managed retry, Gate, actual-state, or selected-media owners. Stage 2 approval authorizes only the scoped Notion projection; it never grants paid media generation approval.
