@@ -152,6 +152,28 @@ foreach ($case in (As-Array $fixture.cases)) {
         }
     }
 
+    # This is a local projection of already planned single-element assets, never a Manifest asset or provider request.
+    $atlasInput = Get-Value $case 'atlas_prompt_projection'
+    if ($null -ne $atlasInput) {
+        $sourceAssetIds = As-Array (Get-Value $atlasInput 'source_asset_ids')
+        $cells = As-Array (Get-Value $atlasInput 'cells')
+        if ($sourceAssetIds.Count -lt 1 -or $sourceAssetIds.Count -gt 4 -or @($sourceAssetIds | Select-Object -Unique).Count -ne $sourceAssetIds.Count) { Add-Failure $failures 'prompt_under_specified' }
+        if ($cells.Count -lt 1 -or $cells.Count -gt 4) { Add-Failure $failures 'prompt_under_specified' }
+        $cellIds = @($cells | ForEach-Object { [string](Get-Value $_ 'cell_id') })
+        if (@($cellIds | Where-Object { $_ -notin @('A','B','C','D') }).Count -gt 0 -or @($cellIds | Select-Object -Unique).Count -ne $cellIds.Count) { Add-Failure $failures 'prompt_under_specified' }
+        foreach ($cell in $cells) {
+            foreach ($field in @('element_name_zh', 'state_or_pose', 'suggested_filename')) {
+                if (-not (Has-Text (Get-Value $cell $field))) { Add-Failure $failures 'prompt_under_specified' }
+            }
+        }
+        $atlasBackground = Get-Value $atlasInput 'background'
+        if ([string](Get-Value $atlasBackground 'type') -ne 'solid_color' -or -not (Has-Text (Get-Value $atlasBackground 'color'))) { Add-Failure $failures 'output_spec_mismatch' }
+        $layout = Get-Value $atlasInput 'layout_constraints'
+        foreach ($field in @('one_complete_subject_per_cell', 'wide_gutter', 'full_subject_inside_safe_area', 'no_in_image_labels')) {
+            if (-not [bool](Get-Value $layout $field)) { Add-Failure $failures 'prompt_under_specified' }
+        }
+    }
+
     $script:map = [System.Collections.Generic.List[object]]::new()
     $subject = Get-DecisionText (Get-Value $decisions 'subject_action')
     $composition = Get-DecisionText (Get-Value $decisions 'composition_camera')
@@ -233,6 +255,21 @@ foreach ($case in (As-Array $fixture.cases)) {
     $prompt = $modules -join "`n`n"
     $status = if ($failures.Count -eq 0) { 'passed' } else { 'blocked' }
     $imageContractVersion = if ($variant -eq 'cover_visual') { '1.2' } else { '1.1' }
+    $atlasProjection = $null
+    if ($null -ne $atlasInput) {
+        $atlasCells = @()
+        foreach ($cell in (As-Array (Get-Value $atlasInput 'cells'))) {
+            $atlasCells += [pscustomobject]@{ cell_id = Get-Value $cell 'cell_id'; element_name_zh = Get-Value $cell 'element_name_zh'; state_or_pose = Get-Value $cell 'state_or_pose'; suggested_filename = Get-Value $cell 'suggested_filename' }
+        }
+        $atlasPrompt = "生成一个 2×2 图集：纯色高对比背景、宽 gutter、每格一个完整主体且四周安全留白；不生成中文名称、箭头、格线或棋盘格。" + (($atlasCells | ForEach-Object { " 格$($_.cell_id)：$($_.element_name_zh)，$($_.state_or_pose)。" }) -join '')
+        $atlasProjection = [pscustomobject]@{
+            projection_type = 'manual_cutout_from_named_2x2_atlas'; source_asset_ids = (As-Array (Get-Value $atlasInput 'source_asset_ids')); grid = '2x2'; cells = $atlasCells
+            background = Get-Value $atlasInput 'background'; layout_constraints = Get-Value $atlasInput 'layout_constraints'
+            handoff = [pscustomobject]@{ generation = 'user_external'; cutout = 'user_manual'; remotion_input = 'individual_rgba_png_only' }
+            persistence = 'ephemeral_compiler_output_not_production_manifest_or_asset'
+            call_package = [pscustomobject]@{ executable_prompt = $atlasPrompt; reference_bindings = (As-Array (Get-Value $spec 'reference_bindings')); request_parameters = [pscustomobject]@{ size = Get-Value $output 'size'; quality = Get-Value $output 'quality'; background = 'solid_color'; output_format = Get-Value $output 'output_format' }; adapter_id = 'local-fixture'; unresolved_fields = @(); generation_status = 'blocked' }
+        }
+    }
     $compiled += [pscustomobject]@{
         case_id = $case.case_id
         expected_result = $case.expected_result
@@ -242,6 +279,7 @@ foreach ($case in (As-Array $fixture.cases)) {
         call_package = [pscustomobject]@{
             executable_prompt = $prompt; reference_bindings = (As-Array (Get-Value $spec 'reference_bindings')); request_parameters = [pscustomobject]@{ size = Get-Value $output 'size'; quality = Get-Value $output 'quality'; background = Get-Value $output 'background'; output_format = Get-Value $output 'output_format' }; adapter_id = 'local-fixture'; unresolved_fields = $unresolved; generation_status = if ($status -eq 'passed') { 'blocked' } else { 'blocked' }
         }
+        atlas_prompt_projection = $atlasProjection
     }
 }
 

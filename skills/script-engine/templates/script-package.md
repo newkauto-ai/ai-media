@@ -23,6 +23,8 @@ production prompts, or Notion write results before this gate is approved.
 - State change: A → B
 - Propagation motive:
 - Unique supply:
+- Target duration from Topic Hunter (seconds):
+- Duration rationale / current user constraints:
 
 ## Hook selection
 
@@ -36,11 +38,12 @@ List at least five candidates, select one, and explain the choice briefly.
 - Reveal:
 - Meaning:
 
-## Complete 60–90 second master script Draft
+## Complete master script Draft at the approved topic duration
 
 - Script ID / version:
 - Draft status: `draft` (do not mark `frozen` before Review READY)
-- Estimated duration:
+- Approved Topic Hunter target duration:
+- Estimated duration / fit and any unresolved variance:
 - Full text:
 - Semantic locks: core thesis, Hook, Reveal, core conclusion, factual claims.
 
@@ -72,13 +75,14 @@ script_quality_review:
 
 The Reviewer only reports evidence-backed findings and repair targets. It does not rewrite the Script. Include at most three Must Fix findings. Optional-only results are READY and must say `STOP SCRIPT OPTIMIZATION`. A local repair may run once through the existing `script_quality` retry budget; structural change or a failed recheck stops for human review.
 
-## Frozen 60–90 second master script
+## Frozen master script at the approved topic duration
 
 Complete this projection only after the Script Quality Review returns READY.
 
 - Script ID / version:
 - Frozen status: `frozen`
-- Estimated duration:
+- Approved Topic Hunter target duration:
+- Estimated duration / fit and any unresolved variance:
 - Full text:
 - Semantic locks: core thesis, Hook, Reveal, core conclusion, factual claims.
 

@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.ai-media/contracts/region-stream-ink-annotation-1.0.json",
+  "title": "Region Stream Ink Annotation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "canvas", "regions", "protected_regions", "allow_uncovered_ink"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "canvas": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["width", "height"],
+      "properties": {"width": {"type": "integer", "minimum": 2}, "height": {"type": "integer", "minimum": 2}}
+    },
+    "regions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["region_id", "rect", "start_frame", "duration_frames"],
+        "properties": {
+          "region_id": {"type": "string", "minLength": 1},
+          "rect": {"$ref": "#/$defs/rect"},
+          "start_frame": {"type": "integer", "minimum": 0},
+          "duration_frames": {"type": "integer", "minimum": 1},
+          "allow_spatial_overlap_with": {"type": "array", "items": {"type": "string"}, "uniqueItems": true}
+        }
+      }
+    },
+    "protected_regions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["kind", "rect"],
+        "properties": {
+          "kind": {"enum": ["deferred", "permanent"]},
+          "rect": {"$ref": "#/$defs/rect"},
+          "until_region_id": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "allow_uncovered_ink": {"type": "boolean"}
+  },
+  "$defs": {
+    "rect": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["x", "y", "width", "height"],
+      "properties": {
+        "x": {"type": "integer", "minimum": 0},
+        "y": {"type": "integer", "minimum": 0},
+        "width": {"type": "integer", "minimum": 1},
+        "height": {"type": "integer", "minimum": 1}
+      }
+    }
+  }
+}

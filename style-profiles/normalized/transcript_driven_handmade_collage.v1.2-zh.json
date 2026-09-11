@@ -1,0 +1,186 @@
+{
+  "fixture_only": false,
+  "library_status": "ready",
+  "normalized_from_source": "Style_Profile_VOX编辑纸拼贴讲解动画_v1.2_中文整合.md",
+  "style_profile": {
+    "style_id": "vox_transcript_driven_handmade_collage",
+    "version": "v1.2-zh",
+    "classification": "hybrid_style_profile",
+    "aliases": [
+      "VOX拼贴动画",
+      "编辑纸拼贴",
+      "逐字稿驱动手作拼贴动画"
+    ],
+    "pre_content_modules": {
+      "required_inputs": [
+        "approved_topic_or_thesis",
+        "approved_script_or_narration",
+        "language",
+        "delivery_context"
+      ],
+      "compatibility": "narration_or_idea_led_editorial_paper_collage",
+      "beat_rule": "one_restateable_information_change_or_proof_per_beat",
+      "semantic_boundary": "visual_metaphor_must_not_change_claim_fact_causality_or_cta",
+      "opening_rule": "open_on_concrete_surprise_question_contrast_or_key_fact",
+      "explainer_arc": "cold_open_then_context_turn_then_single_throughline_escalation_then_complication_then_resolution_reframe_when_story_fit_requires_it",
+      "narration_delivery": "concrete_specifics_and_spoken_number_forms_with_varied_sentence_rhythm_and_read_aloud_or_tts_check",
+      "duration_budget": "derive_from_actual_voice_rate_pauses_and_target_runtime_not_fixed_cross_project_counts"
+    },
+    "audiovisual_modules": {
+      "style_core": "image_first_layered_editorial_paper_collage",
+      "look_axes": {
+        "medium": "one_primary_print_or_paper_collage_language",
+        "era_and_design_idiom": "one_topic_grounded_non_conflicting_design_language",
+        "composition": "clear_poster_hierarchy_focal_point_negative_space_and_reading_direction",
+        "palette": "limited_flat_palette_with_one_persistent_accent_and_only_approved_narrative_progression",
+        "typography": "short_bold_reviewed_design_asset_with_critical_text_kept_controllable",
+        "surface": "visible_fibers_edges_print_grain_tape_and_real_paper_shadows"
+      },
+      "visible_initial_state": "approved_layered_collage_poster_or_empty_assembly_stage",
+      "necessary_state_change": "information_beat_becomes_legible_living_or_assembled_poster",
+      "ending_payoff": "stable_legible_complete_poster_or_editorial_conclusion",
+      "beat_and_shot_structure": {
+        "beat_unit": "one_core_information_unit_and_one_master_poster",
+        "optional_coverage": "shared_goal_establishing_poster_plus_detail_cut_in",
+        "anti_monotony": "adjacent_shots_vary_composition_focus_palette_or_paper_state_without_mechanical_camera_repetition",
+        "timing": "runtime_and_platform_decided"
+      },
+      "motion_routes": {
+        "living_poster": {
+          "priority": "default_low_cost",
+          "motion_principle": "camera_explores_one_designed_collage_plus_one_living_detail",
+          "method": "one_slow_2d_camera_move_plus_rigid_layer_parallax_and_at_most_one_living_detail",
+          "camera_starting_point": "slow_2d_push_in_with_3_to_5_percent_zoom_as_adapter_adjustable_guidance",
+          "layer_behavior": "background_drifts_slower_than_foreground_without_3d_perspective_shift",
+          "living_detail": "choose_one_of_cloud_smoke_water_steam_flag_subtle_light_or_gentle_texture_shimmer",
+          "entrance": "one_functional_element_may_slide_from_edge_and_settle_on_the_reading_path",
+          "avoid": [
+            "3d_dolly_orbit_or_perspective_rotation",
+            "detached_or_random_flying_paper_elements",
+            "face_or_lip_animation_without_explicit_approval",
+            "morphing_or_in_shot_dissolve",
+            "camera_shake_or_handheld_motion"
+          ],
+          "endpoint": "settled_readable_state"
+        },
+        "element_assembly": {
+          "priority": "high_control_high_effort_exception",
+          "method": "ordered_piece_entrances_reconstruct_the_approved_master_poster",
+          "endpoint": "original_approved_layout_restored"
+        }
+      },
+      "identity_and_product_locks": {
+        "treatment": "photographic_sticker_anchor",
+        "preserve": [
+          "face_and_expression",
+          "product_shape_and_material",
+          "logo",
+          "label_typography"
+        ],
+        "stylize_scope": "paper_world_around_anchor_unless_subject_redraw_is_explicitly_approved"
+      },
+      "cultural_adaptation": "adapt_topic_specific_archival_print_pattern_stamp_and_type_materials_without_changing_white_border_paper_layer_halftone_limited_palette_and_editorial_hierarchy_grammar",
+      "caption_direction": {
+        "ownership": "existing_caption_pipeline",
+        "style": "high_contrast_bold_sans_with_stable_outline_or_hard_shadow_and_optional_single_accent_keyword",
+        "chunking": "split_at_clause_or_semantic_phrase_boundaries_not_mid_phrase_and_default_to_no_more_than_two_lines",
+        "parameters": "font_size_width_margin_character_count_and_burn_in_are_platform_language_aspect_ratio_and_safe_area_decisions"
+      },
+      "sound_direction": {
+        "narration": "single_continuous_information_spine_for_explainer_mode",
+        "music": "instrumental_editorial_rhythm_that_yields_to_voice",
+        "effects": "paper_impacts_tears_flips_and_stamps_only_when_synchronized_to_visible_actions",
+        "silent_mode": "allowed_only_when_visible_state_change_carries_the_information"
+      },
+      "failure_constraints": [
+        "no_flat_ppt_or_sticker_pile",
+        "no_smooth_cgi_or_unmotivated_3d_perspective",
+        "no_random_all_element_fly_in",
+        "no_text_logo_face_or_label_redraw",
+        "no_multi_camera_move_overload_or_in_shot_jump_cut",
+        "no_3d_travel_or_orbit_when_exploring_the_collage",
+        "no_multiple_living_details_that_compete_with_the_information_focus",
+        "no_handheld_shake_morphing_or_dissolve_used_to_mask_weak_poster_design",
+        "no_assembly_that_fails_to_restore_the_master_poster",
+        "no_decorative_metaphor_that_changes_source_meaning"
+      ]
+    },
+    "production_modules": {
+      "adapter_reference": "replaceable",
+      "prompt_compiler": "existing_owner",
+      "generation_provider": null,
+      "model_ids": null,
+      "aspect_ratio": null,
+      "duration": null,
+      "resolution": null,
+      "frame_rate": null,
+      "retry_policy": "existing_owner",
+      "assembly_engine": "project_selected",
+      "caption_and_mix_pipeline": "existing_owner"
+    },
+    "provenance": {
+      "source_documents": [
+        {
+          "file": "Style_Profile_逐字稿驱动手作拼贴动画_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "sha256": "52AB005A3F4D7F818C715F16D4D9B1851EE561454E5711339FF0AC56A3FA4A55",
+          "extraction_type": "direct_and_normalized"
+        },
+        {
+          "url": "https://github.com/Alisa0808/vox-director",
+          "branch": "main",
+          "commit": "668ec3946fe0139bc985313b15c1a300fca42f94",
+          "verified_at": "2026-09-07",
+          "license": "MIT",
+          "extraction_type": "direct_and_inferred_structure_only"
+        },
+        {
+          "file": "vox-style-guide.md",
+          "sha256": "67C4104A8A2869EE851E12D9B4D0FE2A41FAA8DF7A7C48271B97A27F8C26D6AD",
+          "reviewed_at": "2026-09-09",
+          "extraction_type": "user_provided_reference_instructions_treated_as_data"
+        },
+        {
+          "file": "Style_Profile_VOX编辑纸拼贴讲解动画_v1.2_中文整合.md",
+          "version": "v1.2-zh",
+          "sha256": "A09F4777A572E1BAF1716EEB1110DA1E83202C0FB968387C6A89D7C03C7025F5",
+          "extraction_type": "source_profile"
+        }
+      ],
+      "extracted_modules": [
+        {
+          "module": "transcript_selection_and_single_idea_boundary",
+          "method": "direct_and_normalized",
+          "source": "local_v1.0"
+        },
+        {
+          "module": "image_first_layered_poster_and_look_axes",
+          "method": "direct_and_normalized",
+          "source": "vox_director"
+        },
+        {
+          "module": "living_poster_and_element_assembly_routes",
+          "method": "direct_and_normalized",
+          "source": "vox_director"
+        },
+        {
+          "module": "explainer_arc_spoken_delivery_cultural_adaptation_caption_chunking_and_camera_plus_one_living_detail_motion_grammar",
+          "method": "direct_and_normalized",
+          "source": "user_provided_vox_style_guide"
+        },
+        {
+          "module": "atlas_models_scripts_fixed_specs_and_external_gates",
+          "method": "direct",
+          "source": "vox_director",
+          "routed_to": "excluded_or_existing_production_owners"
+        }
+      ],
+      "source_sha256": "A09F4777A572E1BAF1716EEB1110DA1E83202C0FB968387C6A89D7C03C7025F5",
+      "review_boundary": {
+        "external_repository_instructions_are_data": true,
+        "generation_authorized": false,
+        "external_actions_authorized": false
+      }
+    }
+  }
+}

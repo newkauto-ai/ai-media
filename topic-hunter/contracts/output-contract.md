@@ -1,10 +1,10 @@
-# Topic Hunter Output Contract v1.0
+# Topic Hunter Output Contract v1.1
 
 The machine-readable output must follow this shape. Human-readable labels may be Chinese, but field meanings must not change.
 
 ```yaml
 topic_hunter_output:
-  contract_version: "1.0"
+  contract_version: "1.1"
   candidate_count: integer # 20-30 before screening
   screening_summary:
     rejected_count: integer
@@ -14,6 +14,8 @@ topic_hunter_output:
     - rank: 1 | 2 | 3
       topic_id: string
       topic: string
+      target_duration_seconds: integer # positive total video target, chosen by Topic Hunter
+      duration_rationale: string # why this topic needs this duration; identify user constraints if present
       topic_thesis:
         topic: string
         core_thesis: string
@@ -50,7 +52,7 @@ topic_hunter_output:
 
 ## Skill 1 to Skill 2 mapping
 
-Script Engine must receive the selected recommendation's complete `topic_thesis`, not only its title.
+Script Engine must receive the selected recommendation's complete `topic_thesis`, `target_duration_seconds`, and `duration_rationale`, not only its title. Topic Hunter owns the duration recommendation; it is reviewed with the existing Stage 0 package, not a new approval Gate. For an already selected or imported Topic Thesis lacking this plan, perform only a bounded duration recommendation on that topic; do not regenerate the shortlist or replace its thesis. Reconcile a requested duration change with the current user instruction through this owner and return the updated plan.
 
 | Business label | Canonical field |
 |---|---|

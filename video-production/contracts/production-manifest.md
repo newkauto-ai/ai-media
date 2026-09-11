@@ -2,7 +2,7 @@
 
 `production_manifest.json` is the machine source of truth. JSON is used for local Fixture validation; YAML is an equivalent runtime serialization.
 
-Version 1.7 adds one additive `previsualization` subtree. It does not create a Creative Handoff Snapshot, second approval state, retry counter, or actual-state ledger.
+Version 1.7 adds one additive `previsualization` subtree and permits an optional local-renderer Adapter/reference projection. Neither creates a Creative Handoff Snapshot, second approval state, retry counter, or actual-state ledger.
 
 ```yaml
 production_manifest:
@@ -10,7 +10,7 @@ production_manifest:
   meta: {project_id, script_id, fixture_only, generated_at}
   semantic_locks: object
   input_provenance: {adp_contract_version, style_profile_ids, template_bindings}
-  adapters: [object]
+  adapters: [object] # may include optional region_stream_ink local-renderer capability facts
   prompt_policy:
     contract_version: "1.1"
     independent_request_policy: self_contained
@@ -39,7 +39,7 @@ production_manifest:
     generation_status: not_required | planned_awaiting_cost_gate | generated_awaiting_review
     cost_gate: object
   scenes: [object]
-  clips: [object]
+  clips: [object] # may carry optional local_visual_render_ref
   assets:
     - asset_id: string
         image_prompt_spec: # required for image assets; see the image-prompt portion of Executable Prompt Contract v1.2
@@ -73,6 +73,10 @@ production_manifest:
 - Storyboard Plan, Prompt, Script, ADP, Manifest dependency, or media checksum changes make the prior Storyboard Review stale. The Workflow Controller validates the current review context; the Manifest does not add a second readiness state.
 - Storyboard media is previsualization only. It does not satisfy a Visual Baseline, write `actual_end_state`, become a Production Asset, or grant a Cost Gate.
 - A real image asset keeps `image_prompt_spec` and `call_package`; raw YAML is not sent to the model.
+- A temporary `manual_cutout_from_named_2x2_atlas` prompt projection is not serialized into this Manifest and is never a Production Asset, approval, generated state, or Remotion input. Final independent PNGs retain their original planned `asset_id` and must pass existing intake, RGBA/Alpha, edge, and safe-area checks before binding.
+- An optional `region_stream_ink` Adapter record contains only `adapter_id`, `adapter_type: local_renderer`, exact Renderer version, `access_route: local_cli`, supported input modes, and `native_audio: none`. It has no provider/model fiction, approval, QA verdict, retry count, or global output default.
+- A Clip may carry `local_visual_render_ref: {job_id, revision_id, input_hash, adapter_id}`. The immutable Job Spec and execution report remain artifacts; real output still enters through existing media intake, QA stays in `qa.results`, and retry authority stays in existing Execution State.
+- A formal local-render Job requires this video's confirmed `aspect_ratio`, `resolution`, even `width_px`, even `height_px`, and integer-frame timing. `UNKNOWN` blocks execution. Local CPU rendering has no media-generation Cost Gate; paid source-image generation retains the existing Visual Baseline and image Cost Gate. `external_prompt_only` cannot execute this Adapter.
 - An image decision cannot be empty: it is `explicit`, `inherited`, or justified `not_applicable`. Existing legacy image assets migrate unknown values to `unresolved`, never silently to not applicable.
 - Old approved prompts are retained as revisions. New rules create a new revision; legacy Prop remains `story_prop` unless the task explicitly requires inspected product evidence.
 - `actual_end_state`, generated file references, AI QA verdicts, and human approval evidence remain null/pending until observed.

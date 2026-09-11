@@ -29,6 +29,7 @@ Assert-True ($scriptCases.Count -ge 3) 'Script Engine requires at least three se
 Assert-True ($scriptQualityCases.Count -ge 8) 'Script Quality Review Policy requires the eight minimum behavior fixtures.'
 
 $selectedTopicIds = @()
+$durationByTopic = @{}
 foreach ($case in $topicCases) {
     $output = $case.output
     Assert-True ($case.candidate_titles.Count -ge 20 -and $case.candidate_titles.Count -le 30) "$($case.case_id): candidate list must contain 20-30 topics."
@@ -39,6 +40,9 @@ foreach ($case in $topicCases) {
     Assert-True ($output.selected_topic_id -eq $output.recommendations[0].topic_id) "$($case.case_id): selected topic must be rank 1."
 
     foreach ($rec in $output.recommendations) {
+        Assert-True ($rec.target_duration_seconds -is [long] -or $rec.target_duration_seconds -is [int]) "$($rec.topic_id): duration must be integer seconds."
+        Assert-True ($rec.target_duration_seconds -gt 0 -and -not [string]::IsNullOrWhiteSpace($rec.duration_rationale)) "$($rec.topic_id): missing positive Topic Hunter duration or rationale."
+        $durationByTopic[$rec.topic_id] = $rec.target_duration_seconds
         $thesis = $rec.topic_thesis
         Assert-True (-not [string]::IsNullOrWhiteSpace($thesis.core_thesis)) "$($rec.topic_id): missing core_thesis."
         Assert-True (-not [string]::IsNullOrWhiteSpace($thesis.user_desire_or_need.primary)) "$($rec.topic_id): missing primary user driver."
@@ -56,6 +60,8 @@ foreach ($case in $topicCases) {
     $selectedTopicIds += $output.selected_topic_id
 }
 
+Assert-True (@($durationByTopic.Values | Where-Object { $_ -lt 60 }).Count -gt 0 -and @($durationByTopic.Values | Where-Object { $_ -gt 90 }).Count -gt 0) 'Topic duration fixtures must exercise recommendations outside the former default range.'
+
 $forbiddenDownstreamFields = @('audiovisual_beats', 'storyboard', 'model_prompts', 'generated_assets', 'audiovisual_direction_package')
 foreach ($case in $scriptCases) {
     Assert-True ($selectedTopicIds -contains $case.selected_topic_id) "$($case.case_id): script topic was not selected by a Topic Hunter fixture."
@@ -63,7 +69,8 @@ foreach ($case in $scriptCases) {
     $input3 = $result.skill3_input
     Assert-True ($result.contract_version -eq '1.0') "$($case.case_id): wrong contract version."
     Assert-True ($input3.frozen_script.status -eq 'frozen') "$($case.case_id): script is not frozen."
-    Assert-True ($input3.frozen_script.estimated_duration_seconds -ge 60 -and $input3.frozen_script.estimated_duration_seconds -le 90) "$($case.case_id): estimated duration outside 60-90 seconds."
+    Assert-True ($input3.frozen_script.target_duration_seconds -eq $durationByTopic[$case.selected_topic_id]) "$($case.case_id): frozen target must inherit the selected Topic Hunter duration."
+    Assert-True ($input3.frozen_script.estimated_duration_seconds -gt 0) "$($case.case_id): estimated duration must be positive, without a global range."
     foreach ($section in @('hook','conflict','escalation','reveal','meaning')) {
         Assert-True (-not [string]::IsNullOrWhiteSpace($input3.frozen_script.sections.$section)) "$($case.case_id): missing H-C-E-R-M section $section."
     }

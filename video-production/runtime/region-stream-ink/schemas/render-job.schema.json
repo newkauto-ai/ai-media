@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.ai-media/contracts/region-stream-ink-job-1.0.json",
+  "title": "Region Stream Ink Job",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["contract_version", "job_id", "revision_id", "clip_id", "adapter_id", "source_image", "annotation", "timing", "output_spec", "render_style", "output_path"],
+  "properties": {
+    "contract_version": {"const": "1.0"},
+    "job_id": {"type": "string", "minLength": 1},
+    "revision_id": {"type": "string", "minLength": 1},
+    "clip_id": {"type": "string", "minLength": 1},
+    "adapter_id": {"const": "region_stream_ink"},
+    "source_image": {"$ref": "#/$defs/inputRef"},
+    "annotation": {"$ref": "#/$defs/annotationRef"},
+    "timing": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["frame_rate", "scene_duration_frames", "tail_hold_frames", "segments"],
+      "properties": {
+        "frame_rate": {"type": "integer", "minimum": 1},
+        "scene_duration_frames": {"type": "integer", "minimum": 1},
+        "tail_hold_frames": {"type": "integer", "minimum": 0},
+        "segments": {"type": "array", "items": {"type": "object", "required": ["element_id", "start_frame", "duration_frames"]}}
+      }
+    },
+    "output_spec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["aspect_ratio", "resolution", "width_px", "height_px", "fit_mode"],
+      "properties": {
+        "aspect_ratio": {"type": "string", "not": {"const": "UNKNOWN"}},
+        "resolution": {"type": "string", "not": {"const": "UNKNOWN"}},
+        "width_px": {"type": "integer", "minimum": 2, "multipleOf": 2},
+        "height_px": {"type": "integer", "minimum": 2, "multipleOf": 2},
+        "fit_mode": {"enum": ["pad", "crop"]}
+      }
+    },
+    "render_style": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ink_path", "reveal_mode", "tip_overlay"],
+      "properties": {
+        "ink_path": {"enum": ["grid", "skeleton"]},
+        "reveal_mode": {"enum": ["ink_only", "ink_then_color"]},
+        "tip_overlay": {"oneOf": [{"const": "none"}, {"type": "object", "required": ["path", "rights_evidence_ref"]}]}
+      }
+    },
+    "output_path": {"type": "string", "minLength": 1}
+  },
+  "$defs": {
+    "inputRef": {"type": "object", "additionalProperties": false, "required": ["path", "sha256", "rights_evidence_ref"], "properties": {"path": {"type": "string"}, "sha256": {"type": "string"}, "rights_evidence_ref": {"type": "string"}}},
+    "annotationRef": {"type": "object", "additionalProperties": false, "required": ["path", "sha256", "approval_evidence_ref"], "properties": {"path": {"type": "string"}, "sha256": {"type": "string"}, "approval_evidence_ref": {"type": "string"}}}
+  }
+}

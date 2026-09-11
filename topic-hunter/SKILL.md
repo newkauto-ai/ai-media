@@ -26,7 +26,7 @@ Turn one content direction into a forced Top 3 decision and a single recommended
 5. Score only Gate 1 pass candidates on five independent 0–2 dimensions: conflict, curiosity, reversal, resonance, extension. The total must equal their sum and remain a transparent 10-point score.
 6. Record click trigger and AI production difficulty separately as high, medium, or low. Never blend them into the 10-point score.
 7. Apply production economics: prefer one core character, one core question, 3–6 core scenes, and one conclusion. High difficulty triggers angle simplification before rejection.
-8. Output only Top 3 and force a Top 1 recommendation with a specific reason.
+8. Recommend a total video duration and a brief rationale for each Top 3 topic using its thesis, audience, information/performance needs, selected format, evidenced platform constraints, and production economics. Respect an explicit user duration; do not apply a fixed duration range or use a per-Clip generation limit as the total video limit. Output only Top 3 and force a Top 1 recommendation with a specific reason.
 
 ## Short-form legibility
 
@@ -39,7 +39,7 @@ A topic may carry a nuanced or deep thesis, but its short-form expression route 
 
 ## Boundaries
 
-- Own WHAT: topic choice and why the audience cares.
+- Own WHAT: topic choice, why the audience cares, and its recommended total video duration. For an approved/imported topic that only lacks duration planning, supply that recommendation and rationale without reopening topic selection; return it through the existing Controller envelope.
 - Do not write a full script, storyboard, prompt, audiovisual beat, or production asset.
 - Do not invent live trend evidence. If current market evidence is required, obtain or request it and label its date and source.
 - Do not change score weights from fewer than five valid published samples.
@@ -51,4 +51,4 @@ Use this Skill directly for bounded topic generation, comparison, or explanation
 
 ## Quality gate
 
-Before delivery, verify that every Top 3 entry has all Topic Thesis fields, a score arithmetic check, click trigger, production difficulty, long-form extension, and recommendation. The Top 1 must be unambiguous.
+Before delivery, verify that every Top 3 entry has all Topic Thesis fields, a score arithmetic check, click trigger, production difficulty, long-form extension, recommended total duration with rationale, and recommendation. The Top 1 must be unambiguous.

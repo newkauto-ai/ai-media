@@ -5,10 +5,10 @@
   "profiles": [
     {
       "profile_id": "soft_cute_3d_healing",
-      "source_file": "Style_Profile_软萌3D治愈动画_v1.1_中文重解析.md",
-      "source_sha256": "EFCD65142C5B88C75E59A5CA3CBD46823934FBFDC23AD98AE84C4202875E40ED",
-      "normalized_file": "soft-cute-3d-healing.v1.1-zh.json",
-      "normalized_version": "v1.1-zh",
+      "source_file": "Style_Profile_软萌3D治愈动画_v1.2_网页方法整合.md",
+      "source_sha256": "8D0C479F685F8CC0A015F8660E6FE9F56F362E726F45FF1F534A08AA76E6B063",
+      "normalized_file": "soft-cute-3d-healing.v1.2-zh.json",
+      "normalized_version": "v1.2-zh",
       "classification": "hybrid_style_profile",
       "status": "ready",
       "provenance_verified": true
@@ -444,13 +444,13 @@
       "provenance_verified": true
     },
     {
-      "profile_id": "transcript_driven_handmade_collage",
-      "source_file": "Style_Profile_逐字稿驱动手作拼贴动画_v1.0_中文解析.md",
-      "source_sha256": "52AB005A3F4D7F818C715F16D4D9B1851EE561454E5711339FF0AC56A3FA4A55",
-      "normalized_file": "transcript_driven_handmade_collage.v1.0-zh.json",
-      "normalized_version": "v1.0-zh",
-      "classification": "mixed",
-      "status": "pending_review",
+      "profile_id": "vox_transcript_driven_handmade_collage",
+      "source_file": "Style_Profile_VOX编辑纸拼贴讲解动画_v1.4_真实生产经验整合.md",
+      "source_sha256": "463A4458F40A05A2981BAF49E705C0C3DC061D7F7217B0EAFE74FAA89EAE6E86",
+      "normalized_file": "transcript_driven_handmade_collage.v1.4-zh.json",
+      "normalized_version": "v1.4-zh",
+      "classification": "hybrid_style_profile",
+      "status": "ready",
       "provenance_verified": true
     },
     {

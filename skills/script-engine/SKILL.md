@@ -1,6 +1,6 @@
 ---
 name: script-engine
-description: Draft, review, revise, and freeze a 60-90 second short-video master script from an approved Topic Thesis Card, then prepare a Skill 3 handoff. Use for bounded narrative Script work; do not use for full storyboards, model prompts, or media generation.
+description: Draft, review, revise, and freeze a master script using an approved Topic Thesis Card and its Topic Hunter duration plan, then prepare a Skill 3 handoff. Use for bounded narrative Script work; do not use for full storyboards, model prompts, or media generation.
 ---
 
 # Script Engine
@@ -17,11 +17,11 @@ Turn an approved Topic Thesis into a high-retention master script, then freeze t
 
 ## Workflow
 
-1. Read the complete Topic Thesis Card. Restate one core thesis. If it conflicts with the intended state change or unique supply, stop and return it to topic design.
+1. Read the complete Topic Thesis Card and its Topic Hunter duration recommendation/rationale. Reuse a current recommendation; if it is missing, return only the duration-planning gap to Topic Hunter through Controller. Restate one core thesis. If it conflicts with the intended state change or unique supply, stop and return it to topic design.
 2. Generate at least five hooks. Compare directness to the primary user driver, curiosity gap, conflict, information density, context independence, and 3–5 second speakability. Select exactly one.
 3. Build an H-C-E-R-M outline before prose: Hook, Conflict, Escalation, Reveal, Meaning. Meaning must first pay off the core conflict; add real-life mapping only when natural.
-4. Stop and output the Stage 0 review package: `Topic Theses`, `Hook Selection`, and `H-C-E-R-M outline`. Request explicit `确认第1点`/`批准脚本结构` and do not emit the full master script or any downstream visual/production material yet.
-5. After valid Stage 0 approval, write a complete spoken, visualizable, information-dense 60–90 second master script Draft, targeting about 75 seconds. Keep its status unfrozen. Route each genuine pivotal choice or emotional turn through the `story_change_arc` completeness check; ordinary beats may explicitly use `pivotal_change=false` and must not be given invented hesitation.
+4. Stop and output the Stage 0 review package: `Topic Theses`, `Hook Selection`, and `H-C-E-R-M outline`. Include the inherited target duration and rationale within Topic Theses so the existing Stage 0 approval also covers that plan. Request explicit `确认第1点`/`批准脚本结构` and do not emit the full master script or any downstream visual/production material yet.
+5. After valid Stage 0 approval, write a complete spoken, visualizable, information-dense master script Draft to the approved Topic Hunter duration plan. Estimate its spoken and visual-only timing, pauses, and ending holds; do not pad or truncate content to a built-in duration range. If a materially different duration is needed, return a reasoned proposal through Controller to Topic Hunter rather than silently changing the target. Keep its status unfrozen. Route each genuine pivotal choice or emotional turn through the `story_change_arc` completeness check; ordinary beats may explicitly use `pivotal_change=false` and must not be given invented hesitation.
 6. Compress in three passes and run retention review sentence by sentence. Every sentence must perform one function: suspense, conflict, evidence, progression, reversal, or conclusion. Ensure a new stimulus at least every 10–15 seconds.
 7. Run the Script Quality Review Policy below on the complete Draft. Route its evidence-backed assessment through the existing `script_quality` unit. The Reviewer diagnoses only; Script Engine remains the only writer.
 8. If READY, stop optimizing and freeze the Draft. If a high-confidence local Must Fix routes to retry, repair only the named section once and recheck once. Any structural change, low-confidence or contradictory evidence, or remaining Must Fix after that recheck routes to human review.
@@ -91,4 +91,4 @@ Use this Skill directly for a bounded Script explanation, read-only Review, or e
 
 ## Freeze gate
 
-Set `frozen_script.status` to `frozen` only after Stage 0 approval, complete Draft, duration, H-C-E-R-M structure, compression, sentence-function audit, retention stimulus, Script Quality Review READY, and handoff manifest checks pass. Once frozen, downstream skills may translate presentation but may not silently delete the Hook, alter Reveal, change facts, or change the core conclusion.
+Set `frozen_script.status` to `frozen` only after Stage 0 approval, complete Draft, fit to the approved Topic Hunter duration plan with a separate actual estimate, H-C-E-R-M structure, compression, sentence-function audit, retention stimulus, Script Quality Review READY, and handoff manifest checks pass. Once frozen, downstream skills may translate presentation but may not silently delete the Hook, alter Reveal, change facts, or change the core conclusion.

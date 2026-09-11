@@ -77,6 +77,24 @@ call_package:
 
 Aspect ratio, size, background, quality, and format may live in Adapter request parameters rather than natural language, but must be adjacent to the prompt in this package. No configured image model exists by default; every real call remains blocked pending its separate cost Gate. For a compiled Cover Prompt, the caller may relabel this local result as `generation_status=not_authorized`; this is stricter than `blocked` and does not authorize a provider call.
 
+### Temporary atlas prompt projection
+
+An existing one-element image plan may additionally be projected locally as a VOX `manual_cutout_from_named_2x2_atlas` package. It reuses the same `image_prompt_spec` and `call_package` field meanings and must retain `call_package.generation_status=blocked`:
+
+```yaml
+atlas_prompt_projection:
+  projection_type: manual_cutout_from_named_2x2_atlas
+  source_asset_ids: [string] # 1-4 existing planned asset IDs
+  grid: 2x2
+  cells: [{cell_id: A|B|C|D, element_name_zh: string, state_or_pose: string, suggested_filename: string}]
+  layout_constraints: {one_complete_subject_per_cell: true, wide_gutter: true, full_subject_inside_safe_area: true, no_in_image_labels: true}
+  background: {type: solid_color, color: string}
+  handoff: {generation: user_external, cutout: user_manual, remotion_input: individual_rgba_png_only}
+  call_package: {executable_prompt, reference_bindings, request_parameters, adapter_id, unresolved_fields, generation_status: blocked}
+```
+
+The projection is ephemeral compiler output. Do not persist it into `production_manifest.json`, designate the atlas as a Production Asset, use `prompt_ready_for_external_use`, add a new state/Gate, or state that output has transparency. An individual post-cut PNG remains an existing-asset intake problem, not an atlas slice.
+
 ## Clause map and QA gate
 
 Each rendered sentence gets a `clause_decision_map` entry that points to a visible decision, approved lock/continuity fact, Adapter parameter, or named QA risk. Otherwise classify it `prompt_non_discriminating` and delete or rewrite it. Before a call, validate resolved decisions, source provenance, Adapter self-containment, lock/variation compatibility, output requirements, and every clause mapping.

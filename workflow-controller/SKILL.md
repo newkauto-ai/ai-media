@@ -1,6 +1,6 @@
 ---
 name: workflow-controller
-description: Coordinate, resume, or determine the next permitted action for an AI-media project. Use for end-to-end starts, continue/status requests, newly generated or edited media, real-media review or acceptance, dependency/version changes, staged approvals, quality-gated retries, and human escalation; do not fabricate evidence or invoke unapproved external actions.
+description: Coordinate, resume, or determine the next permitted action for an AI-media project. Use for end-to-end starts—including 白板手绘动画、逐笔手绘、连续笔迹动画、图片分区连续笔迹渲染、线稿逐笔显现 or region_stream_ink projects—continue/status requests, newly generated or edited media, real-media review or acceptance, dependency/version changes, staged approvals, quality-gated retries, and human escalation; do not fabricate evidence or invoke unapproved external actions.
 ---
 
 # Workflow Controller
@@ -20,6 +20,8 @@ When a request could be either explanation or progression, check for a current p
 Run one bounded reconciliation when the Controller starts/resumes a project, receives a reported artifact or Specialist return, observes a dependency revision change, receives a next-step request, or detects a conflict between the user's statement and machine state.
 
 At the first start or resume of a project that intends to produce video, resolve a Video Adapter intake before creative-stage routing. If no current Adapter record exists, the Controller's one next action is to ask for and record the minimum execution facts: provider or platform and access route, exact model/version, target resolution, aspect ratio and available duration choices, reference-input modes, and the intended native-audio strategy. Keep unsupported or unanswered capabilities `UNKNOWN`; do not infer that a third-party surface exposes every capability of the underlying model. Reuse an already current, evidenced Adapter record instead of asking again.
+
+For the optional local `region_stream_ink` Renderer, the same intake records `local_cli`, exact Renderer/runtime versions, source-image plus annotation input modes, `native_audio: none`, and this video's confirmed `aspect_ratio`, `resolution`, `width_px`, and `height_px`; provider/model/duration-choice fields are not applicable rather than fabricated. Recommend or ask for output geometry per video and keep unresolved values `UNKNOWN`; a formal local Job is blocked until confirmed. Local CPU execution itself needs no media-generation Cost Gate, but imported images still need existing provenance/rights intake and paid source-image generation still needs the existing Visual Baseline and exact image Cost Gate. This is not available through `external_prompt_only`.
 
 Observe only, in order: the explicit project root and applicable instructions; `Progress.md` as a summary; `production_manifest.json` or the declared machine source; `execution-state.json`; the current unit's referenced Script, ADP, Prompt, Review, and media; the exact file reported by the user; and matching files under Manifest-declared asset roots. Do not scan unrelated directories, infer approval or quality from filenames, or rank Progress/Notion/conversation summaries above Manifest and real artifacts.
 

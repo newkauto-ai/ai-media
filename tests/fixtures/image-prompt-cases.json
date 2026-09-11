@@ -204,6 +204,18 @@
         "output_spec": {"aspect_ratio": "9:16", "size": "1080x1920", "quality": "review_draft", "background": "opaque", "output_format": "png", "status": "resolved"},
         "cover_context": {"platform": "douyin", "platform_native_composition": "9:16 集中动作构图，不从 3:4 机械延展", "title_safe_zone": "upper-left clean area", "platform_ui_avoidance": ["top avatar", "right controls", "bottom caption"], "thumbnail_priority": "一眼读懂女孩转身保护奶猫", "generate_text_in_image": false}
       }
+    },
+    {
+      "case_id": "vox-manual-2x2-atlas-projection",
+      "expected_result": "passed",
+      "image_prompt_spec": {
+        "asset_id":"vox-wukong-standing","asset_type":"character_identity","prompt_variant":"default","render_mode":"stylized",
+        "source_locks":[{"field":"character","value":"齐天大圣","provenance":"frozen_script"}],
+        "decisions":{"subject_action":{"status":"explicit","value":"齐天大圣独立站姿纸片角色，用于后续人工抠图","reason":"atlas source asset"},"context":{"status":"explicit","value":"solid_color","reason":"atlas"},"composition_camera":{"status":"explicit","value":"完整全身正面，四周安全留白","reason":"manual cutout"},"lighting_outcome":{"status":"explicit","value":"平面纸张阴影清晰","reason":"edge readability"},"style_aesthetic":{"status":"explicit","value":"VOX 编辑纸拼贴","reason":"style"},"optics":{"status":"not_applicable","reason":"stylized cutout"},"color":{"status":"explicit","identity_palette":"红黄纸片服装","grade":"无额外 Grade","reason":"identity"}},
+        "material_texture":{"status":"explicit","value":"剪纸边缘与纸纤维","reason":"style"},"text_handling":{"status":"not_applicable","reason":"no text in image"},"consistency_locks":["完整金箍棒","完整衣摆"],"allowed_variation":["中性站姿"],"reference_bindings":[],"negative_constraints":["不生成中文标签","不生成棋盘格","不自动裁切"],
+        "output_spec":{"aspect_ratio":"1:1","size":"1024x1024","quality":"standard","background":"solid_color","output_format":"png","status":"resolved"}
+      },
+      "atlas_prompt_projection":{"source_asset_ids":["vox-wukong-standing","vox-wukong-raised-staff","vox-halo"],"background":{"type":"solid_color","color":"high_contrast_cyan"},"layout_constraints":{"one_complete_subject_per_cell":true,"wide_gutter":true,"full_subject_inside_safe_area":true,"no_in_image_labels":true},"cells":[{"cell_id":"A","element_name_zh":"孙悟空站姿","state_or_pose":"完整站姿和金箍棒","suggested_filename":"wukong-standing.png"},{"cell_id":"B","element_name_zh":"孙悟空举棒","state_or_pose":"完整举棒姿势","suggested_filename":"wukong-raised-staff.png"},{"cell_id":"C","element_name_zh":"佛光","state_or_pose":"完整环形佛光","suggested_filename":"halo.png"}]}
     }
   ]
 }

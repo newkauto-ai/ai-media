@@ -35,7 +35,7 @@ script_engine_output:
       script_id: string
       version: string
       status: frozen
-      target_duration_seconds: integer # 60-90 in first validation round
+      target_duration_seconds: integer # inherit the approved Topic Hunter total duration; no fixed range
       estimated_duration_seconds: integer
       selected_hook: string
       sections:
@@ -96,6 +96,8 @@ story_change_arc:
 ```
 
 ## Downstream authority lock
+
+The handoff preserves the approved Topic Hunter `target_duration_seconds` and separately records the Script Engine estimate. Estimate spoken pacing, visual-only performance, pauses, and ending holds against this topic-specific plan; if the draft needs a materially different duration, return a reasoned proposal through the existing Controller to Topic Hunter rather than silently changing the target. This does not add a Gate or promise that every downstream format can execute an arbitrary duration.
 
 Skill 3 may split the script into audiovisual expression, decide narration/dialogue/visual evidence, and merge visual treatments. It must flag a conflict before changing the Topic Thesis, deleting the Hook, altering the Reveal, changing facts, or changing the core conclusion.
 

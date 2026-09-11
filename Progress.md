@@ -2,63 +2,57 @@
 
 ## Current Goal
 
-在保持 managed-production owner 不变的前提下，实现并部署 Seedance Fast Path 的 Duration Fit 与 External Result Review。`ai-media@personal` 已安装并启用 `0.1.0+codex.20260907183043`；未生成媒体、写 Notion、发布、commit 或 push。
+`region_stream_ink` 已作为现有 `video-production` 下的可选 Local Renderer Adapter 完成源码实施、隔离 runtime、中文触发别名、整包验证与本机更新安装。下一阶段是使用新任务加载新版 Skill，并对三类真实图片逐条做人工标注、真实视觉 QA 与 ROI 试片。
 
 ## Completed & Key Decisions
 
-- Topic Hunter 新增 `Short-form legibility`：深筛时要求核心冲突、直接成因、观众问题和状态变化能通过可观察动作、反应、简短对白或对象/情境变化表达；不可读的角度先修复，否则淘汰。
-- Script Engine 新增同名规则：主要冲突、转折、Reveal 和 Payoff 必须呈现 `trigger -> immediate reaction -> choice/action -> visible result`；动作、表情、必要对白、道具/情境状态和景别变化共同服务于因果可读。
-- 不用堆叠眼神、微妙移物、画外事件或隐藏动机让观众猜；也不用长时间固定机位或无动机快切替代叙事。画面已清楚时不再用对白重复解释。
-- Script Quality Review 复用既有 `progression_missing`、`causal_payoff_gap`、`emotional_turn_unearned` 或 `critical_dialogue_dependency` 诊断关键因果不可读；未新增 taxonomy、Skill、Gate 或持久化结构。
-- root 与 `skills/` 镜像保持同哈希。本轮只修改两个 Skill、镜像、manifest cachebuster 与本状态快照；未执行付费生成、Notion 写入、上传或发布。
-- 完整回滚备份为 `C:\Users\Roy\plugins\ai-media.backups\shortform-legibility-20260901T101310Z`，499/499 文件已核对。
-- Fast Path 的 Duration Fit 进入既有一次 bounded semantic preflight 与 `story_function_conformance`；以可见状态变化和 ending hold 判断，复用 `timing_failure`，不新增 evaluator、Gate、状态源或机械动作/秒数规则。
-- 回传媒体先按归属分流：唯一确认的 `external_prompt_only` Prompt Package、input hash、实际 request parameters 与 reference roles 才进入 Manifest-free External Result Review；未绑定或矛盾的媒体仅做技术检查并请求准确绑定，绝不进入 managed Manifest intake。
-- External Result Review 从版本化 Prompt Package 派生 Must Hold、状态目标和参考职责，最终文件必须重新读取 checksum/技术规格。它只给一个 recommendation，不改 Manifest、Review Result、Execution State、retry、Cost Gate、`actual_end_state` 或 selected-media owner。
-- Fast Path 参考角色新增且仅新增 `predecessor_endpoint_continuity`，用于绑定真实前镜末帧或已批准 Resume Frame 的开场姿态/构图/道具/调色职责；用 preserve/change constraints 衔接，不创建 continuity ledger 记录。
-- 部署前备份已保存到 `C:\Users\Roy\plugins\ai-media.backups\duration-fit-20260907T183043Z`；随后以新 cachebuster 卸载旧 cache、从 `personal` 市场重装，并回读为 installed/enabled。
+- 新 Adapter 只负责 `source image -> region annotation/protected masks -> grid|skeleton continuous ink -> ink_only|ink_then_color -> silent visual_track.mp4`；未新增 Controller、顶层 Skill、Manifest、Gate、QA taxonomy、状态源或 retry ledger。
+- `aspect_ratio`、`resolution`、`width_px`、`height_px` 无默认值，`UNKNOWN` 会阻止正式 Job；图片只可通过显式 `pad|crop` 保持比例，不存在 `cap_long_edge=1080` 回退。
+- 时间轴以显式整数帧为权威：区域不得时间重叠，尾停留包含在总帧预算，空 mask/path 也输出完整帧数；多 Clip 合并返回偏移表，不隐式追加时长。
+- `ink_only` 不显色且末帧不恢复原图；`ink_then_color` 只揭示当前获准区域。暂缓保护与永久保护分开，未覆盖墨迹在未显式接受时阻断。
+- OpenCV/NumPy 逐帧渲染，OpenCV `VideoWriter` 只写临时 `mp4v`；FFmpeg 优先、PyAV 回退输出 H.264 `yuv420p`。双路失败结构化失败并保留诊断中间件，绝不把 `mp4v` 冒充成功。
+- 拼接前校验宽高、帧率、codec、pix_fmt、time base；首版拒绝异构输入。成功产物须无音轨、完整解码、帧数准确且时间戳单调。
+- 默认无手部/笔尖叠加，不依赖 Windows 字体；自定义 tip 必须带权利证据。保留上游 `geeklee/srt-whiteboard-animation@696a724` MIT 声明，未打包示例资产、字体、手部、FFmpeg 二进制或依赖 wheel。
+- Renderer CLI 只返回 `clip_id/revision_id/input_hash/checksum` 等执行事实，不保存审批、QA PASS、用户接受或 retry 状态。Manifest 只增加既有 `adapters[]` 能力事实和 `clips[].local_visual_render_ref` 可选引用；真实媒体继续走现有 intake、`qa.results`、Execution State 与 `controller_return`。
+- 用户导入图片不需要媒体生成 Cost Gate，但继续要求来源/权利证据；付费源图仍走 Visual Baseline 与独立 Cost Gate；`external_prompt_only` 不可执行本地 Renderer。
+- 隔离 Python runtime 位于 `C:\Users\Roy\AppData\Local\Codex\runtimes\ai-media-region-stream-ink\0.1.0`，锁定 NumPy 2.2.6、OpenCV Headless 4.12.0.88、Pillow 11.3.0、PyAV 15.1.0。
+- 重装前 HEAD/源码/cache 三方归因为 A=29、B=21、C=15、D=0；保留所有既有 dirty 改动，无 stash/reset/checkout/clean。未执行 Git commit 或 push。
+- `workflow-controller` 与 `video-production` 的根目录及 `skills/` 入口已加入“白板手绘动画、逐笔手绘、连续笔迹动画、图片分区连续笔迹渲染、线稿逐笔显现”和 `region_stream_ink`；Adapter 仍归 `video-production`，未新增顶层 Skill。
 
 ## Core Files
 
-- `topic-hunter/SKILL.md`
-- `skills/topic-hunter/SKILL.md`
-- `script-engine/SKILL.md`
-- `skills/script-engine/SKILL.md`
-- `.codex-plugin/plugin.json`
-- `tests/verify-contracts.ps1`
-- `workflow-controller/scripts/decide-next-action.ps1`
-- `video-production/modules/prompt-story-function-review.md`
-- `video-production/modules/prompt-feasibility-gate.md`
-- `video-production/contracts/video-prompt-feasibility-contract.md`
-- `video-production/modules/asset-reference-router.md`
-- `tests/fixtures/external-prompt-duration-and-result-cases.json`
+- `video-production/adapters/region-stream-ink-adapter.md`
+- `video-production/contracts/region-stream-render-contract.md`
+- `video-production/runtime/region-stream-ink/renderer_cli.py`
+- `video-production/runtime/region-stream-ink/annotation.py`
+- `video-production/runtime/region-stream-ink/render.py`
+- `video-production/runtime/region-stream-ink/encode.py`
+- `video-production/runtime/region-stream-ink/preview.py`
+- `video-production/runtime/region-stream-ink/schemas/annotation.schema.json`
+- `video-production/runtime/region-stream-ink/schemas/render-job.schema.json`
+- `tests/test_region_stream_ink.py` 与 `tests/verify-region-stream-ink.ps1`
+- `video-production/SKILL.md`、`skills/video-production/SKILL.md`
+- `workflow-controller/SKILL.md`、`skills/workflow-controller/SKILL.md`
+- 两份 `production-manifest.md` 镜像
 
 ## Verification
 
-- 四个受影响 Skill 目录的 `quick_validate.py` PASS；权威源码 plugin validator PASS，`git diff --check` 通过。
-- Topic Hunter 与 Script Engine 的 root/`skills/` SHA-256 分别一致。`verify-contracts.ps1` 与 `verify-staged-approval-gates.ps1` PASS。
-- 权威源码全部 18 个 `tests/verify-*.ps1` PASS。首次在沙箱运行时仅因 `__pycache__` 写权限中断；获准后以相同输入通过，不是内容失败。
-- `codex plugin list` 在前一次部署回读 installed/enabled；最终一致版本为 `0.1.0+codex.20260901102731`。
-- 安装缓存与源码为 435/435 个非 Git 文件，零缺失、零额外、零 hash mismatch；安装缓存中两个 Skill validator、plugin validator 和全部 18/18 回归均 PASS。
-- 本次最小受影响验证：`tests/verify-video-prompt-feasibility.ps1` PASS、`tests/verify-workflow-controller.ps1` PASS、两份新增/扩展 fixture JSON 可解析、九个受影响 root/`skills/` 文件 SHA-256 一致，且 `git diff --check` 无错误（仅既有 CRLF 警告）。
-- 已安装 cache 的 `verify-video-prompt-feasibility.ps1`、`verify-workflow-controller.ps1`、`verify-skill4-contracts.ps1` 均 PASS；source/cache 排除 Git 元数据后为 444/444 文件、零缺失、零额外、零 hash mismatch。
+- Region Stream Ink 10/10 fixture 通过：合法/非法 annotation、空区域/零墨迹、暂缓/永久保护、未覆盖墨迹、细字/实心块/交叉箭头/多对象与显式重叠、`ink_only`/`ink_then_color`、grid/skeleton、64×64 与 96×54 显式规格、整数帧/尾停留、预览、取消、FFmpeg、PyAV 回退、双路失败、同构拼接/异构拒绝、无音轨、H.264、完整解码、单调时间戳和结构化 JSON。
+- 当前插件全部 22 个 `tests/verify-*.ps1` 通过；插件 validator、四个受影响 Skill 的 UTF-8 `quick_validate` 与 `git diff --check` 通过。
+- 系统 FFmpeg 探测为 8.1.2，当前构建支持 `libx264`；FFmpeg 不随插件分发，其许可证取决于本机实际构建。
+- 本机插件已通过 personal marketplace 安装并启用为 `0.1.0+codex.20260911080811`；清除测试生成的 `__pycache__` 后，最终源码与安装缓存按非 Git 文件核对为 473/473、零缺失、零多余、零 SHA-256 不一致。
+- 上述 fixture 只证明合同、渲染、编码与路由行为，不证明真实媒体主观质量、用户批准、外部旁白同步、Final Master 或发布。
 
 ## Known Issues
 
-- 结构、validator 与 fixture 回归证明规则已被正确部署，不证明它已改善真实选题命中率、剧本首遍理解率或生产 ROI。
-- 当前任务在重装前已加载旧 Skill 上下文；必须在新任务中验证新规则的真实调用行为。
-- `codex plugin list` 仍有 stale arg0/alias ACL warning；因 installed/enabled、435/435 parity、validators 和 18/18 installed-cache 回归独立通过，当前为非阻塞。
-- Fixture 与本地决策脚本证明合同和路由，不证明真实 Seedance 生成质量、外部实际提交参数、最终媒体语义、ROI 或部署后的运行时加载行为。
-
-## Rejected / Failed Approaches
-
-- 不直接修改 installed cache；权威源码、root/`skills/` 镜像、cachebuster 和重装流程仍是唯一权威路径。
-- 不创建独立“直白表现”Review 或新 failure type；复用 Topic deep screening、Script Quality Review 和既有 taxonomy。
-- Windows 备份名不再使用含时区冒号的时间戳；首次尝试只生成了一个 0-byte 非有效备份标记，已用无冒号 UTC 目录重做并核对完整备份。
+- 首版不包含 SRT importer、自动分区、GPU、并行、复杂缓存、解说、字幕、BGM 或最终混音。
+- grid/skeleton 的真实连续性、细节可读性、平台压缩效果、人工标注成本与 ROI 仍需三类真实试片；硬性正确性未通过的图片类别必须标为暂不支持。
+- 本机磁盘安装成功不代表当前任务热加载新版 Skill；必须新建任务验证运行时发现。
+- 既有 Fast Path/Stage 0 路由冲突、固定叙事/Beat 模板与装配交接仍是独立待办，不属于本次 Adapter 实施。
+- Git 提交与远端同步状态以权威仓库的实时 `git status`、`git log` 和 `origin/master` 回读为准；安装缓存一致不自动等于当前任务已热加载新版 Skill。
 
 ## Next
 
-1. 在新任务中调用 `@AI 自媒体`，用一个“主题有深度但因果过于隐晦”的选题或剧本验证新规则是否会要求显式修复。
-2. 回到《今天的曲奇》新任务，从 Stage 0 门继续，不在当前已加载旧 Skill 的任务中声称新规则已生效。
-3. 如需提交或推送这次插件源码变更，另行取得明确授权。
-4. 在新任务中用一个实际 Fast Path Prompt 或回传媒体进行运行时加载验证；这仍不等于真实 Seedance 媒体质量验证。
+1. 新建任务加载已安装插件，使用“白板手绘动画”等中文名称确认 `ai-media:workflow-controller` 可触发并路由到 `ai-media:video-production` 的 Local Renderer Adapter。
+2. 逐视频确认平台、比例、分辨率和显式像素尺寸，再进行 annotation preview；未经当前 revision 的人工确认不执行正式 Job。
+3. 用稀疏线稿、彩色扁平插画、多对象重叠画面各做一条真实试片，记录标注/渲染/重做成本与硬性 QA；只有三条硬性正确性全部通过且至少 2/3 达到主观质量和 ROI 才升级为推荐路线。

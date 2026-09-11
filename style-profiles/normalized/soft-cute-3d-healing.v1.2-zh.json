@@ -1,0 +1,178 @@
+{
+  "fixture_only": false,
+  "library_status": "ready",
+  "normalized_from_source": "Style_Profile_软萌3D治愈动画_v1.2_网页方法整合.md",
+  "style_profile": {
+    "style_id": "soft_cute_3d_healing",
+    "version": "v1.2-zh",
+    "classification": "hybrid_style_profile",
+    "pre_content_modules": {
+      "compatibility": {
+        "authority": "medium",
+        "preferred": ["轻剧情治愈", "小动物", "幻想小生物", "儿童温馨故事", "小尺度单事件", "烹饪手作种植等可见过程"],
+        "weak_for": ["复杂悬疑", "高密度知识解释", "战斗", "快节奏动作", "大规模群戏"]
+      },
+      "story_direction": {
+        "authority": "medium",
+        "value": ["平静建立", "小任务或轻微困扰", "温柔互动或过程推进", "感官满足与安心停留"],
+        "status": "advisory"
+      },
+      "optional_content_recipe": {
+        "authority": "soft",
+        "value": "soft_mascot_x_seasonal_small_task_x_traceable_asmr",
+        "scope": "process_led_healing_content_only",
+        "not_required": true
+      },
+      "theme_expression_rules": {
+        "authority": "medium",
+        "value": "通过一个小事件、清楚动作、物体反馈和感官兑现表达，不依赖说教或未经验证的流量公式"
+      }
+    },
+    "audiovisual_modules": {
+      "visual_identity": {
+        "authority": "hard",
+        "medium": "原创软萌 3D 治愈动画",
+        "shape_language": "头大身小、短圆粗四肢、弱化骨节、饱满脸颊、简单五官与柔和圆角",
+        "proportion_variants": {
+          "animal_or_humanoid": "头身比约 1:1.5–1:2 的基线",
+          "object_mascot": "接近 1:1 的紧凑圆团比例，可选且需 LookDev 验证"
+        },
+        "eyes": "圆润清澈，高光位置和形状跨镜稳定",
+        "materials": "哑光低反光，可见极细短绒或柔和软质表面；身体结构连续",
+        "material_identity_lock": "活体软萌角色而非带缝线、拉链、头套断层、硬连接或塑料反光的实体玩具",
+        "palette": "低饱和、暖色倾向；奶油白、浅木色、浅绿、奶油橘、柔和雨后蓝和暖黄可作基线",
+        "lighting": "侧前方柔和漫射主光与弱反射补光，可有克制的边缘高光",
+        "depth": "主体清晰、背景柔和虚化的浅景深"
+      },
+      "character_visual": {
+        "authority": "hard",
+        "turnaround_reference": {
+          "views": ["front", "side", "back"],
+          "shared_conditions": ["same_scale", "same_neutral_pose", "same_proportions", "same_lighting_baseline"],
+          "purpose": "preproduction_identity_and_material_lock_not_runtime_generation_proof"
+        },
+        "locks": ["主色与副色", "轮廓", "头身比", "四肢粗细", "眼睛与高光", "嘴形", "脸颊", "耳朵和尾巴", "服装与配件", "表面材质", "身体连接结构"]
+      },
+      "environment": {
+        "authority": "hard",
+        "value": "干净、焦点明确、道具少而有功能、保留角色动作区；生活与童话感兼具，材质可被视觉和声音共同辨认",
+        "optional_project_lock": "single_protagonist_without_human_body_parts"
+      },
+      "cinematography": {
+        "authority": "hard",
+        "baseline": ["固定机位", "缓慢推进", "轻微横移", "缓慢后拉", "平稳跟拍", "轻微上摇", "轻微下摇"],
+        "rule": "每镜一个主要运镜；具体镜头数、时长和画幅由当前项目与 Adapter 决定",
+        "forbidden": ["360 度环绕", "快速旋转", "突然变焦", "多重运镜同时叠加", "大幅手持晃动", "高频角度乱切"]
+      },
+      "performance": {
+        "authority": "hard",
+        "one_primary_action_per_shot": true,
+        "interaction_sequence": ["看向或确认前态", "靠近", "明确接触", "物体或材料反馈", "角色反应或任务进度变化"],
+        "process_state_tracking": ["object_or_ingredient_form_quantity_and_position", "active_tool", "container", "heat_or_environment_state", "character_contact", "completed_and_remaining_steps"],
+        "end_state_rule": "each_shot_end_state_must_support_the_next_shot_start_state",
+        "forbidden": ["持续大幅运动", "多个主要动作争抢", "过程状态瞬移倒退或无因重复", "多角色同时复杂动作"]
+      },
+      "editing_rhythm": {
+        "authority": "medium",
+        "value": "平静建立，小任务推进，感官满足或温柔互动，安心停留",
+        "opening": "尽快同时建立角色辨识度、当前小任务和治愈环境，不锁死秒数"
+      },
+      "sound_design": {
+        "authority": "hard",
+        "attention_hierarchy": "dialogue_when_present_else_traceable_asmr_then_low_presence_bgm",
+        "traceability_schema": ["source_object", "visible_action", "contact_material", "onset", "intensity", "stop_and_decay"],
+        "example_sources": ["水流与水花", "刀与木砧板", "液体微沸", "陶瓷轻碰", "布料摩擦", "柔软成品晃动"],
+        "rule": "近距离、干净、轻柔并与可见动作同步；不用无来源的通用可爱音效覆盖动作"
+      },
+      "voice_system": {
+        "authority": "medium",
+        "source_voice_timbre": null,
+        "rule": "固定音色缺失；如需语音，由运行时建立 recommended_runtime_voice_profile 并标注来源"
+      },
+      "music_direction": {
+        "authority": "hard",
+        "function": "独立背景音乐，只提供低存在感情绪底色，不抢对白、动作细节和拟音",
+        "tempo": "慢",
+        "rhythm_density": "低",
+        "instrumentation": ["轻柔木琴", "钢片琴", "柔和弦乐", "木吉他或低密度 Lofi 可作运行时备选"],
+        "avoid": ["强鼓点", "高频密集节奏", "过度煽情", "每镜不同风格的生成音乐", "固定百分比替代响度判断"],
+        "embedded_in_video_prompt": false
+      },
+      "continuity_schema": {
+        "authority": "hard",
+        "track": ["角色颜色轮廓与比例", "五官高光与材质身份", "服装配件与耳尾", "物体或食材状态", "工具容器与热源", "角色接触关系", "场景光线与色调", "角色情绪", "声音事件的声源材质与起止"],
+        "retry_policy": "优先只重做失败镜头并保持角色资产与过程状态绑定"
+      },
+      "failure_constraints": [
+        "no_living_character_to_plush_or_plastic_toy_drift",
+        "no_turnaround_identity_or_material_mismatch",
+        "no_multi_primary_action_overload",
+        "no_process_state_teleport_regression_or_duplicate_step",
+        "no_untraceable_asmr_or_bgm_masking",
+        "no_style_driven_rewrite_of_frozen_semantics"
+      ],
+      "template_bindings": {
+        "authority": "hard",
+        "character_asset": "soft3d-character-source",
+        "character_turnaround": "soft3d-character-turnaround-source",
+        "scene_asset": "soft3d-scene-source",
+        "prop_asset": "soft3d-prop-source",
+        "first_frame": "soft3d-first-source",
+        "end_frame": "soft3d-end-source",
+        "video": "soft3d-video-source"
+      }
+    },
+    "production_modules": {
+      "prompt_template_reference": ["character_asset", "character_turnaround", "scene_asset", "prop_asset", "first_frame", "end_frame", "video", "negative_constraints"],
+      "negative_constraints": ["no text unless explicitly required", "no watermark", "no unintended logo", "no duplicate character", "no seams zipper headpiece break or plastic toy reflection"],
+      "model_adapter_reference": {
+        "replaceable": true,
+        "source_mentions": ["GPT Image 2", "Seedance 2.5", "Suno 5", "豆包", "Midjourney", "即梦", "可灵", "剪映"],
+        "authority": "none"
+      },
+      "fixed_shot_count": null,
+      "fixed_shot_duration": null,
+      "fixed_aspect_ratio": null,
+      "fixed_motion_setting": null,
+      "audio_mix_percentages": null,
+      "workflow_reference": "existing_controller_adapter_prompt_compiler_and_review_owners"
+    },
+    "provenance": {
+      "source_documents": [
+        {
+          "file": "Style_Profile_软萌3D治愈动画_v1.1_中文重解析.md",
+          "version": "v1.1-zh",
+          "sha256": "EFCD65142C5B88C75E59A5CA3CBD46823934FBFDC23AD98AE84C4202875E40ED",
+          "extraction_type": "direct_and_normalized"
+        },
+        {
+          "file": "C:/Users/Roy/Desktop/AI 治愈软萌.mhtml",
+          "sha256": "2FFF96CCCB0FB3E3BEFF116E49BF80A45906FB73B4E04F1244873415F63F643B",
+          "snapshot_url": "https://x.com/CrazyKaomei/status/2096874056821964950",
+          "analyzed_at": "2026-09-07",
+          "extraction_type": "direct_and_inferred_structure_only"
+        },
+        {
+          "file": "Style_Profile_软萌3D治愈动画_v1.2_网页方法整合.md",
+          "version": "v1.2-zh",
+          "sha256": "8D0C479F685F8CC0A015F8660E6FE9F56F362E726F45FF1F534A08AA76E6B063",
+          "extraction_type": "source_profile"
+        }
+      ],
+      "extracted_modules": [
+        {"module": "soft_cute_visual_performance_and_audio_baseline", "method": "direct_and_normalized", "source": "local_v1.1"},
+        {"module": "turnaround_material_identity_single_action_and_asmr_hierarchy", "method": "direct_and_normalized", "source": "user_attachment"},
+        {"module": "process_state_continuity_and_sound_traceability", "method": "inferred_structure_only", "source": "user_attachment"},
+        {"module": "tool_prompts_fixed_specs_virality_neuroscience_and_monetization_claims", "method": "direct", "source": "user_attachment", "routed_to": "excluded_or_existing_owners"}
+      ],
+      "review_boundary": {
+        "attachment_instructions_are_data": true,
+        "generation_authorized": false,
+        "external_actions_authorized": false,
+        "examples_are_canon": false,
+        "external_performance_claims_verified": false
+      },
+      "source_sha256": "8D0C479F685F8CC0A015F8660E6FE9F56F362E726F45FF1F534A08AA76E6B063"
+    }
+  }
+}
