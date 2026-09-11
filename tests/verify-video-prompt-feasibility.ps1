@@ -10,13 +10,18 @@ function Assert-True {
 }
 
 $root = Split-Path -Parent $PSScriptRoot
+$pluginManifest = Get-Content -LiteralPath (Join-Path $root '.codex-plugin\plugin.json') -Raw -Encoding UTF8 | ConvertFrom-Json
+Assert-True (-not [string]::IsNullOrWhiteSpace([string]$pluginManifest.skills)) 'Plugin manifest must declare a Skill entry.'
+$declaredSkillsPath = ([string]$pluginManifest.skills).Replace('/', [System.IO.Path]::DirectorySeparatorChar)
+$skillsRoot = [System.IO.Path]::GetFullPath((Join-Path $root $declaredSkillsPath))
+Assert-True (Test-Path -LiteralPath $skillsRoot -PathType Container) "Manifest-declared Skill entry does not exist: $skillsRoot"
 $fixturePath = Join-Path $root 'tests\fixtures\video-prompt-feasibility-structural-cases.json'
-$compilerPath = Join-Path $root 'video-production\scripts\compile-video-prompt-fixture.ps1'
-$contract = Get-Content -Raw -LiteralPath (Join-Path $root 'video-production\contracts\video-prompt-feasibility-contract.md') -Encoding UTF8
-$gateModule = Get-Content -Raw -LiteralPath (Join-Path $root 'video-production\modules\prompt-feasibility-gate.md') -Encoding UTF8
-$compilerEntry = Get-Content -Raw -LiteralPath (Join-Path $root 'video-production\modules\clip-prompt-compiler.md') -Encoding UTF8
-$skillEntry = Get-Content -Raw -LiteralPath (Join-Path $root 'video-production\SKILL.md') -Encoding UTF8
-$template = Get-Content -Raw -LiteralPath (Join-Path $root 'video-production\templates\video-clip-prompt.md') -Encoding UTF8
+$compilerPath = Join-Path $skillsRoot 'video-production\scripts\compile-video-prompt-fixture.ps1'
+$contract = Get-Content -Raw -LiteralPath (Join-Path $skillsRoot 'video-production\contracts\video-prompt-feasibility-contract.md') -Encoding UTF8
+$gateModule = Get-Content -Raw -LiteralPath (Join-Path $skillsRoot 'video-production\modules\prompt-feasibility-gate.md') -Encoding UTF8
+$compilerEntry = Get-Content -Raw -LiteralPath (Join-Path $skillsRoot 'video-production\modules\clip-prompt-compiler.md') -Encoding UTF8
+$skillEntry = Get-Content -Raw -LiteralPath (Join-Path $skillsRoot 'video-production\SKILL.md') -Encoding UTF8
+$template = Get-Content -Raw -LiteralPath (Join-Path $skillsRoot 'video-production\templates\video-clip-prompt.md') -Encoding UTF8
 $tempDirectory = Join-Path ([System.IO.Path]::GetTempPath()) ('video-prompt-feasibility-' + [guid]::NewGuid().ToString('N'))
 $outputPath = Join-Path $tempDirectory 'compiled.json'
 

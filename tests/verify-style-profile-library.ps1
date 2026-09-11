@@ -6,11 +6,16 @@ function Assert-True {
 }
 
 $projectRoot = Split-Path -Parent $PSScriptRoot
+$pluginManifest = Get-Content -LiteralPath (Join-Path $projectRoot '.codex-plugin\plugin.json') -Raw -Encoding UTF8 | ConvertFrom-Json
+Assert-True (-not [string]::IsNullOrWhiteSpace([string]$pluginManifest.skills)) 'Plugin manifest must declare a Skill entry.'
+$declaredSkillsPath = ([string]$pluginManifest.skills).Replace('/', [System.IO.Path]::DirectorySeparatorChar)
+$skillsRoot = [System.IO.Path]::GetFullPath((Join-Path $projectRoot $declaredSkillsPath))
+Assert-True (Test-Path -LiteralPath $skillsRoot -PathType Container) "Manifest-declared Skill entry does not exist: $skillsRoot"
 $libraryRoot = Join-Path $projectRoot 'style-profiles'
 $sourceDir = Join-Path $libraryRoot 'source'
 $normalizedDir = Join-Path $libraryRoot 'normalized'
 $registryPath = Join-Path $libraryRoot 'registry.json'
-$scannerPath = Join-Path $projectRoot 'audiovisual-director\scripts\scan-style-profiles.ps1'
+$scannerPath = Join-Path $skillsRoot 'audiovisual-director\scripts\scan-style-profiles.ps1'
 
 $registry = Get-Content -LiteralPath $registryPath -Raw | ConvertFrom-Json
 Assert-True ($registry.profiles.Count -ge 2) 'Registry must retain at least the two original source-normalized profiles.'
@@ -28,7 +33,7 @@ foreach ($entry in $registry.profiles) {
     Assert-True ($normalized.style_profile.style_id -eq $entry.profile_id) "$($entry.normalized_file): profile_id mismatch."
 }
 
-$scan = @((& $scannerPath -ProjectRoot $projectRoot | ConvertFrom-Json))
+$scan = @((& $scannerPath | ConvertFrom-Json))
 $sourceCount = @(Get-ChildItem -LiteralPath $sourceDir -File -Filter '*.md').Count
 Assert-True ($scan.Count -eq $sourceCount) 'Scanner must return every current Markdown source document.'
 foreach ($entry in $registry.profiles) {

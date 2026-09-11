@@ -10,8 +10,13 @@ function Assert-True {
 }
 
 $root = Split-Path -Parent $PSScriptRoot
-$controller = Join-Path $root 'workflow-controller\scripts\decide-next-action.ps1'
-$routePolicyPath = Join-Path $root 'workflow-controller\policies\route-policy.md'
+$pluginManifest = Get-Content -LiteralPath (Join-Path $root '.codex-plugin\plugin.json') -Raw -Encoding UTF8 | ConvertFrom-Json
+Assert-True (-not [string]::IsNullOrWhiteSpace([string]$pluginManifest.skills)) 'Plugin manifest must declare a Skill entry.'
+$declaredSkillsPath = ([string]$pluginManifest.skills).Replace('/', [System.IO.Path]::DirectorySeparatorChar)
+$skillsRoot = [System.IO.Path]::GetFullPath((Join-Path $root $declaredSkillsPath))
+Assert-True (Test-Path -LiteralPath $skillsRoot -PathType Container) "Manifest-declared Skill entry does not exist: $skillsRoot"
+$controller = Join-Path $skillsRoot 'workflow-controller\scripts\decide-next-action.ps1'
+$routePolicyPath = Join-Path $skillsRoot 'workflow-controller\policies\route-policy.md'
 $scenarios = Get-Content -LiteralPath (Join-Path $root 'tests\fixtures\workflow-controller-scenarios.json') -Raw -Encoding UTF8 | ConvertFrom-Json
 $externalCases = Get-Content -LiteralPath (Join-Path $root 'tests\fixtures\external-prompt-duration-and-result-cases.json') -Raw -Encoding UTF8 | ConvertFrom-Json
 $tempDirectory = Join-Path ([System.IO.Path]::GetTempPath()) ('workflow-controller-' + [guid]::NewGuid().ToString('N'))

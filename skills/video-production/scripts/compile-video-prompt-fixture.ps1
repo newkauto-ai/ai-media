@@ -207,7 +207,18 @@ function Invoke-Case {
                 $humanReview = $true
                 Add-Validator $results 'bounded-semantic-preflight' 'needs_human_review' $evaluationEvidence 'human_decision' $evaluationFailures $evaluationRepairs $evaluationConfidence 'semantic'
             } elseif ($evaluationStatus -eq 'passed' -and $evaluationConfidence -eq 'high' -and $evaluationFailures.Count -eq 0) {
-                Add-Validator $results 'bounded-semantic-preflight' 'passed' $evaluationEvidence 'video_production' @() @() 'high' 'semantic'
+                $durationFit = Get-Value $riskPacket 'duration_fit'
+                $durationStatus = [string](Get-Value $evaluation 'duration_fit_status' '')
+                if ($null -ne $durationFit -and $durationStatus -eq 'blocked') {
+                    [void]$failures.Add('timing_failure'); [void]$repairTargets.Add('video_production.duration_fit')
+                    Add-Validator $results 'duration-fit' 'blocked' @('Declared evaluator evidence says required visible state changes or ending hold are not legible at the current duration.') 'video_production' @('timing_failure') @('video_production.duration_fit') 'high' 'semantic'
+                } elseif ($null -ne $durationFit -and $durationStatus -eq 'unknown') {
+                    $needsSemanticReview = $true
+                    Add-Validator $results 'duration-fit' 'unknown' @('Duration Fit evidence is unavailable for the affected story-function finding.') 'video_production' @() @('video_production.duration_fit') 'low' 'semantic'
+                } else {
+                    Add-Validator $results 'bounded-semantic-preflight' 'passed' $evaluationEvidence 'video_production' @() @() 'high' 'semantic'
+                    if ($null -ne $durationFit) { Add-Validator $results 'duration-fit' 'passed' @('Declared evaluator evidence found the required visible state changes and ending hold legible at the current duration.') 'video_production' @() @() 'high' 'semantic' }
+                }
             } elseif ($evaluationStatus -eq 'blocked' -and $evaluationConfidence -eq 'high' -and $evaluationFailures.Count -gt 0 -and $evaluationRepairs.Count -gt 0) {
                 foreach ($failure in $evaluationFailures) { if (-not $failures.Contains([string]$failure)) { [void]$failures.Add([string]$failure) } }
                 foreach ($target in $evaluationRepairs) { if (-not $repairTargets.Contains([string]$target)) { [void]$repairTargets.Add([string]$target) } }

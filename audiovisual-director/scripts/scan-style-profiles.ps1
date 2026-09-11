@@ -6,7 +6,12 @@ $ErrorActionPreference = 'Stop'
 
 if ([string]::IsNullOrWhiteSpace($ProjectRoot)) {
     $skillRoot = Split-Path -Parent $PSScriptRoot
-    $ProjectRoot = Split-Path -Parent $skillRoot
+    $containerRoot = Split-Path -Parent $skillRoot
+    $ProjectRoot = if ((Split-Path -Leaf $containerRoot) -eq 'skills') {
+        Split-Path -Parent $containerRoot
+    } else {
+        $containerRoot
+    }
 }
 
 $sourceDir = Join-Path $ProjectRoot 'style-profiles\source'

@@ -19,7 +19,7 @@ For `workflow_mode: external_prompt_only`, use the Fast Path defined by the Cont
 
 ## Required input and authority
 
-Read [input contract](contracts/input-contract.md) and [production manifest](contracts/production-manifest.md) first. When voice production is enabled, also read the [Audio Production Contract](contracts/audio-production-contract.md) and [Doubao adapter](adapters/doubao-tts-adapter.md). The order of authority is: frozen Script and ADP semantic locks, approved Visual Baseline, current Adapter capability, then runtime design. A source Style Profile must be `ready`; its legacy model or prompt rules never override this Skill.
+Read [input contract](contracts/input-contract.md) and [production manifest](contracts/production-manifest.md) first. When voice production is enabled, also read the [Audio Production Contract](contracts/audio-production-contract.md) and [Audio Adapter](adapters/audio-adapter.md). If the Controller selects Seed Audio v3, additionally read the [Seed Audio v3 Adapter](adapters/seed-audio-v3-adapter.md). The order of authority is: frozen Script and ADP semantic locks, approved Visual Baseline, current Adapter capability, then runtime design. A source Style Profile must be `ready`; its legacy model or prompt rules never override this Skill.
 
 Before Scene, Clip, or Prompt planning, require the Controller's current Video Adapter intake: platform/access route, exact model/version, target resolution, aspect ratio and duration choices, reference-input modes, and native-audio strategy. Missing fields remain `UNKNOWN` and block executable Prompt status; a model's official capability does not prove that a third-party platform exposes it.
 
