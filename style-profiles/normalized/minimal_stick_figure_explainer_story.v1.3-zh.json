@@ -1,0 +1,252 @@
+{
+  "fixture_only": false,
+  "library_status": "ready",
+  "normalized_from_source": "Style_Profile_精致单色平涂火柴人科普叙事_v1.3_角色差异化.md",
+  "style_profile": {
+    "style_id": "minimal_stick_figure_explainer_story",
+    "version": "v1.3-zh",
+    "classification": "hybrid_style_profile",
+    "visual": {
+      "visual_identity": "refined_single_tone_flatfill_diverse_stick_figure_explainer",
+      "color_fill_mode": "single_tone_flat_fill_per_semantic_region",
+      "secondary_shading_allowed": false,
+      "gradient_allowed": false,
+      "color_only_shadow_layer_allowed": false,
+      "direct_fill_allowed": false,
+      "character_design_diversity_required": true,
+      "minimum_distinct_design_axes_per_character_pair": 3,
+      "character_design_diversity_axes": [
+        "head_shape",
+        "hair_or_headwear",
+        "face_anchor",
+        "body_silhouette",
+        "clothing_silhouette",
+        "accessory_or_role_prop"
+      ],
+      "color_swap_only_is_valid_character_difference": false,
+      "same_character_identity_consistency_required": true,
+      "hands_and_feet_required": true,
+      "limb_line_width_output_px": "3.5-5",
+      "character_or_animal_draw_order": [
+        "character_head",
+        "character_body",
+        "character_limbs_or_accessories"
+      ],
+      "head_first_required": true
+    },
+    "pre_content_modules": {
+      "叙事建议": [
+        "设局",
+        "困境",
+        "顿悟",
+        "收束"
+      ],
+      "替代结构": [
+        "问题",
+        "原理",
+        "例子",
+        "行动"
+      ],
+      "信息密度": "每个画面只承担一个核心意思，复杂度随受众调整",
+      "权威": "advisory"
+    },
+    "audiovisual_modules": {
+      "视觉身份": [
+        "精致单色平涂火柴人",
+        "每个语义区域只有一个均匀基色",
+        "禁止赛璐珞二档明暗与任何阴影层",
+        "稳定三级线宽且四肢使用加粗二级结构线",
+        "暖纸白背景与炭黑蓝主线",
+        "画面可使用2到4个语义纯色",
+        "角色造型差异化",
+        "人物与动物角色从头部开始绘制"
+      ],
+      "线宽_最终输出px": {
+        "一级轮廓": "4-6",
+        "二级结构与四肢": "3.5-5",
+        "三级细节": "1.5-2.5"
+      },
+      "推荐色板": {
+        "背景": "#FAF7F0",
+        "主线": "#24313A",
+        "湖蓝": "#4A90A4",
+        "暖橘": "#F2A65A",
+        "柔黄": "#F4CF61",
+        "薄荷绿": "#79B89A"
+      },
+      "平涂约束": [
+        "每个闭合语义区域一个均匀基色",
+        "不同对象可使用不同纯色",
+        "禁止第二档阴影亮面与明暗切面",
+        "禁止投影渐变高光纹理与direct_fill阴影层"
+      ],
+      "角色": [
+        "每个命名角色建立可复用身份设计",
+        "任意两个主要角色至少三个造型维度实质不同",
+        "差异维度为头型发型头饰脸部锚点体型轮廓服装轮廓配饰职业道具",
+        "禁止相同圆头相同椭圆身体仅换颜色或小配饰",
+        "同一角色跨镜保持全部身份锚一致",
+        "手脚必须清楚可辨",
+        "不以肤色性别刻板印象或夸张体型作为主要区分",
+        "头部完成后才画躯干四肢与配饰"
+      ],
+      "角色绘制顺序": [
+        "头部外轮廓",
+        "头部身份结构与五官",
+        "颈部与躯干",
+        "四肢与明确手脚",
+        "配饰与末端细节"
+      ],
+      "表演": [
+        "预备",
+        "主动作",
+        "缓冲",
+        "一镜一主要动作",
+        "关键接触点清楚"
+      ],
+      "摄影": [
+        "固定",
+        "缓推",
+        "轻移",
+        "清晰景别变化"
+      ],
+      "声音": [
+        "朋友聊天式旁白",
+        "轻快低密度BGM"
+      ],
+      "连续性": [
+        "同一角色头型体型发型头饰脸部锚点服装配饰身份色与手脚形状",
+        "不同角色至少三个已批准差异维度",
+        "三级线宽映射",
+        "语义色板",
+        "场景几何",
+        "动作方向",
+        "道具接触"
+      ]
+    },
+    "production_modules": {
+      "whiteboard_source": {
+        "source_scale": "4x_output_geometry",
+        "downsample": "premultiplied_alpha_area",
+        "simple_route": "flat_auto",
+        "layered_or_text_route": "structured_semantic",
+        "character_or_animal_route": "structured_semantic",
+        "character_or_animal_draw_order": [
+          "character_head",
+          "character_body",
+          "character_limbs_or_accessories"
+        ],
+        "head_first_required": true,
+        "hands_and_feet_required": true,
+        "default_reveal": "line_then_fill",
+        "direct_fill_allowed": false,
+        "secondary_shading_allowed": false,
+        "semantic_layers": [
+          "character_head",
+          "character_body",
+          "character_limbs_or_accessories",
+          "prop_or_diagram",
+          "accent",
+          "text_when_required"
+        ],
+        "tip_policy": "follow_active_frontier_and_hide_on_pen_up"
+      },
+      "角色差异化": {
+        "required": true,
+        "minimum_distinct_axes_per_character_pair": 3,
+        "axes": [
+          "head_shape",
+          "hair_or_headwear",
+          "face_anchor",
+          "body_silhouette",
+          "clothing_silhouette",
+          "accessory_or_role_prop"
+        ],
+        "same_character_consistency_required": true,
+        "color_swap_only_forbidden": true
+      },
+      "失败判据": [
+        "出现赛璐珞二档明暗硬边阴影投影渐变高光纹理或写实光影",
+        "同一平涂区域出现第二档深色或浅色",
+        "多个角色只换颜色或小配饰但共享相同头身与比例模板",
+        "主要角色对不足三个实质造型差异维度",
+        "同一角色跨镜身份锚漂移",
+        "没有明确手脚或四肢细于二级结构线",
+        "线条全局等粗或随机漂移",
+        "粗线机械填色或细线下采样消失",
+        "绘制碎片化或阅读顺序不清",
+        "整块擦除或颜色领先线稿",
+        "手笔离开当前前沿或跨对象瞬移",
+        "人物或动物先画躯干四肢或头部未完成便跳到身体"
+      ],
+      "可替换参考": [
+        "具体图像与视频模型",
+        "画幅与分辨率",
+        "提示词关键词",
+        "音频模型",
+        "镜头时长与暂停节点"
+      ],
+      "known_source_conflicts": [
+        "v1.0等粗线升级为稳定三级线宽",
+        "v1.0单一强调色升级为语义纯色",
+        "v1.2二级结构线升级为四肢可读的3.5到5px",
+        "v1.2可选浅投影与direct_fill例外被取消",
+        "v1.2弱角色区分升级为主要角色对至少三个造型维度不同",
+        "收尾文字与生成禁字幕继续使用独立文字层解决",
+        "固定镜头时长继续由语义与阅读负荷决定"
+      ]
+    },
+    "provenance": {
+      "source_documents": [
+        {
+          "file": "Style_Profile_极简火柴人科普叙事_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "sha256": "BFF1773E830D87A8A3181B60E717EE71EC74908BD21A5BFDD04B595FF6EF9978",
+          "extraction_type": "prior_profile"
+        },
+        {
+          "file": "Style_Profile_精致彩色火柴人科普叙事_v1.1_用户优化.md",
+          "version": "v1.1-zh",
+          "sha256": "0EA70298F1E15516AA016BA940DB90180C71FA774643D50275FA48CED3FFBF8D",
+          "extraction_type": "user_directed_upgrade"
+        },
+        {
+          "file": "Style_Profile_精致彩色火柴人科普叙事_v1.2_头部先画.md",
+          "version": "v1.2-zh",
+          "sha256": "51BC55DF60D84D8A4B5ECFB6B0D23E3C9C48EF901BDD310D0BCCA451AB3CCE68",
+          "extraction_type": "user_directed_draw_order_upgrade"
+        },
+        {
+          "file": "Style_Profile_精致单色平涂火柴人科普叙事_v1.3_角色差异化.md",
+          "version": "v1.3-zh",
+          "sha256": "33BE9EF7085A625A6A304E1AB53763B56AE5F4C397A31C90F92A37E729AE3D31",
+          "extraction_type": "user_directed_flatfill_and_character_diversity_upgrade"
+        }
+      ],
+      "extracted_modules": [
+        {
+          "模块": "火柴人识别与叙事结构",
+          "extraction": "inherited"
+        },
+        {
+          "模块": "稳定三级线宽与单档平涂",
+          "extraction": "user_directed_normalization"
+        },
+        {
+          "模块": "白板4x结构化输入与过程失败判据",
+          "extraction": "renderer_compatibility_normalization"
+        },
+        {
+          "模块": "人物动物角色头部先画与明确手脚",
+          "extraction": "user_directed_normalization"
+        },
+        {
+          "模块": "角色多维度差异与同角色连续性",
+          "extraction": "user_directed_normalization"
+        }
+      ],
+      "examples_are_canon": false,
+      "source_sha256": "33BE9EF7085A625A6A304E1AB53763B56AE5F4C397A31C90F92A37E729AE3D31"
+    }
+  }
+}

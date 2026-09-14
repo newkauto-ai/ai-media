@@ -149,12 +149,14 @@ foreach ($requiredField in @('source_skill','task_scope','outcome','artifact_ref
 Assert-True ($controllerSkill -match 'Start and resume reconciliation') 'Controller must define bounded start/resume reconciliation.'
 Assert-True ($controllerSkill -match 'media-intake') 'Controller must define reported-media intake before Production QA.'
 Assert-True ($controllerSkill -match 'one owning capability and one action') 'Controller must select only one owner and action.'
+Assert-True ($controllerSkill -match 'do not serialize or append raw YAML/JSON') 'Controller must keep its machine envelope out of ordinary user-facing replies.'
 foreach ($relativePath in $specialistSkills) {
     $skillText = Get-Content -LiteralPath (Join-Path $testRoot ('..\' + $relativePath)) -Raw -Encoding UTF8
     Assert-True ($skillText -match '## Controller return') "$relativePath must define its return boundary."
     Assert-True ($skillText -match 'controller_return') "$relativePath must use the shared Controller Return Envelope."
     Assert-True ($skillText -match 'awaiting_controller_resume') "$relativePath must stop when Controller cannot be re-entered."
     Assert-True ($skillText -match 'Stop after the envelope') "$relativePath must not progress across Skills after returning."
+    Assert-True ($skillText -match 'do not append raw `controller_return` YAML/JSON') "$relativePath must not expose raw Controller state by default."
 }
 Assert-True ($pluginManifest.interface.defaultPrompt.Count -eq 3) 'Plugin manifest must expose exactly the three UI-supported activation prompts.'
 Assert-True ((@($pluginManifest.interface.defaultPrompt) -join "`n") -match '唯一下一步') 'Plugin manifest must expose a resume/next-action prompt.'

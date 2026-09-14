@@ -47,7 +47,7 @@ A topic may carry a nuanced or deep thesis, but its short-form expression route 
 
 ## Controller return
 
-Use this Skill directly for bounded topic generation, comparison, or explanation. When it creates or selects a project Topic Thesis, return the `controller_return` envelope defined by Workflow Controller with the Topic Thesis artifact/ref, evidence gaps, approval state, external-action boundary, and one recommended next action. Use `awaiting_user_confirmation` until the topic is explicitly approved. Stop after the envelope: do not call Script Engine or cross Stage 0 unless Controller has re-observed the artifact and selected that action. If Controller cannot be re-entered reliably, use `awaiting_controller_resume`.
+Use this Skill directly for bounded topic generation, comparison, or explanation. When it creates or selects a project Topic Thesis, populate the logical `controller_return` envelope defined by Workflow Controller with the Topic Thesis artifact/ref, evidence gaps, approval state, external-action boundary, and one recommended next action. Follow the Controller's user-facing rendering rule: do not append raw `controller_return` YAML/JSON unless the user explicitly requests machine-readable or debug details, or a destination tool requires it. Use `awaiting_user_confirmation` until the topic is explicitly approved. Stop after the envelope: do not call Script Engine or cross Stage 0 unless Controller has re-observed the artifact and selected that action. If Controller cannot be re-entered reliably, use `awaiting_controller_resume`.
 
 ## Quality gate
 

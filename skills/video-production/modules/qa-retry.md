@@ -18,3 +18,5 @@ Do not create a separate Regeneration Gate. For an evidence-bound `production_qa
 - media revision/checksum is missing, semantics would change, ownership is unclear, expected improvement is low, or retry budget is exhausted -> `request_human_decision`.
 
 “感觉还能更好”, “再试一版”, and “也许更漂亮” are not sufficient evidence. Requesting the separate regeneration Cost Gate never authorizes a provider call. Increment retry count only through Execution State when a repair/regeneration attempt is scheduled.
+
+Whiteboard 1.3 segment execution remains ordinary `production_qa`: render and technically check one immutable Job before starting the next; on failure retain passed segments, stop downstream, and route only the named failed unit through existing Execution State. A continuous-canvas merge checks non-overlapping logical frame ranges, exact total frames/duration, no boundary duplicate/gap/flash/state loss, hidden tip at the boundary, full decode, and SHA-256. A board cut must be declared. Technical success and merge parity remain `success_pending_human_review` until continuous human viewing.

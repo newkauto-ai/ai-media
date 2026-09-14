@@ -2,7 +2,7 @@
 
 `production_manifest.json` is the machine source of truth. JSON is used for local Fixture validation; YAML is an equivalent runtime serialization.
 
-Version 1.7 adds one additive `previsualization` subtree and permits an optional local-renderer Adapter/reference projection. Neither creates a Creative Handoff Snapshot, second approval state, retry counter, or actual-state ledger.
+Version 1.7 adds one additive `previsualization` subtree and permits an optional local-renderer Adapter/reference projection. The active local whiteboard Adapter is `whiteboard_animator`; `region_stream_ink` is removed rather than retained as an alias. Neither creates a Creative Handoff Snapshot, second approval state, retry counter, or actual-state ledger.
 
 ```yaml
 production_manifest:
@@ -10,7 +10,7 @@ production_manifest:
   meta: {project_id, script_id, fixture_only, generated_at}
   semantic_locks: object
   input_provenance: {adp_contract_version, style_profile_ids, template_bindings}
-  adapters: [object] # may include optional region_stream_ink local-renderer capability facts
+  adapters: [object] # may include optional whiteboard_animator local-renderer capability facts
   prompt_policy:
     contract_version: "1.1"
     independent_request_policy: self_contained
@@ -74,9 +74,10 @@ production_manifest:
 - Storyboard media is previsualization only. It does not satisfy a Visual Baseline, write `actual_end_state`, become a Production Asset, or grant a Cost Gate.
 - A real image asset keeps `image_prompt_spec` and `call_package`; raw YAML is not sent to the model.
 - A temporary `manual_cutout_from_named_2x2_atlas` prompt projection is not serialized into this Manifest and is never a Production Asset, approval, generated state, or Remotion input. Final independent PNGs retain their original planned `asset_id` and must pass existing intake, RGBA/Alpha, edge, and safe-area checks before binding.
-- An optional `region_stream_ink` Adapter record contains only `adapter_id`, `adapter_type: local_renderer`, exact Renderer version, `access_route: local_cli`, supported input modes, and `native_audio: none`. It has no provider/model fiction, approval, QA verdict, retry count, or global output default.
-- A Clip may carry `local_visual_render_ref: {job_id, revision_id, input_hash, adapter_id}`. The immutable Job Spec and execution report remain artifacts; real output still enters through existing media intake, QA stays in `qa.results`, and retry authority stays in existing Execution State.
+- An optional `whiteboard_animator` Adapter record contains only `adapter_id`, `adapter_type: local_renderer`, exact Renderer and pinned upstream versions, `access_route: local_cli`, supported input modes, mandatory suitability-preflight policy, and `native_audio: none`. It has no provider/model fiction, approval, QA verdict, retry count, global output default, hidden-structure inference, or active `region_stream_ink` alias.
+- A Clip may carry `local_visual_render_ref: {job_id, revision_id, input_hash, adapter_id, whiteboard_style_slice_ref?, pilot_fingerprint_sha256?, pilot_approval_evidence_ref?, whiteboard_render_plan_ref?}`. The optional 1.3 references bind derived style, exact Pilot evidence, and the benchmark-backed plan without embedding them or creating another state owner. The immutable Job Spec and execution report remain artifacts; real output still enters through existing media intake, QA stays in `qa.results`, and retry authority stays in existing Execution State.
 - A formal local-render Job requires this video's confirmed `aspect_ratio`, `resolution`, even `width_px`, even `height_px`, and integer-frame timing. `UNKNOWN` blocks execution. Local CPU rendering has no media-generation Cost Gate; paid source-image generation retains the existing Visual Baseline and image Cost Gate. `external_prompt_only` cannot execute this Adapter.
+- A new whiteboard 1.3 style/source/Renderer/route/geometry/tip fingerprint blocks propagation until the referenced existing Controller/Review evidence records human acceptance. Exact accepted fingerprints may be reused. Segment reports and merge reports are execution artifacts only; technical success stays `success_pending_human_review`.
 - An image decision cannot be empty: it is `explicit`, `inherited`, or justified `not_applicable`. Existing legacy image assets migrate unknown values to `unresolved`, never silently to not applicable.
 - Old approved prompts are retained as revisions. New rules create a new revision; legacy Prop remains `story_prop` unless the task explicitly requires inspected product evidence.
 - `actual_end_state`, generated file references, AI QA verdicts, and human approval evidence remain null/pending until observed.
@@ -87,4 +88,5 @@ production_manifest:
 - Every Clip may carry `video_prompt_spec`, `clip_performance_binding`, and `state_record_id` references. `executable_video_prompt` is null when a hard deterministic conflict exists; `unknown` is review routing, not failure or retry budget consumption.
 - A v1.5 or v1.6 input is read-only migration input. Recompilation writes a new v1.7 revision and never mutates the input file.
 - A BGM request remains independent from Video Clip Prompts and voice assets. Its prompt hash, provider/model, duration, output format, estimated credits, approval evidence, provider IDs, checksum, measured duration, and listening QA state must remain reviewable.
+- Named-voice selection extends `audio_production` only: preserve requirement provenance, hard constraints, a maximum-three candidate shortlist, evidence URL, account availability, human decision, and provider-call authorization. Public catalog presence is not account entitlement; no candidate may become the approved Voice Profile automatically.
 - A new pre-generation review stores the complete Review Result v2.1 in `qa.results`, bound to exact target/input/dependency hashes and evaluator policy version. This additive record does not grant a Cost Gate, mutate retry authority, or duplicate actual state.

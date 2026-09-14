@@ -41,7 +41,7 @@ Own SEE + HEAR + PERFORM. Translate frozen content semantics into a unified, mod
 
 ## Controller return
 
-Use this Skill directly for a bounded ADP explanation, read-only Review, or explicitly scoped direction artifact that does not advance Stage. Any new/revised ADP, semantic conflict, or Stage 1 package must return the `controller_return` envelope defined by Workflow Controller. Include the ADP artifact/version/hash/status, semantic-lock refs, unresolved conflicts, Stage 1 approval state, external-action boundary, and one recommended next action. Stage 1 readiness returns `awaiting_user_confirmation`; conflicts return `blocked` or `human_review`. Stop after the envelope and never invoke Video Production directly. If reliable Controller re-entry is unavailable, use `awaiting_controller_resume`.
+Use this Skill directly for a bounded ADP explanation, read-only Review, or explicitly scoped direction artifact that does not advance Stage. Any new/revised ADP, semantic conflict, or Stage 1 package must populate the logical `controller_return` envelope defined by Workflow Controller. Include the ADP artifact/version/hash/status, semantic-lock refs, unresolved conflicts, Stage 1 approval state, external-action boundary, and one recommended next action. Follow the Controller's user-facing rendering rule: do not append raw `controller_return` YAML/JSON unless the user explicitly requests machine-readable or debug details, or a destination tool requires it. Stage 1 readiness records `awaiting_user_confirmation`; conflicts record `blocked` or `human_review`. Stop after the envelope and never invoke Video Production directly. If reliable Controller re-entry is unavailable, use `awaiting_controller_resume`.
 
 ## Completion gate
 

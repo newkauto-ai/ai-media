@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "roles": [
+    {
+      "voice_profile_id": "narrator-sichuan-male",
+      "speaker_id": "NARRATOR",
+      "speaker_name": "旁白",
+      "scope": "narration",
+      "provenance": "source_locked",
+      "hard_constraints": {
+        "language": "中文",
+        "gender": "男性",
+        "dialect": "四川方言",
+        "provider_route": "doubao_big_model_tts_v3"
+      },
+      "preferences": {
+        "age_band": "中年",
+        "use_cases": ["解说"],
+        "style_tags": ["沉稳", "亲切", "清晰"]
+      },
+      "prohibited_traits": ["滑稽卡通腔"]
+    },
+    {
+      "voice_profile_id": "grandmother-main",
+      "speaker_id": "CHAR-GRANDMOTHER",
+      "speaker_name": "婆婆",
+      "scope": "character_dialogue",
+      "provenance": "source_locked",
+      "hard_constraints": {
+        "language": "中文",
+        "gender": "女性",
+        "provider_route": "doubao_big_model_tts_v3"
+      },
+      "preferences": {
+        "age_band": "老年",
+        "use_cases": ["角色对白"],
+        "style_tags": ["亲切"]
+      },
+      "prohibited_traits": []
+    },
+    {
+      "voice_profile_id": "unsupported-hakka-male",
+      "speaker_id": "CHAR-H",
+      "speaker_name": "客家男声",
+      "scope": "character_dialogue",
+      "provenance": "runtime_inferred",
+      "hard_constraints": {
+        "language": "中文",
+        "gender": "男性",
+        "dialect": "hakka",
+        "provider_route": "doubao_big_model_tts_v3"
+      },
+      "preferences": {
+        "age_band": "成年",
+        "use_cases": ["角色对白"],
+        "style_tags": ["清晰"]
+      },
+      "prohibited_traits": []
+    }
+  ]
+}

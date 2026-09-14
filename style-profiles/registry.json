@@ -195,12 +195,12 @@
     },
     {
       "profile_id": "minimal_stick_figure_explainer_story",
-      "source_file": "Style_Profile_极简火柴人科普叙事_v1.0_中文解析.md",
-      "source_sha256": "BFF1773E830D87A8A3181B60E717EE71EC74908BD21A5BFDD04B595FF6EF9978",
-      "normalized_file": "minimal_stick_figure_explainer_story.v1.0-zh.json",
-      "normalized_version": "v1.0-zh",
+      "source_file": "Style_Profile_精致单色平涂火柴人科普叙事_v1.3_角色差异化.md",
+      "source_sha256": "33BE9EF7085A625A6A304E1AB53763B56AE5F4C397A31C90F92A37E729AE3D31",
+      "normalized_file": "minimal_stick_figure_explainer_story.v1.3-zh.json",
+      "normalized_version": "v1.3-zh",
       "classification": "hybrid_style_profile",
-      "status": "pending_review",
+      "status": "ready",
       "provenance_verified": true
     },
     {

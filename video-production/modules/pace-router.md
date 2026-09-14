@@ -1,3 +1,7 @@
 # Pace Router
 
 Choose `calm`, `normal`, `energetic`, or `hyper` from the ADP story function, action, camera language, and Adapter reliability. Use recommended Shot-density ranges only as guidance: calm 1–2, normal 1–3, energetic 3–5, hyper 4–8. Record average Shot duration, camera energy, cut frequency, action density, transition style, and motion complexity in the Clip plan. Do not reinstate a global maximum-shots rule.
+
+For `whiteboard_animator`, use its separate deterministic calibration and do not select `hyper` before real-sample validation. After source preflight, calculate stroke time from skeleton length plus pen lifts and text readability, fill time from alpha area plus region transitions, and hold time from minimum hold plus remaining readable-text need. Choose the slowest fitting `calm`, `normal`, or `energetic` profile, convert all phase boundaries to integer frames, and preserve the exact total-frame budget. If `energetic` cannot fit, reduce objects, shorten copy, remove decoration, or split the semantic board; return `human_review` instead of accelerating without bound.
+
+For 1.3, render-planning workload combines active draw, discounted static hold, output pixel-frames, layer/object/text load, skeleton length, fill area, pen lifts, and a local benchmark with an evidence reference. A long static hold does not by itself cause segmentation. When workload exceeds the benchmarked safe range, cut only at completed semantic object groups; retain the final readable hold in the last continuous segment.

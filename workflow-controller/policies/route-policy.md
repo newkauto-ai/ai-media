@@ -2,7 +2,7 @@
 
 | Condition | Permitted next action |
 |---|---|
-| New or resumed video project has no current evidenced Video Adapter | request one Video Adapter intake before creative-stage routing: platform/access route, exact model/version, target resolution, aspect ratio/duration choices, reference modes, and native-audio strategy |
+| A cost-incurring generation request lacks a materially required execution parameter | request only the missing parameter at the existing Cost Gate or call package; do not create a Video Adapter intake, stage, or artifact |
 | `workflow_mode=external_prompt_only` and strategy is absent | recommend S1–S4 plus at most one meaningful alternative; request one strategy choice and stop |
 | `workflow_mode=external_prompt_only`, strategy selected, and explicit S1/S2 content is sufficient | route one `video-production` Fast Path compilation; do not request Script Architecture, LookDev, Storyboard, Manifest, Notion, or a Cost Gate |
 | `workflow_mode=external_prompt_only` has missing topic, script/dialogue/fact, or compact-direction content | route only the missing work to `topic-hunter`, `script-engine`, or `audiovisual-director`; return to Controller after its envelope |
@@ -43,6 +43,10 @@
 | Target or dependency hash changed | mark prior Review stale through existing lineage rules; do not consume retry budget |
 | Current Stage waits for explicit approval | stop and request the exact Stage confirmation; generic “continue” is insufficient |
 | User asks to propagate beyond the validated sample | check risk coverage, Clip-first scope, and Cost Gate; do not batch automatically |
+| Whiteboard 1.3 Pilot fingerprint is new or lacks exact human acceptance evidence | route one risk-selected representative Pilot only; block propagation and formal segmented rendering |
+| Whiteboard 1.3 Pilot fingerprint exactly matches recorded human acceptance and the benchmark-backed render plan is current | route one `video-production` single or next serial segment action; re-observe before continuing |
+| Whiteboard segment technical check fails | retain passed segments, stop downstream, and route the named failed unit through existing Execution State; do not create another retry owner |
+| Whiteboard Pilot or merged final is only technically successful | keep `success_pending_human_review`; request continuous human viewing before acceptance |
 | Bounded specialist-only question has no stage, lineage, approval, or external-action mutation | route directly to the owning Specialist; Controller optional |
 
 This policy chooses capabilities, not hidden implementation tools. Each decision selects one owning capability and one atomic next action, then stops before another Skill, Gate, unit, or external action. The selected Skill still validates its own input and must obey all cost and approval Gates. `external_prompt_only` is the documented exception: its only Gate is strategy selection, and its PASS is a manual-use prompt package rather than generation authority. Its later External Result Review is Manifest-free and never changes managed retry, Gate, actual-state, or selected-media owners. Stage 2 approval authorizes only the scoped Notion projection; it never grants paid media generation approval.

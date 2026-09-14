@@ -1,4 +1,4 @@
-# Audio Production Contract v1.0
+# Audio Production Contract v1.1
 
 Audio Production compiles locked Script text and ADP voice direction into provider-neutral voice requests, reusable Voice Profiles, and a timeline that can be assembled with Video Clips. V1 supports TTS voice only. It does not mix, create BGM/SFX/Foley, lip-sync, or imitate a real person.
 
@@ -37,6 +37,33 @@ voice_profile:
   status: draft | approved | retired
 ```
 
+## Named-voice selection
+
+Automatic selection is a recommendation step before Voice Profile approval. Requirements come from the frozen Character & Voice Bible and Script, with explicit provenance:
+
+```yaml
+voice_selection_requirement:
+  voice_profile_id: string
+  speaker_id: string
+  speaker_name: string
+  scope: narration | character_dialogue
+  hard_constraints:
+    language: string | null
+    gender: male | female | null
+    dialect: string | null
+    provider_route: string | null
+  preferences:
+    age_band: child | teen | young_adult | adult | middle_aged | older_adult | null
+    use_cases: [string]
+    style_tags: [string]
+  prohibited_traits: [string]
+  provenance: source_locked | runtime_inferred
+```
+
+Hard constraints and prohibited traits filter candidates. Age, use case, and style only rank the survivors. Return at most three candidates per role, including `voice_type`, score, matched evidence, provider route, source URL, and `account_availability`. A public catalog entry does not prove that the current account can call it. Keep `selected_voice: null` and `provider_call_authorized: false` until account availability is verified and a human approves one candidate. No match is `blocked_no_candidate`; do not silently relax a hard constraint.
+
+`doubao_big_model_tts_v3` is the fixed named-voice route. `seed_audio_v3_full_scene` accepts descriptive scene/voice prompting and must not be presented as a fixed `voice_type` selection route.
+
 ## Voice request and asset lifecycle
 
 ```text
@@ -46,7 +73,7 @@ planned → awaiting_user_approval → submitted → provider_complete → downl
 
 Each `voice_request` must contain `audio_id`, `beat_id`, `scene_id`, exact `text`, `voice_profile_id`, provider, format, request controls, planned start/end, and the status above. `asset_path`, `provider_request_id`, checksum, measured duration, and QA evidence are empty until observed.
 
-For Doubao async TTS, retain the provider `task_id` as `provider_request_id`. The temporary `audio_url` is used only for the immediate download and is not retained in the Manifest; record its expiry time, retrieved sentence timing, downloaded byte length, and checksum instead.
+For any provider, retain the observed request/task identifier as `provider_request_id`. Temporary asset URLs are used only for immediate retrieval and are not retained in the Manifest; record expiry when available, downloaded byte length, and checksum instead.
 
 ## Timeline rules
 
@@ -59,5 +86,6 @@ For Doubao async TTS, retain the provider `task_id` as `provider_request_id`. Th
 ## Gate and security
 
 - Never store API keys, access tokens, or secrets in the manifest, Voice Profile, template, logs, or Git.
+- Named-voice recommendation does not authorize a provider call. Unknown account availability blocks generation but does not block producing a review shortlist.
 - A live request requires explicit approval of provider, voice count, text set, output format, estimated cost, and stopping condition.
 - The local fixture/compiler may create `planned` requests only. It cannot claim generated audio, quality, approval, or assembly readiness.
