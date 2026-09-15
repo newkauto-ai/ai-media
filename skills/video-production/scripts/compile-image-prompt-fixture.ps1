@@ -157,19 +157,25 @@ foreach ($case in (As-Array $fixture.cases)) {
     if ($null -ne $atlasInput) {
         $sourceAssetIds = As-Array (Get-Value $atlasInput 'source_asset_ids')
         $cells = As-Array (Get-Value $atlasInput 'cells')
-        if ($sourceAssetIds.Count -lt 1 -or $sourceAssetIds.Count -gt 4 -or @($sourceAssetIds | Select-Object -Unique).Count -ne $sourceAssetIds.Count) { Add-Failure $failures 'prompt_under_specified' }
-        if ($cells.Count -lt 1 -or $cells.Count -gt 4) { Add-Failure $failures 'prompt_under_specified' }
+        $grid = [string](Get-Value $atlasInput 'grid')
+        $capacity = if ($grid -eq '2x2') { 4 } elseif ($grid -eq '3x3') { 9 } else { 0 }
+        $expectedGrid = if ($sourceAssetIds.Count -le 4) { '2x2' } else { '3x3' }
+        $allowedCellIds = if ($grid -eq '2x2') { @('A','B','C','D') } elseif ($grid -eq '3x3') { @('A','B','C','D','E','F','G','H','I') } else { @() }
+        if ($capacity -eq 0 -or $grid -ne $expectedGrid) { Add-Failure $failures 'prompt_under_specified' }
+        if ($sourceAssetIds.Count -lt 1 -or $sourceAssetIds.Count -gt $capacity -or @($sourceAssetIds | Select-Object -Unique).Count -ne $sourceAssetIds.Count) { Add-Failure $failures 'prompt_under_specified' }
+        if ($cells.Count -ne $sourceAssetIds.Count -or $cells.Count -gt $capacity) { Add-Failure $failures 'prompt_under_specified' }
         $cellIds = @($cells | ForEach-Object { [string](Get-Value $_ 'cell_id') })
-        if (@($cellIds | Where-Object { $_ -notin @('A','B','C','D') }).Count -gt 0 -or @($cellIds | Select-Object -Unique).Count -ne $cellIds.Count) { Add-Failure $failures 'prompt_under_specified' }
+        if (@($cellIds | Where-Object { $_ -notin $allowedCellIds }).Count -gt 0 -or @($cellIds | Select-Object -Unique).Count -ne $cellIds.Count) { Add-Failure $failures 'prompt_under_specified' }
         foreach ($cell in $cells) {
-            foreach ($field in @('element_name_zh', 'state_or_pose', 'suggested_filename')) {
+            foreach ($field in @('element_name_zh', 'state_or_pose', 'asset_constraints', 'suggested_filename')) {
                 if (-not (Has-Text (Get-Value $cell $field))) { Add-Failure $failures 'prompt_under_specified' }
             }
         }
+        if (-not (Has-Text (Get-Value $atlasInput 'destination_background'))) { Add-Failure $failures 'prompt_under_specified' }
         $atlasBackground = Get-Value $atlasInput 'background'
-        if ([string](Get-Value $atlasBackground 'type') -ne 'solid_color' -or -not (Has-Text (Get-Value $atlasBackground 'color'))) { Add-Failure $failures 'output_spec_mismatch' }
+        if ([string](Get-Value $atlasBackground 'type') -ne 'transparent') { Add-Failure $failures 'output_spec_mismatch' }
         $layout = Get-Value $atlasInput 'layout_constraints'
-        foreach ($field in @('one_complete_subject_per_cell', 'wide_gutter', 'full_subject_inside_safe_area', 'no_in_image_labels')) {
+        foreach ($field in @('one_complete_subject_per_cell', 'wide_gutter', 'full_subject_inside_safe_area', 'no_in_image_labels', 'no_grid_lines', 'no_checkerboard', 'no_complex_scene')) {
             if (-not [bool](Get-Value $layout $field)) { Add-Failure $failures 'prompt_under_specified' }
         }
     }
@@ -259,15 +265,19 @@ foreach ($case in (As-Array $fixture.cases)) {
     if ($null -ne $atlasInput) {
         $atlasCells = @()
         foreach ($cell in (As-Array (Get-Value $atlasInput 'cells'))) {
-            $atlasCells += [pscustomobject]@{ cell_id = Get-Value $cell 'cell_id'; element_name_zh = Get-Value $cell 'element_name_zh'; state_or_pose = Get-Value $cell 'state_or_pose'; suggested_filename = Get-Value $cell 'suggested_filename' }
+            $atlasCells += [pscustomobject]@{ cell_id = Get-Value $cell 'cell_id'; element_name_zh = Get-Value $cell 'element_name_zh'; state_or_pose = Get-Value $cell 'state_or_pose'; asset_constraints = Get-Value $cell 'asset_constraints'; suggested_filename = Get-Value $cell 'suggested_filename' }
         }
-        $atlasPrompt = "生成一个 2×2 图集：纯色高对比背景、宽 gutter、每格一个完整主体且四周安全留白；不生成中文名称、箭头、格线或棋盘格。" + (($atlasCells | ForEach-Object { " 格$($_.cell_id)：$($_.element_name_zh)，$($_.state_or_pose)。" }) -join '')
+        $atlasGrid = [string](Get-Value $atlasInput 'grid')
+        $destinationBackground = [string](Get-Value $atlasInput 'destination_background')
+        $atlasPrompt = "在当前 Work/Codex 任务对应的既有 ChatGPT Web 同一对话中生成一个 $atlasGrid 透明 PNG 素材图集：背景必须真正透明，宽 gutter，每格一个完整主体且四周安全留白；不生成文字、名称、标签、箭头、格线、棋盘格、复杂场景或跨格元素。预期最终合成背景：$destinationBackground。剪纸轮廓色优先纸白或暖白；如果会与该背景融合，则改用属于同一纸张色板、但在明度、色相或冷暖上清楚分离的轮廓色。目标是明显、连续的剪纸轮廓层次，不把白边写死；轮廓完整包住人物、手脚、服饰附件和道具，纸层投影与轮廓分开。下载后先核验真实 Alpha，再使用 split-transparent-atlas.ps1 按名称本地裁切。" + (($atlasCells | ForEach-Object { " 格$($_.cell_id)：$($_.element_name_zh)，$($_.state_or_pose)；约束：$($_.asset_constraints)。" }) -join '')
         $atlasProjection = [pscustomobject]@{
-            projection_type = 'manual_cutout_from_named_2x2_atlas'; source_asset_ids = (As-Array (Get-Value $atlasInput 'source_asset_ids')); grid = '2x2'; cells = $atlasCells
+            projection_type = 'manual_crop_from_named_transparent_atlas'; source_asset_ids = (As-Array (Get-Value $atlasInput 'source_asset_ids')); grid = $atlasGrid; cells = $atlasCells
+            destination_background = $destinationBackground
+            outline_policy = [pscustomobject]@{ goal = 'clear_continuous_cut_paper_separation'; preferred = 'paper_white_or_warm_white'; fallback = 'palette_coherent_background_contrasting_paper_tone'; fixed_white = $false; shadow_separate = $true; validation = 'real_frame_at_bound_delivery_size_plus_human_review' }
             background = Get-Value $atlasInput 'background'; layout_constraints = Get-Value $atlasInput 'layout_constraints'
-            handoff = [pscustomobject]@{ generation = 'user_external'; cutout = 'user_manual'; remotion_input = 'individual_rgba_png_only' }
+            handoff = [pscustomobject]@{ generation = 'chatgpt_web_existing_conversation'; crop = 'split-transparent-atlas.ps1_wrapper_to_python_named_row_major_true_alpha_only'; alpha_verification = 'required_before_crop_binding'; outline_validation = 'required_against_bound_destination_background'; remotion_input = 'individual_rgba_png_only' }
             persistence = 'ephemeral_compiler_output_not_production_manifest_or_asset'
-            call_package = [pscustomobject]@{ executable_prompt = $atlasPrompt; reference_bindings = (As-Array (Get-Value $spec 'reference_bindings')); request_parameters = [pscustomobject]@{ size = Get-Value $output 'size'; quality = Get-Value $output 'quality'; background = 'solid_color'; output_format = Get-Value $output 'output_format' }; adapter_id = 'local-fixture'; unresolved_fields = @(); generation_status = 'blocked' }
+            call_package = [pscustomobject]@{ executable_prompt = $atlasPrompt; reference_bindings = (As-Array (Get-Value $spec 'reference_bindings')); request_parameters = [pscustomobject]@{ size = Get-Value $output 'size'; quality = Get-Value $output 'quality'; background = 'transparent'; output_format = Get-Value $output 'output_format' }; adapter_id = 'chatgpt_web'; unresolved_fields = @(); generation_status = 'blocked' }
         }
     }
     $compiled += [pscustomobject]@{

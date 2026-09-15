@@ -75,25 +75,27 @@ call_package:
   generation_status: ready | blocked
 ```
 
-Aspect ratio, size, background, quality, and format may live in Adapter request parameters rather than natural language, but must be adjacent to the prompt in this package. No configured image model exists by default; every real call remains blocked pending its separate cost Gate. For a compiled Cover Prompt, the caller may relabel this local result as `generation_status=not_authorized`; this is stricter than `blocked` and does not authorize a provider call.
+Aspect ratio, size, background, quality, and format may live in Adapter request parameters rather than natural language, but must be adjacent to the prompt in this package. A required transparent PNG defaults to the existing ChatGPT Web conversation for the current Work/Codex task; this route does not prove conversation availability, saved-file Alpha, or an exposed model version. Every real call remains blocked pending its separate cost Gate. For a compiled Cover Prompt, the caller may relabel this local result as `generation_status=not_authorized`; this is stricter than `blocked` and does not authorize a provider call.
 
 ### Temporary atlas prompt projection
 
-An existing one-element image plan may additionally be projected locally as a VOX `manual_cutout_from_named_2x2_atlas` package. It reuses the same `image_prompt_spec` and `call_package` field meanings and must retain `call_package.generation_status=blocked`:
+An existing one-element image plan may additionally be projected locally as a VOX `manual_crop_from_named_transparent_atlas` package. It reuses the same `image_prompt_spec` and `call_package` field meanings and must retain `call_package.generation_status=blocked`. Use the smallest grid that fits: `2x2` for one to four compatible small elements, or `3x3` for five to nine. Group only elements sharing one evidenced destination-background and cut-paper-outline contrast basis:
 
 ```yaml
 atlas_prompt_projection:
-  projection_type: manual_cutout_from_named_2x2_atlas
-  source_asset_ids: [string] # 1-4 existing planned asset IDs
-  grid: 2x2
-  cells: [{cell_id: A|B|C|D, element_name_zh: string, state_or_pose: string, suggested_filename: string}]
-  layout_constraints: {one_complete_subject_per_cell: true, wide_gutter: true, full_subject_inside_safe_area: true, no_in_image_labels: true}
-  background: {type: solid_color, color: string}
-  handoff: {generation: user_external, cutout: user_manual, remotion_input: individual_rgba_png_only}
+  projection_type: manual_crop_from_named_transparent_atlas
+  source_asset_ids: [string] # 1-9 existing planned asset IDs
+  grid: 2x2 | 3x3
+  destination_background: string
+  cells: [{cell_id: A..I, element_name_zh: string, state_or_pose: string, asset_constraints: string, suggested_filename: string}]
+  outline_policy: {goal: clear_continuous_cut_paper_separation, preferred: paper_white_or_warm_white, fallback: palette_coherent_background_contrasting_paper_tone, fixed_white: false, shadow_separate: true, validation: real_frame_at_bound_delivery_size_plus_human_review}
+  layout_constraints: {one_complete_subject_per_cell: true, wide_gutter: true, full_subject_inside_safe_area: true, no_in_image_labels: true, no_grid_lines: true, no_checkerboard: true, no_complex_scene: true}
+  background: {type: transparent}
+  handoff: {generation: chatgpt_web_existing_conversation, crop: split-transparent-atlas.ps1_wrapper_to_python_named_row_major_true_alpha_only, alpha_verification: required_before_crop_binding, outline_validation: required_against_bound_destination_background, remotion_input: individual_rgba_png_only}
   call_package: {executable_prompt, reference_bindings, request_parameters, adapter_id, unresolved_fields, generation_status: blocked}
 ```
 
-The projection is ephemeral compiler output. Do not persist it into `production_manifest.json`, designate the atlas as a Production Asset, use `prompt_ready_for_external_use`, add a new state/Gate, or state that output has transparency. An individual post-cut PNG remains an existing-asset intake problem, not an atlas slice.
+The projection is ephemeral compiler output. Do not persist it into `production_manifest.json`, designate the atlas as a Production Asset, use `prompt_ready_for_external_use`, add a new state/Gate, or claim transparency before inspecting the saved PNG. `asset_constraints` carries project-specific era/clothing, identity, direction, pose, complete-limb, and prop requirements when applicable; it does not add them to global VOX style. The outline prefers paper white or warm white but adapts to the bound destination background. After verified Alpha, use `scripts/split-transparent-atlas.ps1` to resolve the approved Pillow runtime and invoke the Python named crop. Each independent PNG remains an existing-asset intake problem, not an atlas slice. The crop tool does not remove solid backgrounds, invent/recolor outlines, call a provider, or authorize overwrite without its explicit flag.
 
 ## Clause map and QA gate
 
