@@ -1,0 +1,78 @@
+{
+  "fixture_only": true,
+  "purpose": "Contract examples for human review and structural regression only; not render or art-quality proof.",
+  "cases": [
+    {
+      "case_id": "quiet-comparison-static",
+      "motion_mode": "static",
+      "information_goal": "compare two readable evidence cards",
+      "primary_attention_target": "evidence-card-pair",
+      "key_layout_states": ["comparison-ready"],
+      "semantic_end_state": "comparison-ready",
+      "layer_count": 2,
+      "camera_phases": [],
+      "expected_contract_outcome": "eligible"
+    },
+    {
+      "case_id": "relationship-build-dynamic",
+      "motion_mode": "dynamic",
+      "information_goal": "establish the relationship between two people and one shared document",
+      "primary_attention_target": "relationship-chain",
+      "key_layout_states": ["person-a-readable", "relationship-established"],
+      "semantic_end_state": "relationship-established",
+      "layer_count": 5,
+      "camera_phases": ["follow-person-a", "reframe-shared-document"],
+      "layer_events": ["person-a-enter", "person-b-respond", "document-marked"],
+      "historical_zoom_reference_exceeded": true,
+      "expected_contract_outcome": "eligible"
+    },
+    {
+      "case_id": "evidence-reveal-compound",
+      "motion_mode": "compound",
+      "information_goal": "reveal a map route, enlarge one document detail, then compare a marker",
+      "primary_attention_target_by_phase": ["map-route", "document-detail", "comparison-marker"],
+      "key_layout_states": ["map-readable", "detail-readable", "comparison-readable"],
+      "semantic_end_state": "comparison-readable",
+      "layer_count": 6,
+      "camera_phases": ["track-route", "push-detail", "settle-comparison"],
+      "layer_events": ["route-draw", "document-unfold", "marker-hit", "secondary-label-exit"],
+      "curated_motion_example_membership": false,
+      "expected_contract_outcome": "eligible"
+    },
+    {
+      "case_id": "intentional-closeup-crop",
+      "motion_mode": "static",
+      "information_goal": "read the held document seal",
+      "protected_regions": ["right-hand", "document-seal"],
+      "intentional_crop_reason": "tight evidence close-up",
+      "source_silhouette_complete": true,
+      "protected_regions_readable": true,
+      "expected_contract_outcome": "eligible"
+    },
+    {
+      "case_id": "missing-alpha-and-face-occlusion",
+      "motion_mode": "dynamic",
+      "asset_alpha": false,
+      "protected_regions": ["face", "evidence-text"],
+      "protected_regions_readable": false,
+      "expected_contract_outcome": "must_fix"
+    },
+    {
+      "case_id": "duplicate-caption-and-stale-sfx",
+      "motion_mode": "compound",
+      "caption_output_owners": ["remotion", "external_post"],
+      "sfx_event_type": "impact",
+      "visible_event_binding": null,
+      "timeline_revision_matches": false,
+      "expected_contract_outcome": "must_fix"
+    },
+    {
+      "case_id": "external-bgm-intermediate",
+      "motion_mode": "dynamic",
+      "caption_output_owners": ["external_post"],
+      "bgm_output_owner": "external_post",
+      "remotion_intermediate_tracks": ["picture", "narration", "sfx"],
+      "expected_contract_outcome": "eligible_intermediate_not_final_master"
+    }
+  ]
+}

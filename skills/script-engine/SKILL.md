@@ -17,6 +17,39 @@ Turn an approved Topic Thesis into a high-retention master script, then freeze t
 
 ## Workflow
 
+When the selected ready Style Profile is `reference_video_structural_remake` and its
+`reference_fidelity_context.content_structure_lock` is true, use the bounded reference-remake
+branch below instead of the generic Hook/H-C-E-R-M shaping steps. This branch changes the review
+projection, not the existing Stage 0 approval owner.
+
+### Reference-remake branch
+
+This branch consumes the Profile modules `reference_compatibility`,
+`preservation_constraints`, and `replacement_mapping`; the existing rights checks consume
+`rights_and_identity_gate`.
+
+1. Resolve the current `reference_fidelity_context` from `current_user_overrides`,
+   `pre_content_style_constraints`, and `source_evidence`. Direct user choices win. If the user did
+   not select a goal, record the Profile default (structure and audiovisual mechanism transfer) as
+   `goal_source: profile_default`; do not turn it into a permanent lock.
+2. Before drafting or freezing, require a current `constraint_hash`, readable evidence only for the
+   dimensions being claimed, and a `reference_structure_mapping` that preserves source order and
+   maps each reference unit to its target function. A still image may support composition or visible
+   state, but motion, rhythm, sound, and synchronization remain `UNKNOWN`.
+3. Preserve an already selected topic and Hook. Do not generate five competing Hooks, force
+   H-C-E-R-M, run three compression passes, inflate the source to 8-12 Beats, or invent conflict,
+   reversal, dialogue, psychology, or a didactic ending for non-narrative material. Mark inapplicable
+   dramatic fields `not_applicable`.
+4. Output the alternate Stage 0 package `Topic Thesis + selected Hook + reference structure and
+   target adaptation mapping`, then stop for the same explicit Stage 0 approval. Reference units are
+   editorial evidence units, not generation Clips.
+5. Freeze only when every `must_preserve` requirement is referenced by the Script or explicitly
+   approved as a change. A post-freeze conflict returns through the existing Controller/upstream or
+   human-decision path; never silently rewrite it.
+
+If `content_structure_lock` is false (for example, style-only inspiration with original content),
+use the generic workflow below and do not apply these content-fidelity exceptions.
+
 1. Read the complete Topic Thesis Card and its Topic Hunter duration recommendation/rationale. Reuse a current recommendation; if it is missing, return only the duration-planning gap to Topic Hunter through Controller. Restate one core thesis. If it conflicts with the intended state change or unique supply, stop and return it to topic design.
 2. Generate at least five hooks. Compare directness to the primary user driver, curiosity gap, conflict, information density, context independence, and 3–5 second speakability. Select exactly one.
 3. Build an H-C-E-R-M outline before prose: Hook, Conflict, Escalation, Reveal, Meaning. Meaning must first pay off the core conflict; add real-life mapping only when natural.
@@ -92,3 +125,9 @@ Use this Skill directly for a bounded Script explanation, read-only Review, or e
 ## Freeze gate
 
 Set `frozen_script.status` to `frozen` only after Stage 0 approval, complete Draft, fit to the approved Topic Hunter duration plan with a separate actual estimate, H-C-E-R-M structure, compression, sentence-function audit, retention stimulus, Script Quality Review READY, and handoff manifest checks pass. Once frozen, downstream skills may translate presentation but may not silently delete the Hook, alter Reveal, change facts, or change the core conclusion.
+
+For the reference-remake branch, replace the H-C-E-R-M, five-Hook, three-pass-compression, and
+8-12-Beat expectations with a validated `reference_structure_mapping`, current
+`reference_fidelity_context.constraint_hash`, preservation coverage, and the same Stage 0 human
+approval plus Script Quality evidence appropriate to the source's actual function. This exception
+does not relax factual, rights, semantic-lock, or downstream lineage checks.

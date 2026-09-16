@@ -16,6 +16,12 @@ When the script plan is ready, output only these review modules, in this order:
 2. `Hook Selection`
 3. `H-C-E-R-M outline`
 
+For a selected, ready, structure-locked `reference_video_structural_remake`, the same Stage 0 Gate
+uses an alternate review projection: `Topic Thesis`, the already selected Hook when one exists, and
+the ordered `reference structure and target adaptation mapping`. Non-applicable dramatic fields stay
+`not_applicable`; do not add conflict, reversal, dialogue, Meaning, or extra Beats to satisfy the
+generic projection. Approval authority and explicit confirmation remain unchanged.
+
 Stop with `awaiting_user_confirmation: stage_1_script_architecture`. Do not output the full
 master script, Global visual DNA, image prompts, audiovisual beats, executable production
 prompts, or Notion writes at this stage.

@@ -17,3 +17,9 @@ Each Beat must include:
 For a Beat referenced by a pivotal `performance_plan`, expose the observable state change across the relevant Beat range: gaze target/change, pause or reaction delay, breath, hand pressure, posture/weight shift, interaction feedback, decision signal, and resulting action. A fixed label such as “害怕” or “犹豫” is not evidence. Do not add a psychological arc to ordinary non-pivotal movement.
 
 Do not force one Beat per shot or one Beat per clip.
+
+For a structure-locked `reference_video_structural_remake`, do not force 8–12 Beats. Preserve the
+validated `reference_structure_mapping` order and only merge/split when the mapping records why the
+same function is retained. Non-narrative units need no invented conflict, reversal, dialogue,
+psychological turn, or Meaning. For critical units, cite the matching reference-fidelity requirement
+and record only evidenced dynamic relationships; keep source, target, and observed timing distinct.

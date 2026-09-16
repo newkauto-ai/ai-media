@@ -33,6 +33,11 @@ A normalized Style Profile should separate `pre_content_modules`, `audiovisual_m
 
 Do not treat examples as Canon. Do not invent missing source rules. Missing fields stay `null`; a current-video recommendation must be labeled `runtime_recommended`.
 
+For `reference_video_structural_remake`, validation must also confirm that every declared module name
+is consumed by the actual pre-content, audiovisual, or production contract; the Profile must remain
+`pending_review` or `blocked` when a critical mapping is absent. A label such as
+`reference_transferred` alone is not evidence of decomposition, constraint propagation, or QA.
+
 ## Viral Feed named-style resolution
 
 For `workflow_mode: external_prompt_only`, resolve these exact user-visible names before the existing Style Profile selection step:

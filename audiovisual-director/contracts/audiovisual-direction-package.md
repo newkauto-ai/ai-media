@@ -21,6 +21,8 @@ audiovisual_direction_package:
     core_conclusion: string
     factual_claims: [string]
 
+  reference_fidelity: object | null # optional structure-remake lineage, reference_evidence_record_ref, and current constraint hash
+
   style_resolution:
     classification: string
     compatibility: {result, reasons, risks, recommendation}
@@ -43,7 +45,8 @@ audiovisual_direction_package:
 
   character_voice_bible: [object]
   asset_plan: {characters, scenes, props, special_assets}
-  audiovisual_beats: [object] # usually 8-12; Beat is not Shot or Clip
+  audiovisual_beats: [object] # usually 8-12; structure-locked remakes preserve validated source-unit count
+  reference_fidelity_traces: [object] # optional requirement -> target mapping, without duplicating evidence
   performance_plans: [performance_plan]
   sound_cue_plan: [object]
   music: {music_brief, suno_prompt}
@@ -94,6 +97,12 @@ performance_plan:
 ```
 
 Each `performance_plan` is a translation, not a second editable story. It must cite an existing Script arc and may not add a motive, choice, or resulting action.
+
+For a structure-locked reference remake, every trace records `requirement_id`,
+`source_evidence_refs`, `source_function`, `target_script_reference`, `adp_beat_ids`,
+`preserve`, `approved_changes`, `production_responsibilities`, and optional `source_timing` /
+`target_timing`. `observed_timing` remains absent until real-media QA. A screenshot may populate
+composition or visible state but may not confirm motion, rhythm, sound, or synchronization.
 
 ## Forbidden output
 

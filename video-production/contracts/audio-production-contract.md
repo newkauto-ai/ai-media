@@ -78,10 +78,12 @@ For any provider, retain the observed request/task identifier as `provider_reque
 ## Timeline rules
 
 - The Script text is immutable. Voice Prompt Generator may select documented delivery controls only; it cannot paraphrase, add pauses as spoken words, or change semantic locks.
-- Plan to one decimal second. Video and voice run in parallel, so the Audio Timeline is not a single serial track.
+- Estimated voice planning may use decimal seconds. Final assembly binds the confirmed audio file, checksum, measured duration, sample rate, and original absolute semantic intervals; it converts visual, caption, and SFX event boundaries to integer frames at the bound fps. One-decimal estimates are never final execution precision.
 - Estimated duration uses the project baseline (Chinese: 4.2 effective speech units/sec adjusted by `speech_rate`, punctuation and 0.15s utterance buffer). Reconcile to the measured audio duration before assembly.
 - A request that exceeds its owning Clip is a `timing_conflict`, not an automatic speed-up. Return it to audio timing review or split the locked Script upstream.
 - Reuse requires the same text hash, approved Voice Profile revision, provider/voice type, rendering controls, output format, and checksum. Otherwise create a new asset revision.
+
+For narration-led local assembly, `audio_production.final_narration_master` is one continuous read-only timing spine even when upstream voice generation used several requests. Do not require one WAV per Shot, automatically delete pauses, time-stretch audio, or move narration to fit a prebuilt visual timeline. Store `caption_output_owner: remotion | external_post` with exactly one final owner. Store SFX as separate asset/event refs: a whoosh binds a visible motion interval; an impact binds a visible settle or hit. A narration, Shot-order, or timeline revision makes affected SFX bindings stale and requires recheck. `bgm_output_owner: external_post` permits an intentional picture+narration+SFX intermediate without BGM and does not convert it into an accepted final master.
 
 ## Gate and security
 

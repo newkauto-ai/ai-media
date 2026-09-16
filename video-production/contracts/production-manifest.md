@@ -10,6 +10,7 @@ production_manifest:
   meta: {project_id, script_id, fixture_only, generated_at}
   semantic_locks: object
   input_provenance: {adp_contract_version, style_profile_ids, template_bindings}
+  reference_fidelity: object | null # optional profile/evidence/constraint lineage; no duplicate observations
   adapters: [object] # may include optional whiteboard_animator local-renderer capability facts
   prompt_policy:
     contract_version: "1.1"
@@ -38,8 +39,8 @@ production_manifest:
     review_result_ref: string | null
     generation_status: not_required | planned_awaiting_cost_gate | generated_awaiting_review
     cost_gate: object
-  scenes: [object]
-  clips: [object] # may carry optional local_visual_render_ref
+  scenes: [object] # may carry optional local_assembly_plan projected from approved Scene/Shot intent
+  clips: [object] # may carry optional local_visual_render_ref or local_assembly_ref
   assets:
     - asset_id: string
         image_prompt_spec: # required for image assets; see the image-prompt portion of Executable Prompt Contract v1.2
@@ -59,7 +60,8 @@ production_manifest:
         executable_prompt: string
         qa: {status, failures}
       call_package: {executable_prompt, reference_bindings, request_parameters, adapter_id, unresolved_fields, generation_status}
-  audio_production: object
+      pose_requirements: object | null # project-derived identity/facing/gesture/prop-contact/completeness/background constraints
+  audio_production: object # may carry final_narration_master and assembly event refs; voice/SFX/BGM owners remain separate
   bgm_production: object
   continuity_ledger: [object]
   qa: {failure_taxonomy, results, retries} # Review Result v2.1 records are stored in results
@@ -82,6 +84,14 @@ production_manifest:
 - Old approved prompts are retained as revisions. New rules create a new revision; legacy Prop remains `story_prop` unless the task explicitly requires inspected product evidence.
 - `actual_end_state`, generated file references, AI QA verdicts, and human approval evidence remain null/pending until observed.
 - Every independent video call receives its exact global layer and identity anchors. Image output parameters remain reviewable in its call package.
+- A VOX Remotion `local_assembly_plan` extends existing Scene/Shot/asset records only. It may carry `information_goal`, `key_layout_states`, `primary_attention_target`, `semantic_end_state`, independent element z-order/geometry/anchors/facing, time-bounded protected regions, caption safe area, intentional crop reason, camera phases, layer events, and absolute narration/caption/SFX bindings. It is not a second Manifest, renderer, approval, QA, retry, or actual-state owner. Static, dynamic, and compound motion are peer choices; action count, historical zoom amplitude, fixed layer count, and membership in a curated motion list are not readiness or failure fields.
+- For this local assembly branch, `local_assembly_ref` replaces only inapplicable generative Clip requirements: it does not require a six-module Video Prompt, provider call, or the 6–14 second generation default. Any actually generated video unit remains a normal Clip and keeps those controls. `whiteboard_animator` and `external_prompt_only` retain their own boundaries.
+- `audio_production.final_narration_master` binds the confirmed audio revision, checksum, measured duration, sample rate, read-only status, and absolute semantic intervals. Assembly converts visual/caption/SFX events to integer frames at the bound fps while preserving original audio time; estimates never drive final execution. `caption_output_owner` is exactly one of `remotion` or `external_post`. SFX refs bind visible motion intervals or settle/hit events and become stale when their narration/timeline dependency changes. An intentional picture+narration+SFX intermediate may omit BGM when `bgm_output_owner: external_post`; this is not final-master audio acceptance.
+- Character identity and per-Shot pose assets keep separate responsibilities. Every pose asset or atlas cell inherits applicable era/clothing, identity, facing, gesture, prop-contact, complete-silhouette, and destination-background requirements. Source silhouette completeness is checked separately from a declared final close-up crop.
+- A reference-remake Clip may carry `reference_fidelity_trace_refs`, while Manifest-level
+  `reference_fidelity` stores only the profile/version, current constraint hash, authoritative
+  evidence ref, and critical requirement IDs. A constraint, evidence, or target-media hash change
+  makes the prior assessment stale through existing lineage rules and does not consume retry.
 - Timeline segments are serialized with one-decimal boundaries, join exactly, and end at Clip duration.
 - `continuity_ledger` is the only source of actual observed state. A Clip and a continuity handshake carry only `state_record_id` references and may not duplicate or override `actual_end_state`.
 - Every Scene derives `clip_ids`, reuse count, multi-angle status, and coverage requirement from its coverage plan; approved Scene Baselines are referenced by `baseline_id` and never copied as generated evidence.

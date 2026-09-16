@@ -45,3 +45,11 @@ For a planned Clip whose real predecessor has not been generated, write the froz
 Internally store every segment as numeric `start_seconds` and `end_seconds` rounded to one decimal. Validate: first start is `0.0`; each end equals the next start; each end is greater than its start; no segment overlaps; final end equals both the Clip duration and `output_spec.duration_seconds`; each segment states action, camera change, and any critical state change. Timing is a planning constraint, not a claim of frame-exact model compliance.
 
 Use a compact, failure-driven negative set. Default to no generated subtitles, screen text, watermark, or background music only when those layers are produced separately. Add no unintended bystanders or unrelated third-party marks only when required by the approved scene; never use that rule to erase an authentic, approved product identity.
+
+For `reference_video_structural_remake`, a critical timeline item may reference `requirement_id`,
+`source_timing`, `target_timing`, `timing_basis`, and `tolerance`. Bind semantic reveals to the
+target line/event; bind music beats, physical contact, and user-locked sync points to their evidence
+basis. Never copy a source timestamp into the target merely because the source used it, and never
+populate `observed_timing` or claim synchronization before inspecting bound real media. Include only
+necessary action phases, camera-relative motion, composition/occlusion, text/graphic holds, and sound
+landing constraints.

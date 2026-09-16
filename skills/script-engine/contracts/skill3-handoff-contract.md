@@ -60,6 +60,7 @@ script_engine_output:
       reusable_assets: [string]
       production_complexity: low | medium | high
       over_budget_notes: string
+    reference_fidelity: object | null # optional; current reference-remake constraint and mapping refs
   audit:
     hook_candidates: [string] # at least 5
     selected_hook_reason: string
@@ -104,3 +105,10 @@ Skill 3 may split the script into audiovisual expression, decide narration/dialo
 For every `pivotal_change=true` arc, the handoff must preserve trigger, initial state, deliberation, decision/choice, resulting action, and end state. A `pivotal_change=false` arc is allowed for a non-choice beat and does not require a fabricated psychological arc.
 
 Skill 4 receives downstream ADP and owns model-specific prompts and actual production. No Skill 4 business logic belongs in this handoff.
+
+For `reference_video_structural_remake`, `reference_fidelity` carries only the current
+`profile_id`, `profile_version`, `primary_goal`, `content_structure_lock`, `constraint_hash`,
+`reference_evidence_ref`, `reference_structure_mapping`, and preservation requirement IDs. It does
+not duplicate the evidence record. Any constraint/evidence hash change invalidates downstream
+reference-fidelity conclusions through existing lineage rules. Reference units remain distinct from
+ADP Beats and generation Clips.

@@ -14,6 +14,11 @@ Confirmation request: `请确认第1点（确认脚本结构）后，我再输�
 Do not include the full master script, visual DNA, asset prompts, audiovisual beats, executable
 production prompts, or Notion write results before this gate is approved.
 
+For a structure-locked `reference_video_structural_remake`, keep the same confirmation boundary but
+replace `Hook Selection`/`H-C-E-R-M outline` with the already selected Hook (when present) and a
+`Reference structure and target adaptation mapping`. Preserve source order and mark non-applicable
+dramatic fields explicitly; do not manufacture them to fill this template.
+
 ## Topic Thesis
 
 - Topic:

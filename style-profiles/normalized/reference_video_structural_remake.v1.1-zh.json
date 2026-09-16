@@ -1,0 +1,90 @@
+{
+  "fixture_only": false,
+  "library_status": "ready",
+  "normalized_from_source": "Style_Profile_参考视频结构复刻_v1.1_保真升级.md",
+  "style_profile": {
+    "style_id": "reference_video_structural_remake",
+    "version": "v1.1-zh",
+    "classification": "production_playbook",
+    "defaults": {
+      "primary_goal": "structure_and_audiovisual_mechanism_transfer",
+      "goal_source": "profile_default",
+      "content_structure_lock": true,
+      "pixel_copy_required": false,
+      "real_media_fidelity_verified": false
+    },
+    "authority": {
+      "conflict_priority": [
+        "current_user_instruction",
+        "rights_and_authenticity",
+        "frozen_semantics",
+        "validated_reference_constraints",
+        "profile_default"
+      ],
+      "ready_meaning": "source_router_and_contract_validated_not_real_media_quality"
+    },
+    "pre_content_modules": {
+      "reference_compatibility": "script_engine",
+      "preservation_constraints": "script_engine",
+      "replacement_mapping": "script_engine",
+      "rights_and_identity_gate": "existing_rights_checks"
+    },
+    "audiovisual_modules": {
+      "reference_evidence_record": "audiovisual_director",
+      "reference_structure_mapping": "audiovisual_director",
+      "dynamic_relationship_plan": "audiovisual_director",
+      "sound_timing_basis": "audiovisual_director"
+    },
+    "production_modules": {
+      "reference_asset_binding": "video_production",
+      "reference_fidelity_trace": "video_production",
+      "reference_fidelity_assessment": "production_qa"
+    },
+    "reference_fidelity_contract": {
+      "context_fields": [
+        "primary_goal",
+        "goal_source",
+        "content_structure_lock",
+        "must_preserve",
+        "allowed_changes",
+        "conflict_priority",
+        "source_evidence_refs",
+        "constraint_hash"
+      ],
+      "stage_0_projection": "reference_structure_and_target_adaptation_mapping",
+      "preserve_existing_hook_when_selected": true,
+      "generic_hcerm_required": false,
+      "generic_five_hook_competition_required": false,
+      "generic_eight_to_twelve_beat_target_required": false,
+      "reference_unit_equals_generation_clip": false,
+      "timing_axes": ["source_timing", "target_timing", "observed_timing"],
+      "still_only_unknown_dimensions": ["motion", "rhythm", "sound", "synchronization"],
+      "qa_owner": "production_qa",
+      "hash_change_behavior": "stale_without_retry",
+      "local_layer_failure_behavior": "edit_or_reuse_failed_unit",
+      "total_similarity_score": "forbidden"
+    },
+    "provenance": {
+      "source_documents": [
+        {
+          "file": "Style_Profile_参考视频结构复刻_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "extraction_type": "inherited_base"
+        },
+        {
+          "file": "Style_Profile_参考视频结构复刻_v1.1_保真升级.md",
+          "version": "v1.1-zh",
+          "sha256": "E7B3A1EDE048ED0EDDE1203E549F7635560223ED3E7A3EBCC6F513BB7415A68D",
+          "extraction_type": "source_profile"
+        }
+      ],
+      "extracted_modules": [
+        {"module": "reference_fidelity_context", "method": "direct"},
+        {"module": "reference_structure_mapping", "method": "direct"},
+        {"module": "reference_fidelity_trace", "method": "normalized"},
+        {"module": "reference_fidelity_assessment", "method": "normalized"}
+      ],
+      "source_sha256": "E7B3A1EDE048ED0EDDE1203E549F7635560223ED3E7A3EBCC6F513BB7415A68D"
+    }
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "profile_id": "reference_video_structural_remake",
+  "profile_version": "v1.1-zh",
+  "pipeline_case": {
+    "constraint_hash": "sha256:constraint-v1",
+    "script_handoff": {
+      "reference_fidelity": {
+        "profile_id": "reference_video_structural_remake",
+        "profile_version": "v1.1-zh",
+        "primary_goal": "preserve_structure_replace_product",
+        "content_structure_lock": true,
+        "constraint_hash": "sha256:constraint-v1",
+        "reference_evidence_ref": "reference-evidence.json#REF-001",
+        "reference_structure_mapping": [
+          {"order": 1, "reference_unit_id": "RU-01", "target_unit_id": "TU-01", "function": "hook_product_problem"},
+          {"order": 2, "reference_unit_id": "RU-02", "target_unit_id": "TU-02", "function": "show_mechanism"},
+          {"order": 3, "reference_unit_id": "RU-03", "target_unit_id": "TU-03", "function": "product_reveal"},
+          {"order": 4, "reference_unit_id": "RU-04", "target_unit_id": "TU-04", "function": "usage_result"}
+        ],
+        "requirement_ids": ["REQ-ORDER", "REQ-HOOK", "REQ-REVEAL"]
+      },
+      "stage_0_projection": "reference_structure_and_target_adaptation_mapping",
+      "selected_hook_preserved": true,
+      "hcerm": "not_applicable",
+      "invented_reversal": false
+    },
+    "adp": {
+      "reference_fidelity": {
+        "constraint_hash": "sha256:constraint-v1",
+        "reference_evidence_ref": "reference-evidence.json#REF-001"
+      },
+      "audiovisual_beat_ids": ["B01", "B02", "B03", "B04"],
+      "reference_fidelity_traces": [
+        {"requirement_id": "REQ-ORDER", "source_evidence_refs": ["OBS-ORDER"], "source_function": "ordered_demonstration", "target_script_reference": "TU-01..TU-04", "adp_beat_ids": ["B01", "B02", "B03", "B04"], "preserve": ["order", "function"], "approved_changes": ["product_identity"], "production_responsibilities": ["action_camera"]},
+        {"requirement_id": "REQ-HOOK", "source_evidence_refs": ["OBS-HOOK"], "source_function": "hook_product_problem", "target_script_reference": "TU-01", "adp_beat_ids": ["B01"], "preserve": ["opening_function"], "approved_changes": ["product_identity"], "production_responsibilities": ["composition"]},
+        {"requirement_id": "REQ-REVEAL", "source_evidence_refs": ["OBS-REVEAL"], "source_function": "product_reveal", "target_script_reference": "target_dialogue:line-07", "adp_beat_ids": ["B03"], "preserve": ["reveal_after_target_line"], "approved_changes": ["source_timestamp"], "production_responsibilities": ["action_camera", "audio"], "source_timing": {"seconds": 8.0}, "target_timing": {"basis": "target_dialogue", "seconds": 11.0}}
+      ]
+    },
+    "manifest": {
+      "reference_fidelity": {
+        "profile_id": "reference_video_structural_remake",
+        "profile_version": "v1.1-zh",
+        "constraint_hash": "sha256:constraint-v1",
+        "reference_evidence_ref": "reference-evidence.json#REF-001",
+        "critical_requirement_ids": ["REQ-ORDER", "REQ-HOOK", "REQ-REVEAL"]
+      },
+      "clips": [
+        {"clip_id": "C01", "reference_fidelity_trace_refs": ["REQ-ORDER", "REQ-HOOK"]},
+        {"clip_id": "C02", "reference_fidelity_trace_refs": ["REQ-ORDER"]},
+        {"clip_id": "C03", "reference_fidelity_trace_refs": ["REQ-ORDER", "REQ-REVEAL"]}
+      ]
+    }
+  },
+  "evidence_cases": [
+    {
+      "case_id": "still_only",
+      "reference_readability": "still_only",
+      "observations": {"composition": "observed", "visible_state": "observed", "motion": "UNKNOWN", "rhythm": "UNKNOWN", "sound": "UNKNOWN", "synchronization": "UNKNOWN"}
+    },
+    {
+      "case_id": "constraint_hash_changed",
+      "previous_constraint_hash": "sha256:constraint-v1",
+      "current_constraint_hash": "sha256:constraint-v2",
+      "previous_assessment": "pass",
+      "expected_current_assessment": "stale",
+      "expected_retry_delta": 0
+    },
+    {
+      "case_id": "reveal_retimed_but_output_kept_source_time",
+      "requirement_id": "REQ-REVEAL",
+      "source_timing_seconds": 8.0,
+      "target_timing_seconds": 11.0,
+      "observed_timing_seconds": 8.0,
+      "tolerance_seconds": 0.5,
+      "expected_status": "fail",
+      "expected_failure_type": "timing_failure"
+    },
+    {
+      "case_id": "subtitle_only_defect",
+      "core_story_function_satisfied": true,
+      "failed_layer": "subtitle",
+      "can_edit_or_reuse": true,
+      "expected_next_action": "edit_or_reuse_failed_unit"
+    },
+    {
+      "case_id": "missing_real_output_media",
+      "target_media_path": null,
+      "target_media_hash": null,
+      "expected_status": "unknown",
+      "expected_retry_delta": 0,
+      "may_claim_real_media_pass": false
+    }
+  ]
+}

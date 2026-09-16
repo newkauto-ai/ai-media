@@ -32,6 +32,13 @@ ADAPTER_ID = "whiteboard_animator"
 RENDERER_VERSION = "0.5.0-ai-media.1"
 UPSTREAM_VERSION = "0.1.1"
 UPSTREAM_COMMIT = "e6e4dbcfc06e65b82490323a78bd9c277a9e2a0b"
+LEGACY_CHARACTER_PART_ORDER = ("head", "body", "hands", "feet")
+CHARACTER_PART_ORDER = (
+    "head", "body", "upper_arms", "forearms", "hands",
+    "thighs", "lower_legs", "feet",
+)
+CHARACTER_STROKE_PHASE_ORDER = ("outline", "details")
+DETAILED_CHARACTER_ORDER_POLICY = "head_body_upper_arms_forearms_hands_thighs_lower_legs_feet"
 
 
 class ContractError(RuntimeError):
@@ -76,6 +83,18 @@ def require_job(job_path: Path) -> dict:
         raise ContractError("unsupported_contract", "contract_version must be 1.0, 1.1, 1.2, or 1.3", "contract_version")
     if job["adapter_id"] != ADAPTER_ID:
         raise ContractError("wrong_adapter", f"adapter_id must be {ADAPTER_ID}", "adapter_id")
+    requested_route = job.get("render_route")
+    if requested_route is not None:
+        if job["contract_version"] in ("1.0", "1.1"):
+            raise ContractError(
+                "render_route_requires_contract_1_2",
+                "render_route is an adaptive-routing field and requires contract_version 1.2 or 1.3",
+                "render_route",
+            )
+        if requested_route not in ("auto", "flat_auto", "structured_semantic"):
+            raise ContractError("invalid_render_route", "render_route must be auto, flat_auto, or structured_semantic", "render_route")
+    elif job["contract_version"] in ("1.2", "1.3"):
+        job["render_route"] = "auto"
 
     source = job["source"]
     if not isinstance(source, dict) or not source.get("path") or not source.get("sha256") or not str(source.get("rights_evidence", "")).strip():
@@ -203,11 +222,50 @@ def require_job(job_path: Path) -> dict:
                 if reveal_mode not in ("line_then_fill", "direct_fill"):
                     raise ContractError("invalid_reveal_mode", f"{field}.reveal_mode must be line_then_fill or direct_fill", f"{field}.reveal_mode")
                 semantic_kind = layer.get("semantic_kind", "illustration")
-                if semantic_kind not in ("geometry", "text", "illustration", "shadow"):
+                if semantic_kind not in ("geometry", "text", "illustration", "character", "shadow"):
                     raise ContractError("invalid_semantic_kind", f"{field}.semantic_kind is invalid", f"{field}.semantic_kind")
                 text_regions = layer.get("text_regions", [])
                 if semantic_kind == "text" and not text_regions:
                     raise ContractError("text_regions_required", f"{field} text layer requires explicit text_regions", f"{field}.text_regions")
+                stroke_order_policy = layer.get("stroke_order_policy")
+                head_bbox = layer.get("head_bbox")
+                character_parts = layer.get("character_parts")
+                if semantic_kind == "character":
+                    if job["contract_version"] != "1.3":
+                        raise ContractError("character_head_first_requires_1_3", f"{field} character head-first metadata requires contract_version 1.3", field)
+                    if reveal_mode != "line_then_fill":
+                        raise ContractError("character_requires_line_then_fill", f"{field} character layer must use line_then_fill", f"{field}.reveal_mode")
+                    if stroke_order_policy == "head_first":
+                        width_px = int(job["output_spec"]["width_px"])
+                        height_px = int(job["output_spec"]["height_px"])
+                        if character_parts is not None:
+                            raise ContractError("legacy_character_order_must_not_mix_parts", f"{field} legacy head_first cannot declare character_parts", field)
+                        if not (
+                            isinstance(head_bbox, list) and len(head_bbox) == 4
+                            and all(isinstance(value, int) for value in head_bbox)
+                            and 0 <= head_bbox[0] < head_bbox[2] <= width_px
+                            and 0 <= head_bbox[1] < head_bbox[3] <= height_px
+                        ):
+                            raise ContractError("invalid_character_head_bbox", f"{field}.head_bbox must be an in-bounds output-space [left,top,right,bottom] box", f"{field}.head_bbox")
+                    elif stroke_order_policy in ("head_body_hands_feet", DETAILED_CHARACTER_ORDER_POLICY):
+                        if head_bbox is not None:
+                            raise ContractError("character_part_order_must_not_use_head_bbox", f"{field} ordered character parts replace head_bbox", field)
+                        expected_order = CHARACTER_PART_ORDER if stroke_order_policy == DETAILED_CHARACTER_ORDER_POLICY else LEGACY_CHARACTER_PART_ORDER
+                        if not isinstance(character_parts, list) or len(character_parts) != len(expected_order):
+                            raise ContractError("character_parts_required", f"{field}.character_parts must contain {', '.join(expected_order)}", f"{field}.character_parts")
+                        actual_order = [part.get("part") if isinstance(part, dict) else None for part in character_parts]
+                        if actual_order != list(expected_order):
+                            raise ContractError("invalid_character_part_order", f"{field}.character_parts must be ordered {', '.join(expected_order)}", f"{field}.character_parts")
+                        for part_index, part in enumerate(character_parts):
+                            part_field = f"{field}.character_parts[{part_index}]"
+                            part["_mask_rgba_path"] = require_asset(part.get("mask_rgba"), f"{part_field}.mask_rgba")
+                            if stroke_order_policy == DETAILED_CHARACTER_ORDER_POLICY:
+                                part["_outline_mask_rgba_path"] = require_asset(part.get("outline_mask_rgba"), f"{part_field}.outline_mask_rgba")
+                                part["_detail_mask_rgba_path"] = require_asset(part.get("detail_mask_rgba"), f"{part_field}.detail_mask_rgba")
+                    else:
+                        raise ContractError("character_part_order_required", f"{field} character layer must use {DETAILED_CHARACTER_ORDER_POLICY} for new Jobs; older policies are compatibility input only", f"{field}.stroke_order_policy")
+                elif stroke_order_policy is not None or head_bbox is not None or character_parts is not None:
+                    raise ContractError("character_order_metadata_requires_character", f"{field} head-first metadata is only valid for semantic_kind: character", field)
                 previous_key = None
                 seen_reading_orders = set()
                 for region_index, region in enumerate(text_regions):
@@ -469,13 +527,28 @@ def prepare_auto_structured_timing(job: dict, source_rgb: np.ndarray) -> None:
     phase_metrics = []
     phase_owners = []
     for layer in sorted(structured["layers"], key=lambda value: value["draw_order"]):
-        color = resize_job_rgba(job, load_rgba(layer["_color_rgba_path"]), width, height)
+        color_native = load_rgba(layer["_color_rgba_path"])
+        color = resize_job_rgba(job, color_native, width, height)
         color_mask = color[:, :, 3] > 0
         if layer["reveal_mode"] == "line_then_fill":
-            line = resize_job_rgba(job, load_rgba(layer["_line_art_rgba_path"]), width, height)
+            line_native = load_rgba(layer["_line_art_rgba_path"])
+            line = resize_job_rgba(job, line_native, width, height)
             line_mask = line[:, :, 3] > 0
             glyphs, rows = text_region_metrics(layer)
-            components = cv2.connectedComponents(line_mask.astype(np.uint8))[0] - 1
+            if layer.get("semantic_kind") == "character":
+                if layer["stroke_order_policy"] in ("head_body_hands_feet", DETAILED_CHARACTER_ORDER_POLICY):
+                    part_masks = load_character_part_masks(job, layer, color_native.shape[:2], line_mask.shape)
+                    components = sum(cv2.connectedComponents((line_mask & part_mask).astype(np.uint8))[0] - 1 for _, part_mask in part_masks)
+                else:
+                    left, top, right, bottom = layer["head_bbox"]
+                    head_region = np.zeros_like(line_mask, dtype=bool)
+                    head_region[top:bottom, left:right] = True
+                    components = sum(
+                        cv2.connectedComponents(region.astype(np.uint8))[0] - 1
+                        for region in (line_mask & head_region, line_mask & ~head_region)
+                    )
+            else:
+                components = cv2.connectedComponents(line_mask.astype(np.uint8))[0] - 1
             phase_metrics.append({
                 "owner": layer["id"], "phase": "stroke", "skeleton_length_px": estimate_skeleton_length(line_mask),
                 "fill_area_px": 0, "pen_lifts": max(1, int(components)), "fill_regions": 0,
@@ -525,6 +598,273 @@ def split_explicit_text_components(animator: WhiteboardAnimator, line_alpha: np.
     return result + text_components
 
 
+def split_character_head_first_components(
+    animator: WhiteboardAnimator,
+    mask: np.ndarray,
+    head_bbox: list[int],
+    *,
+    is_fill: bool,
+) -> tuple[list[dict], int]:
+    """Split authored character pixels into deterministic head then remainder passes."""
+    left, top, right, bottom = head_bbox
+    head_region = np.zeros_like(mask, dtype=bool)
+    head_region[top:bottom, left:right] = True
+    head_mask = mask & head_region
+    head_pixels = int(head_mask.sum())
+    if head_pixels < 1:
+        raise ContractError(
+            "empty_character_head_region",
+            "character head_bbox contains no authored pixels",
+            "structured_layers.layers[].head_bbox",
+        )
+
+    ordered = []
+    for region_name, region_mask in (("head", head_mask), ("remainder", mask & ~head_region)):
+        parts = animator._build_connected_components(region_mask, min_area=1)
+        if not parts:
+            continue
+        for part in parts:
+            part["is_fill"] = is_fill
+        component = animator._build_component_group(parts, is_text=False)
+        if component is None:
+            continue
+        component["is_fill"] = is_fill
+        component["_character_region"] = region_name
+        if is_fill and component.get("_sub_components"):
+            component["_multicolor_fill"] = True
+        ordered.append(component)
+    return ordered, head_pixels
+
+
+def load_character_part_masks(
+    job: dict,
+    layer: dict,
+    native_shape: tuple[int, int],
+    output_shape: tuple[int, int],
+) -> list[tuple[str, np.ndarray]]:
+    """Load checksum-bound authored part masks without inferring anatomy from pixels."""
+    native_height, native_width = native_shape
+    output_height, output_width = output_shape
+    native_masks = []
+    for part in layer["character_parts"]:
+        with Image.open(part["_mask_rgba_path"]) as image:
+            if image.mode != "RGBA":
+                raise ContractError(
+                    "character_part_mask_not_rgba",
+                    f"character part {part['part']} mask must be a true RGBA image",
+                    "structured_layers.layers[].character_parts[].mask_rgba",
+                )
+            mask_native = np.array(image)
+        if mask_native.shape[:2] != (native_height, native_width):
+            raise ContractError(
+                "character_part_geometry_mismatch",
+                f"character part {part['part']} mask must match source geometry {native_width}x{native_height}",
+                "structured_layers.layers[].character_parts[].mask_rgba",
+            )
+        part_mask = mask_native[:, :, 3] > 0
+        if int(part_mask.sum()) < 1:
+            raise ContractError(
+                "empty_character_part_mask",
+                f"character part {part['part']} mask contains no alpha pixels",
+                "structured_layers.layers[].character_parts[].mask_rgba",
+            )
+        native_masks.append((part["part"], part_mask))
+    native_ownership = np.sum(np.stack([mask for _, mask in native_masks]), axis=0)
+    if int((native_ownership > 1).sum()):
+        raise ContractError(
+            "overlapping_character_part_masks",
+            "character part masks overlap at source geometry",
+            "structured_layers.layers[].character_parts",
+        )
+    coverage_scores = np.stack([
+        cv2.resize(mask.astype(np.float32), (output_width, output_height), interpolation=cv2.INTER_AREA)
+        for _, mask in native_masks
+    ])
+    owners = np.argmax(coverage_scores, axis=0)
+    covered = np.max(coverage_scores, axis=0) > 0
+    ordered = []
+    for index, (part_name, _) in enumerate(native_masks):
+        output_mask = covered & (owners == index)
+        if int(output_mask.sum()) < 1:
+            raise ContractError(
+                "empty_character_part_mask",
+                f"character part {part_name} mask contains no output-space pixels",
+                "structured_layers.layers[].character_parts[].mask_rgba",
+            )
+        ordered.append((part_name, output_mask))
+    return ordered
+
+
+def validate_character_part_coverage(
+    line_alpha: np.ndarray,
+    color_alpha: np.ndarray,
+    part_masks: list[tuple[str, np.ndarray]],
+) -> None:
+    authored = line_alpha | color_alpha
+    ownership = np.zeros_like(authored, dtype=np.uint8)
+    for _, part_mask in part_masks:
+        ownership += (part_mask & authored).astype(np.uint8)
+    if int(((ownership > 1) & authored).sum()):
+        raise ContractError(
+            "overlapping_character_part_masks",
+            "character part masks overlap on authored line or color pixels",
+            "structured_layers.layers[].character_parts",
+        )
+    if int((authored & (ownership == 0)).sum()):
+        raise ContractError(
+            "uncovered_character_part_pixels",
+            "character part masks must cover every authored line and color pixel",
+            "structured_layers.layers[].character_parts",
+        )
+
+
+def load_character_stroke_phase_masks(
+    layer: dict,
+    native_shape: tuple[int, int],
+    output_shape: tuple[int, int],
+    part_masks: list[tuple[str, np.ndarray]],
+) -> list[tuple[str, np.ndarray, np.ndarray]]:
+    """Load authored outline/detail masks; do not infer semantic interiors from pixels."""
+    native_height, native_width = native_shape
+    output_height, output_width = output_shape
+    output_parts = dict(part_masks)
+    ordered = []
+    for part in layer["character_parts"]:
+        with Image.open(part["_mask_rgba_path"]) as image:
+            native_part = np.array(image)[:, :, 3] > 0
+        native_phases = []
+        for phase in CHARACTER_STROKE_PHASE_ORDER:
+            path = part[f"_{phase[:-1] if phase == 'details' else phase}_mask_rgba_path"]
+            with Image.open(path) as image:
+                if image.mode != "RGBA":
+                    raise ContractError(
+                        "character_stroke_phase_mask_not_rgba",
+                        f"character part {part['part']} {phase} mask must be a true RGBA image",
+                        f"structured_layers.layers[].character_parts[].{phase[:-1] if phase == 'details' else phase}_mask_rgba",
+                    )
+                rgba = np.array(image)
+            if rgba.shape[:2] != (native_height, native_width):
+                raise ContractError(
+                    "character_stroke_phase_geometry_mismatch",
+                    f"character part {part['part']} {phase} mask must match source geometry {native_width}x{native_height}",
+                    "structured_layers.layers[].character_parts",
+                )
+            native_phases.append(rgba[:, :, 3] > 0)
+        if int((native_phases[0] & native_phases[1]).sum()):
+            raise ContractError(
+                "overlapping_character_stroke_phase_masks",
+                f"character part {part['part']} outline and detail masks overlap at source geometry",
+                "structured_layers.layers[].character_parts",
+            )
+        if any(int((phase_mask & ~native_part).sum()) for phase_mask in native_phases):
+            raise ContractError(
+                "character_stroke_phase_outside_part",
+                f"character part {part['part']} outline/detail masks must stay inside its part mask",
+                "structured_layers.layers[].character_parts",
+            )
+        coverage_scores = np.stack([
+            cv2.resize(mask.astype(np.float32), (output_width, output_height), interpolation=cv2.INTER_AREA)
+            for mask in native_phases
+        ])
+        owners = np.argmax(coverage_scores, axis=0)
+        covered = np.max(coverage_scores, axis=0) > 0
+        part_output = output_parts[part["part"]]
+        resized = [covered & part_output & (owners == index) for index in range(2)]
+        ordered.append((part["part"], resized[0], resized[1]))
+    return ordered
+
+
+def validate_character_stroke_phase_coverage(
+    line_alpha: np.ndarray,
+    phase_masks: list[tuple[str, np.ndarray, np.ndarray]],
+) -> None:
+    ownership = np.zeros_like(line_alpha, dtype=np.uint8)
+    for part_name, outline_mask, detail_mask in phase_masks:
+        outline_pixels = int((line_alpha & outline_mask).sum())
+        if outline_pixels < 1:
+            raise ContractError(
+                "empty_character_outline_region",
+                f"character part {part_name} must contain authored outline pixels",
+                "structured_layers.layers[].character_parts[].outline_mask_rgba",
+            )
+        ownership += (line_alpha & outline_mask).astype(np.uint8)
+        ownership += (line_alpha & detail_mask).astype(np.uint8)
+    if int(((ownership > 1) & line_alpha).sum()):
+        raise ContractError(
+            "overlapping_character_stroke_phase_masks",
+            "character outline and detail masks overlap on authored line pixels",
+            "structured_layers.layers[].character_parts",
+        )
+    if int((line_alpha & (ownership == 0)).sum()):
+        raise ContractError(
+            "uncovered_character_stroke_phase_pixels",
+            "outline/detail masks must assign every authored character line pixel exactly once",
+            "structured_layers.layers[].character_parts",
+        )
+
+
+def split_character_ordered_stroke_components(
+    animator: WhiteboardAnimator,
+    line_alpha: np.ndarray,
+    phase_masks: list[tuple[str, np.ndarray, np.ndarray]],
+) -> tuple[list[dict], dict[str, int], dict[str, int]]:
+    """Schedule each anatomical part as outline first, then authored interior details."""
+    ordered, outline_counts, detail_counts = [], {}, {}
+    for part_name, outline_mask, detail_mask in phase_masks:
+        for phase, region_mask, counts in (
+            ("outline", outline_mask, outline_counts),
+            ("details", detail_mask, detail_counts),
+        ):
+            phase_line = line_alpha & region_mask
+            pixels = int(phase_line.sum())
+            counts[part_name] = pixels
+            if pixels < 1:
+                continue
+            parts = animator._build_connected_components(phase_line, min_area=1)
+            for component_part in parts:
+                component_part["is_fill"] = False
+            component = animator._build_component_group(parts, is_text=False)
+            if component is None:
+                raise ContractError("structured_layer_untraceable", f"cannot build character part {part_name} {phase}")
+            component.update({"is_fill": False, "_character_region": part_name, "_character_stroke_phase": phase})
+            ordered.append(component)
+    return ordered, outline_counts, detail_counts
+
+
+def split_character_ordered_part_components(
+    animator: WhiteboardAnimator,
+    mask: np.ndarray,
+    part_masks: list[tuple[str, np.ndarray]],
+    *,
+    is_fill: bool,
+) -> tuple[list[dict], dict[str, int]]:
+    """Split authored character pixels into explicit anatomical-part passes."""
+    ordered = []
+    pixel_counts = {}
+    for part_name, region_mask in part_masks:
+        part_mask = mask & region_mask
+        pixels = int(part_mask.sum())
+        pixel_counts[part_name] = pixels
+        if pixels < 1:
+            raise ContractError(
+                "empty_character_part_region",
+                f"character part {part_name} contains no authored {'fill' if is_fill else 'line'} pixels",
+                "structured_layers.layers[].character_parts",
+            )
+        parts = animator._build_connected_components(part_mask, min_area=1)
+        for part in parts:
+            part["is_fill"] = is_fill
+        component = animator._build_component_group(parts, is_text=False)
+        if component is None:
+            raise ContractError("structured_layer_untraceable", f"cannot build character part {part_name}")
+        component["is_fill"] = is_fill
+        component["_character_region"] = part_name
+        if is_fill and component.get("_sub_components"):
+            component["_multicolor_fill"] = True
+        ordered.append(component)
+    return ordered, pixel_counts
+
+
 def stacked_layer_analysis(job: dict, source_rgb: np.ndarray, animator: WhiteboardAnimator) -> tuple[dict, list, list]:
     structured = job["structured_layers"]
     native_source = load_source(job["_source_path"])
@@ -547,8 +887,22 @@ def stacked_layer_analysis(job: dict, source_rgb: np.ndarray, animator: Whiteboa
         stroke_components = []
         layer_stroke_schedule = []
         line_pixels = 0
+        head_line_pixels = 0
+        head_color_pixels = 0
+        character_part_masks = []
+        character_stroke_phase_masks = []
+        character_part_line_pixels = {}
+        character_part_color_pixels = {}
+        character_part_outline_pixels = {}
+        character_part_detail_pixels = {}
         unrelated_pixels = 0
         stroke_duration = float(layer.get("stroke_duration_seconds", 0))
+        if layer.get("semantic_kind") == "character" and layer.get("stroke_order_policy") in ("head_body_hands_feet", DETAILED_CHARACTER_ORDER_POLICY):
+            character_part_masks = load_character_part_masks(job, layer, color_native.shape[:2], color_alpha.shape)
+            if layer["stroke_order_policy"] == DETAILED_CHARACTER_ORDER_POLICY:
+                character_stroke_phase_masks = load_character_stroke_phase_masks(
+                    layer, color_native.shape[:2], color_alpha.shape, character_part_masks,
+                )
         if layer["reveal_mode"] == "line_then_fill":
             line_native = load_rgba(layer["_line_art_rgba_path"])
             if line_native.shape[:2] != (native_height, native_width):
@@ -564,7 +918,28 @@ def stacked_layer_analysis(job: dict, source_rgb: np.ndarray, animator: Whiteboa
             unrelated_pixels = int(unrelated.sum())
             if unrelated_pixels / max(line_pixels, 1) > 0.01:
                 raise ContractError("structured_line_outside_layer_alpha", f"layer {layer['id']} has materially unrelated line alpha")
-            stroke_components = split_explicit_text_components(animator, line_alpha, layer)
+            if layer.get("semantic_kind") == "character":
+                if layer["stroke_order_policy"] in ("head_body_hands_feet", DETAILED_CHARACTER_ORDER_POLICY):
+                    validate_character_part_coverage(line_alpha, color_alpha, character_part_masks)
+                    if layer["stroke_order_policy"] == DETAILED_CHARACTER_ORDER_POLICY:
+                        validate_character_stroke_phase_coverage(line_alpha, character_stroke_phase_masks)
+                        stroke_components, character_part_outline_pixels, character_part_detail_pixels = split_character_ordered_stroke_components(
+                            animator, line_alpha, character_stroke_phase_masks,
+                        )
+                        character_part_line_pixels = {
+                            name: character_part_outline_pixels[name] + character_part_detail_pixels[name]
+                            for name in CHARACTER_PART_ORDER
+                        }
+                    else:
+                        stroke_components, character_part_line_pixels = split_character_ordered_part_components(
+                            animator, line_alpha, character_part_masks, is_fill=False,
+                        )
+                else:
+                    stroke_components, head_line_pixels = split_character_head_first_components(
+                        animator, line_alpha, layer["head_bbox"], is_fill=False,
+                    )
+            else:
+                stroke_components = split_explicit_text_components(animator, line_alpha, layer)
             if not stroke_components:
                 raise ContractError("structured_layer_untraceable", f"cannot build line component for layer {layer['id']}")
             stroke_component = animator._build_component_group(stroke_components, is_text=False)
@@ -578,9 +953,19 @@ def stacked_layer_analysis(job: dict, source_rgb: np.ndarray, animator: Whiteboa
                 schedule.append((child, child_cursor, child_duration))
                 layer_stroke_schedule.append((child, child_cursor, child_duration))
                 child_cursor += child_duration
-        fill_parts = animator._build_connected_components(color_alpha, min_area=1)
-        for part in fill_parts:
-            part["is_fill"] = True
+        if layer.get("semantic_kind") == "character":
+            if layer["stroke_order_policy"] in ("head_body_hands_feet", DETAILED_CHARACTER_ORDER_POLICY):
+                fill_parts, character_part_color_pixels = split_character_ordered_part_components(
+                    animator, color_alpha, character_part_masks, is_fill=True,
+                )
+            else:
+                fill_parts, head_color_pixels = split_character_head_first_components(
+                    animator, color_alpha, layer["head_bbox"], is_fill=True,
+                )
+        else:
+            fill_parts = animator._build_connected_components(color_alpha, min_area=1)
+            for part in fill_parts:
+                part["is_fill"] = True
         fill_component = animator._build_component_group(fill_parts, is_text=False)
         if fill_component is None:
             raise ContractError("structured_layer_untraceable", f"cannot build fill component for layer {layer['id']}")
@@ -596,6 +981,14 @@ def stacked_layer_analysis(job: dict, source_rgb: np.ndarray, animator: Whiteboa
         reports.append({
             "id": layer["id"], "draw_order": int(layer["draw_order"]), "z_index": int(layer["z_index"]), "reveal_mode": layer["reveal_mode"], "semantic_kind": layer.get("semantic_kind", "illustration"),
             "color_alpha_pixels": color_pixels, "line_alpha_pixels": line_pixels, "line_outside_alpha_tolerance_pixels": unrelated_pixels,
+            "stroke_order_policy": layer.get("stroke_order_policy"), "head_bbox": layer.get("head_bbox"),
+            "head_line_alpha_pixels": head_line_pixels, "head_color_alpha_pixels": head_color_pixels,
+            "character_part_order": list(character_part_line_pixels),
+            "character_part_line_alpha_pixels": character_part_line_pixels,
+            "character_part_color_alpha_pixels": character_part_color_pixels,
+            "character_part_stroke_phase_order": list(CHARACTER_STROKE_PHASE_ORDER) if character_stroke_phase_masks else [],
+            "character_part_outline_alpha_pixels": character_part_outline_pixels,
+            "character_part_detail_alpha_pixels": character_part_detail_pixels,
             "text_reading_order": [region.get("id", region["reading_order"]) for region in sorted(layer.get("text_regions", []), key=lambda value: value["reading_order"])],
             "stroke_start_frame": None if not stroke_component else int(round(cursor * job["timing"]["fps"])),
             "stroke_end_frame": None if not stroke_component else int(round(fill_start * job["timing"]["fps"])),
@@ -803,6 +1196,23 @@ def analyze(job: dict) -> tuple[dict, np.ndarray, list, list]:
     ink_ratio = ink_pixels / total_pixels if total_pixels else 0.0
     largest_share = largest_area / ink_pixels if ink_pixels else 0.0
     mixed_groups = [component for component in components if component.get("_mixed_stroke_fill") or component.get("_contains_mixed_stroke_fill")]
+    detected_text_components = sum(bool(component.get("is_text")) for component in components)
+    complexity_class = "complex" if ink_ratio > 0.55 or len(components) > 24 else ("moderate" if ink_ratio > 0.25 or len(components) > 10 else "simple")
+    structured = job.get("structured_layers")
+    adaptive_contract = job["contract_version"] in ("1.2", "1.3")
+    flat_route_reasons = []
+    if adaptive_contract and not structured:
+        if complexity_class != "simple":
+            flat_route_reasons.append(f"flat_source_complexity_{complexity_class}")
+        if detected_text_components > 4:
+            flat_route_reasons.append("embedded_text_requires_explicit_text_regions")
+    schedule_end = max((float(start + duration) for _, start, duration in schedule), default=0.0)
+    manual_schedule_overflow = (
+        adaptive_contract
+        and not structured
+        and timing.get("policy", "manual") == "manual"
+        and schedule_end > float(timing["draw_duration_seconds"]) + 0.5 / int(timing["fps"])
+    )
 
     native_h, native_w = source_rgb.shape[:2]
     out_h, out_w = native_h + native_h % 2, native_w + native_w % 2
@@ -819,13 +1229,16 @@ def analyze(job: dict) -> tuple[dict, np.ndarray, list, list]:
         warnings.append("most_of_frame_is_non_white")
     if largest_share > 0.70 and ink_ratio > 0.35:
         warnings.append("one_connected_component_dominates_reveal")
-    structured = job.get("structured_layers")
     requested_route = job.get("render_route", "auto")
-    resolved_route = "structured_semantic" if structured else "flat_auto"
+    resolved_route = "structured_semantic" if structured or flat_route_reasons else "flat_auto"
     route_blockers = []
     if requested_route == "flat_auto" and structured:
         route_blockers.append("flat_auto_cannot_accept_structured_layers")
+    if requested_route == "flat_auto" and flat_route_reasons:
+        route_blockers.append("flat_auto_unsuitable_for_complex_source")
     if requested_route == "structured_semantic" and not structured:
+        route_blockers.append("structured_semantic_requires_explicit_layers")
+    if resolved_route == "structured_semantic" and not structured:
         route_blockers.append("structured_semantic_requires_explicit_layers")
     supported = not warnings
     reason = None
@@ -833,14 +1246,25 @@ def analyze(job: dict) -> tuple[dict, np.ndarray, list, list]:
         warnings = list(structured_facts["warnings"])
         supported = bool(structured_facts["supported"])
         reason = structured_facts["reason"]
+    elif flat_route_reasons:
+        supported = False
+        reason = "structured_semantic_requires_explicit_layers"
+        warnings = list(warnings) + flat_route_reasons
     elif warnings:
         supported = False
         reason = "unsupported_full_frame_connected_scene_without_structured_layers"
     if route_blockers:
         supported = False
-        reason = route_blockers[0]
+        if reason is None:
+            reason = route_blockers[0]
+    if manual_schedule_overflow:
+        supported = False
+        if reason is None:
+            reason = "flat_schedule_exceeds_declared_draw_budget"
+        warnings = list(warnings) + ["actual_schedule_exceeds_declared_draw_budget"]
+        route_blockers.append("flat_schedule_exceeds_declared_draw_budget")
     auto_plan = job.get("_auto_timing_plan")
-    if auto_plan and auto_plan["insufficient_duration"]:
+    if auto_plan and auto_plan["insufficient_duration"] and not flat_route_reasons:
         supported = False
         reason = "insufficient_duration_for_bounded_whiteboard_pace"
         warnings = list(warnings) + auto_plan["reduction_reasons"]
@@ -858,6 +1282,8 @@ def analyze(job: dict) -> tuple[dict, np.ndarray, list, list]:
             "reading_order": component.get("_reading_order"),
             "structured_object_id": component.get("_structured_object_id"),
             "structured_phase": component.get("_structured_phase"),
+            "character_part": component.get("_character_region"),
+            "character_stroke_phase": component.get("_character_stroke_phase"),
             "mixed_stroke_fill": bool(component.get("_mixed_stroke_fill") or component.get("_contains_mixed_stroke_fill")),
             "bbox": [int(component["left"]), int(component["top"]), int(component["right"]), int(component["bottom"])],
             "area_px": int(component["area"]),
@@ -894,16 +1320,27 @@ def analyze(job: dict) -> tuple[dict, np.ndarray, list, list]:
             layer_plan.append({
                 "id": layer["id"], "semantic_kind": layer.get("semantic_kind", "illustration"),
                 "draw_order": layer["draw_order"], "z_index": layer["z_index"], "reveal_mode": layer["reveal_mode"],
+                "stroke_order_policy": layer.get("stroke_order_policy"), "head_bbox": layer.get("head_bbox"),
+                "character_parts": [{
+                    "part": part["part"],
+                    "mask_rgba": planned_asset(part["mask_rgba"], True),
+                    **({
+                        "outline_mask_rgba": planned_asset(part["outline_mask_rgba"], True),
+                        "detail_mask_rgba": planned_asset(part["detail_mask_rgba"], True),
+                    } if part.get("outline_mask_rgba") and part.get("detail_mask_rgba") else {}),
+                } for part in layer.get("character_parts", [])],
                 "text_regions": layer.get("text_regions", []),
                 "assets": assets,
             })
     else:
         layer_plan.append({"id": "flat-source", "semantic_kind": "illustration", "draw_order": 0, "z_index": 0, "reveal_mode": "auto_trace", "text_regions": [], "assets": [planned_asset(job["source"], job["contract_version"] in ("1.2", "1.3"))]})
-    complexity_class = "complex" if ink_ratio > 0.55 or len(components) > 24 else ("moderate" if ink_ratio > 0.25 or len(components) > 10 else "simple")
     source_plan = {
         "complexity_class": complexity_class, "target_object_count": len(layer_plan) if structured else len(components),
         "text_line_count": sum(len(layer.get("text_regions", [])) for layer in structured.get("layers", [])) if structured else 0,
         "text_glyph_count": sum(sum(int(region.get("glyph_count", 0)) for region in layer.get("text_regions", [])) for layer in structured.get("layers", [])) if structured else 0,
+        "detected_text_component_count": detected_text_components,
+        "flat_auto_eligible": not flat_route_reasons,
+        "flat_auto_rejection_reasons": flat_route_reasons,
         "line_density_ratio": ink_ratio, "palette_limit": int(job.get("source_plan", {}).get("palette_limit", 8)),
         "canvas": {"target_width_px": out_w, "target_height_px": out_h, "work_width_px": out_w * int(job["source"].get("supersample_scale", 1)), "work_height_px": out_h * int(job["source"].get("supersample_scale", 1)), "supersample_scale": int(job["source"].get("supersample_scale", 1)), "downsample": "premultiplied_alpha_area" if int(job["source"].get("supersample_scale", 1)) == 4 else "legacy"},
         "layers": layer_plan,
@@ -928,12 +1365,12 @@ def analyze(job: dict) -> tuple[dict, np.ndarray, list, list]:
         "largest_component_share_of_ink": largest_share,
         "warnings": warnings,
         "routing": {
-            "requested": requested_route, "route": resolved_route, "confidence": 0.96 if structured else (0.9 if not warnings else 0.35),
-            "basis": {"non_white_coverage_ratio": ink_ratio, "largest_component_share_of_ink": largest_share, "component_count": len(components), "text_region_count": source_plan["text_line_count"], "has_structured_layers": bool(structured)},
-            "blockers": route_blockers + ([reason] if not supported and reason and reason not in route_blockers else []),
+            "requested": requested_route, "route": resolved_route, "confidence": 0.96 if structured else (0.95 if flat_route_reasons else (0.9 if not warnings else 0.35)),
+            "basis": {"non_white_coverage_ratio": ink_ratio, "largest_component_share_of_ink": largest_share, "component_count": len(components), "complexity_class": complexity_class, "text_region_count": source_plan["text_line_count"], "detected_text_component_count": detected_text_components, "has_structured_layers": bool(structured), "flat_auto_eligible": not flat_route_reasons},
+            "blockers": list(dict.fromkeys(route_blockers + ([reason] if not supported and reason and reason not in route_blockers else []))),
         },
         "whiteboard_source_plan": source_plan,
-        "timing_plan": auto_plan or {"policy": "manual", "selected_pace": timing.get("pace"), "total_frames": int(round(float(timing["total_duration_seconds"]) * timing["fps"])), "draw_frames": int(round(float(timing["draw_duration_seconds"]) * timing["fps"])), "hold_frames": int(round((float(timing["total_duration_seconds"]) - float(timing["draw_duration_seconds"])) * timing["fps"])), "frame_budget_conserved": True},
+        "timing_plan": auto_plan or {"policy": "manual", "selected_pace": timing.get("pace"), "total_frames": int(round(float(timing["total_duration_seconds"]) * timing["fps"])), "draw_frames": int(round(float(timing["draw_duration_seconds"]) * timing["fps"])), "hold_frames": int(round((float(timing["total_duration_seconds"]) - float(timing["draw_duration_seconds"])) * timing["fps"])), "actual_schedule_end_seconds": schedule_end, "schedule_fits_draw_budget": not manual_schedule_overflow, "frame_budget_conserved": not manual_schedule_overflow},
         "segment_window": job.get("segment_window"),
         "schedule": entries,
         "structured_layers": structured_report,

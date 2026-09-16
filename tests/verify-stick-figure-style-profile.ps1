@@ -11,7 +11,7 @@ $registry = Get-Content -Raw -Encoding UTF8 -LiteralPath $registryPath | Convert
 $entry = @($registry.profiles | Where-Object { $_.profile_id -eq 'minimal_stick_figure_explainer_story' })
 Assert-True ($entry.Count -eq 1) 'Expected one minimal_stick_figure_explainer_story registry entry.'
 $entry = $entry[0]
-Assert-True ($entry.normalized_version -eq 'v1.3-zh') 'Stick-figure registry must point to v1.3-zh.'
+Assert-True ($entry.normalized_version -eq 'v1.4-zh') 'Stick-figure registry must point to v1.4-zh.'
 Assert-True ($entry.status -eq 'ready') 'Stick-figure profile must be ready.'
 
 $sourcePath = Join-Path $pluginRoot (Join-Path 'style-profiles\source' $entry.source_file)
@@ -23,8 +23,22 @@ Assert-True ((Get-FileHash -Algorithm SHA256 -LiteralPath $sourcePath).Hash -eq 
 $normalized = Get-Content -Raw -Encoding UTF8 -LiteralPath $normalizedPath | ConvertFrom-Json
 $visual = $normalized.style_profile.visual
 $order = @($normalized.style_profile.visual.character_or_animal_draw_order)
+Assert-True ($visual.style_name_zh -eq '精致单色平涂火柴人白板涂绘') 'The refined Chinese style name must be explicit.'
+Assert-True ($visual.style_name_en -eq 'Refined Flat-Fill Stick-Figure Whiteboard Doodle') 'The canonical English style name must be explicit.'
+Assert-True ($visual.character_style_family -eq 'refined_stick_figure') 'Character design must remain the refined stick-figure layer.'
+Assert-True ($visual.medium_language -eq 'structured_whiteboard_doodle') 'The medium must be structured Whiteboard Doodle.'
+Assert-True ($visual.visual_grammar_layers.character_design -eq 'refined_stick_figure') 'The character grammar layer is missing.'
+Assert-True ($visual.visual_grammar_layers.whiteboard_medium -eq 'structured_whiteboard_doodle') 'The whiteboard medium layer is missing.'
+Assert-True ($visual.visual_grammar_layers.stroke_reveal -eq 'semantic_object_line_then_fill') 'The stroke-reveal grammar layer is missing.'
+Assert-True ($visual.line_language.random_jitter_allowed -eq $false) 'Random doodle jitter must remain forbidden.'
+Assert-True ($visual.line_language.repeated_scribble_allowed -eq $false) 'Repeated scribble must remain forbidden.'
+Assert-True ($visual.composition.visible_paper_whitespace_required -eq $true) 'Visible paper whitespace must be required.'
+Assert-True ($visual.stroke_reveal.semantic_object_completion_required -eq $true) 'Unrelated objects must not be interleaved before a readable completion boundary.'
+Assert-True ($visual.stroke_reveal.whole_object_wipe_allowed -eq $false) 'Whole-object wipe reveal must be forbidden.'
+Assert-True ($visual.stroke_reveal.tip_frontier_follow_required -eq $true) 'The tip must follow the active frontier.'
 Assert-True ($visual.head_first_required -eq $true) 'head_first_required must be true.'
-Assert-True (($order -join ',') -eq 'character_head,character_body,character_limbs_or_accessories') 'Character/animal draw order must be head, body, then limbs/accessories.'
+Assert-True (($order -join ',') -eq 'character_head,character_body,character_upper_arms_or_upper_forelimbs,character_forearms_or_lower_forelimbs,character_hands_or_front_paws,character_thighs_or_upper_hindlimbs,character_lower_legs_or_lower_hindlimbs,character_feet_or_hind_paws') 'Character/animal draw order must use all eight anatomical stages.'
+Assert-True ($visual.character_part_outline_before_interior_details_required -eq $true) 'Each character part must draw its outline before interior details.'
 Assert-True ($visual.color_fill_mode -eq 'single_tone_flat_fill_per_semantic_region') 'Each semantic region must use single-tone flat fill.'
 Assert-True ($visual.secondary_shading_allowed -eq $false) 'Cel-shading second tone must be disabled.'
 Assert-True ($visual.gradient_allowed -eq $false) 'Gradients must be disabled.'
@@ -57,6 +71,19 @@ try {
     $slice = Get-Content -Raw -Encoding UTF8 -LiteralPath $outputPath | ConvertFrom-Json
     Assert-True ($slice.compatibility -eq 'compatible') 'Stick-figure Style Slice must remain compatible.'
     $requiredVisualPaths = @(
+        'visual.style_name_zh',
+        'visual.style_name_en',
+        'visual.character_style_family',
+        'visual.medium_language',
+        'visual.visual_grammar_layers.character_design',
+        'visual.visual_grammar_layers.whiteboard_medium',
+        'visual.visual_grammar_layers.stroke_reveal',
+        'visual.line_language.random_jitter_allowed',
+        'visual.line_language.repeated_scribble_allowed',
+        'visual.composition.visible_paper_whitespace_required',
+        'visual.stroke_reveal.semantic_object_completion_required',
+        'visual.stroke_reveal.whole_object_wipe_allowed',
+        'visual.stroke_reveal.tip_frontier_follow_required',
         'visual.color_fill_mode',
         'visual.secondary_shading_allowed',
         'visual.gradient_allowed',
@@ -68,13 +95,14 @@ try {
         'visual.same_character_identity_consistency_required',
         'visual.hands_and_feet_required',
         'visual.limb_line_width_output_px',
-        'visual.head_first_required'
+        'visual.head_first_required',
+        'visual.character_part_outline_before_interior_details_required'
     )
     foreach ($requiredPath in $requiredVisualPaths) {
         Assert-True (@($slice.accepted_fields | Where-Object { $_.source_path -eq $requiredPath }).Count -eq 1) "Style Slice must retain $requiredPath."
     }
-    $acceptedOrder = @($slice.accepted_fields | Where-Object { $_.source_path -match '^visual\.character_or_animal_draw_order\[[0-2]\]$' })
-    Assert-True ($acceptedOrder.Count -eq 3) 'Style Slice must retain the three head-first order entries.'
+    $acceptedOrder = @($slice.accepted_fields | Where-Object { $_.source_path -match '^visual\.character_or_animal_draw_order\[[0-7]\]$' })
+    Assert-True ($acceptedOrder.Count -eq 8) 'Style Slice must retain the eight ordered character-part entries.'
     $acceptedAxes = @($slice.accepted_fields | Where-Object { $_.source_path -match '^visual\.character_design_diversity_axes\[[0-5]\]$' })
     Assert-True ($acceptedAxes.Count -eq 6) 'Style Slice must retain all six character-diversity axes.'
 }
@@ -87,4 +115,4 @@ finally {
     }
 }
 
-Write-Output 'PASS: Stick-figure v1.3 enforces single-tone flat fill, diverse character silhouettes, explicit hands/feet, thicker limbs, and head-first drawing through the manifest Style Slice entry.'
+Write-Output 'PASS: Stick-figure v1.4 binds refined character design, structured Whiteboard Doodle, semantic stroke reveal, single-tone flat fill, character diversity, explicit hands/feet, thicker limbs, eight-stage anatomy order, and outline-before-details drawing through the manifest Style Slice entry.'

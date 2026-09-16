@@ -19,6 +19,11 @@ SKILLS_ROOT = (PLUGIN_ROOT / MANIFEST["skills"]).resolve()
 SKILL_ENTRY = SKILLS_ROOT / "video-production" / "scripts" / "whiteboard-animator-cli.ps1"
 FIXTURES = Path(__file__).resolve().parent / "fixtures" / "whiteboard-animator"
 POWERSHELL = shutil.which("pwsh") or shutil.which("powershell")
+LEGACY_CHARACTER_PART_ORDER = ("head", "body", "hands", "feet")
+CHARACTER_PART_ORDER = (
+    "head", "body", "upper_arms", "forearms", "hands",
+    "thighs", "lower_legs", "feet",
+)
 
 
 def load_renderer_module():
@@ -191,6 +196,165 @@ class WhiteboardAnimatorManifestEntrypointTests(unittest.TestCase):
             "structured_layers": {"mode": "stacked_layer_object_complete_reveal", "paper_rgb": [249, 247, 241], "layers": layers},
         }
 
+    def make_character_head_first_job(self, root: Path) -> dict:
+        target = (160, 90)
+        size = (target[0] * 4, target[1] * 4)
+        paper = (249, 247, 241, 255)
+        color = Image.new("RGBA", size, (0, 0, 0, 0))
+        line = Image.new("RGBA", size, (0, 0, 0, 0))
+        color_draw, line_draw = ImageDraw.Draw(color), ImageDraw.Draw(line)
+
+        head = (224, 20, 416, 156)
+        body = (80, 204, 560, 340)
+        color_draw.ellipse(head, fill=(242, 166, 90, 255), outline=(36, 49, 58, 255), width=14)
+        color_draw.rounded_rectangle(body, radius=24, fill=(74, 144, 164, 255), outline=(36, 49, 58, 255), width=14)
+        line_draw.ellipse(head, outline=(36, 49, 58, 255), width=14)
+        line_draw.rounded_rectangle(body, radius=24, outline=(36, 49, 58, 255), width=14)
+
+        source = Image.new("RGBA", size, paper)
+        source = Image.alpha_composite(source, color)
+        paths = {}
+        for name, image in (("source", source), ("character", color), ("character-line", line)):
+            path = root / f"{name}.png"
+            image.save(path)
+            paths[name] = path
+        asset = lambda name: {"path": str(paths[name]), "sha256": sha256(paths[name]), "rights_evidence": "generated regression fixture"}
+        return {
+            "contract_version": "1.3", "adapter_id": "whiteboard_animator", "render_route": "structured_semantic",
+            "job_id": "character-head-first", "revision_id": "r1",
+            "source": dict(asset("source"), supersample_scale=4), "output": str(root / "character-head-first.mp4"),
+            "output_spec": {"width_px": target[0], "height_px": target[1], "pixel_format": "yuv420p", "native_audio": "none"},
+            "timing": {"policy": "manual", "total_duration_seconds": 2.0, "draw_duration_seconds": 1.5, "fps": 20},
+            "structured_layers": {"mode": "stacked_layer_object_complete_reveal", "paper_rgb": list(paper[:3]), "layers": [{
+                "id": "learner", "draw_order": 0, "z_index": 0, "reveal_mode": "line_then_fill",
+                "semantic_kind": "character", "stroke_order_policy": "head_first", "head_bbox": [54, 3, 106, 41],
+                "color_rgba": asset("character"), "line_art_rgba": asset("character-line"),
+                "stroke_duration_seconds": 0.8, "fill_duration_seconds": 0.7,
+            }]},
+        }
+
+    def make_character_part_order_job(self, root: Path) -> dict:
+        target = (160, 90)
+        size = (target[0] * 4, target[1] * 4)
+        paper = (249, 247, 241, 255)
+        color = Image.new("RGBA", size, (0, 0, 0, 0))
+        line = Image.new("RGBA", size, (0, 0, 0, 0))
+        color_draw, line_draw = ImageDraw.Draw(color), ImageDraw.Draw(line)
+        shapes = {
+            "head": ("ellipse", (256, 16, 384, 112), (242, 166, 90, 255)),
+            "body": ("rectangle", (248, 120, 392, 240), (74, 144, 164, 255)),
+            "hands": ("ellipses", ((176, 144, 224, 192), (416, 144, 464, 192)), (242, 166, 90, 255)),
+            "feet": ("ellipses", ((248, 280, 304, 328), (336, 280, 392, 328)), (36, 49, 58, 255)),
+        }
+        masks = {}
+        for part_name, (shape, geometry, fill) in shapes.items():
+            mask = Image.new("RGBA", size, (0, 0, 0, 0))
+            mask_draw = ImageDraw.Draw(mask)
+            geometries = geometry if shape == "ellipses" else (geometry,)
+            for box in geometries:
+                if shape in ("ellipse", "ellipses"):
+                    color_draw.ellipse(box, fill=fill, outline=(36, 49, 58, 255), width=12)
+                    line_draw.ellipse(box, outline=(36, 49, 58, 255), width=12)
+                    mask_draw.ellipse(box, fill=(255, 255, 255, 255))
+                else:
+                    color_draw.rectangle(box, fill=fill, outline=(36, 49, 58, 255), width=12)
+                    line_draw.rectangle(box, outline=(36, 49, 58, 255), width=12)
+                    mask_draw.rectangle(box, fill=(255, 255, 255, 255))
+            masks[part_name] = mask
+
+        source = Image.new("RGBA", size, paper)
+        source = Image.alpha_composite(source, color)
+        paths = {}
+        images = [("source", source), ("character", color), ("character-line", line)]
+        images.extend((f"mask-{name}", masks[name]) for name in LEGACY_CHARACTER_PART_ORDER)
+        for name, image in images:
+            path = root / f"{name}.png"
+            image.save(path)
+            paths[name] = path
+        asset = lambda name: {"path": str(paths[name]), "sha256": sha256(paths[name]), "rights_evidence": "generated regression fixture"}
+        return {
+            "contract_version": "1.3", "adapter_id": "whiteboard_animator", "render_route": "structured_semantic",
+            "job_id": "character-part-order", "revision_id": "r1",
+            "source": dict(asset("source"), supersample_scale=4), "output": str(root / "character-part-order.mp4"),
+            "output_spec": {"width_px": target[0], "height_px": target[1], "pixel_format": "yuv420p", "native_audio": "none"},
+            "timing": {"policy": "manual", "total_duration_seconds": 2.5, "draw_duration_seconds": 2.0, "fps": 20},
+            "structured_layers": {"mode": "stacked_layer_object_complete_reveal", "paper_rgb": list(paper[:3]), "layers": [{
+                "id": "learner", "draw_order": 0, "z_index": 0, "reveal_mode": "line_then_fill",
+                "semantic_kind": "character", "stroke_order_policy": "head_body_hands_feet",
+                "character_parts": [{"part": name, "mask_rgba": asset(f"mask-{name}")} for name in LEGACY_CHARACTER_PART_ORDER],
+                "color_rgba": asset("character"), "line_art_rgba": asset("character-line"),
+                "stroke_duration_seconds": 1.2, "fill_duration_seconds": 0.8,
+            }]},
+        }
+
+    def make_detailed_character_order_job(self, root: Path) -> dict:
+        target = (200, 120)
+        size = (target[0] * 4, target[1] * 4)
+        paper = (249, 247, 241, 255)
+        ink = (36, 49, 58, 255)
+        color = Image.new("RGBA", size, (0, 0, 0, 0))
+        line = Image.new("RGBA", size, (0, 0, 0, 0))
+        color_draw, line_draw = ImageDraw.Draw(color), ImageDraw.Draw(line)
+        shapes = {
+            "head": ("ellipse", [(320, 20, 480, 120)], (242, 166, 90, 255)),
+            "body": ("rectangle", [(320, 135, 480, 250)], (74, 144, 164, 255)),
+            "upper_arms": ("rectangle", [(230, 145, 310, 175), (490, 145, 570, 175)], (74, 144, 164, 255)),
+            "forearms": ("rectangle", [(140, 180, 220, 210), (580, 180, 660, 210)], (74, 144, 164, 255)),
+            "hands": ("ellipse", [(80, 170, 130, 220), (670, 170, 720, 220)], (242, 166, 90, 255)),
+            "thighs": ("rectangle", [(335, 265, 385, 350), (415, 265, 465, 350)], (74, 144, 164, 255)),
+            "lower_legs": ("rectangle", [(335, 360, 385, 425), (415, 360, 465, 425)], (74, 144, 164, 255)),
+            "feet": ("ellipse", [(300, 430, 385, 470), (415, 430, 500, 470)], (36, 49, 58, 255)),
+        }
+        masks, outlines, details = {}, {}, {}
+        for part_name in CHARACTER_PART_ORDER:
+            shape, boxes, fill = shapes[part_name]
+            mask = Image.new("RGBA", size, (0, 0, 0, 0))
+            outline = Image.new("RGBA", size, (0, 0, 0, 0))
+            detail = Image.new("RGBA", size, (0, 0, 0, 0))
+            mask_draw, outline_draw, detail_draw = ImageDraw.Draw(mask), ImageDraw.Draw(outline), ImageDraw.Draw(detail)
+            for x1, y1, x2, y2 in boxes:
+                draw_shape = "ellipse" if shape == "ellipse" else "rectangle"
+                getattr(color_draw, draw_shape)((x1, y1, x2, y2), fill=fill, outline=ink, width=8)
+                getattr(line_draw, draw_shape)((x1, y1, x2, y2), outline=ink, width=8)
+                getattr(mask_draw, draw_shape)((x1, y1, x2, y2), fill=(255, 255, 255, 255))
+                getattr(outline_draw, draw_shape)((x1, y1, x2, y2), outline=(255, 255, 255, 255), width=8)
+                y = (y1 + y2) // 2
+                detail_segment = (x1 + 16, y, x2 - 16, y)
+                color_draw.line(detail_segment, fill=ink, width=5)
+                line_draw.line(detail_segment, fill=ink, width=5)
+                detail_draw.line(detail_segment, fill=(255, 255, 255, 255), width=5)
+            masks[part_name], outlines[part_name], details[part_name] = mask, outline, detail
+
+        source = Image.alpha_composite(Image.new("RGBA", size, paper), color)
+        paths = {}
+        images = [("source", source), ("character", color), ("character-line", line)]
+        for name in CHARACTER_PART_ORDER:
+            images.extend(((f"mask-{name}", masks[name]), (f"outline-{name}", outlines[name]), (f"detail-{name}", details[name])))
+        for name, image in images:
+            path = root / f"{name}.png"
+            image.save(path)
+            paths[name] = path
+        asset = lambda name: {"path": str(paths[name]), "sha256": sha256(paths[name]), "rights_evidence": "generated regression fixture"}
+        return {
+            "contract_version": "1.3", "adapter_id": "whiteboard_animator", "render_route": "structured_semantic",
+            "job_id": "character-detailed-part-order", "revision_id": "r1",
+            "source": dict(asset("source"), supersample_scale=4), "output": str(root / "character-detailed-part-order.mp4"),
+            "output_spec": {"width_px": target[0], "height_px": target[1], "pixel_format": "yuv420p", "native_audio": "none"},
+            "timing": {"policy": "manual", "total_duration_seconds": 4.0, "draw_duration_seconds": 3.5, "fps": 20},
+            "structured_layers": {"mode": "stacked_layer_object_complete_reveal", "paper_rgb": list(paper[:3]), "layers": [{
+                "id": "learner", "draw_order": 0, "z_index": 0, "reveal_mode": "line_then_fill",
+                "semantic_kind": "character", "stroke_order_policy": "head_body_upper_arms_forearms_hands_thighs_lower_legs_feet",
+                "character_parts": [{
+                    "part": name,
+                    "mask_rgba": asset(f"mask-{name}"),
+                    "outline_mask_rgba": asset(f"outline-{name}"),
+                    "detail_mask_rgba": asset(f"detail-{name}"),
+                } for name in CHARACTER_PART_ORDER],
+                "color_rgba": asset("character"), "line_art_rgba": asset("character-line"),
+                "stroke_duration_seconds": 2.7, "fill_duration_seconds": 0.8,
+            }]},
+        }
+
     def test_supported_reference_set_through_manifest_skill_entry(self):
         reports = {
             "equation": self.run_preflight("equation.png", with_tip=True),
@@ -270,6 +434,156 @@ class WhiteboardAnimatorManifestEntrypointTests(unittest.TestCase):
             # Character was drawn first but remains above the later midground at their overlap.
             self.assertLess(float(np.abs(frames[23][100, 120].astype(np.int16) - expected[100, 120].astype(np.int16)).mean()), 12.0)
 
+    def test_character_layer_draws_head_before_remainder_for_line_and_fill(self):
+        temp_root = os.environ.get("WHITEBOARD_TEST_TEMP_ROOT") or None
+        with tempfile.TemporaryDirectory(dir=temp_root) as directory:
+            root = Path(directory)
+            job = self.make_character_head_first_job(root)
+            preflight = self.run_job(root, job)
+            self.assertEqual(preflight["status"], "supported")
+            layer = preflight["structured_layers"]["layers"][0]
+            self.assertEqual(layer["semantic_kind"], "character")
+            self.assertEqual(layer["stroke_order_policy"], "head_first")
+            self.assertEqual(layer["head_bbox"], [54, 3, 106, 41])
+            self.assertGreater(layer["head_line_alpha_pixels"], 0)
+            self.assertGreater(layer["head_color_alpha_pixels"], 0)
+            source_layer = preflight["whiteboard_source_plan"]["layers"][0]
+            self.assertEqual(source_layer["stroke_order_policy"], "head_first")
+            self.assertEqual(source_layer["head_bbox"], [54, 3, 106, 41])
+            stroke_entries = [entry for entry in preflight["schedule"] if entry["structured_phase"] == "stroke"]
+            self.assertEqual(len(stroke_entries), 2)
+            self.assertLessEqual(stroke_entries[0]["bbox"][3], 40)
+            self.assertGreaterEqual(stroke_entries[1]["bbox"][1], 50)
+
+            rendered = self.run_job(root, job, action="render")
+            self.assertEqual(rendered["status"], "success_pending_human_review")
+            capture = cv2.VideoCapture(str(job["output"]))
+            frames = []
+            while True:
+                ok, frame = capture.read()
+                if not ok:
+                    break
+                frames.append(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB))
+            capture.release()
+            self.assertEqual(len(frames), 40)
+            paper = np.array([249, 247, 241], dtype=np.int16)
+
+            early_line_delta = np.max(np.abs(frames[2].astype(np.int16) - paper), axis=2)
+            self.assertGreater(int((early_line_delta[3:41, 54:106] > 18).sum()), 8)
+            self.assertLess(int((early_line_delta[51:86, 20:140] > 18).sum()), 8)
+
+            early_fill = frames[20].astype(np.int16)
+            self.assertGreater(float(np.abs(early_fill[22, 80] - paper).mean()), 20.0)
+            self.assertLess(float(np.abs(early_fill[68, 80] - paper).mean()), 10.0)
+
+    def test_character_layer_requires_explicit_head_first_metadata(self):
+        temp_root = os.environ.get("WHITEBOARD_TEST_TEMP_ROOT") or None
+        with tempfile.TemporaryDirectory(dir=temp_root) as directory:
+            root = Path(directory)
+            job = self.make_character_head_first_job(root)
+            del job["structured_layers"]["layers"][0]["head_bbox"]
+            report = self.run_job(root, job, expected_code=2)
+            self.assertEqual(report["error"]["code"], "invalid_character_head_bbox")
+
+    def test_character_layer_draws_head_body_hands_then_feet_for_line_and_fill(self):
+        temp_root = os.environ.get("WHITEBOARD_TEST_TEMP_ROOT") or None
+        with tempfile.TemporaryDirectory(dir=temp_root) as directory:
+            root = Path(directory)
+            job = self.make_character_part_order_job(root)
+            preflight = self.run_job(root, job)
+            self.assertEqual(preflight["status"], "supported")
+            layer = preflight["structured_layers"]["layers"][0]
+            self.assertEqual(layer["stroke_order_policy"], "head_body_hands_feet")
+            self.assertEqual(layer["character_part_order"], list(LEGACY_CHARACTER_PART_ORDER))
+            self.assertTrue(all(layer["character_part_line_alpha_pixels"][name] > 0 for name in LEGACY_CHARACTER_PART_ORDER))
+            self.assertTrue(all(layer["character_part_color_alpha_pixels"][name] > 0 for name in LEGACY_CHARACTER_PART_ORDER))
+            source_layer = preflight["whiteboard_source_plan"]["layers"][0]
+            self.assertEqual([part["part"] for part in source_layer["character_parts"]], list(LEGACY_CHARACTER_PART_ORDER))
+            stroke_entries = [entry for entry in preflight["schedule"] if entry["structured_phase"] == "stroke"]
+            self.assertEqual([entry["character_part"] for entry in stroke_entries], list(LEGACY_CHARACTER_PART_ORDER))
+
+            rendered = self.run_job(root, job, action="render")
+            self.assertEqual(rendered["status"], "success_pending_human_review")
+            capture = cv2.VideoCapture(str(job["output"]))
+            frames = []
+            while True:
+                ok, frame = capture.read()
+                if not ok:
+                    break
+                frames.append(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB))
+            capture.release()
+            self.assertEqual(len(frames), 50)
+            paper = np.array([249, 247, 241], dtype=np.int16)
+            early_fill = frames[30].astype(np.int16)
+            self.assertGreater(float(np.abs(early_fill[16, 80] - paper).mean()), 20.0)
+            self.assertLess(float(np.abs(early_fill[76, 69] - paper).mean()), 10.0)
+
+    def test_new_character_part_order_requires_all_four_ordered_masks(self):
+        temp_root = os.environ.get("WHITEBOARD_TEST_TEMP_ROOT") or None
+        with tempfile.TemporaryDirectory(dir=temp_root) as directory:
+            root = Path(directory)
+            job = self.make_character_part_order_job(root)
+            job["structured_layers"]["layers"][0]["character_parts"].reverse()
+            report = self.run_job(root, job, expected_code=2)
+            self.assertEqual(report["error"]["code"], "invalid_character_part_order")
+
+            job = self.make_character_part_order_job(root)
+            job["structured_layers"]["layers"][0].pop("character_parts")
+            report = self.run_job(root, job, expected_code=2)
+            self.assertEqual(report["error"]["code"], "character_parts_required")
+
+            job = self.make_character_part_order_job(root)
+            parts = job["structured_layers"]["layers"][0]["character_parts"]
+            parts[1]["mask_rgba"] = dict(parts[0]["mask_rgba"])
+            report = self.run_job(root, job, expected_code=2)
+            self.assertEqual(report["error"]["code"], "overlapping_character_part_masks")
+
+    def test_detailed_character_draws_each_outline_then_details_in_anatomical_order(self):
+        temp_root = os.environ.get("WHITEBOARD_TEST_TEMP_ROOT") or None
+        with tempfile.TemporaryDirectory(dir=temp_root) as directory:
+            root = Path(directory)
+            job = self.make_detailed_character_order_job(root)
+            preflight = self.run_job(root, job)
+            self.assertEqual(preflight["status"], "supported")
+            layer = preflight["structured_layers"]["layers"][0]
+            self.assertEqual(layer["character_part_order"], list(CHARACTER_PART_ORDER))
+            self.assertEqual(layer["character_part_stroke_phase_order"], ["outline", "details"])
+            self.assertTrue(all(layer["character_part_outline_alpha_pixels"][name] > 0 for name in CHARACTER_PART_ORDER))
+            self.assertTrue(all(layer["character_part_detail_alpha_pixels"][name] > 0 for name in CHARACTER_PART_ORDER))
+            expected = [(name, phase) for name in CHARACTER_PART_ORDER for phase in ("outline", "details")]
+            stroke_entries = [entry for entry in preflight["schedule"] if entry["structured_phase"] == "stroke"]
+            self.assertEqual([(entry["character_part"], entry["character_stroke_phase"]) for entry in stroke_entries], expected)
+            source_parts = preflight["whiteboard_source_plan"]["layers"][0]["character_parts"]
+            self.assertTrue(all("outline_mask_rgba" in part and "detail_mask_rgba" in part for part in source_parts))
+
+            rendered = self.run_job(root, job, action="render")
+            self.assertEqual(rendered["status"], "success_pending_human_review")
+            capture = cv2.VideoCapture(str(job["output"]))
+            frame_count = int(capture.get(cv2.CAP_PROP_FRAME_COUNT))
+            capture.release()
+            self.assertEqual(frame_count, 80)
+
+    def test_detailed_character_requires_ordered_parts_and_exact_stroke_phase_coverage(self):
+        temp_root = os.environ.get("WHITEBOARD_TEST_TEMP_ROOT") or None
+        with tempfile.TemporaryDirectory(dir=temp_root) as directory:
+            root = Path(directory)
+            job = self.make_detailed_character_order_job(root)
+            job["structured_layers"]["layers"][0]["character_parts"].reverse()
+            report = self.run_job(root, job, expected_code=2)
+            self.assertEqual(report["error"]["code"], "invalid_character_part_order")
+
+            job = self.make_detailed_character_order_job(root)
+            part = job["structured_layers"]["layers"][0]["character_parts"][0]
+            part.pop("detail_mask_rgba")
+            report = self.run_job(root, job, expected_code=2)
+            self.assertEqual(report["error"]["code"], "invalid_structured_asset")
+
+            job = self.make_detailed_character_order_job(root)
+            parts = job["structured_layers"]["layers"][0]["character_parts"]
+            parts[0]["detail_mask_rgba"] = dict(parts[0]["outline_mask_rgba"])
+            report = self.run_job(root, job, expected_code=2)
+            self.assertEqual(report["error"]["code"], "overlapping_character_stroke_phase_masks")
+
     def test_direct_fill_rejects_any_line_stage(self):
         temp_root = os.environ.get("WHITEBOARD_TEST_TEMP_ROOT") or None
         with tempfile.TemporaryDirectory(dir=temp_root) as directory:
@@ -314,6 +628,85 @@ class WhiteboardAnimatorManifestEntrypointTests(unittest.TestCase):
             downsampled = load_renderer_module().alpha_aware_area_downsample(rgba, *target)
             partial_alpha = downsampled[:, :, 3]
             self.assertGreater(int(((partial_alpha > 0) & (partial_alpha < 255)).sum()), 20)
+
+    def test_legacy_contract_rejects_adaptive_route_field(self):
+        temp_root = os.environ.get("WHITEBOARD_TEST_TEMP_ROOT") or None
+        with tempfile.TemporaryDirectory(dir=temp_root) as directory:
+            root = Path(directory)
+            job_path = self.make_job(root, "simple_sun_house_tree.png")
+            job = json.loads(job_path.read_text(encoding="utf-8"))
+            job["render_route"] = "flat_auto"
+            report = self.run_job(root, job, expected_code=2)
+            self.assertEqual(report["error"]["code"], "render_route_requires_contract_1_2")
+
+    def test_contract_1_3_auto_routes_complex_flat_source_to_structured_review(self):
+        temp_root = os.environ.get("WHITEBOARD_TEST_TEMP_ROOT") or None
+        with tempfile.TemporaryDirectory(dir=temp_root) as directory:
+            root = Path(directory)
+            target = (160, 90)
+            high = Image.new("RGBA", (target[0] * 4, target[1] * 4), (255, 255, 255, 0))
+            draw = ImageDraw.Draw(high)
+            for row in range(2):
+                for column in range(4):
+                    left = (6 + column * 39) * 4
+                    top = (7 + row * 40) * 4
+                    right = left + 30 * 4
+                    bottom = top + 30 * 4
+                    draw.rounded_rectangle((left, top, right, bottom), radius=10, fill=(220, 220, 220, 255), outline=(30, 30, 30, 255), width=7)
+                    for line in range(3):
+                        y = top + (8 + line * 7) * 4
+                        draw.line((left + 6 * 4, y, right - 6 * 4, y), fill=(30, 30, 30, 255), width=5)
+            source = root / "complex-flat-cards.png"
+            high.save(source)
+            job = {
+                "contract_version": "1.3", "adapter_id": "whiteboard_animator", "render_route": "auto",
+                "job_id": "complex-flat-auto", "revision_id": "r1",
+                "source": {"path": str(source), "sha256": sha256(source), "rights_evidence": "generated regression fixture", "supersample_scale": 4},
+                "output": str(root / "complex-flat.mp4"),
+                "output_spec": {"width_px": target[0], "height_px": target[1], "pixel_format": "yuv420p", "native_audio": "none"},
+                "timing": {"policy": "auto", "total_duration_seconds": 1.0, "fps": 24},
+            }
+            report = self.run_job(root, job, expected_code=3)
+            self.assertEqual(report["status"], "human_review")
+            self.assertEqual(report["routing"]["route"], "structured_semantic")
+            self.assertEqual(report["reason"], "structured_semantic_requires_explicit_layers")
+            self.assertFalse(report["whiteboard_source_plan"]["flat_auto_eligible"])
+            self.assertIn("structured_semantic_requires_explicit_layers", report["routing"]["blockers"])
+            self.assertIn(report["whiteboard_source_plan"]["complexity_class"], ("moderate", "complex"))
+
+            forced = json.loads(json.dumps(job))
+            forced["job_id"] = "complex-flat-forced"
+            forced["render_route"] = "flat_auto"
+            forced_report = self.run_job(root, forced, expected_code=3)
+            self.assertEqual(forced_report["routing"]["route"], "structured_semantic")
+            self.assertIn("flat_auto_unsuitable_for_complex_source", forced_report["routing"]["blockers"])
+
+    def test_contract_1_2_manual_flat_schedule_overflow_is_human_review(self):
+        temp_root = os.environ.get("WHITEBOARD_TEST_TEMP_ROOT") or None
+        with tempfile.TemporaryDirectory(dir=temp_root) as directory:
+            root = Path(directory)
+            target = (160, 90)
+            high = Image.new("RGBA", (target[0] * 4, target[1] * 4), (255, 255, 255, 0))
+            draw = ImageDraw.Draw(high)
+            draw.line((40, 80, 200, 80), fill=(30, 30, 30, 255), width=8)
+            draw.line((400, 240, 560, 240), fill=(30, 30, 30, 255), width=8)
+            source = root / "simple-overflow.png"
+            high.save(source)
+            job = {
+                "contract_version": "1.2", "adapter_id": "whiteboard_animator", "render_route": "auto",
+                "job_id": "simple-flat-overflow", "revision_id": "r1",
+                "source": {"path": str(source), "sha256": sha256(source), "rights_evidence": "generated regression fixture", "supersample_scale": 4},
+                "output": str(root / "simple-overflow.mp4"),
+                "output_spec": {"width_px": target[0], "height_px": target[1], "pixel_format": "yuv420p", "native_audio": "none"},
+                "timing": {"policy": "manual", "total_duration_seconds": 1.0, "draw_duration_seconds": 0.01, "fps": 24},
+            }
+            report = self.run_job(root, job, expected_code=3)
+            self.assertEqual(report["status"], "human_review")
+            self.assertEqual(report["routing"]["route"], "flat_auto")
+            self.assertEqual(report["reason"], "flat_schedule_exceeds_declared_draw_budget")
+            self.assertFalse(report["timing_plan"]["schedule_fits_draw_budget"])
+            self.assertFalse(report["timing_plan"]["frame_budget_conserved"])
+            self.assertGreater(report["timing_plan"]["actual_schedule_end_seconds"], job["timing"]["draw_duration_seconds"])
 
     def test_contract_1_2_structured_text_order_and_auto_timing(self):
         temp_root = os.environ.get("WHITEBOARD_TEST_TEMP_ROOT") or None

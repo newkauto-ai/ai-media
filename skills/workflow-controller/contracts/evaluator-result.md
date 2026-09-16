@@ -23,4 +23,12 @@ Review Result v2.1 `previsualization_storyboard` is also accepted for the existi
 
 For evidence-bound `production_qa`, an optional `repair_assessment` may add `severity`, `core_story_function_satisfied`, `can_edit_or_reuse`, `expected_improvement`, `target_revision_id`, and `media_checksum`. It selects the existing accept/edit/request-Cost-Gate/human route; it does not create a new state or retry authority.
 
+For `reference_video_structural_remake`, the same `production_qa` result may add an optional
+`reference_fidelity_assessment` with `profile_version`, `constraint_hash`, `reference_media_hash`,
+`target_media_hash`, and per-requirement `{requirement_id, status, reference_evidence_refs,
+target_evidence_refs, approved_difference_refs, function_preserved, findings}`. Status is
+`pass | fail | unknown | stale`. Missing real target media or unreadable/insufficient evidence makes
+only affected items `unknown`; a dependency/hash change makes the assessment `stale`. Neither state
+consumes retry or creates a new verdict, Gate, similarity score, or state owner.
+
 Recommended evaluator instruction: assess only the named unit against its contract; cite observable evidence; choose one verdict; enumerate failures using the owning Skill taxonomy; never revise frozen semantic locks.

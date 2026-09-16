@@ -12,7 +12,7 @@ Turn the frozen Script and ADP voice direction into portable, inspectable voice 
 6. Generate a deterministic `audio_id` (`A-<beat_id>-V<n>`), compute text/profile revision hashes, estimate duration, and place it against its owning Scene/Clip. Flag overflow as `timing_conflict`.
 7. Present the minimum voice set, provider, count, format, estimated cost, output root, and stopping condition for explicit approval.
 8. After approval, call the selected adapter. Save original response metadata, generated file, duration, checksum, QA result, and revision. Do not overwrite an approved prior revision.
-9. Reconcile the Audio Timeline with measured durations and release only `qa_passed` assets to Assembly.
+9. Reconcile the Audio Timeline with measured durations and release only `qa_passed` assets to Assembly. For narration-led local assembly, bind the confirmed continuous result as read-only `final_narration_master` with checksum, measured duration, sample rate, and absolute semantic intervals. Preserve original timing and pauses; convert visual/caption/SFX boundaries to integer frames only after fps is bound. Record exactly one `caption_output_owner`, bind whoosh to visible motion intervals and impact to visible settle/hit events, and mark affected bindings stale after any narration or timeline revision. External-post BGM ownership may intentionally leave the Remotion intermediate without BGM.
 
 ## V1 audio QA
 

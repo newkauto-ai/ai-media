@@ -2,12 +2,30 @@
 
 ## Current Goal
 
+本轮把权威源码中的参考视频结构复刻 v1.1、火柴人/白板 v1.4、VOX/Remotion 镜头意图驱动 v1.6 以及相关 Script → ADP → Manifest/QA 投影合并为同一可复现发布快照。VOX v1.6 把静止、动态和复合运动都保留为正常可选项，不把默认静止、微幅推镜、单镜单动作、固定四层、全员漂浮、固定六类动效或固定归位海报升级为全局规则；同时保留信息可读、身份/文字/事实稳定、空间关系、纸片媒介与确定性渲染要求。插件已通过 personal marketplace 官方 `remove/add` 重装为 `ai-media@personal 0.1.0+codex.20260916062010`，状态回读为 `installed/enabled`；没有调用付费生成、写 Notion 或发布媒体。
+
+`reference_video_structural_remake` 已在权威源码升级为同一稳定 ID 的 `v1.1-zh`：复刻目标、参考证据、结构映射、ADP 动态关系、生产绑定与 `production_qa` 对照验收通过现有 Script → ADP → Manifest/QA 链路传递；不新增 Skill、Controller、Gate、Beat Map、Review Core 或重试账本。本轮仅完成源码与离线验证，未重装，当前已加载插件仍为 `0.1.0+codex.20260915120857`，也尚未进行真实媒体保真验证。
+
 `whiteboard_animator` contract 1.3 保持不变；稳定 ID `minimal_stick_figure_explainer_story` 已升级为 `v1.3-zh`。当前规则只允许每个语义区域一种均匀基色的单色平涂，禁用赛璐珞二档、阴影/投影、渐变、高光与 `direct_fill` 阴影例外；人物与动物继续强制 `character_head → character_body → character_limbs_or_accessories`，明确手脚和 3.5–5 px 四肢线宽。任意两个主要角色必须在六项造型维度中至少三项实质不同，仅换颜色无效，同一角色跨镜保持身份一致。v1.1/v1.2 的 source 与 normalized 共四个旧文件已删除并保留外部回滚副本。
 
 Audio Production 已扩展为 named-voice recommendation v1.1：从结构化角色要求硬过滤并排序豆包候选，每个角色最多返回 3 个；公开目录与账户可用性分离，未人工批准时 `selected_voice=null` 且禁止 provider call。上述 Audio Production、火柴人 v1.3 及此前已部署但未提交的白板生产基线已作为一个可复现源码快照重装为 `ai-media@personal 0.1.0+codex.20260914162112`，源码/缓存 497/497、零缺失、零多余、零 SHA-256 差异；未调用任何付费生成。
 
+VOX 稳定 ID `vox_transcript_driven_handmade_collage` 已在权威源码升级并有界部署为 `v1.5-zh`：剪纸轮廓以最终背景上的明显纸片分离为目标，优先纸白或暖白，但白色/浅色背景下改用同一纸张色板内、在明度/色相/冷暖上清楚分离的轮廓色；纸层投影与轮廓分开。需要透明 PNG 时仍复用当前任务既有 ChatGPT Web 同一对话；兼容小元素选择最小 `2×2` 或 `3×3` 透明图集，逐格携带项目级年代/服饰/身份/朝向/完整手脚与道具约束，下载后核验真实 Alpha，再通过本地命名拆图工具裁切，并只把通过 RGBA、边缘、目标背景轮廓对比和安全区检查的独立 PNG 绑定到 Remotion。独立 Visual Baseline、Cost Gate、入口不可用时停止和图集非正式资产边界保持不变。本机安装为 `ai-media@personal 0.1.0+codex.20260915120857`，`installed/enabled`；有界发布包与活动缓存 506/506 文件一致，零缺失、零多余、零 SHA-256 差异。
+
+白板自适应路由 Gate 已通过有界 staging 更新安装为 `ai-media@personal 0.1.0+codex.20260915061908`：legacy Job 不能强制新 `flat_auto` 路由，中度／复杂无分层源会解析为 `structured_semantic / human_review`，手动 flat 排程溢出也会阻断。安装包排除了权威源码中与本轮无关的脏改动；未执行 Git commit 或 push。
+
+权威源码中的新角色 Job 已改为固定 `head → body → upper_arms → forearms → hands → thighs → lower_legs → feet` 顺序；每个部位的线稿固定 `outline → details`，并由 checksum 绑定的部位、轮廓、细节 RGBA 蒙版证明。动物按前肢上/下段、前爪、后肢上/下段、后爪映射。旧四段与 `head_first + head_bbox` 仅保留兼容读取。本轮只修改源码，尚未更新版本或安装缓存，旧样片不能作为八段顺序的运行时验收。
+
 ## Completed & Key Decisions
 
+- 参考视频复刻保真升级保留 v1.0 source/normalized，新建 v1.1 并让 Registry 同一 `reference_video_structural_remake` ID 指向 `ready` v1.1；`ready` 仅表示来源哈希、模块路由和契约验证完成。
+- 结构锁定分支保留已选 Hook 和参考单元顺序，以参考结构/目标改编映射替代通用 H-C-E-R-M 投影，不强制五 Hook、三轮压缩或 8–12 Beat；非复刻与仅画风借鉴流程继续使用原规则。
+- 参考约束以可选 `reference_fidelity` / trace / assessment 扩展复用现有 owner；截图不能证明运动或声音，源/目标/实测时间分离，相关哈希变化使旧验收 stale 且不消耗重试，字幕/图形/声音局部缺陷优先 edit/reuse。
+- 根据真实角色 Pilot 的人工否决证据，将四段身体分组细化为八段，避免手臂被混入身体、鞋子在腿之前出现。Renderer 不猜测解剖或“内部”，而是要求新 Job 显式绑定 8 组部位遮罩及每组 outline/detail 遮罩；每个部位的 outline 必须非空，detail 可无有效线像素。
+- 旧 `head_body_hands_feet` 与 `head_first` 继续兼容读取，但文档、Style Profile 与新 Job 规范均只指向八段 policy `head_body_upper_arms_forearms_hands_thighs_lower_legs_feet`。
+- 沿用现有 VOX Style Profile、Image Prompt Compiler、Executable Prompt Contract、Production Manifest、Video Production 和 Cost Gate，没有新增第二套素材模块、Controller、Manifest、Gate 或状态 owner。v1.5 新增背景感知剪纸轮廓系统；唐代等题材限制只进入项目级 `asset_constraints`，不成为通用 Style Core。
+- 新增 `split-transparent-atlas.ps1` 与 `split-transparent-atlas.py` 顶层/manifest Skill 镜像。包装脚本复用已有带 Pillow 的本地运行时；Python worker 只接受真实 Alpha，按 `2x2/3x3` 和命名顺序裁切，拒绝不透明源、空映射格、非空闲置格、边缘接触和未授权覆盖，不做纯色抠图、轮廓生成/改色或 provider call。
+- 沿用现有 Image Prompt Compiler、Executable Prompt Contract、Production Manifest、VOX v1.4 Profile 与 Cost Gate，没有新增第二套素材模块。编译器现在对 1–4 个元素强制最小 `2x2`、5–9 个元素强制 `3x3`，空格保持为空，透明 Atlas 调用包指向 `chatgpt_web` 且继续为 `blocked`；保存文件未核验前不声称 Alpha 成功。
 - 已通过 personal marketplace 官方 `remove/add` 重装 `ai-media@personal 0.1.0+codex.20260914162112`，`codex plugin list` 回读 `installed, enabled`。删除前旧缓存 `0.1.0+codex.20260914135330` 已完整备份到项目交付目录，541/541 文件、总字节一致。
 - 本次发布把已哈希归类的完整源码快照纳入同一提交：此前已安装但未提交的白板/Controller/Topic/Script 基线，与新增 Audio Production v1.1、火柴人 Style Profile v1.3 和旧 v1.1/v1.2 Profile 清理。发布前对照旧安装缓存后只有 Audio/Style/Progress 是新增差异，不存在未知脏改动。
 - 沿用现有 Audio Production owner、Voice Profile、Manifest、Cost Gate 与 QA；没有新增平行音频模块。新增 `select-doubao-voices.ps1`、公开目录精选数据和 review projection，只负责候选推荐，不自动定音色。
@@ -36,6 +54,7 @@ Audio Production 已扩展为 named-voice recommendation v1.1：从结构化角�
 - v10 阴影继续使用已批准的四个暖灰接触影，RGB `217,211,204`、alpha `145`、统一 `[22,12]` 下右投影与约 `10°` 方向；Renderer 未新增天空、远山、满幅地面、短线、草丛或隐藏像素。
 - contract `1.2` 要求新源素材及结构化 RGBA 层为目标画布的 4x，使用 premultiplied-alpha area downsample；不得用成片整体缩放冒充源素材抗锯齿。
 - `render_route: auto` 对稀疏、可分离、低文字源解析为 `flat_auto`；多行文字、卡片、重叠/z-order 或复杂线填关系需要 `structured_semantic`。复杂扁平图没有显式图层时继续 `human_review`。
+- 已补强自适应路由 Gate：contract 1.0/1.1 不再接受 `render_route` 字段来强制新任务走 legacy flat；contract 1.2/1.3 只有 `simple` 且文字负担受限的无分层源可进入 `flat_auto`，`moderate`/`complex` 无分层源即使请求 flat 也会解析为必需的 `structured_semantic` 并以 `structured_semantic_requires_explicit_layers` 停在 `human_review`。手动 flat 排程超出声明绘制预算也会阻断。
 - preflight 新增 `whiteboard_source_plan`，包含复杂度、对象/文字负担、线密度、调色板上限、4x/输出画布、alpha 策略、语义层顺序，以及每个源文件的尺寸、alpha 要求、checksum 与 rights evidence。
 - 自动 timing 以骨架长度、色块 alpha 面积、抬笔次数、文字字数/行数和总帧预算选择最慢可行的 `calm`、`normal` 或 `energetic`；不足时阻断并要求减对象、减文字/装饰或拆分画板，不启用 `hyper`。
 - 文字只按显式 `text_regions` 的 bbox、行序与 reading order 书写；线稿和填色保留独立 timing map。笔尖中心只用于候选参考，最终吸附到活动 mask 的真实 frontier 像素。
@@ -43,9 +62,15 @@ Audio Production 已扩展为 named-voice recommendation v1.1：从结构化角�
 - v1.1 把白板可画性写入 Profile：新源为输出几何 4x，简单稀疏图可用 `flat_auto`，多对象/粗细线填关系/文字优先 `structured_semantic`；普通对象 `line_then_fill`，仅颜色层才可 `direct_fill`，手笔需贴合当前 frontier。
 - v1.2 明确人物与动物必须先完成头部外轮廓、头部身份结构与五官，再进入颈部/躯干、四肢与配饰。角色源至少拆成 `character_head` 与 `character_body` 对齐 RGBA 层；单一角色层无法证明头部先画时不得进入正式渲染。
 - normalized Profile 使用 `visual.character_or_animal_draw_order` 和 `visual.head_first_required` 保留机器约束；contract 1.3 Style Slice 已确认四项 head-first 字段均为 accepted，而非 dropped。
+- 新角色 Job 使用 `head_body_hands_feet` policy 和四个顺序固定的 `character_parts`：`head`、`body`、`hands`、`feet`；动物分别把 `hands`、`feet` 解释为前肢、后肢。线稿和填色都按这一顺序排程，不从连通组件、位置或外观猜测解剖部位。
+- 四张角色部位蒙版必须与源图同尺寸、带真实 Alpha、checksum/rights 绑定、源级互不重叠，并完整覆盖角色线稿与色块像素；缺失、乱序、重叠、空蒙版或覆盖不完整均在 preflight 阻断。旧 `head_first + head_bbox` 继续只读兼容，不用于新 Job。
 
 ## Core Files
 
+- `style-profiles/source/Style_Profile_参考视频结构复刻_v1.1_保真升级.md`
+- `style-profiles/normalized/reference_video_structural_remake.v1.1-zh.json`
+- `tests/verify-reference-video-structural-remake.ps1`
+- `tests/fixtures/reference-video-structural-remake-cases.json`
 - `.codex-plugin/plugin.json`
 - `workflow-controller/SKILL.md` 与 `skills/workflow-controller/SKILL.md`
 - `video-production/SKILL.md` 与 `skills/video-production/SKILL.md`
@@ -63,14 +88,30 @@ Audio Production 已扩展为 named-voice recommendation v1.1：从结构化角�
 - `style-profiles/normalized/minimal_stick_figure_explainer_story.v1.3-zh.json`
 - `style-profiles/registry.json`
 - `tests/verify-stick-figure-style-profile.ps1`
+- `style-profiles/source/Style_Profile_精致单色平涂火柴人白板涂绘_v1.4_三层视觉语法.md`
+- `style-profiles/normalized/minimal_stick_figure_explainer_story.v1.4-zh.json`
 - `video-production/contracts/audio-production-contract.md` 与 manifest Skill 镜像
 - `video-production/modules/audio-production.md` 与 manifest Skill 镜像
 - `video-production/data/voice-types.json` 与 manifest Skill 镜像
 - `video-production/scripts/select-doubao-voices.ps1` 与 manifest Skill 镜像
 - `tests/verify-doubao-voice-selection.ps1`
+- `video-production/modules/asset-prompt-compiler.md` 与 manifest Skill 镜像
+- `video-production/contracts/executable-prompt-contract.md` 与 manifest Skill 镜像
+- `tests/fixtures/image-prompt-cases.json`
+- `tests/verify-image-prompt-contracts.ps1`
+- `tests/verify-vox-style-profile.ps1`
 
 ## Verification
 
+- 本轮整合源码与安装缓存均通过 12 项契约/风格回归，以及 manifest Skill 白板入口 `23/23 OK`；覆盖参考复刻 v1.1、火柴人 v1.4、VOX v1.6、Script/ADP/Manifest/QA 字段投影、最终旁白帧时间轴、caption/SFX owner、透明度/遮挡硬失败与确定性本地渲染。安装前权威源码与新缓存按 Git 已跟踪和待提交文件核对为 514/514，missing 0、SHA-256 mismatch 0。
+- 复用现有 Remotion 工程完成 15.061333 秒、1280×720、30fps、H.264 + AAC 48kHz 的最小 Pilot，完整解码通过，SHA-256 `C4FB0A892B86DC5B2041D8B2A4D597E38FF5C8B8C7034F5B74D8A45CE7021928`；该结果证明既有生产链仍可渲染，不等于 v1.6 全量艺术质量或全部镜头意图已经人工验收。
+- 参考复刻新增回归通过：`verify-reference-video-structural-remake.ps1`。Profile 库、Skill 3、Skill 4、Stage 0、Workflow Controller 与基础契约回归均通过；覆盖四单元非剧情映射、still-only UNKNOWN、约束哈希失效、源 8 秒/目标 11 秒揭晓差异、字幕局部编辑与缺少真实输出不伪造 PASS。
+- VOX v1.5 定向回归通过：稳定 ID、v1.2–v1.4 历史保留、源码/registry SHA-256、背景感知轮廓、白/暖白优先但不锁死、独立纸层投影、项目级题材约束、MHTML/参考静帧 provenance、Remotion 配方和透明图集边界均已验证。
+- Image Prompt Fixture 继续为 12 个本地非生成案例；`2x2` 深砖红背景与 `3x3` 白色宣纸背景均编译出目标背景、逐格 `asset_constraints`、自适应轮廓策略、独立阴影和 `generation_status=blocked`，未写入 Manifest 或调用 Web。
+- 拆图 worker 4/4 通过：真实 Alpha 命名裁切/报告、拒绝覆盖、拒绝无 Alpha、拒绝格边接触、拒绝非空闲置格，以及顶层/manifest Skill 的 Python 与 PowerShell 镜像一致。相关 contracts、Skill 4 v1.7、staged approvals、Style Profile library、VOX、Image Prompt 和六组受影响镜像 SHA parity 均通过，`git diff --check` 无空白错误。
+- 安装缓存 `0.1.0+codex.20260915120857` 已重复通过 VOX、Image Prompt、Style Profile library、contracts、Skill 4、staged approvals 与拆图 4/4 回归；安装前旧缓存 `0.1.0+codex.20260915061908` 已备份到 `deliverables/ai-media-vox-v1.5-release-20260915120857/rollback/`。官方 Python 校验器因当前捆绑运行时缺少 PyYAML 未能启动；Codex 本身的 remove/add 安装校验与上述安装版回归均已通过。
+- Skill Creator 的 `quick_validate.py` 与 Plugin Creator 的 `validate_plugin.py` 在当前三个可用 Python 运行时均因未安装 PyYAML 而无法启动；这是验证环境依赖缺失，不是本轮 Skill frontmatter 或拆图逻辑失败。未为验证擅自安装依赖。
+- VOX 透明素材定向回归通过：Image Prompt Fixture 覆盖 `2x2` 与 `3x3`，两者均请求透明背景、指向既有 ChatGPT Web 对话、保持 `generation_status=blocked`，并要求裁切绑定前核验 Alpha；VOX v1.4 Profile、Skill 4 v1.7、JSON 解析、两个 Video Production `quick_validate`、四组合同/模块/脚本镜像 SHA parity、两份 SKILL 新规则文本一致与 `git diff --check` 通过。两份 SKILL 仅保留既有相对链接差异。
 - 新安装缓存的 `verify-doubao-voice-selection.ps1`、`verify-audio-production.ps1`、`verify-style-profile-library.ps1` 与 `verify-stick-figure-style-profile.ps1` 全部 PASS；火柴人 Style Slice 为 `compatible`，单档平涂、角色差异轴、明确手脚、粗四肢与 head-first 约束均从 manifest Skill 入口保留。
 - 新安装缓存通过 manifest Skill 白板 14/14 回归；六个安装版 Skill 均通过 UTF-8 `quick_validate`。权威源码与安装缓存排除 `.git`/`__pycache__` 后均为 497 文件，missing 0、extra 0、SHA mismatch 0。
 - `verify-doubao-voice-selection.ps1` 通过：四川中年男解说仅保留“云舟 2.0 / 小天 2.0”，年长女性角色首选“婆婆 2.0”，不支持的客家方言硬阻断；候选账户状态保持 `unknown`，没有自动选择或 provider-call 授权。既有 `verify-audio-production.ps1` 与 `verify-skill4-contracts.ps1` 回归通过；manifest Skill 通过 `quick_validate.py -X utf8`。
@@ -104,11 +145,19 @@ Audio Production 已扩展为 named-voice recommendation v1.1：从结构化角�
 - v1.1 Style Profile source SHA-256 为 `0EA70298F1E15516AA016BA940DB90180C71FA774643D50275FA48CED3FFBF8D`；style-profile library validator、JSON parse 与 registry/source hash 对齐均通过。
 - v1.1 测试资产为本地确定性 5120×2880 RGBA 三层素材，不调用外部图像生成。preflight 选择 `structured_semantic`、confidence `0.96`、3 层/6 阶段、432 帧预算守恒、最终无损合成 mean absolute error `0.00235`、P95 `0`。
 - manifest 声明的 Skill 入口完成一次正式 render：1280×720、24fps、432 帧、18.0 秒、H.264 `yuv420p`、无音轨、完整解码通过，SHA-256 `FC2A779F20FF7E8AFE6399FCA7A091AF4DDA22B2D7EF9933F4015544F6E9E635`。手笔可见 292 帧、pen-up 隐藏 27 帧、`post_snap_outside_count=0`；状态保持 `success_pending_human_review`。
+- 自适应路由补修后，源码与安装版 manifest Skill 入口白板单元回归均为 `19/19 OK`。安装缓存 `0.1.0+codex.20260915061908` 与有界 staging 同为 499 文件，missing 0、extra 0、SHA mismatch 0，plugin validator 通过。真实 `LD-KEY-001` 的旧 `contract 1.0 + flat_auto` Job 返回 `render_route_requires_contract_1_2`；临时 4× RGBA 的 `contract 1.3 + auto` 预检把源判为 `complex`、检测 70 个疑似文字组件、`flat_auto_eligible=false`，解析到 `structured_semantic / human_review`。
 - v1.2 Style Slice 为 `compatible`，SHA-256 `D4A77AC4F2280B8F157D01604A4FEA71C577ACE378813C3E59D939F5D670344E`；accepted fields 明确包含 `character_head`、`character_body`、`character_limbs_or_accessories` 和 `head_first_required=true`。
 - 6 秒 head-first Pilot 通过 manifest Skill 入口：1280×720、24fps、144 帧、H.264 `yuv420p`、无音轨、完整解码；draw order 为 `character_head` 后 `character_body`，头部占帧 0–60，身体占帧 60–120，停留 24 帧。输出 SHA-256 `A31EB99DA76D007C8D7837FAD1663649F57ECF49F59CCEA010BFC80180C7E7A0`，手笔可见 113 帧、pen-up 8 帧、`post_snap_outside_count=0`，状态为 `success_pending_human_review`。
+- 新四段角色顺序源码回归通过：manifest Skill 入口白板测试 `21/21 OK`；覆盖线稿与早期填色的 `head → body → hands → feet` 排程，以及乱序、缺失、重叠蒙版阻断。`verify-stick-figure-style-profile.ps1`、`verify-skill4-contracts.ps1`、schema JSON parse 与相关 `git diff --check` 均通过；v1.4 source SHA-256 为 `FBD9C7E838BC54317EFA95EABAFBD349629AB3287D13B9943EF9C69F87F16777`，registry 已对齐。
+- 八段角色顺序与轮廓优先源码回归通过：manifest Skill 入口白板测试 `23/23 OK`，同时覆盖新八段 × `outline/details` 排程、精确 80 帧编码、旧四段兼容、乱序/缺失/重叠阻断。`verify-stick-figure-style-profile.ps1`、`verify-skill4-contracts.ps1` 与三份 JSON 解析均通过；v1.4 source SHA-256 为 `4C390B6B3402A066C84A697949C39B5ED4160E9502C4FA8F0780BFBEE175919B`，normalized provenance 与 registry 已对齐。
 
 ## Known Issues
 
+- 当前任务启动时加载的是旧插件指令；重装与安装缓存回归证明安装版本已更新，但不证明本对话已经热加载 v1.6。自然语言入口需要在新任务中做一次运行时冒烟验证。
+- 参考复刻与 VOX v1.6 尚无绑定真实参考、最终旁白、完整素材和逐镜意图的成片验证；最小 Pilot 与自动化检查不能替代真实媒体保真、运动节奏、声音同步和连续人工观看。
+- 参考复刻 v1.1 尚未重装或在新任务中验证实际加载；没有真实参考/生成素材，因此真实媒体保真、运动/节奏/声音同步均未验证。
+- VOX v1.5 与透明图集拆图能力已完成 cachebuster、personal marketplace 重装、安装状态回读及安装缓存回归；当前任务不会热加载刚重装的 Skill，因此自然语言调用仍需新任务验证。
+- 新八段角色顺序与轮廓优先尚未部署；当前安装缓存仍为 `0.1.0+codex.20260915061908`。此前 r2 已因手臂先于身体、鞋子先于腿被人工否决；正式验证需要安装后提供八组部位/轮廓/细节蒙版并渲染一支代表性 Pilot，状态继续保持 `success_pending_human_review` 直到人工连续观看。
 - 豆包公开目录已入精选推荐数据，但当前账户对具体 `voice_type` 的 entitlement 仍为 `unknown`；named-voice TTS 执行 Adapter 未在本轮配置，因此已安装插件可以推荐，不能声称可直接生成指定音色。
 - v1.3 Pilot 已通过技术检查但尚未人工连续观看；不得据此传播到剩余素材或正式执行分段计划。
 
@@ -121,5 +170,5 @@ Audio Production 已扩展为 named-voice recommendation v1.1：从结构化角�
 
 ## Next
 
-1. 在新任务中验证已安装版可由自然语言调用 Audio Production 音色候选与火柴人 v1.3；安装/哈希 parity 不作为当前对话热加载证明。
-2. 若要试听固定豆包 `voice_type`，需先验证账户 entitlement、配置 named-voice TTS Adapter，并单独通过精确成本 Gate。火柴人 v1.3 正式传播前仍需一支匹配新 Style Slice 指纹的 3–6 秒双角色单色平涂 Pilot 与人工连续观看接受。
+1. 在新任务中对已安装版本做自然语言入口冒烟验证，确认 VOX v1.6、参考复刻 v1.1、火柴人/白板 v1.4 与最终音频时间轴规则实际加载。
+2. 有真实参考、完整素材和最终旁白后，再制作一支绑定逐镜意图的代表性 Pilot，进行连续人工观看；在此之前不把技术 PASS 写成媒体质量通过。

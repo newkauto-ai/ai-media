@@ -45,7 +45,13 @@ Reject a title-only input, a non-frozen script, or a handoff missing any require
   series_bible: object | null
   current_user_overrides: object | null
   production_adapter_reference: object | null
+  reference_fidelity: object | null
 ```
+
+The optional `reference_fidelity` value is accepted only from the frozen Script handoff for the
+selected ready `reference_video_structural_remake` Profile. It references the authoritative evidence
+record and current `constraint_hash`; it must not embed a second copy of observations. Missing motion
+or sound evidence leaves only those dimensions `UNKNOWN`.
 
 `production_adapter_reference` may inform capability constraints but remains owned by Skill 4. Never copy its model syntax into the ADP's permanent style identity.
 

@@ -85,12 +85,12 @@
     },
     {
       "profile_id": "reference_video_structural_remake",
-      "source_file": "Style_Profile_参考视频结构复刻_v1.0_中文解析.md",
-      "source_sha256": "406F2DF2768FC775230405AE5D8BC54DAAC269E8DE779BFFD032E55D8F93EEAC",
-      "normalized_file": "reference_video_structural_remake.v1.0-zh.json",
-      "normalized_version": "v1.0-zh",
+      "source_file": "Style_Profile_参考视频结构复刻_v1.1_保真升级.md",
+      "source_sha256": "E7B3A1EDE048ED0EDDE1203E549F7635560223ED3E7A3EBCC6F513BB7415A68D",
+      "normalized_file": "reference_video_structural_remake.v1.1-zh.json",
+      "normalized_version": "v1.1-zh",
       "classification": "production_playbook",
-      "status": "pending_review",
+      "status": "ready",
       "provenance_verified": true
     },
     {
@@ -195,10 +195,10 @@
     },
     {
       "profile_id": "minimal_stick_figure_explainer_story",
-      "source_file": "Style_Profile_精致单色平涂火柴人科普叙事_v1.3_角色差异化.md",
-      "source_sha256": "33BE9EF7085A625A6A304E1AB53763B56AE5F4C397A31C90F92A37E729AE3D31",
-      "normalized_file": "minimal_stick_figure_explainer_story.v1.3-zh.json",
-      "normalized_version": "v1.3-zh",
+      "source_file": "Style_Profile_精致单色平涂火柴人白板涂绘_v1.4_三层视觉语法.md",
+      "source_sha256": "4C390B6B3402A066C84A697949C39B5ED4160E9502C4FA8F0780BFBEE175919B",
+      "normalized_file": "minimal_stick_figure_explainer_story.v1.4-zh.json",
+      "normalized_version": "v1.4-zh",
       "classification": "hybrid_style_profile",
       "status": "ready",
       "provenance_verified": true
@@ -445,10 +445,10 @@
     },
     {
       "profile_id": "vox_transcript_driven_handmade_collage",
-      "source_file": "Style_Profile_VOX编辑纸拼贴讲解动画_v1.5_背景感知剪纸轮廓.md",
-      "source_sha256": "6BEA52BECAD15DFB17EEAA284E4FF9CAA6CF2E1D26D284C0C5239FC2455A7BAD",
-      "normalized_file": "transcript_driven_handmade_collage.v1.5-zh.json",
-      "normalized_version": "v1.5-zh",
+      "source_file": "Style_Profile_VOX编辑纸拼贴讲解动画_v1.6_镜头意图驱动.md",
+      "source_sha256": "C4A54F9A84C012B2A55EC1E7F29E9FD7660784DAF33DCAE27BE4539049A9EEE1",
+      "normalized_file": "transcript_driven_handmade_collage.v1.6-zh.json",
+      "normalized_version": "v1.6-zh",
       "classification": "hybrid_style_profile",
       "status": "ready",
       "provenance_verified": true

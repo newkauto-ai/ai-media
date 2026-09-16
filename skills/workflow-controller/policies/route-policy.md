@@ -41,6 +41,7 @@
 | Specialist returns a project artifact or formal Review | re-observe artifact and approval state before any advancement |
 | Claimed artifact is missing, unreadable, or has unknown schema/hash/version | block for evidence; do not consume retry budget |
 | Target or dependency hash changed | mark prior Review stale through existing lineage rules; do not consume retry budget |
+| Reference-remake constraint, evidence, or bound target-media hash changed | mark the prior reference-fidelity assessment stale through the same lineage rules; do not consume retry budget |
 | Current Stage waits for explicit approval | stop and request the exact Stage confirmation; generic “continue” is insufficient |
 | User asks to propagate beyond the validated sample | check risk coverage, Clip-first scope, and Cost Gate; do not batch automatically |
 | Whiteboard 1.3 Pilot fingerprint is new or lacks exact human acceptance evidence | route one risk-selected representative Pilot only; block propagation and formal segmented rendering |

@@ -68,7 +68,10 @@
                   "draw_order": {"type": "integer", "minimum": 0},
                   "z_index": {"type": "integer", "minimum": 0},
                   "reveal_mode": {"enum": ["line_then_fill", "direct_fill"]},
-                  "semantic_kind": {"enum": ["geometry", "text", "illustration", "shadow"]},
+                  "semantic_kind": {"enum": ["geometry", "text", "illustration", "character", "shadow"]},
+                  "stroke_order_policy": {"enum": ["head_first", "head_body_hands_feet", "head_body_upper_arms_forearms_hands_thighs_lower_legs_feet"]},
+                  "head_bbox": {"type": "array", "prefixItems": [{"type": "integer", "minimum": 0}, {"type": "integer", "minimum": 0}, {"type": "integer", "minimum": 1}, {"type": "integer", "minimum": 1}], "minItems": 4, "maxItems": 4},
+                  "character_parts": {"type": "array", "minItems": 4, "maxItems": 8, "items": {"$ref": "#/$defs/characterPart"}},
                   "text_regions": {"type": "array", "items": {"$ref": "#/$defs/textRegion"}},
                   "color_rgba": {"$ref": "#/$defs/imageAsset"},
                   "line_art_rgba": {"$ref": "#/$defs/imageAsset"},
@@ -106,6 +109,15 @@
     },
     "encoding": {"type": "object"}
   },
+  "allOf": [
+    {
+      "if": {
+        "properties": {"contract_version": {"enum": ["1.0", "1.1"]}},
+        "required": ["contract_version"]
+      },
+      "then": {"not": {"required": ["render_route"]}}
+    }
+  ],
   "$defs": {
     "imageAsset": {
       "type": "object", "additionalProperties": false,
@@ -114,6 +126,16 @@
         "path": {"type": "string", "minLength": 1},
         "sha256": {"type": "string", "pattern": "^[A-Fa-f0-9]{64}$"},
         "rights_evidence": {"type": "string", "minLength": 1}
+      }
+    },
+    "characterPart": {
+      "type": "object", "additionalProperties": false,
+      "required": ["part", "mask_rgba"],
+      "properties": {
+        "part": {"enum": ["head", "body", "upper_arms", "forearms", "hands", "thighs", "lower_legs", "feet"]},
+        "mask_rgba": {"$ref": "#/$defs/imageAsset"},
+        "outline_mask_rgba": {"$ref": "#/$defs/imageAsset"},
+        "detail_mask_rgba": {"$ref": "#/$defs/imageAsset"}
       }
     },
     "textRegion": {

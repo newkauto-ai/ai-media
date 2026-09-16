@@ -32,7 +32,15 @@ script_engine_input:
   pre_content_style_constraints: object | null
   series_bible_constraints: object | null
   current_user_overrides: object | null
+  reference_fidelity_context: object | null
 ```
+
+`reference_fidelity_context` is used only for the selected ready
+`reference_video_structural_remake` Profile. It may contain `primary_goal`, `goal_source`,
+`content_structure_lock`, `must_preserve`, `allowed_changes`, `conflict_priority`,
+`source_evidence_refs`, and `constraint_hash`. Reuse already supplied values; do not require a new
+form. A source still or unreadable video may leave motion, rhythm, sound, or synchronization evidence
+`UNKNOWN` without blocking unrelated static observations.
 
 If only the duration recommendation is missing from an otherwise valid Topic Thesis, return to Topic Hunter for a bounded duration-planning action; do not invent a default, reopen topic selection, or classify the thesis as invalid. Reuse an existing current recommendation.
 

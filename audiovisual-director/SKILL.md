@@ -22,11 +22,21 @@ Own SEE + HEAR + PERFORM. Translate frozen content semantics into a unified, mod
 1. Validate `topic_thesis`, `frozen_script`, and `production_handoff_manifest`. The script must be frozen.
 2. Scan `style-profiles/source/`. Normalize or validate every new/changed selected Style Profile into `style-profiles/normalized/`, preserve provenance, distinguish source-defined from runtime-recommended values, and update `style-profiles/registry.json` only after validation.
 3. Route content modules upstream and audiovisual modules into this Skill. Record ignored production modules for Skill 4.
+   For `reference_video_structural_remake`, accept the frozen `reference_fidelity` handoff only when
+   its profile version, evidence reference, and `constraint_hash` are current. Keep one authoritative
+   `reference_evidence_record`; the ADP stores references and target mappings, not copied observations.
 4. Apply style compatibility and domain-specific authority rules. Flag conflicts; never silently rewrite content.
-5. Produce, in order: Style Blueprint, Character & Voice Bible, Asset Plan, 8–12 Audiovisual Beats, Sound Cue Plan, Music Brief and Suno Prompt, Continuity Plan, Template Bindings, and Skill 4 handoff.
+5. Produce, in order: Style Blueprint, Character & Voice Bible, Asset Plan, Audiovisual Beats, Sound Cue Plan, Music Brief and Suno Prompt, Continuity Plan, Template Bindings, and Skill 4 handoff. Generic projects normally use 8–12 Beats. A structure-locked reference remake preserves the validated reference-unit order and count instead of padding to 8–12; reference unit, Beat, Shot, and Clip remain different units.
 6. For every frozen `story_change_arc` with `pivotal_change=true`, create a read-only `performance_plan` that cites the arc and translates it into visible trigger, initial evidence, deliberation, decision signal, resulting action, and end evidence. Do not copy or rewrite the arc's internal semantics.
 7. Include Global / Domain Visual DNA and a model-independent LookDev Test Spec because Skill 4 v1.1 requires them. After Stage 0 approval, provide the Global visual DNA to the Stage 1 review package; do not output more than the three required LookDev test prompts before the next confirmation.
-7. Output one structured ADP and one concise human-readable director package without duplicating the same detail only after the staged workflow is allowed to produce the full package.
+8. For each critical reference preservation requirement, emit a `reference_fidelity_trace` from the
+   evidence/function reference to the target Script/ADP position and planned production responsibility.
+   Record only critical motion phases, camera-to-subject relations, composition/occlusion,
+   text/graphic holds, and sound landing points. Separate `source_timing` from `target_timing`; leave
+   `observed_timing` for Video Production after real-media inspection.
+   This consumes `reference_evidence_record`, `reference_structure_mapping`,
+   `dynamic_relationship_plan`, and `sound_timing_basis` from the selected Profile.
+9. Output one structured ADP and one concise human-readable director package without duplicating the same detail only after the staged workflow is allowed to produce the full package.
 
 ## Hard boundaries
 
