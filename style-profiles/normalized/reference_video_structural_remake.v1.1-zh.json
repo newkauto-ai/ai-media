@@ -74,7 +74,7 @@
         {
           "file": "Style_Profile_参考视频结构复刻_v1.1_保真升级.md",
           "version": "v1.1-zh",
-          "sha256": "E7B3A1EDE048ED0EDDE1203E549F7635560223ED3E7A3EBCC6F513BB7415A68D",
+          "sha256": "53A37C50B3ED80556658BAA07118AF8872B128F1AA53B53FBECCC228DC96572F",
           "extraction_type": "source_profile"
         }
       ],
@@ -84,7 +84,7 @@
         {"module": "reference_fidelity_trace", "method": "normalized"},
         {"module": "reference_fidelity_assessment", "method": "normalized"}
       ],
-      "source_sha256": "E7B3A1EDE048ED0EDDE1203E549F7635560223ED3E7A3EBCC6F513BB7415A68D"
+      "source_sha256": "53A37C50B3ED80556658BAA07118AF8872B128F1AA53B53FBECCC228DC96572F"
     }
   }
 }

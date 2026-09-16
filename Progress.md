@@ -149,7 +149,7 @@ VOX 稳定 ID `vox_transcript_driven_handmade_collage` 已在权威源码升级�
 - v1.2 Style Slice 为 `compatible`，SHA-256 `D4A77AC4F2280B8F157D01604A4FEA71C577ACE378813C3E59D939F5D670344E`；accepted fields 明确包含 `character_head`、`character_body`、`character_limbs_or_accessories` 和 `head_first_required=true`。
 - 6 秒 head-first Pilot 通过 manifest Skill 入口：1280×720、24fps、144 帧、H.264 `yuv420p`、无音轨、完整解码；draw order 为 `character_head` 后 `character_body`，头部占帧 0–60，身体占帧 60–120，停留 24 帧。输出 SHA-256 `A31EB99DA76D007C8D7837FAD1663649F57ECF49F59CCEA010BFC80180C7E7A0`，手笔可见 113 帧、pen-up 8 帧、`post_snap_outside_count=0`，状态为 `success_pending_human_review`。
 - 新四段角色顺序源码回归通过：manifest Skill 入口白板测试 `21/21 OK`；覆盖线稿与早期填色的 `head → body → hands → feet` 排程，以及乱序、缺失、重叠蒙版阻断。`verify-stick-figure-style-profile.ps1`、`verify-skill4-contracts.ps1`、schema JSON parse 与相关 `git diff --check` 均通过；v1.4 source SHA-256 为 `FBD9C7E838BC54317EFA95EABAFBD349629AB3287D13B9943EF9C69F87F16777`，registry 已对齐。
-- 八段角色顺序与轮廓优先源码回归通过：manifest Skill 入口白板测试 `23/23 OK`，同时覆盖新八段 × `outline/details` 排程、精确 80 帧编码、旧四段兼容、乱序/缺失/重叠阻断。`verify-stick-figure-style-profile.ps1`、`verify-skill4-contracts.ps1` 与三份 JSON 解析均通过；v1.4 source SHA-256 为 `4C390B6B3402A066C84A697949C39B5ED4160E9502C4FA8F0780BFBEE175919B`，normalized provenance 与 registry 已对齐。
+- 八段角色顺序与轮廓优先源码回归通过：manifest Skill 入口白板测试 `23/23 OK`，同时覆盖新八段 × `outline/details` 排程、精确 80 帧编码、旧四段兼容、乱序/缺失/重叠阻断。`verify-stick-figure-style-profile.ps1`、`verify-skill4-contracts.ps1` 与三份 JSON 解析均通过；v1.4 source SHA-256 为 `B483E6EC338A88D0095861E24F03DCAF4D61A5448D404A227912084E6736DB80`，normalized provenance 与 registry 已对齐。
 
 ## Known Issues
 
