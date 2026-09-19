@@ -20,6 +20,22 @@ $scannerPath = Join-Path $skillsRoot 'audiovisual-director\scripts\scan-style-pr
 $registry = Get-Content -LiteralPath $registryPath -Raw | ConvertFrom-Json
 Assert-True ($registry.profiles.Count -ge 2) 'Registry must retain at least the two original source-normalized profiles.'
 
+$pastoralEntry = @($registry.profiles | Where-Object { $_.profile_id -eq 'oriental_pastoral_cinematic_lifestyle' })
+Assert-True ($pastoralEntry.Count -eq 1) 'Pastoral cinematic lifestyle must resolve to one stable profile ID.'
+Assert-True ($pastoralEntry[0].status -eq 'pending_review') 'New pastoral profile must remain pending_review until real LookDev acceptance.'
+$pastoralProfile = Get-Content -LiteralPath (Join-Path $normalizedDir $pastoralEntry[0].normalized_file) -Raw | ConvertFrom-Json
+Assert-True ($pastoralProfile.style_profile.display_name -eq '田园风') 'Pastoral profile must preserve the user-visible Chinese name.'
+Assert-True ($pastoralProfile.style_profile.audiovisual_modules.visual_identity.value -match '真人') 'Pastoral profile must retain its live-action cinematic identity.'
+Assert-True ($pastoralProfile.style_profile.production_modules.fixed_model_is_canon -eq $false) 'Pastoral profile must not lock a production model into Style Core.'
+
+$dreamyGardenEntry = @($registry.profiles | Where-Object { $_.profile_id -eq 'dreamy_garden_poetic_healing' })
+Assert-True ($dreamyGardenEntry.Count -eq 1) 'Dreamy garden poetic healing must resolve to one stable profile ID.'
+Assert-True ($dreamyGardenEntry[0].status -eq 'pending_review') 'New dreamy garden profile must remain pending_review until real LookDev acceptance.'
+$dreamyGardenProfile = Get-Content -LiteralPath (Join-Path $normalizedDir $dreamyGardenEntry[0].normalized_file) -Raw | ConvertFrom-Json
+Assert-True ($dreamyGardenProfile.style_profile.display_name -eq '梦幻园林诗意治愈风') 'Dreamy garden profile must preserve the user-visible Chinese name.'
+Assert-True ($dreamyGardenProfile.style_profile.audiovisual_modules.visual_identity.medium -contains '二维数字手绘') 'Dreamy garden profile must retain its illustrated medium and remain distinct from the live-action pastoral profile.'
+Assert-True ($dreamyGardenProfile.style_profile.production_modules.model_adapter_reference.model_syntax_locked -eq $false) 'Dreamy garden profile must keep model syntax replaceable.'
+
 foreach ($entry in $registry.profiles) {
     $sourcePath = Join-Path $sourceDir $entry.source_file
     $normalizedPath = Join-Path $normalizedDir $entry.normalized_file

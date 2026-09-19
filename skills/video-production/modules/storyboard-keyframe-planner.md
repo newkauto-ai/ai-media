@@ -2,6 +2,8 @@
 
 Storyboard validates spatial and action feasibility rather than requiring a full image for every Shot. It is optional for low risk, recommended for medium risk, and required for high-risk multi-character blocking, fast action, complex space, high-energy multi-shot plans, or important transitions.
 
+For VOX Poster-first production, the same previsualization owner may compile a risk-selected `VOX Poster Contact Sheet` from 3–6 representative Poster Shots before batch assets or motion. It reviews whole-video editorial vocabulary and rhythm, not action alone. Named risks include editorial repetition, poster hierarchy failure, visual-rhythm monotony, critical-text crowding, missing asset coverage, and poster-to-motion infeasibility. This remains `previsualization_storyboard`; it is not a new Gate or state owner.
+
 Run this planner inside Skill 4 only after Stage 1 approval and Scene/Clip planning. It is not a new Skill 3-to-4 state owner. Reuse the frozen Script, ADP, Scene/Clip refs, Production Manifest, Review Result, and Execution State; never create a Creative Handoff Snapshot.
 
 ## Applicability
@@ -34,6 +36,8 @@ Only a Review with a named `must_fix`, evidence, Panel ID, repair target, and ow
 ## Evidence and Review
 
 Prompt preview, local file creation, or `fixture_only=true` remains `planned_awaiting_cost_gate` and cannot become READY. A real Storyboard Review requires immutable asset revision, media checksum, evidence refs, and current dependency hashes. Reuse Review Result v2.1 `previsualization_storyboard`; `PASS` projects to READY, a named non-semantic repair projects to REVISE, missing/stale evidence blocks without retry consumption, and semantic impact routes to human review.
+
+For a VOX Poster Shot or Poster Contact Sheet, add Poster Readiness findings for primary attention, editorial hierarchy, paper-layer separation, critical-text protection, no-motion readability, asset coverage, adjacent-shot distinction, Style Baseline consistency, and poster-to-motion feasibility. Any unresolved `must_fix` blocks motion compilation for the affected Shot. Three highly similar consecutive Poster Shots emit `editorial_repetition_warning`; escalate it to `must_fix` only when the repetition materially harms comprehension or pacing. Variation is not a quota.
 
 Storyboard PASS advances only to Prompt planning. It does not approve a Visual Baseline, Prompt Preflight, Production generation, actual continuity, or publishing.
 

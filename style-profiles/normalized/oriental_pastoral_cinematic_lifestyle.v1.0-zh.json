@@ -1,0 +1,164 @@
+{
+  "fixture_only": false,
+  "library_status": "pending_review",
+  "normalized_from_source": "Style_Profile_田园风_v1.0_中文解析.md",
+  "style_profile": {
+    "style_id": "oriental_pastoral_cinematic_lifestyle",
+    "version": "v1.0-zh",
+    "classification": "hybrid_style_profile",
+    "pre_content_modules": {
+      "compatibility": {
+        "authority": "high",
+        "preferred": [
+          "江南田园",
+          "茶园",
+          "古村生活",
+          "农事",
+          "采摘",
+          "传统饮食",
+          "手工艺",
+          "东方生活方式"
+        ]
+      },
+      "story_direction": {
+        "authority": "medium",
+        "value": "环境建立 → 人物进入 → 具体劳动过程 → 材质与状态变化 → 人物互动 → 使用或品尝 → 环境余韵"
+      },
+      "content_guardrails": {
+        "authority": "hard",
+        "value": [
+          "不因风格编造历史与工艺事实",
+          "地域和工序由当前项目提供",
+          "风格不得强制添加古风剧情"
+        ]
+      }
+    },
+    "audiovisual_modules": {
+      "visual_identity": {
+        "authority": "hard",
+        "value": "真人东方田园电影感，通透自然光，低至中饱和青绿与暖金，真实材质"
+      },
+      "character_visual": {
+        "authority": "high",
+        "value": "自然东方真人、素雅服装、真实肤质、自然发丝与轻盈布料"
+      },
+      "environment_identity": {
+        "authority": "high",
+        "value": "地域环境通过独立环境镜头建立，江南模式以白墙黛瓦、马头墙、茶园、青山薄雾为主要锚点"
+      },
+      "lighting": {
+        "authority": "hard",
+        "value": "清晨或 Golden Hour 自然侧逆光，通过发丝、衣料、叶片、蒸汽和器物表现光"
+      },
+      "palette": {
+        "authority": "high",
+        "value": "象牙白、嫩茶绿、低饱和青绿、灰蓝、黛灰、淡金"
+      },
+      "cinematography": {
+        "authority": "hard",
+        "value": "85–135mm 长焦为主，Macro 表现材质；浅景深、选择性对焦、自然前景遮挡与轻微空间压缩"
+      },
+      "depth_of_field": {
+        "authority": "hard",
+        "value": "单镜只保留一个主要焦点层，其余前后景递进虚化"
+      },
+      "foreground_layering": {
+        "authority": "high",
+        "value": "使用植物、竹器、衣袖、窗框、蒸汽等形成轻盈、不规则、非对称的自然前景层次"
+      },
+      "performance": {
+        "authority": "high",
+        "value": "人物松弛、快乐、自然，专注于劳动和同伴，不以镜头为表演对象"
+      },
+      "process_detail": {
+        "authority": "hard",
+        "value": "工序必须拆解为接近、接触、动作、材料反馈与完成状态，并使用近景、极近景或微距表现"
+      },
+      "shot_design": {
+        "authority": "hard",
+        "value": "一个镜头一个主要视觉任务；环境、人物、动作、材质与情绪分镜承担"
+      },
+      "editing_rhythm": {
+        "authority": "high",
+        "value": "流畅而非拖慢，通过景别变化与状态变化提高信息密度，环境镜头提供必要呼吸"
+      },
+      "sound_design": {
+        "authority": "high",
+        "value": "保留鸟鸣、风、植物、脚步、材料、竹器、水流、器皿及自然人物声，并与动作同步"
+      },
+      "music_direction": {
+        "authority": "medium_high",
+        "value": "BGM 独立制作，无人声、轻盈东方现代电影感、低至中密度，并给环境声与 Foley 留空间"
+      },
+      "continuity": {
+        "authority": "hard",
+        "value": "锁定人物身份、服装、地域空间、光向，以及工序材料的前后状态"
+      }
+    },
+    "production_modules": {
+      "visual_baseline": {
+        "required": true,
+        "method": "LookDev 静帧 → 短 Clip Pilot → 真实生成结果审查"
+      },
+      "prompt_strategy": {
+        "value": [
+          "先定义 Shot Intent",
+          "明确 Focus Target",
+          "明确景别",
+          "明确前中后景关系",
+          "明确光源效果",
+          "工序镜头明确材料状态变化",
+          "避免通过增加形容词修复结构性镜头问题"
+        ]
+      },
+      "adapter_reference": {
+        "replaceable": true
+      },
+      "fixed_shot_count_is_canon": false,
+      "fixed_duration_is_canon": false,
+      "fixed_model_is_canon": false
+    },
+    "provenance": {
+      "source_documents": [
+        {
+          "file": "Style_Profile_田园风_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "source_type": "production_derived_style_profile",
+          "evidence": "多轮江南采茶、制茶、泡茶、品茗短视频 LookDev 与成片迭代"
+        }
+      ],
+      "extracted_modules": [
+        {
+          "field": "visual_identity",
+          "extraction_type": "production_validated"
+        },
+        {
+          "field": "cinematography",
+          "extraction_type": "production_validated"
+        },
+        {
+          "field": "process_detail",
+          "extraction_type": "production_validated"
+        },
+        {
+          "field": "editing_rhythm",
+          "extraction_type": "production_validated"
+        },
+        {
+          "field": "performance",
+          "extraction_type": "production_validated"
+        },
+        {
+          "field": "sound_design",
+          "extraction_type": "production_validated"
+        },
+        {
+          "field": "music_direction",
+          "extraction_type": "production_validated"
+        }
+      ],
+      "source_sha256": "AC6B197586FC2F632811D155FCD61456B38269147CA3E743688A69A14A3E0B31"
+    },
+    "display_name": "田园风"
+  }
+}

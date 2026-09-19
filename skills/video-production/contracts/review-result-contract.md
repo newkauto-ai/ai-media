@@ -1,6 +1,6 @@
 # Review Result Contract v2.1
 
-This additive contract records an evidence-bound review without replacing Workflow Controller `Evaluator Result` or `Execution State`. V2.1 enables `pre_generation_prompt` plus the bounded `previsualization_storyboard` target. Production Clip Review Gate 2 and Final Cut Review Gate 3 remain unimplemented.
+This additive contract records an evidence-bound review without replacing Workflow Controller `Evaluator Result` or `Execution State`. V2.1 enables `pre_generation_prompt` plus bounded `previsualization_storyboard` targets, including VOX Poster Shots and VOX Poster Contact Sheets. Production Clip Review Gate 2 and Final Cut Review Gate 3 remain unimplemented.
 
 ```yaml
 review_result:
@@ -9,7 +9,7 @@ review_result:
   gate: pre_generation_prompt | previsualization_storyboard
   target:
     project_id: string
-    target_type: video_prompt | storyboard_asset
+    target_type: video_prompt | storyboard_asset | vox_poster_shot | vox_poster_contact_sheet
     target_id: string
     revision_id: string
     content_hash: string
@@ -37,7 +37,7 @@ review_result:
   findings:
     - finding_id: string
       check_id: string
-      category: feasibility | continuity | story_function_conformance | editability
+      category: feasibility | continuity | story_function_conformance | editability | poster_readiness | editorial_rhythm
       severity: must_fix | optional | do_not_optimize
       status: confirmed | suspected | unknown | not_applicable
       confidence: high | medium | low
@@ -71,6 +71,8 @@ review_result:
 - All hashes, policy identity/version, exact target revision, and at least one evidence reference are required. A material dependency or target change makes the decision stale and routes to `UNKNOWN` until reviewed again.
 - `pre_generation_prompt` requires non-empty `frozen_script`, `audiovisual_direction_package`, `production_manifest`, `video_prompt_spec`, and `executable_prompt` dependency hashes. It retains the existing Cost Gate recommendation behavior.
 - `previsualization_storyboard` requires target `media_checksum` plus non-empty `frozen_script`, `audiovisual_direction_package`, `production_manifest`, `storyboard_plan`, `storyboard_prompt`, and `storyboard_media` dependency hashes. Its PASS advances only to Prompt planning and keeps `generation_gate_recommendation=withhold`.
+- A VOX `vox_poster_shot` or `vox_poster_contact_sheet` remains under `previsualization_storyboard`. Review primary-attention clarity, editorial hierarchy, paper-layer separation, critical-text protection, no-motion readability, asset coverage, adjacent-composition distinction, Style Baseline consistency, and poster-to-motion feasibility. Any unresolved `must_fix` blocks motion compilation for the affected Poster Shot.
+- `editorial_repetition_warning` is a review signal when three consecutive Poster Shots are highly similar. It becomes `must_fix` only when evidence shows material comprehension or pacing harm; no variation quota is introduced.
 - The Controller compares Storyboard target revision/content/checksum and dependency hashes with `unit.review_context`. Missing or mismatched current context routes to `blocked` without consuming retry budget.
 - `generation_gate_recommendation` is only a recommendation to enter the independent Cost Gate. It never contains or grants paid-generation approval.
 - `Execution State` remains authoritative for retry count. `retry_snapshot` is an auditable snapshot and may not update the budget.

@@ -4,6 +4,8 @@ Use exactly the ADP LookDev anchors (3–5) to test the Global Style, Domain Ide
 
 For each Anchor: compile the type-appropriate executable prompt, request the approved minimum generation set, record AI QA, then request human approval. Only an approved prompt plus approved generated image plus ready Style Profile becomes a reusable Visual Baseline. Mark a failed Domain `domain_blocked`; continue independent approved Domains.
 
+For a VOX Poster-first project with no applicable approved VOX or Series Baseline, the existing LookDev review may run optional `vox_style_bakeoff`: select one representative Poster Shot, compare three visual directions for editorial hierarchy, collage authenticity, readability, text-safe structure, motion readiness, and domain fit, then request human approval of one baseline. When a reusable approved baseline exists, skip the bake-off and retain its evidence reference. This adds no Gate, approval owner, or generation authorization.
+
 When a generated LookDev receives a local flat-color correction, treat "flat" as uniform semantic-region interiors, not as a globally indexed palette. Preserve or restore contour anti-alias coverage pixels; do not apply a final-resolution indexed-palette or nearest-neighbor remap to thin line art or curves. Prefer true RGBA processing at 4× resolution followed by a premultiplied-alpha area downsample, or preserve the original edge alpha when no resize is required.
 
 QA interior flatness separately from edge coverage. Inspect at least one thin curved anchor such as glasses, hair tips, or fingers at 100% and enlarged views. A locally corrected result remains pending human approval and must not replace the reusable Visual Baseline until approved.

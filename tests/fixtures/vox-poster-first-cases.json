@@ -1,0 +1,155 @@
+{
+  "fixture_only": true,
+  "purpose": "Structural VOX Poster-first routing and regression examples only; not visual quality, human approval, generation authorization, or runtime media proof.",
+  "short_explainer": {
+    "duration_seconds": 60,
+    "adp_beats": 4,
+    "poster_shots": [
+      {
+        "poster_shot_id": "PS01",
+        "source_beat_id": "B01",
+        "shot_role": "establish",
+        "stable_poster_state": "hero-question-readable",
+        "motion_route": "remotion_living_poster",
+        "approved_for_asset_derivation": true,
+        "asset_requirements": ["hero-portrait", "question-mark-local-svg"]
+      },
+      {
+        "poster_shot_id": "PS02",
+        "source_beat_id": "B01",
+        "shot_role": "detail",
+        "stable_poster_state": "number-detail-readable",
+        "motion_route": "remotion_precision_motion",
+        "approved_for_asset_derivation": true,
+        "asset_requirements": ["hero-portrait"]
+      },
+      {
+        "poster_shot_id": "PS03",
+        "source_beat_id": "B02",
+        "shot_role": "evidence",
+        "stable_poster_state": "evidence-card-readable",
+        "motion_route": "remotion_precision_motion",
+        "approved_for_asset_derivation": false,
+        "asset_requirements": ["archive-card"]
+      }
+    ]
+  },
+  "long_historical_explainer": {
+    "duration_seconds": 240,
+    "adp_beats": 10,
+    "poster_shot_count": 18,
+    "roles_present": ["establish", "detail", "comparison", "map", "evidence", "number", "climax"],
+    "representative_contact_sheet_ids": ["PS01", "PS04", "PS07", "PS10", "PS14", "PS18"],
+    "uses_fixed_two_shots_per_beat": false
+  },
+  "motion_routes": [
+    {
+      "case_id": "quote-portrait",
+      "primary_need": "hero_quote_editorial_layout",
+      "expected_route": "remotion_living_poster",
+      "why_not_remotion": null,
+      "eligible": true
+    },
+    {
+      "case_id": "campaign-map",
+      "primary_need": "map_route_and_deterministic_geometry",
+      "expected_route": "remotion_precision_motion",
+      "why_not_remotion": null,
+      "eligible": true
+    },
+    {
+      "case_id": "cavalry-charge",
+      "primary_need": "continuous_horse_and_crowd_physical_motion",
+      "expected_route": "generative_hero_clip",
+      "why_not_remotion": "Layered 2D assembly cannot credibly reproduce the continuous horse gait, rider-body coupling, crowd collision avoidance, and dust interaction required by this hero moment.",
+      "eligible": true
+    },
+    {
+      "case_id": "cinematic-only",
+      "primary_need": "general_editorial_layout",
+      "expected_route": "generative_hero_clip",
+      "why_not_remotion": "more cinematic",
+      "eligible": false
+    }
+  ],
+  "poster_readiness": [
+    {
+      "case_id": "readable-static-poster",
+      "checks": {
+        "primary_attention_clear": true,
+        "editorial_hierarchy_valid": true,
+        "paper_layer_separation_valid": true,
+        "critical_text_region_protected": true,
+        "poster_readable_without_motion": true,
+        "asset_coverage_sufficient": true,
+        "adjacent_composition_sufficiently_distinct": true,
+        "style_baseline_consistent": true,
+        "poster_to_motion_feasible": true
+      },
+      "expected_motion_compilation": "eligible"
+    },
+    {
+      "case_id": "weak-layout-with-motion-plan",
+      "checks": {
+        "primary_attention_clear": false,
+        "editorial_hierarchy_valid": false,
+        "paper_layer_separation_valid": true,
+        "critical_text_region_protected": false,
+        "poster_readable_without_motion": false,
+        "asset_coverage_sufficient": true,
+        "adjacent_composition_sufficiently_distinct": true,
+        "style_baseline_consistent": true,
+        "poster_to_motion_feasible": true
+      },
+      "proposed_motion": "strong_push_and_particle_reveal",
+      "expected_motion_compilation": "blocked_must_fix_poster"
+    }
+  ],
+  "editorial_rhythm": [
+    {
+      "case_id": "three-similar-but-purposeful",
+      "same_focal_target": true,
+      "same_shot_size": true,
+      "same_axis": true,
+      "same_archetype": true,
+      "same_paper_state": true,
+      "same_motion_route": true,
+      "material_comprehension_or_pacing_harm": false,
+      "expected": "editorial_repetition_warning"
+    },
+    {
+      "case_id": "three-similar-and-harmful",
+      "same_focal_target": true,
+      "same_shot_size": true,
+      "same_axis": true,
+      "same_archetype": true,
+      "same_paper_state": true,
+      "same_motion_route": true,
+      "material_comprehension_or_pacing_harm": true,
+      "expected": "must_fix"
+    }
+  ],
+  "critical_text": {
+    "categories": ["person_names", "place_names", "dates", "numbers", "historical_evidence", "quotes", "statistics", "cta", "long_titles"],
+    "default_owner": "remotion",
+    "generate_text_in_image": false,
+    "exception_requires_explicit_review": true
+  },
+  "asset_derivation": {
+    "candidate_assets": ["hero-portrait", "question-mark-local-svg", "archive-card", "unused-decorative-bird"],
+    "expected_production_asset_set": ["hero-portrait", "question-mark-local-svg"],
+    "excluded_reasons": {
+      "archive-card": "referencing_poster_shot_not_approved",
+      "unused-decorative-bird": "not_referenced_by_any_poster_shot"
+    }
+  },
+  "migration": {
+    "input_profile_version": "v1.6-zh",
+    "input_manifest_version": "1.7",
+    "input_read_only": true,
+    "output_profile_version": "v1.7-zh",
+    "output_manifest_version": "1.8",
+    "stable_profile_id": "vox_transcript_driven_handmade_collage",
+    "reuse_approved_assets_and_baselines_when_lineage_matches": true
+  }
+}

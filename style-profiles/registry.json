@@ -445,10 +445,10 @@
     },
     {
       "profile_id": "vox_transcript_driven_handmade_collage",
-      "source_file": "Style_Profile_VOX编辑纸拼贴讲解动画_v1.6_镜头意图驱动.md",
-      "source_sha256": "C4A54F9A84C012B2A55EC1E7F29E9FD7660784DAF33DCAE27BE4539049A9EEE1",
-      "normalized_file": "transcript_driven_handmade_collage.v1.6-zh.json",
-      "normalized_version": "v1.6-zh",
+      "source_file": "Style_Profile_VOX编辑纸拼贴讲解动画_v1.7_Poster_First.md",
+      "source_sha256": "2C53F548DACA74E42E05975EE8FFB8239F69C0F401F9B93421B0390AED2E6CEC",
+      "normalized_file": "transcript_driven_handmade_collage.v1.7-zh.json",
+      "normalized_version": "v1.7-zh",
       "classification": "hybrid_style_profile",
       "status": "ready",
       "provenance_verified": true
@@ -621,6 +621,26 @@
       "normalized_version": "v1.0-zh",
       "classification": "audiovisual_style_profile",
       "status": "ready",
+      "provenance_verified": true
+    },
+    {
+      "profile_id": "oriental_pastoral_cinematic_lifestyle",
+      "source_file": "Style_Profile_田园风_v1.0_中文解析.md",
+      "source_sha256": "AC6B197586FC2F632811D155FCD61456B38269147CA3E743688A69A14A3E0B31",
+      "normalized_file": "oriental_pastoral_cinematic_lifestyle.v1.0-zh.json",
+      "normalized_version": "v1.0-zh",
+      "classification": "hybrid_style_profile",
+      "status": "pending_review",
+      "provenance_verified": true
+    },
+    {
+      "profile_id": "dreamy_garden_poetic_healing",
+      "source_file": "Style_Profile_梦幻园林诗意治愈风_v1.0_中文整合.md",
+      "source_sha256": "599FFD9A2E2908C4AA04068AB6D74729F69B8284A230E7AA85A9F9863AAE2FBD",
+      "normalized_file": "dreamy_garden_poetic_healing.v1.0-zh.json",
+      "normalized_version": "v1.0-zh",
+      "classification": "audiovisual_style_profile",
+      "status": "pending_review",
       "provenance_verified": true
     }
   ]

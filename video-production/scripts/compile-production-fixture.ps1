@@ -587,8 +587,8 @@ if ($storyboardBlocksProduction) {
 
 $manifest = [pscustomobject]@{
     production_manifest = [pscustomobject]@{
-        contract_version = '1.7'
-        meta = [pscustomobject]@{ project_id = $adp.meta.project_id; script_id = $adp.meta.script_id; fixture_only = $true; generated_at = (Get-Date).ToUniversalTime().ToString('o'); revision = 'fixture-v1.7'; source_revision = if ($legacyAdpInput) { 'ADP-v1.1-read-only' } else { 'ADP-v1.2' } }
+        contract_version = '1.8'
+        meta = [pscustomobject]@{ project_id = $adp.meta.project_id; script_id = $adp.meta.script_id; fixture_only = $true; generated_at = (Get-Date).ToUniversalTime().ToString('o'); revision = 'fixture-v1.8'; source_revision = if ($legacyAdpInput) { 'ADP-v1.1-read-only' } else { 'ADP-v1.2' } }
         semantic_locks = $adp.semantic_locks
         input_provenance = [pscustomobject]@{ adp_contract_version = $adp.contract_version; adp_read_mode = if ($legacyAdpInput) { 'read_only_compatibility' } else { 'current' }; style_profile_ids = @($adp.meta.selected_style_profiles); template_bindings = $adp.template_bindings; performance_provenance = 'story_change_arc -> performance_plan -> clip_performance_binding' }
         adapters = @(

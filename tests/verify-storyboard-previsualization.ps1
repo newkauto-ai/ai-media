@@ -73,7 +73,7 @@ function New-StoryboardReviewInput {
                 evaluator_policy_version = '1.0'
             }
             provenance = [pscustomobject]@{
-                manifest_version = '1.7'
+                manifest_version = '1.8'
                 evaluator_source = 'fixture'
                 evaluator_run_ids = @('fixture-storyboard-review')
                 evidence_refs = @('Declared fixture evidence; not a real asset approval.')
@@ -173,7 +173,7 @@ try {
     [pscustomobject]@{ previsualization = $medium.previsualization } | ConvertTo-Json -Depth 30 | Set-Content -LiteralPath $previsualizationPath -Encoding UTF8
     & $productionCompilerPath -FixturePath $productionFixturePath -OutputPath $manifestPath -AspectRatio '9:16' -VideoResolution '1080x1920' -PrevisualizationPath $previsualizationPath
     $production = (Get-Content -LiteralPath $manifestPath -Raw -Encoding UTF8 | ConvertFrom-Json).production_manifest
-    Assert-True ($production.contract_version -eq '1.7' -and $production.previsualization.applicability.decision -eq 'retain') 'Production Manifest v1.7 must carry the previsualization subtree.'
+    Assert-True ($production.contract_version -eq '1.8' -and $production.previsualization.applicability.decision -eq 'retain') 'Production Manifest v1.8 must carry the previsualization subtree.'
     Assert-True (@($production.clips | Where-Object { $_.generation_status -ne 'blocked_by_storyboard_review' }).Count -eq 0) 'Retained fixture Storyboard must block every downstream generation unit until current real-media Review evidence exists.'
     Assert-True (@($production.continuity_ledger | Where-Object { $_.actual_end_state -ne $null }).Count -eq 0) 'Storyboard integration must not write actual continuity state.'
 
@@ -202,11 +202,11 @@ try {
     Assert-True ($template.Contains('previsualization only') -and $template.Contains('separate Cost Gate')) 'Storyboard template must preserve its non-production and authorization boundary.'
     Assert-True ($planner.Contains('Do not require one Panel per Shot') -and $planner.Contains('never create a Creative Handoff Snapshot')) 'Existing Storyboard Planner must own the lean extension without a new state owner.'
     Assert-True ($planner.Contains('Preserve the selected Panels') -and $planner.Contains('optional (`0–4`)') -and $planner.Contains('non-duplicative') -and $planner.Contains('no reliable upstream evidence') -and $planner.Contains('do not rewrite Hook') -and $planner.Contains('Keep Panel-specific constraints')) 'Planner must keep original anchors first, append only evidence-bounded non-duplicate directions, preserve frozen semantics, and retain Panel-specific constraints locally.'
-    Assert-True ($manifestContract.Contains('Contract v1.7') -and $manifestContract.Contains('previsualization') -and $manifestContract.Contains('second approval state')) 'Manifest v1.7 must add only the lightweight previsualization subtree.'
+    Assert-True ($manifestContract.Contains('Contract v1.8') -and $manifestContract.Contains('previsualization') -and $manifestContract.Contains('second approval state')) 'Manifest v1.8 must preserve the lightweight previsualization subtree and existing ownership.'
     Assert-True ($reviewContract.Contains('previsualization_storyboard') -and $reviewContract.Contains('not Production Clip Review Gate 2')) 'Review Result v2.1 must namespace Storyboard without implementing Gate 2/3.'
     Assert-True ($qa.Contains('accept_current_stop_optimizing') -and $qa.Contains('request_separate_regeneration_cost_gate') -and $qa.Contains('Do not create a separate Regeneration Gate')) 'QA must merge regeneration advice into existing retry authority.'
 
-    Write-Output 'PASS: Storyboard previsualization validates low-risk skip, risk-based Contact Sheet planning, Single Panel repair, real-evidence withholding, stale Review blocking, shared Review/Execution State routing, Manifest v1.7 integration, and zero external generation.'
+    Write-Output 'PASS: Storyboard previsualization validates low-risk skip, risk-based Contact Sheet planning, Single Panel repair, real-evidence withholding, stale Review blocking, shared Review/Execution State routing, Manifest v1.8 integration, and zero external generation.'
 }
 finally {
     if (Test-Path -LiteralPath $tempDirectory) { Remove-Item -LiteralPath $tempDirectory -Recurse -Force }

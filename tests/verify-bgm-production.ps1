@@ -37,7 +37,7 @@ try {
     $bgm = $production.bgm_production
     $request = $bgm.bgm_requests[0]
 
-    Assert-True ($production.contract_version -eq '1.7') 'BGM fixture requires Production Manifest v1.7.'
+    Assert-True ($production.contract_version -eq '1.8') 'BGM fixture requires Production Manifest v1.8.'
     Assert-True ($bgm.enabled -and $bgm.status -eq 'awaiting_user_approval') 'BGM must stop at the explicit generation Gate.'
     Assert-True ($bgm.provider -eq 'elevenlabs_music' -and $bgm.model_id -eq 'music_v2') 'BGM must route to ElevenLabs Music v2.'
     Assert-True ($bgm.output_format -eq 'mp3_48000_192') 'Music v2 must use the declared MP3 output format.'
