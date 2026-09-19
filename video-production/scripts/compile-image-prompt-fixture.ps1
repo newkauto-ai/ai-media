@@ -92,10 +92,14 @@ foreach ($case in (As-Array $fixture.cases)) {
     $spec = $case.image_prompt_spec
     $assetType = [string](Get-Value $spec 'asset_type')
     $variant = [string](Get-Value $spec 'prompt_variant')
+    $isVoxPilot = [bool](Get-Value $spec 'is_vox_pilot')
+    $pilotDesignRoute = [string](Get-Value $spec 'pilot_design_route')
     if ($assetType -notin @('character_identity', 'scene', 'prop', 'graphic', 'keyframe')) { Add-Failure $failures 'prompt_under_specified' }
     if ($variant -notin @('default', 'story_prop', 'product_evidence', 'cover_visual')) { Add-Failure $failures 'prompt_under_specified' }
     if ($variant -eq 'product_evidence' -and $assetType -ne 'prop') { Add-Failure $failures 'prompt_under_specified' }
     if ($variant -eq 'cover_visual' -and $assetType -ne 'keyframe') { Add-Failure $failures 'prompt_under_specified' }
+    if ($isVoxPilot -and $pilotDesignRoute -notin @('hero_key_art', 'production_reconstructable')) { Add-Failure $failures 'prompt_under_specified' }
+    if (-not $isVoxPilot -and (Has-Text $pilotDesignRoute)) { Add-Failure $failures 'prompt_under_specified' }
 
     $decisions = Get-Value $spec 'decisions'
     $decisionNames = @('subject_action', 'context', 'composition_camera', 'lighting_outcome', 'style_aesthetic', 'optics')
@@ -256,6 +260,13 @@ foreach ($case in (As-Array $fixture.cases)) {
         }
     }
 
+    if ($pilotDesignRoute -eq 'production_reconstructable') {
+        [void]$modules.Add((New-ModuleText 'VOX Pilot Route' @(
+            (Add-LineClause 'Create one visually strong editorial poster that is intentionally reconstructable in layered motion design. The final composition must read as one coherent poster, while major typography groups, directional graphics, decorative ink/seal elements and context groups remain visually separable and independently reproducible.' @('pilot_design_route') 'requires coherent poster plus independently reconstructable visual groups'),
+            (Add-LineClause 'Preserve useful negative space. Avoid large cross-element texture entanglement, continuous full-width scenery strips, visible crop boundaries, background halos, or designs that would require rectangular screenshot crops for reconstruction. Do not prescribe a fixed layer count, fixed layout, fixed palette, or project-specific visual constants.' @('pilot_design_route') 'prevents rectangle fallback and over-prescription')
+        )))
+    }
+
     $map = $script:map
     if ($map.Count -eq 0 -or @($map | Where-Object { $_.decision_paths.Count -eq 0 }).Count -gt 0) { Add-Failure $failures 'prompt_non_discriminating' }
     $prompt = $modules -join "`n`n"
@@ -269,13 +280,13 @@ foreach ($case in (As-Array $fixture.cases)) {
         }
         $atlasGrid = [string](Get-Value $atlasInput 'grid')
         $destinationBackground = [string](Get-Value $atlasInput 'destination_background')
-        $atlasPrompt = "在当前 Work/Codex 任务对应的既有 ChatGPT Web 同一对话中生成一个 $atlasGrid 透明 PNG 素材图集：背景必须真正透明，宽 gutter，每格一个完整主体且四周安全留白；不生成文字、名称、标签、箭头、格线、棋盘格、复杂场景或跨格元素。预期最终合成背景：$destinationBackground。剪纸轮廓色优先纸白或暖白；如果会与该背景融合，则改用属于同一纸张色板、但在明度、色相或冷暖上清楚分离的轮廓色。目标是明显、连续的剪纸轮廓层次，不把白边写死；轮廓完整包住人物、手脚、服饰附件和道具，纸层投影与轮廓分开。下载后先核验真实 Alpha，再使用 split-transparent-atlas.ps1 按名称本地裁切。" + (($atlasCells | ForEach-Object { " 格$($_.cell_id)：$($_.element_name_zh)，$($_.state_or_pose)；约束：$($_.asset_constraints)。" }) -join '')
+        $atlasPrompt = "在当前 Work/Codex 任务对应的既有 ChatGPT Web 同一对话中生成一个 $atlasGrid 透明 PNG 素材图集：背景必须真正透明，宽 gutter，每格一个完整主体且四周安全留白；不生成文字、名称、标签、箭头、格线、棋盘格、复杂场景或跨格元素。预期最终合成背景：$destinationBackground。默认输出干净 Alpha 外形，不把新的剪纸轮廓或纸层投影永久烧进 PNG；轮廓将由 Remotion 按元素角色、目标背景与交付分辨率在运行时施加并在真实导出帧核验，投影保持独立。下载后先核验真实 Alpha，再使用 split-transparent-atlas.ps1 按名称本地裁切。" + (($atlasCells | ForEach-Object { " 格$($_.cell_id)：$($_.element_name_zh)，$($_.state_or_pose)；约束：$($_.asset_constraints)。" }) -join '')
         $atlasProjection = [pscustomobject]@{
             projection_type = 'manual_crop_from_named_transparent_atlas'; source_asset_ids = (As-Array (Get-Value $atlasInput 'source_asset_ids')); grid = $atlasGrid; cells = $atlasCells
             destination_background = $destinationBackground
-            outline_policy = [pscustomobject]@{ goal = 'clear_continuous_cut_paper_separation'; preferred = 'paper_white_or_warm_white'; fallback = 'palette_coherent_background_contrasting_paper_tone'; fixed_white = $false; shadow_separate = $true; validation = 'real_frame_at_bound_delivery_size_plus_human_review' }
+            outline_policy = [pscustomobject]@{ owner = 'remotion_runtime_style'; bake_into_new_source_png = $false; goal = 'clear_continuous_cut_paper_separation'; selection_inputs = @('element_role','bound_background','delivery_resolution','edge_complexity'); global_width_constants = @(); shadow_separate = $true; validation = 'real_frame_at_bound_delivery_size_plus_human_review' }
             background = Get-Value $atlasInput 'background'; layout_constraints = Get-Value $atlasInput 'layout_constraints'
-            handoff = [pscustomobject]@{ generation = 'chatgpt_web_existing_conversation'; crop = 'split-transparent-atlas.ps1_wrapper_to_python_named_row_major_true_alpha_only'; alpha_verification = 'required_before_crop_binding'; outline_validation = 'required_against_bound_destination_background'; remotion_input = 'individual_rgba_png_only' }
+            handoff = [pscustomobject]@{ generation = 'chatgpt_web_existing_conversation'; crop = 'split-transparent-atlas.ps1_wrapper_to_python_named_row_major_true_alpha_only'; alpha_verification = 'required_before_crop_binding'; runtime_outline_validation = 'required_against_bound_destination_background_at_delivery_resolution'; remotion_input = 'individual_clean_alpha_rgba_png_only' }
             persistence = 'ephemeral_compiler_output_not_production_manifest_or_asset'
             call_package = [pscustomobject]@{ executable_prompt = $atlasPrompt; reference_bindings = (As-Array (Get-Value $spec 'reference_bindings')); request_parameters = [pscustomobject]@{ size = Get-Value $output 'size'; quality = Get-Value $output 'quality'; background = 'transparent'; output_format = Get-Value $output 'output_format' }; adapter_id = 'chatgpt_web'; unresolved_fields = @(); generation_status = 'blocked' }
         }
@@ -284,7 +295,7 @@ foreach ($case in (As-Array $fixture.cases)) {
         case_id = $case.case_id
         expected_result = $case.expected_result
         image_prompt_spec = [pscustomobject]@{
-            contract_version = $imageContractVersion; asset_id = $spec.asset_id; asset_type = $assetType; prompt_variant = $variant; source_locks = (As-Array (Get-Value $spec 'source_locks')); decisions = $decisions; material_texture = (Get-Value $spec 'material_texture'); text_handling = (Get-Value $spec 'text_handling'); consistency_locks = (As-Array (Get-Value $spec 'consistency_locks')); allowed_variation = (As-Array (Get-Value $spec 'allowed_variation')); reference_bindings = (As-Array (Get-Value $spec 'reference_bindings')); negative_constraints = (As-Array (Get-Value $spec 'negative_constraints')); output_spec = $output; cover_context = $coverContext; clause_decision_map = $map; executable_prompt = $prompt; qa = [pscustomobject]@{ status = $status; failures = $failures }
+            contract_version = $imageContractVersion; asset_id = $spec.asset_id; asset_type = $assetType; prompt_variant = $variant; is_vox_pilot = $isVoxPilot; pilot_design_route = if ($isVoxPilot) { $pilotDesignRoute } else { $null }; source_locks = (As-Array (Get-Value $spec 'source_locks')); decisions = $decisions; material_texture = (Get-Value $spec 'material_texture'); text_handling = (Get-Value $spec 'text_handling'); consistency_locks = (As-Array (Get-Value $spec 'consistency_locks')); allowed_variation = (As-Array (Get-Value $spec 'allowed_variation')); reference_bindings = (As-Array (Get-Value $spec 'reference_bindings')); negative_constraints = (As-Array (Get-Value $spec 'negative_constraints')); output_spec = $output; cover_context = $coverContext; clause_decision_map = $map; executable_prompt = $prompt; qa = [pscustomobject]@{ status = $status; failures = $failures }
         }
         call_package = [pscustomobject]@{
             executable_prompt = $prompt; reference_bindings = (As-Array (Get-Value $spec 'reference_bindings')); request_parameters = [pscustomobject]@{ size = Get-Value $output 'size'; quality = Get-Value $output 'quality'; background = Get-Value $output 'background'; output_format = Get-Value $output 'output_format' }; adapter_id = 'local-fixture'; unresolved_fields = $unresolved; generation_status = if ($status -eq 'passed') { 'blocked' } else { 'blocked' }

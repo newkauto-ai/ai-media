@@ -2,6 +2,10 @@
 
 ## Current Goal
 
+VOX 稳定 ID `vox_transcript_driven_handmade_collage` 已在 v1.8 decomposition / reconstruction 基线上增量升级并本机部署为 `v1.9-zh`：Pilot 生成前选择 `hero_key_art` 或 `production_reconstructable`；Production 路线自动编译“coherent poster + independently reconstructable visual groups”语义，并在现有 Poster Readiness / `previsualization_storyboard` Review Result 中增加五项 reconstructability findings。明显矩形 screenshot crop 为 `must_fix`；视觉质量高但过度融合的 Production Pilot 可推荐重分类为 Hero，并进入 v1.8 salvage/reuse。v1.8 历史 source/normalized 与四种 decomposition、Static Reconstruction、Hero Typography、数字本地化和 generative route 均保留。没有新增 Pilot Manifest/Gate/State Machine，也没有重构 Renderer。personal marketplace 重装已回读为 `installed/enabled`，同过滤规则下源码/活动缓存 542/542、零缺失、零多余、零 SHA-256 差异，9 项安装缓存回归通过；当前任务不会热加载新 Skill。
+
+VOX 稳定 ID `vox_transcript_driven_handmade_collage` 已按增量范围升级为 `v1.8-zh` 源码：保留 v1.7 历史文件，在既有 Scene/Shot/`local_assembly_plan`、asset、Poster Readiness、`previsualization_storyboard` Review Result 与 `production_qa` owner 内加入四类海报拆解、本地静态重构、生成素材 salvage、运动暴露区背景恢复、Remotion-owned 三类文字实现、历史/文化数字本地化和 Remotion runtime outline。Production Manifest contract 仍为 v1.8；没有新增 Reconstruction Manifest/Gate、Typography Manifest、Poster State Machine、approval、retry 或 actual-state owner。本轮只实施权威源码所需内容，不更新 cachebuster、不重装、不声称当前会话热加载，也不执行 Git commit/push。
+
 VOX 稳定 ID `vox_transcript_driven_handmade_collage` 已按 Poster-first Brief 实施为 `v1.7-zh`：ADP Beat 可投影为一个或多个 `VOX Poster Shot`，每个正式本地组装 Shot 在批量素材生成和 Motion compilation 前必须有 `stable_poster_state` 与当前 Poster Readiness evidence；Production Asset Set 只从已批准 Poster Shots 派生。默认 motion route 为 `remotion_living_poster`，地图/数据/关键排版使用 `remotion_precision_motion`，复杂连续物理表演才允许 `generative_hero_clip` 且必须记录 `why_not_remotion`。关键文字默认由 Remotion 控制，VOX Poster Contact Sheet 与 editorial rhythm 复用现有 previsualization/Review Result；Production Manifest 增量升级到 v1.8，没有新增 Poster Gate、Manifest、状态机、审批或 retry owner。用户同轮追加的 `oriental_pastoral_cinematic_lifestyle` 与 `dreamy_garden_poetic_healing` 两套 v1.0 Style Profile 也纳入同一有界发布；两者保持 `pending_review`，不把未发生的真实 LookDev 人工验收写成 ready。插件发布版本为 `0.1.0+codex.20260919161622`。
 
 本轮把权威源码中的参考视频结构复刻 v1.1、火柴人/白板 v1.4、VOX/Remotion 镜头意图驱动 v1.6 以及相关 Script → ADP → Manifest/QA 投影合并为同一可复现发布快照。VOX v1.6 把静止、动态和复合运动都保留为正常可选项，不把默认静止、微幅推镜、单镜单动作、固定四层、全员漂浮、固定六类动效或固定归位海报升级为全局规则；同时保留信息可读、身份/文字/事实稳定、空间关系、纸片媒介与确定性渲染要求。插件已通过 personal marketplace 官方 `remove/add` 重装为 `ai-media@personal 0.1.0+codex.20260916062010`，状态回读为 `installed/enabled`；没有调用付费生成、写 Notion 或发布媒体。
@@ -20,6 +24,18 @@ VOX 稳定 ID `vox_transcript_driven_handmade_collage` 已在权威源码升级�
 
 ## Completed & Key Decisions
 
+- VOX v1.9 保持稳定 profile ID，新增 source/normalized 文件并把 registry 指向 v1.9；v1.8 及更早历史文件保留。
+- 新增 `pilot_design_route`：Hero 允许高度融合且不强制 reconstructability；Production 用于 editorial 主体与 precision shots，必须同时通过 Visual Quality、Poster Readiness 及 typography/context/decorative/rectangle/motion-sequence 五项检查。
+- Production Prompt Compiler 自动加入连贯海报与可独立重构视觉组要求，同时明确不固定层数、布局、色板或《霍去病》等项目常量。
+- 可见水平/垂直裁切线、background halo、full-width context strip、title + background 矩形与相邻元素残片均为 `must_fix`；不再允许明显矩形截图充当元素资产 fallback。
+- Production Pilot 若视觉质量高但过度融合，可 `recommended_reclassification: hero_key_art`，复用 v1.8 salvage/reuse 保存；这不是 Production PASS，也不授权另一次生成。
+- v1.9 已使用官方 cachebuster 与 personal marketplace 重装；安装状态、源码/活动缓存全量 parity 及 9 项安装缓存回归已通过。旧活动缓存已完整备份，未调用外部生成、付费服务、Notion 或发布。
+- VOX v1.8 保持稳定 profile ID，新增 source/normalized 文件并把 registry 指向 v1.8；v1.1–v1.7 历史保留，provenance SHA-256 与 registry 对齐。
+- 分解决策固定为 `keep_whole`、`partial_decomposition`、`full_element_assembly`、`rebuild_locally`，按实际运动暴露、可编辑性、文字保真、质量、成本与风险选择最小充分方案。VOX editorial 主体可搭配少量高质量 hero poster，不要求每镜碎纸或全分层。
+- Static Reconstruction Check 复用现有 Poster Readiness / `previsualization_storyboard` Review Result，保护 composition、hierarchy、focal weight、negative space、palette 与 typography character；要求感知/编辑等价而非 pixel-perfect。
+- 生成素材不适合原 Shot 时，现有 asset/QA 依次评估 later beat、hero poster、cover、title card、detail crop、background、transition，全部不适用后才 reject。背景 plate 默认只恢复批准 motion 可能暴露的区域。
+- 关键文字 owner 仍为 Remotion，可实现为 `remotion_native_text`、`verified_typography_svg`、`verified_typography_png`；Hero Typography 不允许静默降级为普通 CSS 字体。历史/文化主视觉默认 locale-appropriate written numerals，现代 data visualization 可保留 Arabic numerals，显示转换不得改变事实语义。
+- 新生成透明 PNG 默认保持 clean Alpha；cut-paper outline 由 Remotion 按绑定背景、元素角色/占比/边缘复杂度和交付分辨率运行时施加，shadow 独立，不定义跨项目 `10px/8px/6px` 常量。实际 atlas fixture compiler、Executable Prompt Contract 与测试已同步到该行为。
 - 同轮新增并注册 `oriental_pastoral_cinematic_lifestyle` 与 `dreamy_garden_poetic_healing` 两套 v1.0 source/normalized Profile；来源哈希、稳定 ID、显示名、媒介差异和 `pending_review` 状态由 Profile Library 回归校验。
 - 新增 `video-production/modules/vox-poster-shot-planner.md` 及 manifest Skill 镜像；Poster Shot 只投影到现有 Scene/Shot/`local_assembly_plan`，不接管 Script/ADP 语义、approval、actual state 或 retry。
 - 新建精简的活动 VOX v1.7 source/normalized，并把 v1.1–v1.7 迁移沿革移到 `style-profiles/references/vox-changelog.md`；registry 保留稳定 ID 并只更新活动 source/version/hash/normalized。
@@ -75,6 +91,19 @@ VOX 稳定 ID `vox_transcript_driven_handmade_collage` 已在权威源码升级�
 
 ## Core Files
 
+- `style-profiles/source/Style_Profile_VOX编辑纸拼贴讲解动画_v1.9_生产友好Pilot路由.md`
+- `style-profiles/normalized/transcript_driven_handmade_collage.v1.9-zh.json`
+- `style-profiles/source/Style_Profile_VOX编辑纸拼贴讲解动画_v1.8_海报拆解与重构.md`
+- `style-profiles/normalized/transcript_driven_handmade_collage.v1.8-zh.json`
+- `style-profiles/registry.json`
+- `style-profiles/references/vox-changelog.md`
+- `video-production/modules/vox-poster-shot-planner.md` 与 manifest Skill 镜像
+- `video-production/contracts/production-manifest.md`、`review-result-contract.md`、`executable-prompt-contract.md` 与镜像
+- `video-production/modules/scene-clip-planner.md`、`storyboard-keyframe-planner.md`、`asset-prompt-compiler.md`、`qa-retry.md`、`production-router.md` 与镜像
+- `video-production/scripts/compile-image-prompt-fixture.ps1` 与镜像
+- `tests/fixtures/vox-poster-first-cases.json`
+- `tests/verify-vox-style-profile.ps1`
+- `tests/verify-image-prompt-contracts.ps1`
 - `style-profiles/source/Style_Profile_VOX编辑纸拼贴讲解动画_v1.7_Poster_First.md`
 - `style-profiles/normalized/transcript_driven_handmade_collage.v1.7-zh.json`
 - `style-profiles/references/vox-changelog.md`
@@ -117,6 +146,9 @@ VOX 稳定 ID `vox_transcript_driven_handmade_collage` 已在权威源码升级�
 
 ## Verification
 
+- VOX v1.9 staging 定向回归通过：`verify-vox-style-profile`、`verify-image-prompt-contracts`、`verify-style-profile-library`、`verify-skill4-contracts`、`verify-storyboard-previsualization`、`verify-review-system-v2-gate1` 与 `verify-contracts` 全部 PASS。验证覆盖 active v1.9/provenance、v1.8 历史保留、两类 route、五项 reconstructability、矩形裁切硬失败、Hero reclassification、Prompt 自动语义、v1.8 decomposition/Static Reconstruction 回归及根目录/`skills/` mirror parity；未调用外部生成。
+- VOX v1.8 定向验证通过：稳定 ID、v1.7 历史保留、active source/normalized/registry SHA、四类分解、Static Reconstruction owner/容差、salvage 顺序、局部背景恢复、三类文字实现、Hero Typography、历史/现代数字、runtime outline、六类新增 fixtures、根目录/manifest Skill 镜像均 PASS。
+- 受影响回归 11/11 通过：Style Profile library、contracts、Skill 4、Storyboard previsualization、Review Result v2.1、Image Prompt、BGM、reference remake、staged approvals、Workflow Controller、VOX。Image Prompt compiler 继续为 fixture-only/blocked，没有调用外部生成或写 Manifest。
 - VOX v1.7 定向回归通过：活动 source/normalized/registry SHA、历史 v1.2–v1.6 保留、Poster Shot Map、同一 ADP Beat 多 Poster Shots、stable poster block、三类 motion route、`why_not_remotion`、critical text、资产派生、Contact Sheet/rhythm Review、Manifest v1.8 migration、根目录/manifest Skill 镜像与短/长 VOX fixtures 全部 PASS。Fixture 与契约验证不证明视觉质量、provider 执行或人工批准。
 - 受影响的 Manifest/Skill 4/Storyboard/BGM 回归通过；除既有过时 `verify-activation-contracts.ps1` 外的 PowerShell 发布套件通过。白板 manifest Skill 入口在非沙箱专用 test-temp 中通过 23/23，证明 Manifest v1.8 与 VOX 增量没有破坏既有本地 Renderer；沙箱内临时文件权限失败不是产品逻辑失败。
 - 本轮整合源码与安装缓存均通过 12 项契约/风格回归，以及 manifest Skill 白板入口 `23/23 OK`；覆盖参考复刻 v1.1、火柴人 v1.4、VOX v1.6、Script/ADP/Manifest/QA 字段投影、最终旁白帧时间轴、caption/SFX owner、透明度/遮挡硬失败与确定性本地渲染。安装前权威源码与新缓存按 Git 已跟踪和待提交文件核对为 514/514，missing 0、SHA-256 mismatch 0。
@@ -169,6 +201,7 @@ VOX 稳定 ID `vox_transcript_driven_handmade_collage` 已在权威源码升级�
 
 ## Known Issues
 
+- VOX v1.8/v1.9 自动化验证证明契约、fixture、provenance、镜像与安装缓存一致，不证明真实静态重构视觉等价、Hero Typography 质量、runtime outline 观感、真实素材 salvage ROI 或人工批准；自然语言运行时行为仍需在新任务验证。
 - VOX v1.7 的自动化验证只覆盖指令、契约、路由、迁移与 fixtures；尚未用真实长片项目生成 Poster Contact Sheet、逐镜 stable poster 或混合 Remotion/hero clip 成片，因此视觉层级、节奏和真实 ROI 仍需项目 Pilot 与连续人工观看。
 - 当前任务不会热加载本轮新插件指令；本机安装与缓存回读完成后，仍需在新任务做一次自然语言 VOX Poster-first 路由冒烟验证。
 - 当前任务启动时加载的是旧插件指令；重装与安装缓存回归证明安装版本已更新，但不证明本对话已经热加载 v1.6。自然语言入口需要在新任务中做一次运行时冒烟验证。
@@ -188,5 +221,5 @@ VOX 稳定 ID `vox_transcript_driven_handmade_collage` 已在权威源码升级�
 
 ## Next
 
-1. 在新任务中对已安装版本做自然语言入口冒烟验证，确认 VOX v1.7 先产出 Poster Shot Map，再派生素材并选择 Motion Route；不得把本轮 fixture PASS 当作运行时或视觉质量证明。
-2. 有真实参考、完整素材和最终旁白后，先制作 3–6 镜 Poster Contact Sheet 与一支代表性 Pilot，进行连续人工观看；在此之前不把技术 PASS 写成媒体质量通过。
+1. 在新任务做自然语言冒烟验证：确认先选择 `pilot_design_route`，Production Pilot 通过 route-specific Review 后才进入 v1.8 decomposition / Static Reconstruction / 最小资产派生 / motion route；不把 fixture PASS 当作运行时或视觉质量证明。
+2. 有真实参考、完整素材和最终旁白后，用 production typography、hero callback、beautiful-but-entangled reclassification、rectangle-risk、历史数字和 runtime outline 代表镜做连续人工观看。

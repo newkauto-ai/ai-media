@@ -11,10 +11,15 @@ Require the frozen Script, confirmed final narration semantic intervals, current
 1. Preserve each ADP Beat's story/audiovisual function and absolute narration interval.
 2. Split the Beat into one or more Poster Shots only when information density, reading time, evidence, map/detail, comparison, climax, or editorial rhythm requires it. Do not force Wide + Detail or a fixed shot count.
 3. Give every Poster Shot one `information_goal`, one primary attention target at a time, one independently readable `stable_poster_state`, and an open-vocabulary `shot_role`/`poster_archetype`.
-4. Define the poster before motion: visual hierarchy, reading path, protected critical-text region, paper layers, primary/secondary elements, and the exact approved stable-state reference.
-5. Derive the minimum asset requirements used by at least one approved Poster Shot. Keep the ADP asset plan as Candidate Asset Plan; do not queue unused candidates.
-6. Select a motion route only after Poster Readiness passes. Motion may enrich or transform the poster but may not rescue a failed composition.
-7. Compare adjacent shots and record the intended difference. Three highly similar consecutive shots emit `editorial_repetition_warning`; material harm becomes a Review Result `must_fix`, not an automatic quota failure.
+4. Before Pilot design or image Prompt compilation, select exactly one `pilot_design_route`: `hero_key_art` or `production_reconstructable`. Use Hero for cover/climax/emotional/callback/Title Card/video-reference value where fusion matters more than element control. Use Production when text, map/route, data, relationships, staged reveals, independent entrances, or a Remotion precision reconstruction requires independent visual groups.
+5. Define the poster before motion: visual hierarchy, reading path, protected critical-text region, paper layers, primary/secondary elements, and the exact approved stable-state reference. A Production Pilot must read as one coherent poster while its major typography, directional, decorative, and context groups remain visually separable and independently reconstructable; do not prescribe a fixed layer count, layout, palette, or project-specific constants.
+6. Review the generated Pilot by route inside the existing Poster Readiness / `previsualization_storyboard` Review Result. Hero checks visual impact, hierarchy, style, emotional value, and micro-animation/video-reference feasibility; reconstructability is `not_applicable`. Production additionally requires `typography_split_test`, `context_separation_test`, `decorative_independence_test`, `rectangle_risk_test`, and `motion_sequence_test`.
+7. After the actual Pilot passes its route-specific review, choose exactly one minimum-sufficient `decomposition_decision`: `keep_whole`, `partial_decomposition`, `full_element_assembly`, or `rebuild_locally`. Base it on actual motion exposure, editability, typography fidelity, asset quality, cost, and risk—not on a preference for more layers.
+8. For any decomposition or local rebuild, derive the bounded `background_plate_strategy` and recover only regions the approved motion can expose. A full plate needs evidence that near-full hidden background may become visible.
+9. Derive the minimum asset requirements used by at least one approved Poster Shot. Keep the ADP asset plan as Candidate Asset Plan; do not queue unused candidates.
+10. Run the Static Reconstruction Check through the existing Poster Readiness / `previsualization_storyboard` Review Result whenever decomposition, local rebuild, crop, typography, or layout changes the approved static state. Motion may enrich or transform only a passed static reconstruction; it may not rescue one.
+11. Select a motion route only after the applicable route-specific Review, Poster Readiness, and Static Reconstruction findings pass.
+12. Compare adjacent shots and record the intended difference. Three highly similar consecutive shots emit `editorial_repetition_warning`; material harm becomes a Review Result `must_fix`, not an automatic quota failure.
 
 ## Poster Shot Map
 
@@ -32,8 +37,11 @@ stable_poster_state: object
 critical_text:
   owner: remotion
   generate_text_in_image: false
+  realization: remotion_native_text | verified_typography_svg | verified_typography_png
   items: [object]
 asset_requirements: [string]
+pilot_design_route: hero_key_art | production_reconstructable
+decomposition_decision: keep_whole | partial_decomposition | full_element_assembly | rebuild_locally
 adjacent_shot_difference: string
 motion_route: remotion_living_poster | remotion_precision_motion | generative_hero_clip
 ```
@@ -52,6 +60,7 @@ local_assembly_plan:
   adjacent_shot_difference: string
   poster_spec:
     poster_archetype: string
+    pilot_design_route: hero_key_art | production_reconstructable
     visual_hierarchy: object
     primary_subject: object
     secondary_elements: [object]
@@ -60,9 +69,25 @@ local_assembly_plan:
     reading_path: [string]
     text_safe_area: object
     critical_text_owner: remotion
+    critical_text_realization: remotion_native_text | verified_typography_svg | verified_typography_png
     generate_text_in_image: false
+    decomposition_decision: keep_whole | partial_decomposition | full_element_assembly | rebuild_locally
+    background_plate_strategy:
+      mode: none | reuse_existing | recover_motion_exposure_regions | full_plate_evidenced
+      motion_exposure_regions: [object]
+      safety_margin_rationale: string | null
+      plate_asset_refs: [string]
+    cut_paper_outline_runtime_style:
+      owner: remotion_runtime_style
+      bake_into_new_source_png: false
+      role: string
+      bound_background_ref: string
+      delivery_resolution_ref: string
+      width_rationale: string
+      shadow_style_ref: string | null
     stable_poster_state_ref: string
     poster_readiness_review_ref: string
+    static_reconstruction_evidence_ref: string | null
   motion_plan:
     route: remotion_living_poster | remotion_precision_motion | generative_hero_clip
     camera_motion: {intent: string, phases: [object]}
@@ -71,6 +96,37 @@ local_assembly_plan:
 ```
 
 `camera_motion.intent` is not a closed enum. Static, strong, compound, multi-phase, perspective-aware and layer-coordinated motion remain available when the material, coverage and reading constraints support them.
+
+## Pilot route review and reclassification
+
+For `production_reconstructable`, major typography groups must be independently realizable as native text, verified SVG, or verified PNG; arrows/routes/links must be discrete directional objects; ink, seals, color blocks, and labels must be independent decorations; and context must resolve to a few meaningful groups rather than one continuous screenshot strip. Preserve negative space for information build, motion, subtitle safety, and reconstruction adjustment. Avoid cross-element texture entanglement.
+
+Visible horizontal or vertical crop lines, a background halo, a full-width context strip, a title-plus-background rectangle, or adjacent-element fragments in a Production asset are `must_fix`. A visible rectangular screenshot crop is never a decomposition fallback. Route to `rebuild_svg`, `rebuild_text`, `verified_typography_asset`, `generate_independent_asset`, or human review instead.
+
+If an intended Production Pilot has high visual quality but fails reconstructability because the image is strongly fused, the existing Review may set `recommended_reclassification: hero_key_art`. Retain the image through the existing v1.8 salvage/reuse path, then plan a separate Production Pilot. Reclassification is not a Production PASS, does not change Script/ADP semantics, and does not authorize generation.
+
+`keep_whole` may explicitly set `static_reconstruction_evidence_ref: null` only when the approved composition, crop, typography and layout remain unchanged. A changed whole-poster crop or overlay is reviewed like other reconstruction. Runtime outline width is derived from element role, frame occupancy, edge complexity, bound background and delivery resolution; never author global `10px/8px/6px` Style constants. Paper shadow stays a separate style/effect.
+
+Critical text ownership always remains `remotion`. `verified_typography_svg` and `verified_typography_png` are controlled Remotion assets, not image-generation ownership. Verify glyphs, order, fact text, Alpha, delivery-size readability and rights. Hero Typography may not silently fall back to an ordinary CSS font when that loses the approved display character.
+
+For historical/cultural hero visuals, bind `source_fact_value`, locale-appropriate `display_value`, `locale`, and `display_mode: written_numeral` by default. Modern data visualization may use `display_mode: arabic_numeral`. The display conversion may not change value, unit, order of magnitude, date meaning, or other source-fact semantics.
+
+## Static Reconstruction Check
+
+Reuse `previsualization_storyboard` Review Result and `poster_readiness` findings; do not create a Reconstruction Gate, Manifest, Typography Manifest, approval, retry ledger, or state machine. Compare the approved source/stable poster with the no-motion reconstruction and preserve:
+
+- composition;
+- hierarchy;
+- focal weight;
+- negative space;
+- palette;
+- typography character.
+
+The target is perceptual and editorial equivalence, not pixel-perfect reproduction. A pixel diff may be supporting evidence but cannot be the sole verdict. Any unresolved `must_fix` blocks motion compilation.
+
+## Background plate strategy
+
+Compute exposure from the approved translation, rotation, scale, perspective, crop and occlusion changes. Use `none` when nothing hidden becomes visible, `reuse_existing` when an approved plate already covers it, and `recover_motion_exposure_regions` for only the exposed bounds plus an evidenced safety margin. `full_plate_evidenced` is exceptional. When hidden content cannot be recovered without invention, reduce motion, change the decomposition decision, or request human review.
 
 ## Motion routing
 
@@ -92,8 +148,10 @@ implementation_route: reuse_existing | generated_asset | remotion_svg | remotion
 
 An asset is production-eligible only when `used_by_poster_shots` contains at least one Poster Shot whose current Review evidence permits asset derivation. Prefer high-reuse assets first and local SVG/CSS/graphics for one-off decoration. This eligibility does not grant a provider call or Cost Gate.
 
+If a generated asset is unsuitable for its original Shot, record one existing asset/QA `salvage_disposition` after checking candidates in this order: `later_beat`, `hero_poster`, `cover`, `title_card`, `detail_crop`, `background`, `transition`, then `reject`. Record every reviewed candidate, the selected target/use, crop or text limits, Review ref, and rationale. Reject is legal only after the earlier uses are evidenced unsuitable. Salvage does not relax facts, identity, era, approved composition, rights, intake, or Cost Gate boundaries.
+
 ## Poster Readiness
 
-Reuse Review Result `previsualization_storyboard` and its existing lineage/evidence rules. Review these checks: primary attention clarity, editorial hierarchy, paper-layer separation, critical-text protection, readability without motion, asset coverage, adjacent-composition distinction, Style Baseline consistency, and poster-to-motion feasibility.
+Reuse Review Result `previsualization_storyboard` and its existing lineage/evidence rules. Review these checks: primary attention clarity, editorial hierarchy, paper-layer separation, critical-text protection, readability without motion, asset coverage, adjacent-composition distinction, Style Baseline consistency, applicable Static Reconstruction fidelity, and poster-to-motion feasibility.
 
 Any unresolved `must_fix` blocks motion compilation for the affected Poster Shot. Missing/stale evidence maps to `UNKNOWN` without retry consumption. Fixture output proves only structure and routing, never composition quality or approval.

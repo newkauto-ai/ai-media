@@ -228,6 +228,64 @@
         "output_spec":{"aspect_ratio":"1:1","size":"1536x1536","quality":"standard","background":"transparent","output_format":"png","status":"resolved"}
       },
       "atlas_prompt_projection":{"grid":"3x3","source_asset_ids":["vox-arrow","vox-check","vox-cross","vox-starburst","vox-gear"],"destination_background":"白色宣纸背景","background":{"type":"transparent"},"layout_constraints":{"one_complete_subject_per_cell":true,"wide_gutter":true,"full_subject_inside_safe_area":true,"no_in_image_labels":true,"no_grid_lines":true,"no_checkerboard":true,"no_complex_scene":true},"cells":[{"cell_id":"A","element_name_zh":"弯曲箭头","state_or_pose":"完整向右弯曲箭头","asset_constraints":"完整连续纸片轮廓，不含文字或附加场景","suggested_filename":"arrow.png"},{"cell_id":"B","element_name_zh":"对勾","state_or_pose":"完整圆形对勾","asset_constraints":"完整连续纸片轮廓，不含文字或附加场景","suggested_filename":"check.png"},{"cell_id":"C","element_name_zh":"叉号","state_or_pose":"完整圆形叉号","asset_constraints":"完整连续纸片轮廓，不含文字或附加场景","suggested_filename":"cross.png"},{"cell_id":"D","element_name_zh":"强调星芒","state_or_pose":"完整八角星芒","asset_constraints":"完整连续纸片轮廓，不含文字或附加场景","suggested_filename":"starburst.png"},{"cell_id":"E","element_name_zh":"齿轮","state_or_pose":"完整六齿齿轮","asset_constraints":"完整连续纸片轮廓，不含文字或附加场景","suggested_filename":"gear.png"}]}
+    },
+    {
+      "case_id": "vox-production-reconstructable-pilot",
+      "expected_result": "passed",
+      "image_prompt_spec": {
+        "asset_id": "vox-pilot-production-typography",
+        "asset_type": "keyframe",
+        "prompt_variant": "default",
+        "render_mode": "stylized",
+        "is_vox_pilot": true,
+        "pilot_design_route": "production_reconstructable",
+        "source_locks": [{"field":"information_goal","value":"历史行动与结果的分阶段信息建立","provenance":"approved_poster_shot.PS-01"}],
+        "decisions": {
+          "subject_action":{"status":"explicit","value":"制作一张信息层级清楚的 VOX 编辑海报 Pilot，用于后续 Remotion 精确重构","reason":"production pilot"},
+          "context":{"status":"explicit","value":"旧纸、地形与军旗构成少量有意义的语境组","reason":"separable context"},
+          "composition_camera":{"status":"explicit","value":"竖屏编辑海报构图，保留标题、路线与数字分阶段入场所需负空间","reason":"motion sequence"},
+          "lighting_outcome":{"status":"explicit","value":"平面印刷光感，纸层边界可读","reason":"editorial readability"},
+          "style_aesthetic":{"status":"explicit","value":"VOX 手作纸拼贴与套印纹理","reason":"ready profile"},
+          "optics":{"status":"not_applicable","reason":"flat editorial poster"},
+          "color":{"status":"explicit","identity_palette":"受批准 baseline 约束的有限色板","grade":"无额外 Grade","reason":"style lock"}
+        },
+        "material_texture":{"status":"explicit","value":"纸纤维、印刷颗粒与可分离墨迹","reason":"style"},
+        "text_handling":{"status":"explicit","value":"critical_text_owner=remotion；主要词组预留独立 SVG/PNG 或 native text 位置","reason":"typography split"},
+        "consistency_locks":["主要文字组独立","路线箭头独立","装饰墨迹与朱印独立"],
+        "allowed_variation":["纸片边缘","局部印刷错位"],
+        "reference_bindings":[],
+        "negative_constraints":["full-width context strip","title+background rectangular crop","background halo","固定层数或固定布局"],
+        "output_spec":{"aspect_ratio":"9:16","size":"1080x1920","quality":"review_draft","background":"opaque","output_format":"png","status":"resolved"}
+      }
+    },
+    {
+      "case_id": "vox-hero-key-art-pilot",
+      "expected_result": "passed",
+      "image_prompt_spec": {
+        "asset_id": "vox-pilot-hero-callback",
+        "asset_type": "keyframe",
+        "prompt_variant": "default",
+        "render_mode": "stylized",
+        "is_vox_pilot": true,
+        "pilot_design_route": "hero_key_art",
+        "source_locks": [{"field":"story_function","value":"高潮后的情绪回扣","provenance":"approved_poster_shot.PS-HERO"}],
+        "decisions": {
+          "subject_action":{"status":"explicit","value":"制作一张情绪强烈、整体融合的 VOX 回扣主视觉，用于微动画与图生视频参考","reason":"hero pilot"},
+          "context":{"status":"explicit","value":"完整历史场景与人物关系可高度融合","reason":"hero value"},
+          "composition_camera":{"status":"explicit","value":"竖屏完整主视觉，焦点与情绪层级优先","reason":"hero composition"},
+          "lighting_outcome":{"status":"explicit","value":"戏剧化但保持纸拼贴媒介可辨","reason":"emotional peak"},
+          "style_aesthetic":{"status":"explicit","value":"VOX 手作纸拼贴英雄海报","reason":"ready profile"},
+          "optics":{"status":"not_applicable","reason":"stylized key art"},
+          "color":{"status":"explicit","identity_palette":"受批准 baseline 约束的有限色板","grade":"情绪峰值对比","reason":"hero emphasis"}
+        },
+        "material_texture":{"status":"explicit","value":"高完成度纸张、油墨与拼贴融合","reason":"hero style"},
+        "text_handling":{"status":"explicit","value":"关键文字仍由 Remotion 后期精确控制","reason":"critical text"},
+        "consistency_locks":["主角身份","时代语境","回扣意象"],
+        "allowed_variation":["整体场景融合","局部纸纹"],
+        "reference_bindings":[],
+        "negative_constraints":["错误文字","身份漂移","把可拆分性设为强制验收"],
+        "output_spec":{"aspect_ratio":"9:16","size":"1080x1920","quality":"review_draft","background":"opaque","output_format":"png","status":"resolved"}
+      }
     }
   ]
 }

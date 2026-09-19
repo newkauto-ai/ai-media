@@ -17,6 +17,7 @@ image_prompt_spec:
   asset_id: string
   asset_type: character_identity | scene | prop | graphic | keyframe
   prompt_variant: default | story_prop | product_evidence | cover_visual
+  pilot_design_route: hero_key_art | production_reconstructable | null # required only for a declared VOX Pilot
   source_locks: [{field, value, provenance}]
   decisions:
     subject_action: {status, value, inherited_from, reason}
@@ -49,6 +50,7 @@ Every decision dimension uses exactly one status: `explicit`, `inherited`, or `n
 - Graphic does not receive focal-length, depth-of-field, or photography-lighting filler unless a declared condition actually triggers it.
 - Material, exact text handling, identity locks, and output parameters remain Mandatory-by-Type whenever acceptance depends on them.
 - `cover_visual` uses `asset_type=keyframe`, inherits Key Frame current-action and reference-responsibility rules, and inherits Graphic title-safe-zone/text handling. It requires platform, platform-native composition, title-safe zone, UI avoidance, thumbnail priority, `generate_text_in_image=false`, and checksum-bound reference roles. Xiaohongshu and Douyin requests must not differ only by size or crop.
+- A declared VOX Pilot requires `pilot_design_route`. `hero_key_art` keeps reconstructability out of its acceptance requirements. `production_reconstructable` automatically compiles a clause requiring a coherent editorial poster whose major typography, directional, decorative, and context groups remain visually separable and independently reconstructable, with negative space and without cross-element texture entanglement, full-width context strips, or rectangular screenshot-crop dependency. The compiler must not inject fixed layer counts, layouts, palettes, or project-specific constants.
 
 ## Truth, color, and conflict rules
 
@@ -79,7 +81,7 @@ Aspect ratio, size, background, quality, and format may live in Adapter request 
 
 ### Temporary atlas prompt projection
 
-An existing one-element image plan may additionally be projected locally as a VOX `manual_crop_from_named_transparent_atlas` package. It reuses the same `image_prompt_spec` and `call_package` field meanings and must retain `call_package.generation_status=blocked`. Use the smallest grid that fits: `2x2` for one to four compatible small elements, or `3x3` for five to nine. Group only elements sharing one evidenced destination-background and cut-paper-outline contrast basis:
+An existing one-element image plan may additionally be projected locally as a VOX `manual_crop_from_named_transparent_atlas` package. It reuses the same `image_prompt_spec` and `call_package` field meanings and must retain `call_package.generation_status=blocked`. Use the smallest grid that fits: `2x2` for one to four compatible small elements, or `3x3` for five to nine. Group only elements sharing one evidenced destination-background and runtime-outline validation basis:
 
 ```yaml
 atlas_prompt_projection:
@@ -88,14 +90,14 @@ atlas_prompt_projection:
   grid: 2x2 | 3x3
   destination_background: string
   cells: [{cell_id: A..I, element_name_zh: string, state_or_pose: string, asset_constraints: string, suggested_filename: string}]
-  outline_policy: {goal: clear_continuous_cut_paper_separation, preferred: paper_white_or_warm_white, fallback: palette_coherent_background_contrasting_paper_tone, fixed_white: false, shadow_separate: true, validation: real_frame_at_bound_delivery_size_plus_human_review}
+  outline_policy: {owner: remotion_runtime_style, bake_into_new_source_png: false, goal: clear_continuous_cut_paper_separation, selection_inputs: [element_role, bound_background, delivery_resolution, edge_complexity], global_width_constants: [], shadow_separate: true, validation: real_frame_at_bound_delivery_size_plus_human_review}
   layout_constraints: {one_complete_subject_per_cell: true, wide_gutter: true, full_subject_inside_safe_area: true, no_in_image_labels: true, no_grid_lines: true, no_checkerboard: true, no_complex_scene: true}
   background: {type: transparent}
-  handoff: {generation: chatgpt_web_existing_conversation, crop: split-transparent-atlas.ps1_wrapper_to_python_named_row_major_true_alpha_only, alpha_verification: required_before_crop_binding, outline_validation: required_against_bound_destination_background, remotion_input: individual_rgba_png_only}
+  handoff: {generation: chatgpt_web_existing_conversation, crop: split-transparent-atlas.ps1_wrapper_to_python_named_row_major_true_alpha_only, alpha_verification: required_before_crop_binding, runtime_outline_validation: required_against_bound_destination_background_at_delivery_resolution, remotion_input: individual_clean_alpha_rgba_png_only}
   call_package: {executable_prompt, reference_bindings, request_parameters, adapter_id, unresolved_fields, generation_status: blocked}
 ```
 
-The projection is ephemeral compiler output. Do not persist it into `production_manifest.json`, designate the atlas as a Production Asset, use `prompt_ready_for_external_use`, add a new state/Gate, or claim transparency before inspecting the saved PNG. `asset_constraints` carries project-specific era/clothing, identity, direction, pose, complete-limb, and prop requirements when applicable; it does not add them to global VOX style. The outline prefers paper white or warm white but adapts to the bound destination background. After verified Alpha, use `scripts/split-transparent-atlas.ps1` to resolve the approved Pillow runtime and invoke the Python named crop. Each independent PNG remains an existing-asset intake problem, not an atlas slice. The crop tool does not remove solid backgrounds, invent/recolor outlines, call a provider, or authorize overwrite without its explicit flag.
+The projection is ephemeral compiler output. Do not persist it into `production_manifest.json`, designate the atlas as a Production Asset, use `prompt_ready_for_external_use`, add a new state/Gate, or claim transparency before inspecting the saved PNG. `asset_constraints` carries project-specific era/clothing, identity, direction, pose, complete-limb, and prop requirements when applicable; it does not add them to global VOX style. Request clean Alpha without baking a new outline by default. After verified Alpha, use `scripts/split-transparent-atlas.ps1` to resolve the approved Pillow runtime and invoke the Python named crop. Each independent PNG remains an existing-asset intake problem, not an atlas slice; Remotion applies and validates the background-aware, role-based, delivery-resolution-aware outline with separate shadow. The crop tool does not remove solid backgrounds, invent/recolor outlines, call a provider, or authorize overwrite without its explicit flag.
 
 ## Clause map and QA gate
 

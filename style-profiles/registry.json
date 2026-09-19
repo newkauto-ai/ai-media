@@ -445,10 +445,10 @@
     },
     {
       "profile_id": "vox_transcript_driven_handmade_collage",
-      "source_file": "Style_Profile_VOX编辑纸拼贴讲解动画_v1.7_Poster_First.md",
-      "source_sha256": "2C53F548DACA74E42E05975EE8FFB8239F69C0F401F9B93421B0390AED2E6CEC",
-      "normalized_file": "transcript_driven_handmade_collage.v1.7-zh.json",
-      "normalized_version": "v1.7-zh",
+      "source_file": "Style_Profile_VOX编辑纸拼贴讲解动画_v1.9_生产友好Pilot路由.md",
+      "source_sha256": "E8BCA5F7C4FFEA793CF88C83EA86E176B6303EAC6EDE15B108AB668B2141392D",
+      "normalized_file": "transcript_driven_handmade_collage.v1.9-zh.json",
+      "normalized_version": "v1.9-zh",
       "classification": "hybrid_style_profile",
       "status": "ready",
       "provenance_verified": true

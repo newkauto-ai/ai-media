@@ -143,11 +143,128 @@
       "unused-decorative-bird": "not_referenced_by_any_poster_shot"
     }
   },
+  "pilot_design_routes": [
+    {
+      "case_id": "pilot01b-production-typography",
+      "pilot_design_route": "production_reconstructable",
+      "visual_quality": "pass",
+      "poster_readiness": "pass",
+      "production_reconstructability": {
+        "typography_split_test": "pass",
+        "context_separation_test": "pass",
+        "decorative_independence_test": "pass",
+        "rectangle_risk_test": "pass",
+        "motion_sequence_test": "pass"
+      },
+      "expected": "eligible_for_v1_8_decomposition"
+    },
+    {
+      "case_id": "hero-poster-callback",
+      "pilot_design_route": "hero_key_art",
+      "reconstructability_required": false,
+      "production_reconstructability": "not_applicable",
+      "recommended_motion": ["keep_whole", "micro_animation"],
+      "expected": "hero_route_review_only"
+    },
+    {
+      "case_id": "beautiful-but-entangled",
+      "intended_route": "production_reconstructable",
+      "visual_quality": "pass",
+      "rectangle_risk": "fail",
+      "forced_decomposition_allowed": false,
+      "recommended_reclassification": "hero_key_art",
+      "downstream": "existing_v1_8_salvage_reuse",
+      "expected": "retain_as_hero_and_plan_separate_production_pilot"
+    },
+    {
+      "case_id": "full-width-context-strip",
+      "pilot_design_route": "production_reconstructable",
+      "visible_rectangular_crop": true,
+      "full_width_context_strip": true,
+      "rectangle_crop_fallback_allowed": false,
+      "expected": "must_fix"
+    }
+  ],
+  "poster_decomposition": [
+    {
+      "case_id": "pilot01-typography-rebuild",
+      "decomposition_decision": "rebuild_locally",
+      "critical_text_owner": "remotion",
+      "critical_text_realization": "verified_typography_svg",
+      "hero_typography_css_fallback_allowed": false,
+      "static_reconstruction_check": {
+        "gate": "previsualization_storyboard",
+        "category": "poster_readiness",
+        "preserve": ["composition", "hierarchy", "focal_weight", "negative_space", "palette", "typography_character"],
+        "pixel_perfect_required": false,
+        "expected": "eligible_after_current_review_pass"
+      }
+    },
+    {
+      "case_id": "hero-poster-keep-whole",
+      "decomposition_decision": "keep_whole",
+      "crop_text_or_layout_changed": false,
+      "static_reconstruction_check": "not_applicable",
+      "full_element_assembly_required": false
+    }
+  ],
+  "asset_salvage": [
+    {
+      "case_id": "hero-poster-salvage",
+      "original_shot_fit": "unsuitable",
+      "review_order": ["later_beat", "hero_poster", "cover", "title_card", "detail_crop", "background", "transition", "reject"],
+      "selected_disposition": "hero_poster",
+      "target_ref": "PS-HERO-03",
+      "reject_allowed": false,
+      "review_result_ref": "RR-VOX-SALVAGE-001"
+    }
+  ],
+  "numeral_localization": [
+    {
+      "case_id": "800-cavalry-historical-numerals",
+      "context": "historical_cultural_hero_visual",
+      "locale": "zh-CN",
+      "source_fact_value": 800,
+      "display_value": "八百",
+      "display_mode": "written_numeral",
+      "semantic_equivalence": true
+    },
+    {
+      "case_id": "modern-chart-numerals",
+      "context": "modern_data_visualization",
+      "locale": "zh-CN",
+      "source_fact_value": 800,
+      "display_value": "800",
+      "display_mode": "arabic_numeral",
+      "semantic_equivalence": true
+    }
+  ],
+  "background_plate": [
+    {
+      "case_id": "partial-background-recovery",
+      "decomposition_decision": "partial_decomposition",
+      "approved_motion_exposure_regions": ["right-edge-behind-rider", "lower-dust-gap"],
+      "strategy": "recover_motion_exposure_regions",
+      "full_plate_generated": false,
+      "safety_margin_rationale": "covers approved translation and rotation extrema only"
+    }
+  ],
+  "runtime_outline": [
+    {
+      "case_id": "runtime-outline",
+      "owner": "remotion_runtime_style",
+      "bake_into_new_source_png": false,
+      "selection_inputs": ["element_role", "bound_background", "delivery_resolution", "edge_complexity"],
+      "global_width_constants": [],
+      "shadow_separate": true,
+      "expected": "delivery_frame_validation_required"
+    }
+  ],
   "migration": {
-    "input_profile_version": "v1.6-zh",
-    "input_manifest_version": "1.7",
+    "input_profile_versions": ["v1.6-zh", "v1.7-zh", "v1.8-zh"],
+    "input_manifest_versions": ["1.7", "1.8"],
     "input_read_only": true,
-    "output_profile_version": "v1.7-zh",
+    "output_profile_version": "v1.9-zh",
     "output_manifest_version": "1.8",
     "stable_profile_id": "vox_transcript_driven_handmade_collage",
     "reuse_approved_assets_and_baselines_when_lineage_matches": true
