@@ -625,20 +625,20 @@
     },
     {
       "profile_id": "oriental_pastoral_cinematic_lifestyle",
-      "source_file": "Style_Profile_田园风_v1.0_中文解析.md",
-      "source_sha256": "AC6B197586FC2F632811D155FCD61456B38269147CA3E743688A69A14A3E0B31",
-      "normalized_file": "oriental_pastoral_cinematic_lifestyle.v1.0-zh.json",
-      "normalized_version": "v1.0-zh",
+      "source_file": "Style_Profile_田园风_v1.1_中文解析.md",
+      "source_sha256": "19B510148C5298A388F6F1E14EE9F01D5D1F61EE3A526ACEEB89BC9C59D71019",
+      "normalized_file": "oriental_pastoral_cinematic_lifestyle.v1.1-zh.json",
+      "normalized_version": "v1.1-zh",
       "classification": "hybrid_style_profile",
       "status": "pending_review",
       "provenance_verified": true
     },
     {
       "profile_id": "dreamy_garden_poetic_healing",
-      "source_file": "Style_Profile_梦幻园林诗意治愈风_v1.0_中文整合.md",
-      "source_sha256": "599FFD9A2E2908C4AA04068AB6D74729F69B8284A230E7AA85A9F9863AAE2FBD",
-      "normalized_file": "dreamy_garden_poetic_healing.v1.0-zh.json",
-      "normalized_version": "v1.0-zh",
+      "source_file": "Style_Profile_梦幻园林诗意治愈风_v1.1_生产经验升级.md",
+      "source_sha256": "ABD5E9470A71B730021B9CDD6EA1A491F07AD5D44BC4747AB43EE3D52FB24422",
+      "normalized_file": "dreamy_garden_poetic_healing.v1.1-zh.json",
+      "normalized_version": "v1.1-zh",
       "classification": "audiovisual_style_profile",
       "status": "pending_review",
       "provenance_verified": true

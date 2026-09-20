@@ -1,0 +1,557 @@
+{
+  "fixture_only": false,
+  "library_status": "pending_review",
+  "normalized_from_source": "Style_Profile_梦幻园林诗意治愈风_v1.1_生产经验升级.md",
+  "style_profile": {
+    "style_id": "dreamy_garden_poetic_healing",
+    "display_name": "梦幻园林诗意治愈风",
+    "version": "v1.1-zh",
+    "classification": "audiovisual_style_profile",
+    "pre_content_modules": {
+      "compatibility": {
+        "authority": "low",
+        "preferred": [
+          "江南园林",
+          "山水田园",
+          "水乡生活",
+          "治愈日常",
+          "诗意古风轻叙事",
+          "人与动物温柔互动"
+        ],
+        "weak_for": [
+          "高速战斗",
+          "重口恐怖",
+          "赛博朋克",
+          "高饱和商业海报",
+          "夸张卡通喜剧"
+        ]
+      }
+    },
+    "audiovisual_modules": {
+      "visual_identity": {
+        "authority": "hard",
+        "medium": [
+          "二维数字手绘",
+          "半写实东方场景插画",
+          "背景美术式绘制",
+          "哑光表面",
+          "轻微模拟绘画柔化"
+        ],
+        "identity": [
+          "东方诗意栖居",
+          "清透空气感",
+          "自然观察构图",
+          "环境优先",
+          "人物克制",
+          "统一美术语言"
+        ],
+        "avoid": [
+          "通用日系动画海报",
+          "真人摄影",
+          "3D塑料感",
+          "游戏概念图硬锐化",
+          "角色立绘贴背景"
+        ]
+      },
+      "color_system": {
+        "authority": "hard",
+        "primary": [
+          "清透柔蓝",
+          "蓝绿",
+          "灰绿",
+          "柳绿",
+          "奶白",
+          "暖白"
+        ],
+        "accent": [
+          "柔粉",
+          "杏粉",
+          "暖杏",
+          "少量暖金"
+        ],
+        "restricted": [
+          "大面积高饱和黄",
+          "荧光绿",
+          "大面积正红",
+          "大面积橙黄发光",
+          "深黑"
+        ]
+      },
+      "light_system": {
+        "authority": "hard",
+        "daylight": [
+          "柔和漫射天光",
+          "白墙反射光",
+          "树间漏光",
+          "水面柔和反光"
+        ],
+        "dusk_night": [
+          "蓝灰环境",
+          "小面积暖灯",
+          "暗部保留材质"
+        ],
+        "avoid": [
+          "HDR",
+          "强外发光",
+          "大面积轮廓光",
+          "镜面湿地反射"
+        ]
+      },
+      "airiness_system": {
+        "authority": "hard",
+        "require": [
+          "clean_highlights",
+          "separated_midtones",
+          "depth_based_contrast_falloff",
+          "depth_based_saturation_falloff",
+          "visible_air_gaps",
+          "reflective_lift_from_sky_water_or_white_surfaces"
+        ],
+        "avoid": [
+          "global_milky_haze",
+          "muddy_midtones",
+          "blocked_dark_regions",
+          "uniformly_dense_foliage"
+        ]
+      },
+      "texture_and_noise_control": {
+        "authority": "hard",
+        "rule": "抑制高频纹理和碎点噪声",
+        "ground": [
+          "大块面石板或土路",
+          "少量缝隙",
+          "稀疏苔藓",
+          "轻微湿润"
+        ],
+        "foliage": [
+          "树冠群组",
+          "草丛群组",
+          "花团群组"
+        ],
+        "water": [
+          "宽笔触反射",
+          "低频波纹"
+        ],
+        "prohibit": [
+          "颗粒石材",
+          "密集微裂纹",
+          "碎点高光",
+          "满屏独立小花",
+          "逐叶高频描绘",
+          "逐根毛发锐化",
+          "水面密集闪点",
+          "全画面统一高细节"
+        ]
+      },
+      "character_system": {
+        "authority": "hard",
+        "default_adult_proportion": "7.5-8_heads",
+        "body_type_policy": "character_specific",
+        "canon_override": "required_when_available",
+        "beauty_normalization": "prohibited",
+        "allow_body_variation": [
+          "slender",
+          "balanced",
+          "fuller",
+          "sturdy"
+        ],
+        "head_scale": "slightly_small",
+        "shoulder_width": "natural",
+        "legs": "natural_balanced",
+        "face": "东方青年自然五官，细腻但不动漫化",
+        "expression": "克制自然",
+        "wardrobe": "低饱和、传统或传统倾向、融入环境",
+        "role_in_frame": "narrative_accent_not_dominant"
+      },
+      "fabric_drape_system": {
+        "authority": "hard",
+        "principles": [
+          "gravity_driven",
+          "contact_point_driven",
+          "hierarchical_fold_scale",
+          "material_specific",
+          "pose_specific"
+        ],
+        "prohibit": [
+          "repeated_triangle_folds",
+          "equal_spacing_folds",
+          "geometric_fold_pattern",
+          "mirrored_fold_structure"
+        ]
+      },
+      "location_identity_system": {
+        "authority": "hard",
+        "source_canon_first": true,
+        "required_signature_fields": [
+          "architecture_signature",
+          "botanical_signature",
+          "spatial_signature",
+          "material_signature",
+          "mood_signature"
+        ],
+        "generic_garden_substitution": "prohibited"
+      },
+      "motif_budget": {
+        "authority": "medium_high",
+        "major_motifs_per_shot": "2-4",
+        "repeated_signature_combo_across_series": "avoid",
+        "scene_specific_botanical_density": "required"
+      },
+      "animal_system": {
+        "authority": "hard",
+        "stylization": "natural_simplified",
+        "prohibit": [
+          "大眼萌化",
+          "Q版",
+          "夸张笑脸",
+          "高频毛发"
+        ]
+      },
+      "composition_grammar": {
+        "authority": "hard",
+        "layers": [
+          "前景框景层",
+          "主体生活层",
+          "远景空气层"
+        ],
+        "preferred": [
+          "非对称平衡",
+          "自然遮挡",
+          "建筑局部裁切",
+          "景中景",
+          "环境面积大于人物"
+        ],
+        "avoid": [
+          "海报式永远居中",
+          "无意义强对称",
+          "每个对象完整展示",
+          "模板式人物正面走来"
+        ]
+      },
+      "cinematography": {
+        "authority": "hard",
+        "camera_role": "温柔观察者",
+        "shot_priority": [
+          "环境大全景",
+          "环境主导全身",
+          "中远景",
+          "克制中景",
+          "稀缺细节特写"
+        ],
+        "movement": [
+          "缓慢推近",
+          "缓慢拉远",
+          "轻柔横移",
+          "同速慢跟",
+          "前景视差",
+          "低速弧线移动"
+        ],
+        "avoid": [
+          "快速甩镜",
+          "高频变焦",
+          "无动机环绕",
+          "持续无人机炫技",
+          "大幅手持晃动",
+          "机械匀速"
+        ]
+      },
+      "environment_motion": {
+        "authority": "medium_high",
+        "wind": "subtle_visible",
+        "water": "soft_continuous",
+        "petals": "sparse",
+        "fog": "slow",
+        "clouds": "slow"
+      },
+      "performance": {
+        "authority": "medium_high",
+        "principle": "小动作、轻视线、自然停顿",
+        "preferred": [
+          "慢走",
+          "静观",
+          "转头",
+          "轻微微笑",
+          "与同行者短暂对视",
+          "与动物轻互动"
+        ]
+      },
+      "sound_design": {
+        "authority": "medium",
+        "preferred": [
+          "风",
+          "叶片摩擦",
+          "鸟鸣",
+          "溪水",
+          "雨滴",
+          "脚步",
+          "木窗",
+          "猫狗轻叫"
+        ],
+        "density": "sparse"
+      },
+      "music_direction": {
+        "authority": "medium",
+        "emotional_core": [
+          "清澈",
+          "温柔",
+          "宁静",
+          "轻浪漫",
+          "怀旧"
+        ],
+        "instruments": [
+          "钢琴",
+          "木质拨弦",
+          "长笛",
+          "轻弦乐",
+          "少量古筝",
+          "少量琵琶",
+          "清透铃音"
+        ],
+        "avoid": [
+          "浓重古风",
+          "史诗编制",
+          "过度煽情"
+        ]
+      }
+    },
+    "production_modules": {
+      "prompt_core": {
+        "authority": "hard",
+        "positive_semantics": [
+          "poetic East-Asian scenic illustration",
+          "refined hand-painted background art",
+          "restrained semi-realistic character design",
+          "airy and luminous atmosphere",
+          "broad painterly color masses",
+          "simplified foliage groups",
+          "restrained micro-detail",
+          "natural observational composition",
+          "unified art language",
+          "luminous value separation",
+          "clear atmospheric depth without milky haze",
+          "depth-dependent contrast reduction",
+          "character-specific natural body morphology",
+          "no beauty-normalized body template",
+          "gravity-driven irregular fabric folds",
+          "source-grounded location identity",
+          "scene-specific botanical density",
+          "limited motif budget",
+          "preserve approved visual fingerprint across the series"
+        ],
+        "negative_semantics": [
+          "no granular stone texture",
+          "no dense speckles",
+          "no micro-cracks",
+          "no noisy reflective dots",
+          "no excessive individual leaves",
+          "no excessive tiny flowers",
+          "no over-sharpening",
+          "no anime protagonist proportions",
+          "no mirror-like wet pavement",
+          "no large glowing storefront",
+          "no generic ancient-garden substitution",
+          "no identical slender-beauty body template",
+          "no repeated geometric fabric folds",
+          "no equal-spaced pleats",
+          "no global gray-beige haze",
+          "no decorative pseudo-Chinese text",
+          "no invented labels",
+          "no automatic corner captions",
+          "no repeated bridge-pavilion-flower formula across every scene"
+        ]
+      },
+      "style_fingerprint": {
+        "freeze_after_lookdev_acceptance": true,
+        "fields": [
+          "medium",
+          "edge_softness",
+          "saturation",
+          "value_range",
+          "atmospheric_depth",
+          "foliage_granularity",
+          "texture_noise",
+          "character_stylization",
+          "skin_rendering",
+          "fabric_rendering",
+          "reflection_behavior",
+          "camera_observation_level"
+        ]
+      },
+      "canonical_text_integrity": {
+        "default_nonessential_text": "omit",
+        "canonical_text": "exact_match_required",
+        "preferred_workflow": [
+          "blank_signboard_in_base_image",
+          "post_overlay_exact_text"
+        ],
+        "direct_generation_requires_review": true,
+        "wrong_character_result": "TEXT_FAIL",
+        "invented_decorative_text": "prohibited"
+      },
+      "approved_frame_lock": {
+        "trigger_phrases": [
+          "锁定这一版",
+          "保持这一版",
+          "拆成独立图",
+          "只改比例",
+          "不改变画风",
+          "不改变构图"
+        ],
+        "priority": [
+          "crop_or_extract",
+          "outpaint_preserving_locked_pixels",
+          "local_edit",
+          "regeneration_last"
+        ],
+        "prompt_regeneration_when_lock_active": "avoid"
+      },
+      "multi_panel_policy": {
+        "contact_sheet_role": [
+          "lookdev",
+          "storyboard",
+          "comparison",
+          "style_consistency_test"
+        ],
+        "final_asset_policy": [
+          "extract_approved_panel",
+          "preserve_identity",
+          "preserve_style_fingerprint",
+          "outpaint_only_when_required"
+        ]
+      },
+      "continuity_required": [
+        "character.body_proportion",
+        "character.face_style",
+        "animal.body_scale",
+        "environment.sky_palette",
+        "environment.foliage_palette",
+        "visual.detail_density",
+        "visual.noise_level",
+        "visual.atmospheric_depth",
+        "style_fingerprint.medium",
+        "style_fingerprint.saturation",
+        "style_fingerprint.foliage_granularity"
+      ],
+      "quality_gate": {
+        "fail_if": [
+          "人物头身比例明显低于自然成人比例",
+          "地面出现密集颗粒或碎点反光",
+          "画面转向通用动漫海报",
+          "黄绿或橙光大面积失控",
+          "环境被人物完全压制",
+          "夜景黑位堵死",
+          "植物或水体出现全画面高频细节",
+          "存在明确角色 Canon，却被统一瘦削化或美型模板化",
+          "衣褶出现重复三角形、等距平行或明显几何复制",
+          "地点存在 Canon，但场景退化为通用江南园林",
+          "多格图中多个地点重复同一花树+桥+亭模板",
+          "画面整体被奶灰或米灰雾化，丢失清透空气层次",
+          "夜景暖灯或水面反光面积过大，抢占主视觉",
+          "Canon 牌匾或题字存在任一错字",
+          "非必要场景出现自动生成的标题、诗句或装饰文字",
+          "已批准画面在拆分或改比例时被重新生成并导致视觉漂移",
+          "同一系列输出的 medium、saturation 或 detail density 明显变化"
+        ]
+      },
+      "lookdev_regression_cases": [
+        {
+          "case_id": "A",
+          "focus": "garden_character_airiness",
+          "pass_criteria": [
+            "depth_falloff_visible",
+            "unified_character_environment_rendering",
+            "no_high_frequency_ground_or_foliage_noise"
+          ]
+        },
+        {
+          "case_id": "B",
+          "focus": "canon_body_type_variation",
+          "pass_criteria": [
+            "one_style_multiple_body_types",
+            "no_slender_beauty_normalization"
+          ]
+        },
+        {
+          "case_id": "C",
+          "focus": "reclining_fabric_drape",
+          "pass_criteria": [
+            "gravity_and_contact_driven_folds",
+            "no_repeated_geometric_folds"
+          ]
+        },
+        {
+          "case_id": "D",
+          "focus": "location_identity_variation",
+          "pass_criteria": [
+            "five_signature_fields_present",
+            "motif_combinations_not_repeated_across_majority"
+          ]
+        },
+        {
+          "case_id": "E",
+          "focus": "canonical_chinese_text",
+          "pass_criteria": [
+            "exact_match_or_TEXT_FAIL",
+            "blank_signboard_overlay_fallback_available"
+          ]
+        },
+        {
+          "case_id": "F",
+          "focus": "approved_panel_to_final_asset",
+          "pass_criteria": [
+            "extraction_or_outpaint_before_regeneration",
+            "identity_palette_medium_and_fingerprint_preserved"
+          ]
+        }
+      ],
+      "model_adapter_reference": {
+        "replaceable": true,
+        "model_syntax_locked": false
+      }
+    },
+    "provenance": {
+      "source_documents": [
+        {
+          "file": "本对话中的风格参考图与多轮生成验证",
+          "extraction": "direct_visual_analysis_and_iterative_validation",
+          "period": "2026-09-18_to_2026-09-20"
+        },
+        {
+          "file": "ai-media_梦幻园林诗意治愈风_v1.1_升级Short-Spec.md",
+          "extraction": "production_experience_short_spec",
+          "period": "2026-09-20"
+        },
+        {
+          "file": "Style_Profile_梦幻园林诗意治愈风_v1.1_生产经验升级.md",
+          "extraction": "normalized_source_profile_with_production_guardrails"
+        }
+      ],
+      "extracted_modules": [
+        "visual_identity",
+        "color_system",
+        "light_system",
+        "texture_and_noise_control",
+        "character_system",
+        "animal_system",
+        "composition_grammar",
+        "cinematography",
+        "environment_motion",
+        "production_quality_gate",
+        "airiness_system",
+        "character_canon_override",
+        "fabric_drape_system",
+        "location_identity_system",
+        "motif_budget",
+        "style_fingerprint",
+        "canonical_text_integrity",
+        "approved_frame_lock",
+        "multi_panel_policy",
+        "lookdev_regression_cases"
+      ],
+      "examples_are_canon": false,
+      "creator_name_used_as_runtime_prompt_dependency": false,
+      "inferred_missing_fields": false,
+      "source_sha256": "ABD5E9470A71B730021B9CDD6EA1A491F07AD5D44BC4747AB43EE3D52FB24422"
+    }
+  }
+}

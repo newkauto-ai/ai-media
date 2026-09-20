@@ -4,18 +4,18 @@ library_status: pending_review
 style_profile:
   style_id: dreamy_garden_poetic_healing
   display_name: 梦幻园林诗意治愈风
-  version: "v1.0-zh"
+  version: "v1.1-zh"
   classification: audiovisual_style_profile
 ---
 
 # Style Profile：梦幻园林诗意治愈风
 
-> **版本**：v1.0-zh  
+> **版本**：v1.1-zh  
 > **内部风格 ID**：`dreamy_garden_poetic_healing`  
 > **分类**：`audiovisual_style_profile`  
 > **定位**：东方诗意场景绘画 / 江南园林与田园治愈叙事 / 半写实手绘背景美术  
 > **核心要求**：换场景不换画风；换人物不换人物造型语言；换环境不换色彩、笔触与细节层级。  
-> **关键生产约束**：**抑制高频纹理和碎点噪声**。  
+> **关键生产约束**：抑制高频纹理和碎点噪声；Style 不覆盖 Canon；已批准画面优先成为后续拆分与改比例的视觉权威。  
 > **对齐规范**：AI Media `Unified Style Profile Library Contract v1.0`
 
 ---
@@ -106,7 +106,7 @@ authority:
 
 ---
 
-# 3. Style Core：五条硬原则
+# 3. Style Core：七条硬原则
 
 ## 3.1 统一美术语言
 无论园林、田野、雨巷、湖畔、人物还是动物，都必须属于同一套绘画系统：
@@ -136,6 +136,8 @@ authority:
 - 暗部保持材质、不堵黑
 - 水面带天空色，不成为厚重墨绿
 - 白墙、云、远山、水面形成呼吸节奏
+- 白墙、水面、天空承担克制的环境提亮
+- 不用整画面奶灰、米灰雾化伪造柔和感
 
 目标：
 
@@ -200,6 +202,30 @@ authority:
 - 每个对象都完整展示
 - 所有视觉元素围绕主角做完美放射
 - 过度对称
+
+## 3.6 Style Lock / Style Fingerprint
+LookDev 获得人工接受后，必须冻结并跨图复用同一个 `style_fingerprint`，至少包含：
+
+- medium
+- edge_softness
+- saturation
+- value_range
+- atmospheric_depth
+- foliage_granularity
+- texture_noise
+- character_stylization
+- skin_rendering
+- fabric_rendering
+- reflection_behavior
+- camera_observation_level
+
+Contact Sheet、系列独立图、拆分图与比例扩展不得只靠“重新写一段相似提示词”维持风格。若 fingerprint 中的媒介、饱和度或细节密度明显变化，视为 `STYLE DRIFT`。
+
+## 3.7 Style Does Not Overwrite Canon
+- Style 负责“怎么画”，不决定具体人物必须是什么体型、发型或身份特征。
+- 当存在 Source Canon / Series Canon 时，角色体态、地点身份和 Canon 文字优先于 Profile 默认值。
+- 禁止把不同角色统一美型化、瘦削化或套用同一肩颈、腰胯、面孔模板。
+- 通用 Profile 不硬编码任何具体文学人物姓名、固定住所事实或牌匾文本。
 
 ---
 
@@ -364,20 +390,41 @@ authority:
 
 但每次只选择少数主要母题，不做元素合集。
 
+## 7.4 Location Identity System
+当项目存在地点 Canon 时，每个地点必须提供并遵守：
+
+- `architecture_signature`
+- `botanical_signature`
+- `spatial_signature`
+- `material_signature`
+- `mood_signature`
+
+可选补充 `required_motifs` 与 `forbidden_substitutions`。禁止把有明确地点身份的竹院、田园、雪景、夜景或历史场所自动替换成通用“花树 + 小桥 + 亭 + 湖”的漂亮江南园林。
+
+## 7.5 Motif Budget
+- 每个镜头只保留 2–4 个主母题。
+- 桥、亭、月洞门、花树、水面不要求同时出现。
+- 花木密度必须服从地点、季节、天气与叙事，不把“花多”当成风格一致。
+- 同组多格图至少一半镜头不得重复相同核心母题组合。
+- 风格一致来自 fingerprint、媒介、色彩和空间语言，不来自元素复制。
+
 ---
 
 # 8. 人物设计
 
 ## 8.1 成人比例
-硬约束：
+默认基线：
 
 - **7.5–8 头身**
 - 头部略小
 - 肩宽自然
 - 腰线清晰
-- 腿部修长
+- 腿部自然平衡
 - 服装不能把人体比例完全吞没
 - 全身角色脚部落地明确
+- `body_type` 必须按角色设定区分，可为纤细、匀称、丰腴或健朗
+- 存在 Source Canon / Series Canon 时，Canon 覆盖默认体态
+- 面部宽窄、肩宽、腰胯与肢体厚度必须与角色设定一致
 
 禁止：
 - 六头身成人
@@ -385,6 +432,8 @@ authority:
 - Q 版
 - 少年漫画式夸大眼睛
 - 偶像立绘比例漂移
+- beauty normalization
+- 把全体角色统一成同一种瘦削古风美人模板
 
 ## 8.2 面部
 - 东方青年自然面孔
@@ -420,6 +469,21 @@ authority:
 - 强 pose
 - 偶像式凝视镜头
 - 长时间正面站桩
+
+## 8.5 Fabric Drape System
+衣褶必须由重力、身体支撑与地面接触共同驱动：
+
+- 一级大褶决定重量和方向，二级次褶补充结构，只保留少量微褶
+- 丝绸、纱、棉麻等材质使用不同褶皱尺度与软硬度
+- 站立、坐姿、倚靠、躺卧分别遵循实际接触点
+- 躺卧衣料必须表现压、堆、拖、展开的重量关系
+
+禁止：
+
+- 重复三角褶
+- 等距平行折线
+- 几何图案式复制
+- 左右近似镜像的褶皱结构
 
 ---
 
@@ -693,7 +757,17 @@ matte surface,
 subtle analog softness,
 restrained micro-detail,
 natural observational composition,
-unified art language across people, animals, architecture and environment
+unified art language across people, animals, architecture and environment,
+luminous value separation,
+clear atmospheric depth without milky haze,
+depth-dependent contrast reduction,
+character-specific natural body morphology,
+no beauty-normalized body template,
+gravity-driven irregular fabric folds,
+source-grounded location identity,
+scene-specific botanical density,
+limited motif budget,
+preserve approved visual fingerprint across the series
 ```
 
 ## 16.2 人物约束
@@ -738,6 +812,30 @@ no long orange reflection streaks,
 no large glowing storefront
 ```
 
+## 16.5 Canonical Text Integrity
+- 非必要文字默认不生成；禁止自动角标、场景标题、诗句和装饰性伪书法。
+- Canon 牌匾、店招、题字必须 exact match；任一错字即 `TEXT FAIL`。
+- 首选生成空白牌匾，再用独立文字层覆盖正确汉字。
+- 若必须直接生成文字，需做逐字视觉复核；失败时只修牌匾，不重画全场景。
+
+## 16.6 Approved Frame Lock
+用户表达“锁定这一版”“保持这一版”“拆成独立图”“只改比例”“不改变画风/构图”时，自动启用 `approved_frame_lock: true`。
+
+处理优先级：
+
+1. 原图裁切或 panel extraction
+2. 保留锁定像素的精准 outpaint
+3. 局部编辑
+4. 最后才允许 prompt-based regeneration
+
+锁定状态下不得把已批准画面重新解释成“相似的新图”。
+
+## 16.7 Multi-panel / Contact Sheet Policy
+- Contact Sheet 只承担 LookDev、Storyboard、视觉比较和风格一致性测试。
+- 某格获批后，最终资产优先抽取该格；仅在比例不足时 outpaint。
+- 独立图必须保留获批 panel 的人物身份、style fingerprint、palette、光线与构图核心。
+- Contact Sheet 通过不等于单格高分辨率、手部、面部或 Canon 文字已经通过最终验收。
+
 ---
 
 # 17. 负面约束
@@ -781,6 +879,17 @@ no large glowing storefront
 - 禁止所有灯都产生长反射
 - 禁止夜景变成霓虹氛围
 
+## Canon、衣褶与系列一致性
+- 禁止 generic ancient-garden substitution
+- 禁止 identical slender-beauty body template
+- 禁止 repeated geometric fabric folds
+- 禁止 equal-spaced pleats
+- 禁止 global gray-beige haze
+- 禁止 decorative pseudo-Chinese text
+- 禁止 invented labels
+- 禁止 automatic corner captions
+- 禁止每个场景重复 bridge-pavilion-flower formula
+
 ---
 
 # 18. 风格漂移检测
@@ -816,6 +925,21 @@ no large glowing storefront
 - 是否又回到标准海报模板？
 - 人物是否压过环境？
 - 是否有足够呼吸区？
+
+### F. Canon 与角色差异
+- 是否按角色 Canon 保留体型、肩宽、腰胯和肢体厚度差异？
+- 是否发生统一瘦削化或美型模板化？
+- 地点是否保留 architecture / botanical / spatial / material / mood signature？
+
+### G. 衣褶与文字
+- 衣褶是否由重力和接触点驱动？
+- 是否出现重复三角褶、等距平行或镜像几何结构？
+- Canon 文字是否 exact match？是否出现不需要的角标、诗句或伪书法？
+
+### H. 系列与批准画面
+- 同系列的 medium、saturation、detail density 是否继承冻结 fingerprint？
+- 多格地点是否重复相同花树、桥、亭、水面组合？
+- 已批准画面在拆分或改比例时是否被重新生成而漂移？
 
 若任意 2 个以上核心项失败，标记：
 
@@ -865,9 +989,28 @@ continuity_state:
     saturation_level:
     noise_level:
     atmospheric_depth:
+
+  style_fingerprint:
+    medium:
+    edge_softness:
+    saturation:
+    value_range:
+    atmospheric_depth:
+    foliage_granularity:
+    texture_noise:
+    character_stylization:
+    skin_rendering:
+    fabric_rendering:
+    reflection_behavior:
+    camera_observation_level:
+
+  canon:
+    character_canon:
+    location_canon:
+    canonical_text:
 ```
 
-其中 `body_proportion`、`detail_density`、`noise_level`、`atmospheric_depth` 是必须跨镜头跟踪的关键状态。
+其中 `body_proportion`、`detail_density`、`noise_level`、`atmospheric_depth` 与冻结后的 `style_fingerprint` 是必须跨镜头跟踪的关键状态；Canon 始终作为运行时输入，不写死进通用 Profile。
 
 ---
 
@@ -877,10 +1020,12 @@ continuity_state:
 优先流程：
 
 1. 场景 LookDev
-2. 角色比例测试
-3. 人物 + 场景融合测试
-4. 动物融合测试
-5. 雨景 / 夜景变体测试
+2. 冻结 style fingerprint
+3. 角色 Canon / 体型差异测试
+4. 人物 + 场景融合测试
+5. 地点 signature 与 motif budget 测试
+6. 衣褶、Canonical Text 与 Contact Sheet 测试
+7. 雨景 / 夜景变体测试
 
 不要一开始堆所有元素。
 
@@ -941,13 +1086,45 @@ continuity_state:
 
 ---
 
-# 22. 机器可读 Normalized Style Profile
+# 22. v1.1 静态 LookDev 回归定义
+
+以下 A–F 仅作为通用回归结构，不携带任何具体文学人物、地点或牌匾 Canon。静态定义完整不等于真实视觉已通过；真实输出仍需人工连续审阅，Profile 在此之前保持 `pending_review`。
+
+## Case A — 园林人物与空气层次
+- 远景对比、饱和度和细节明显低于近景。
+- 人物与环境属于同一渲染语言。
+- 无高频地砖、叶片或花点噪声。
+
+## Case B — Canon 体型差异
+- 同一 fingerprint 下覆盖 slender、fuller、sturdy 三种运行时 Canon。
+- 三者保持同一 Style，但不得收敛为同一瘦削美型模板。
+
+## Case C — 躺卧人物衣褶
+- 重力与地面接触决定衣料压、堆、拖、展开。
+- 无重复三角褶、等距折线或镜像几何结构。
+
+## Case D — 四种地点身份
+- 每个地点提供五项 signature，并能通过环境识别地点性格。
+- 至少一半 panel 不重复同一核心母题组合。
+
+## Case E — Canon 汉字
+- exact match；任一错字为 `TEXT FAIL`。
+- 直接生成不稳定时可切换为空牌匾 + 后期精确文字层。
+
+## Case F — Contact Sheet 到独立图
+- 获批 panel 优先 extraction / crop，必要时才 outpaint。
+- 人物身份、palette、medium、fingerprint 和构图核心不得漂移。
+- 不以重新文生图替代已批准视觉资产。
+
+---
+
+# 23. 机器可读 Normalized Style Profile
 
 ```yaml
 style_profile:
   style_id: dreamy_garden_poetic_healing
   display_name: 梦幻园林诗意治愈风
-  version: v1.0-zh
+  version: v1.1-zh
   classification: audiovisual_style_profile
 
   pre_content_modules:
@@ -1028,6 +1205,21 @@ style_profile:
         - 大面积轮廓光
         - 镜面湿地反射
 
+    airiness_system:
+      authority: hard
+      require:
+        - clean_highlights
+        - separated_midtones
+        - depth_based_contrast_falloff
+        - depth_based_saturation_falloff
+        - visible_air_gaps
+        - reflective_lift_from_sky_water_or_white_surfaces
+      avoid:
+        - global_milky_haze
+        - muddy_midtones
+        - blocked_dark_regions
+        - uniformly_dense_foliage
+
     texture_and_noise_control:
       authority: hard
       rule: 抑制高频纹理和碎点噪声
@@ -1055,14 +1247,53 @@ style_profile:
 
     character_system:
       authority: hard
-      adult_proportion: 7.5-8 heads
+      default_adult_proportion: 7.5-8_heads
+      body_type_policy: character_specific
+      canon_override: required_when_available
+      beauty_normalization: prohibited
+      allow_body_variation:
+        - slender
+        - balanced
+        - fuller
+        - sturdy
       head_scale: slightly_small
       shoulder_width: natural
-      legs: long_balanced
+      legs: natural_balanced
       face: 东方青年自然五官，细腻但不动漫化
       expression: 克制自然
       wardrobe: 低饱和、传统或传统倾向、融入环境
       role_in_frame: narrative_accent_not_dominant
+
+    fabric_drape_system:
+      authority: hard
+      principles:
+        - gravity_driven
+        - contact_point_driven
+        - hierarchical_fold_scale
+        - material_specific
+        - pose_specific
+      prohibit:
+        - repeated_triangle_folds
+        - equal_spacing_folds
+        - geometric_fold_pattern
+        - mirrored_fold_structure
+
+    location_identity_system:
+      authority: hard
+      source_canon_first: true
+      required_signature_fields:
+        - architecture_signature
+        - botanical_signature
+        - spatial_signature
+        - material_signature
+        - mood_signature
+      generic_garden_substitution: prohibited
+
+    motif_budget:
+      authority: medium_high
+      major_motifs_per_shot: 2-4
+      repeated_signature_combo_across_series: avoid
+      scene_specific_botanical_density: required
 
     animal_system:
       authority: hard
@@ -1181,6 +1412,16 @@ style_profile:
         - restrained micro-detail
         - natural observational composition
         - unified art language
+        - luminous value separation
+        - clear atmospheric depth without milky haze
+        - depth-dependent contrast reduction
+        - character-specific natural body morphology
+        - no beauty-normalized body template
+        - gravity-driven irregular fabric folds
+        - source-grounded location identity
+        - scene-specific botanical density
+        - limited motif budget
+        - preserve approved visual fingerprint across the series
       negative_semantics:
         - no granular stone texture
         - no dense speckles
@@ -1192,6 +1433,68 @@ style_profile:
         - no anime protagonist proportions
         - no mirror-like wet pavement
         - no large glowing storefront
+        - no generic ancient-garden substitution
+        - no identical slender-beauty body template
+        - no repeated geometric fabric folds
+        - no equal-spaced pleats
+        - no global gray-beige haze
+        - no decorative pseudo-Chinese text
+        - no invented labels
+        - no automatic corner captions
+        - no repeated bridge-pavilion-flower formula across every scene
+
+    style_fingerprint:
+      freeze_after_lookdev_acceptance: true
+      fields:
+        - medium
+        - edge_softness
+        - saturation
+        - value_range
+        - atmospheric_depth
+        - foliage_granularity
+        - texture_noise
+        - character_stylization
+        - skin_rendering
+        - fabric_rendering
+        - reflection_behavior
+        - camera_observation_level
+
+    canonical_text_integrity:
+      default_nonessential_text: omit
+      canonical_text: exact_match_required
+      preferred_workflow:
+        - blank_signboard_in_base_image
+        - post_overlay_exact_text
+      direct_generation_requires_review: true
+      wrong_character_result: TEXT_FAIL
+      invented_decorative_text: prohibited
+
+    approved_frame_lock:
+      trigger_phrases:
+        - 锁定这一版
+        - 保持这一版
+        - 拆成独立图
+        - 只改比例
+        - 不改变画风
+        - 不改变构图
+      priority:
+        - crop_or_extract
+        - outpaint_preserving_locked_pixels
+        - local_edit
+        - regeneration_last
+      prompt_regeneration_when_lock_active: avoid
+
+    multi_panel_policy:
+      contact_sheet_role:
+        - lookdev
+        - storyboard
+        - comparison
+        - style_consistency_test
+      final_asset_policy:
+        - extract_approved_panel
+        - preserve_identity
+        - preserve_style_fingerprint
+        - outpaint_only_when_required
 
     continuity_required:
       - character.body_proportion
@@ -1202,6 +1505,9 @@ style_profile:
       - visual.detail_density
       - visual.noise_level
       - visual.atmospheric_depth
+      - style_fingerprint.medium
+      - style_fingerprint.saturation
+      - style_fingerprint.foliage_granularity
 
     quality_gate:
       fail_if:
@@ -1212,6 +1518,49 @@ style_profile:
         - 环境被人物完全压制
         - 夜景黑位堵死
         - 植物或水体出现全画面高频细节
+        - 存在明确角色 Canon，却被统一瘦削化或美型模板化
+        - 衣褶出现重复三角形、等距平行或明显几何复制
+        - 地点存在 Canon，但场景退化为通用江南园林
+        - 多格图中多个地点重复同一花树+桥+亭模板
+        - 画面整体被奶灰或米灰雾化，丢失清透空气层次
+        - 夜景暖灯或水面反光面积过大，抢占主视觉
+        - Canon 牌匾或题字存在任一错字
+        - 非必要场景出现自动生成的标题、诗句或装饰文字
+        - 已批准画面在拆分或改比例时被重新生成并导致视觉漂移
+        - 同一系列输出的 medium、saturation 或 detail density 明显变化
+
+    lookdev_regression_cases:
+      - case_id: A
+        focus: garden_character_airiness
+        pass_criteria:
+          - depth_falloff_visible
+          - unified_character_environment_rendering
+          - no_high_frequency_ground_or_foliage_noise
+      - case_id: B
+        focus: canon_body_type_variation
+        pass_criteria:
+          - one_style_multiple_body_types
+          - no_slender_beauty_normalization
+      - case_id: C
+        focus: reclining_fabric_drape
+        pass_criteria:
+          - gravity_and_contact_driven_folds
+          - no_repeated_geometric_folds
+      - case_id: D
+        focus: location_identity_variation
+        pass_criteria:
+          - five_signature_fields_present
+          - motif_combinations_not_repeated_across_majority
+      - case_id: E
+        focus: canonical_chinese_text
+        pass_criteria:
+          - exact_match_or_TEXT_FAIL
+          - blank_signboard_overlay_fallback_available
+      - case_id: F
+        focus: approved_panel_to_final_asset
+        pass_criteria:
+          - extraction_or_outpaint_before_regeneration
+          - identity_palette_medium_and_fingerprint_preserved
 
     model_adapter_reference:
       replaceable: true
@@ -1221,9 +1570,12 @@ style_profile:
     source_documents:
       - file: 本对话中的风格参考图与多轮生成验证
         extraction: direct_visual_analysis_and_iterative_validation
-        period: 2026-09-18_to_2026-09-19
-      - file: Style_Profile_梦幻园林诗意治愈风_v1.0_中文整合.md
-        extraction: normalized_source_profile
+        period: 2026-09-18_to_2026-09-20
+      - file: ai-media_梦幻园林诗意治愈风_v1.1_升级Short-Spec.md
+        extraction: production_experience_short_spec
+        period: 2026-09-20
+      - file: Style_Profile_梦幻园林诗意治愈风_v1.1_生产经验升级.md
+        extraction: normalized_source_profile_with_production_guardrails
     extracted_modules:
       - visual_identity
       - color_system
@@ -1235,6 +1587,16 @@ style_profile:
       - cinematography
       - environment_motion
       - production_quality_gate
+      - airiness_system
+      - character_canon_override
+      - fabric_drape_system
+      - location_identity_system
+      - motif_budget
+      - style_fingerprint
+      - canonical_text_integrity
+      - approved_frame_lock
+      - multi_panel_policy
+      - lookdev_regression_cases
     examples_are_canon: false
     creator_name_used_as_runtime_prompt_dependency: false
     inferred_missing_fields: false
@@ -1242,17 +1604,22 @@ style_profile:
 
 ---
 
-# 23. 最终生产检查表
+# 24. 最终生产检查表
 
 生成任何关键帧或视频镜头前后，按以下顺序检查：
 
 1. **画风有没有漂**：是否仍是东方半写实手绘场景美术？
 2. **空气感**：是否清透、远景轻、暗部不堵？
-3. **人物比例**：成人是否约 7.5–8 头身？
+3. **人物 Canon**：默认比例是否自然，角色体型差异是否被保留，是否发生统一瘦削美型化？
 4. **噪声**：地面、草、树、水、衣服有没有碎点与高频纹理？
 5. **色彩**：蓝绿、奶白、柔粉是否主导，黄绿 / 橙光是否失控？
 6. **构图**：是否自然观察，而不是模板海报？
 7. **动物**：是否自然、非卡通萌化？
-8. **镜头运动**：是否克制、缓慢、有呼吸？
+8. **衣褶**：是否由重力与接触点驱动，是否出现重复几何褶？
+9. **地点身份与母题**：是否遵守 location signature，并避免重复花桥亭模板？
+10. **Canon 文字**：是否 exact match，非必要文字是否被省略？
+11. **Frame Lock**：已批准画面是否优先抽取 / outpaint，而不是重新生成？
+12. **系列一致性**：是否继承冻结 style fingerprint？
+13. **镜头运动**：是否克制、缓慢、有呼吸？
 
 满足以上条件，才视为本 Style Profile 的有效输出。

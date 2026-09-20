@@ -1,0 +1,152 @@
+{
+  "fixture_only": false,
+  "library_status": "pending_review",
+  "normalized_from_source": "Style_Profile_田园风_v1.1_中文解析.md",
+  "style_profile": {
+    "style_id": "oriental_pastoral_cinematic_lifestyle",
+    "version": "v1.1-zh",
+    "classification": "hybrid_style_profile",
+    "pre_content_modules": {
+      "compatibility": {
+        "authority": "high",
+        "preferred": [
+          "田园生活",
+          "古村生活",
+          "农事",
+          "采摘",
+          "传统饮食",
+          "手作",
+          "非遗工艺",
+          "民俗文化",
+          "东方生活方式"
+        ]
+      },
+      "cultural_fidelity": {
+        "authority": "hard",
+        "style_may_invent_facts": false,
+        "evidence_required_for": [
+          "非遗名称",
+          "地域归属",
+          "历史起源",
+          "仪式顺序",
+          "工艺步骤",
+          "工具用途",
+          "服饰身份",
+          "象征意义"
+        ]
+      },
+      "story_direction": {
+        "authority": "medium",
+        "value": "环境建立 → 人物进入 → 行为 / 工艺过程 → 材料状态变化 → 人物或群体反馈 → 使用 / 完成 → 环境余韵"
+      }
+    },
+    "audiovisual_modules": {
+      "visual_identity": {
+        "authority": "hard",
+        "value": "真人东方自然主义田园电影感，真实材质、自然光、明确空间层次"
+      },
+      "visual_domains": {
+        "authority": "high",
+        "values": [
+          "pastoral_lifestyle",
+          "craft_process",
+          "folk_culture",
+          "food_tea"
+        ]
+      },
+      "lighting": {
+        "authority": "hard",
+        "value": "motivated naturalistic light；根据场景选择清晨、Golden Hour、阴天漫射、窗侧光、庭院斑驳光或真实火光"
+      },
+      "cinematography": {
+        "authority": "hard",
+        "value": "镜头焦段和景深服从当前信息任务；人物情绪偏中长焦，工艺操作偏标准至中长焦，材质使用 Macro，群体与仪式优先保存空间关系"
+      },
+      "depth_of_field": {
+        "authority": "high",
+        "value": "task-dependent selective focus；人物 / 材质可浅景深，工艺与群体空间可适度增加景深"
+      },
+      "foreground_layering": {
+        "authority": "high",
+        "value": "轻盈、自然、不规则前景；用于空间层次和视差，不遮挡关键动作"
+      },
+      "performance": {
+        "authority": "high",
+        "value": "人物自然在场；情绪由当前项目选择 joyful / serene / focused / reverent / communal"
+      },
+      "shot_architecture": {
+        "authority": "hard",
+        "value": "环境负责世界，人物负责情绪，过程负责因果，材质负责触感；连续镜头同时检查景别、主体与信息功能变化"
+      },
+      "shot_design": {
+        "authority": "hard",
+        "value": "one_primary_attention_target；允许二级环境与人物信息共存"
+      },
+      "process_visualization": {
+        "authority": "hard",
+        "value": "initial_state → human_action → tool_or_force → material_response → visible_state_change → resulting_state"
+      },
+      "process_continuity": {
+        "authority": "hard",
+        "value": "previous_result_equals_next_input"
+      },
+      "editing_rhythm": {
+        "authority": "high",
+        "value": "诗意不等于低信息密度；通过景别、主体和状态变化提高信息密度，环境镜头提供呼吸"
+      },
+      "sound_design": {
+        "authority": "high",
+        "value": "环境 / 材料 / 行为驱动；动作与 Foley 同步，特写更近，环境镜头声场更宽"
+      },
+      "music_direction": {
+        "authority": "medium_high",
+        "value": "独立 BGM、无人声、低至中密度，不覆盖现场环境声与工艺声音"
+      },
+      "continuity": {
+        "authority": "hard",
+        "value": "锁定人物、地域、空间、材料状态、工具、光向与声音空间连续性"
+      }
+    },
+    "production_modules": {
+      "prompt_compilation": {
+        "require_global_visual_dna": true,
+        "require_visual_domain": true,
+        "require_shot_intent": true,
+        "require_primary_attention_target": true,
+        "require_focus_target": true,
+        "require_process_state": "when_applicable",
+        "require_material_response": "when_applicable",
+        "require_sound_direction": true
+      },
+      "visual_baseline": {
+        "required": true,
+        "method": "LookDev 静帧 → 短 Clip Pilot → 真实生成结果审查"
+      },
+      "adapter_reference": {
+        "replaceable": true
+      },
+      "fixed_shot_count_is_canon": false,
+      "fixed_duration_is_canon": false,
+      "fixed_lens_is_canon": false,
+      "fixed_depth_of_field_is_canon": false,
+      "fixed_model_is_canon": false
+    },
+    "provenance": {
+      "source_documents": [
+        {
+          "file": "Style_Profile_田园风_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "source_type": "previous_ready_profile"
+        },
+        {
+          "file": "Style_Profile_田园风_v1.1_中文解析.md",
+          "version": "v1.1-zh",
+          "source_type": "production_derived_upgrade",
+          "evidence": "江南采茶、制茶、泡茶、品茗项目多轮 LookDev、视频生成、镜头节奏重构与最终成片经验，以及面向田园生活、非遗民俗与工艺品制作的扩展审查"
+        }
+      ],
+      "source_sha256": "19B510148C5298A388F6F1E14EE9F01D5D1F61EE3A526ACEEB89BC9C59D71019"
+    },
+    "display_name": "田园风"
+  }
+}

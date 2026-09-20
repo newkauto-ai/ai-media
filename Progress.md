@@ -2,6 +2,10 @@
 
 ## Current Goal
 
+稳定 ID `oriental_pastoral_cinematic_lifestyle` 已按 `Style_Profile_田园风_v1.1_中文解析.md` 从 v1.0 增量升级并有界部署为 `v1.1-zh`：镜头焦段和景深改为信息任务驱动，新增四类 Visual Domain、环境/人物/过程/材质功能镜头架构、`one_primary_attention_target`、材料状态机、文化事实证据边界与相邻镜头重复保护。v1.0 source/normalized 保留为历史；registry/normalized 继续为 `pending_review`，不把契约和安装验证误报为真实 LookDev 人工批准。安装快照刻意排除权威源码中尚未部署的梦幻园林 v1.1 改动，活动插件为 `ai-media@personal 0.1.0+codex.20260920083551`。
+
+稳定 ID `dreamy_garden_poetic_healing` 已按 short spec 从 `v1.0-zh` 增量升级为 `v1.1-zh` 权威源码：新增可冻结的 Style Fingerprint、结构化 Airiness、Character Canon Override、Fabric Drape、Location Identity、Motif Budget、Canonical Text Integrity、Approved Frame Lock、Multi-panel Policy 与 A–F 静态 LookDev 回归定义。通用 Style Core 未写入任何《红楼梦》专属人物、地点或牌匾事实；registry 与 normalized 继续保持 `pending_review`。本轮仅修改源码并离线验证，不更新 cachebuster、不重装、不执行 Git commit/push，也没有调用图片生成。
+
 VOX 稳定 ID `vox_transcript_driven_handmade_collage` 已在 v1.8 decomposition / reconstruction 基线上增量升级并本机部署为 `v1.9-zh`：Pilot 生成前选择 `hero_key_art` 或 `production_reconstructable`；Production 路线自动编译“coherent poster + independently reconstructable visual groups”语义，并在现有 Poster Readiness / `previsualization_storyboard` Review Result 中增加五项 reconstructability findings。明显矩形 screenshot crop 为 `must_fix`；视觉质量高但过度融合的 Production Pilot 可推荐重分类为 Hero，并进入 v1.8 salvage/reuse。v1.8 历史 source/normalized 与四种 decomposition、Static Reconstruction、Hero Typography、数字本地化和 generative route 均保留。没有新增 Pilot Manifest/Gate/State Machine，也没有重构 Renderer。personal marketplace 重装已回读为 `installed/enabled`，同过滤规则下源码/活动缓存 542/542、零缺失、零多余、零 SHA-256 差异，9 项安装缓存回归通过；当前任务不会热加载新 Skill。
 
 VOX 稳定 ID `vox_transcript_driven_handmade_collage` 已按增量范围升级为 `v1.8-zh` 源码：保留 v1.7 历史文件，在既有 Scene/Shot/`local_assembly_plan`、asset、Poster Readiness、`previsualization_storyboard` Review Result 与 `production_qa` owner 内加入四类海报拆解、本地静态重构、生成素材 salvage、运动暴露区背景恢复、Remotion-owned 三类文字实现、历史/文化数字本地化和 Remotion runtime outline。Production Manifest contract 仍为 v1.8；没有新增 Reconstruction Manifest/Gate、Typography Manifest、Poster State Machine、approval、retry 或 actual-state owner。本轮只实施权威源码所需内容，不更新 cachebuster、不重装、不声称当前会话热加载，也不执行 Git commit/push。
@@ -24,6 +28,14 @@ VOX 稳定 ID `vox_transcript_driven_handmade_collage` 已在权威源码升级�
 
 ## Completed & Key Decisions
 
+- `oriental_pastoral_cinematic_lifestyle` 保持稳定 ID；新增 v1.1 source/normalized，registry 路由更新到 v1.1，v1.0 normalized 与 source 均保留为历史。
+- 田园风不再把年轻女性、汉服、江南、Golden Hour、85–135mm 或极浅景深当作全局硬规则；人物身份、地域、情绪、焦段和景深改由项目事实、Visual Domain 与当前信息任务决定。
+- 工艺内容必须表现 `动作 → 材料反馈 → 可见状态变化`，前一结果作为后一镜输入；地域、非遗、仪式、工艺、工具与服饰含义保持证据约束，未知项不得由 Style 编造。
+- 本机安装从原活动缓存构建受限快照，只叠加田园风 source/normalized、registry 定向路由、公共 Profile 测试和 cachebuster；未带入梦幻园林未部署改动，也未执行 Git commit/push。
+- `dreamy_garden_poetic_healing` 保持稳定 ID，registry 已指向 v1.1 source/normalized；v1.0 normalized 保留为历史，旧 v1.0 source 按 short spec 重命名升级为 v1.1 source。
+- Airiness 由明度分离、深度衰减、空气缝隙、反射提亮、暗部保护和禁止全局奶灰雾化组成；人物体型与地点身份由运行时 Canon 覆盖默认值，Style 不再执行统一瘦削美型化。
+- Canon 文字默认省略非必要文本，必要文字 exact match，失败为 `TEXT_FAIL`；已批准画面优先 extraction/crop、保留像素 outpaint、局部编辑，prompt regeneration 最后使用。
+- Contact Sheet 只承担 LookDev/Storyboard/比较；A–F 已作为 6 个静态回归定义进入 normalized/test，但不等于真实生成图片已获人工批准，状态因此保持 `pending_review`。
 - VOX v1.9 保持稳定 profile ID，新增 source/normalized 文件并把 registry 指向 v1.9；v1.8 及更早历史文件保留。
 - 新增 `pilot_design_route`：Hero 允许高度融合且不强制 reconstructability；Production 用于 editorial 主体与 precision shots，必须同时通过 Visual Quality、Poster Readiness 及 typography/context/decorative/rectangle/motion-sequence 五项检查。
 - Production Prompt Compiler 自动加入连贯海报与可独立重构视觉组要求，同时明确不固定层数、布局、色板或《霍去病》等项目常量。
@@ -91,6 +103,15 @@ VOX 稳定 ID `vox_transcript_driven_handmade_collage` 已在权威源码升级�
 
 ## Core Files
 
+- `style-profiles/source/Style_Profile_田园风_v1.1_中文解析.md`
+- `style-profiles/normalized/oriental_pastoral_cinematic_lifestyle.v1.1-zh.json`
+- `style-profiles/registry.json`
+- `tests/verify-style-profile-library.ps1`
+- `deliverables/ai-media-pastoral-v1.1-deploy-2026-09-20/deployment-readback.md`
+- `style-profiles/source/Style_Profile_梦幻园林诗意治愈风_v1.1_生产经验升级.md`
+- `style-profiles/normalized/dreamy_garden_poetic_healing.v1.1-zh.json`
+- `style-profiles/registry.json`
+- `tests/verify-style-profile-library.ps1`
 - `style-profiles/source/Style_Profile_VOX编辑纸拼贴讲解动画_v1.9_生产友好Pilot路由.md`
 - `style-profiles/normalized/transcript_driven_handmade_collage.v1.9-zh.json`
 - `style-profiles/source/Style_Profile_VOX编辑纸拼贴讲解动画_v1.8_海报拆解与重构.md`
@@ -146,6 +167,10 @@ VOX 稳定 ID `vox_transcript_driven_handmade_collage` 已在权威源码升级�
 
 ## Verification
 
+- 田园风 v1.1 权威源码与受限安装快照均通过 `verify-style-profile-library.ps1`、`verify-contracts.ps1`；VOX v1.9 定向回归通过，`git diff --check` 无空白错误。断言覆盖稳定 ID、v1.0 历史保留、四类 Visual Domain、文化证据边界、任务驱动摄影/景深、五种运行时情绪、功能镜头架构、Primary Attention、材料反馈/状态连续性及 Prompt 编译要求。
+- `ai-media@personal 0.1.0+codex.20260920083551` 已回读为 installed/enabled；受限 staging 与活动安装缓存均为 622 文件，零缺失、零多余、零 SHA-256 差异；personal marketplace 恢复前后哈希一致，田园风 source/normalized 的权威源码与安装缓存哈希一致。
+- 梦幻园林 v1.1 完整仓库快照与权威源码回归均通过 `verify-style-profile-library.ps1`；Scanner 正确解析唯一稳定 ID、v1.1 source/normalized、`pending_review` 状态，source/registry/provenance SHA-256 均为 `ABD5E9470A71B730021B9CDD6EA1A491F07AD5D44BC4747AB43EE3D52FB24422`。
+- `verify-vox-style-profile.ps1` 通过，证明此次局部 registry/Profile 升级未破坏 VOX v1.9；`git diff --check` 通过。静态断言覆盖 Airiness、Canon override、Fabric、Location、Motif、Text、Frame Lock、Multi-panel、Fingerprint、A–F 六案以及通用 Core 不含项目专属文学 Canon。
 - VOX v1.9 staging 定向回归通过：`verify-vox-style-profile`、`verify-image-prompt-contracts`、`verify-style-profile-library`、`verify-skill4-contracts`、`verify-storyboard-previsualization`、`verify-review-system-v2-gate1` 与 `verify-contracts` 全部 PASS。验证覆盖 active v1.9/provenance、v1.8 历史保留、两类 route、五项 reconstructability、矩形裁切硬失败、Hero reclassification、Prompt 自动语义、v1.8 decomposition/Static Reconstruction 回归及根目录/`skills/` mirror parity；未调用外部生成。
 - VOX v1.8 定向验证通过：稳定 ID、v1.7 历史保留、active source/normalized/registry SHA、四类分解、Static Reconstruction owner/容差、salvage 顺序、局部背景恢复、三类文字实现、Hero Typography、历史/现代数字、runtime outline、六类新增 fixtures、根目录/manifest Skill 镜像均 PASS。
 - 受影响回归 11/11 通过：Style Profile library、contracts、Skill 4、Storyboard previsualization、Review Result v2.1、Image Prompt、BGM、reference remake、staged approvals、Workflow Controller、VOX。Image Prompt compiler 继续为 fixture-only/blocked，没有调用外部生成或写 Manifest。
@@ -201,6 +226,9 @@ VOX 稳定 ID `vox_transcript_driven_handmade_collage` 已在权威源码升级�
 
 ## Known Issues
 
+- 田园风 v1.1 的自动化测试、安装状态和缓存一致性不证明真实画面质量；状态保持 `pending_review`。当前任务不会热加载刚重装的 Profile，自然语言选择与 Visual Domain 路由需在新任务验证，真实传播前仍需短 Pilot 连续人工观看。
+- Plugin Creator 官方校验器在当前可用 Python 环境中因缺少 PyYAML 无法启动；没有为验证擅自安装依赖。Codex 安装摄取成功，插件清单可解析，已安装缓存的 Style Profile、VOX 与基础契约回归均通过。
+- 梦幻园林 v1.1 的 A–F 当前是静态契约/回归定义，没有调用图片生成，也未完成真实 LookDev 人工观看；因此 `pending_review` 是正确状态，不能宣称 ready。权威源码尚未 cachebuster/reinstall，当前安装缓存仍为此前版本。
 - VOX v1.8/v1.9 自动化验证证明契约、fixture、provenance、镜像与安装缓存一致，不证明真实静态重构视觉等价、Hero Typography 质量、runtime outline 观感、真实素材 salvage ROI 或人工批准；自然语言运行时行为仍需在新任务验证。
 - VOX v1.7 的自动化验证只覆盖指令、契约、路由、迁移与 fixtures；尚未用真实长片项目生成 Poster Contact Sheet、逐镜 stable poster 或混合 Remotion/hero clip 成片，因此视觉层级、节奏和真实 ROI 仍需项目 Pilot 与连续人工观看。
 - 当前任务不会热加载本轮新插件指令；本机安装与缓存回读完成后，仍需在新任务做一次自然语言 VOX Poster-first 路由冒烟验证。
@@ -221,5 +249,7 @@ VOX 稳定 ID `vox_transcript_driven_handmade_collage` 已在权威源码升级�
 
 ## Next
 
-1. 在新任务做自然语言冒烟验证：确认先选择 `pilot_design_route`，Production Pilot 通过 route-specific Review 后才进入 v1.8 decomposition / Static Reconstruction / 最小资产派生 / motion route；不把 fixture PASS 当作运行时或视觉质量证明。
-2. 有真实参考、完整素材和最终旁白后，用 production typography、hero callback、beautiful-but-entangled reclassification、rectangle-risk、历史数字和 runtime outline 代表镜做连续人工观看。
+1. 在新任务做田园风 v1.1 自然语言冒烟验证；若要把状态推进到 `ready`，先用代表性田园生活或工艺场景完成 LookDev / 短 Clip Pilot 并连续人工观看。
+2. 若要完成梦幻园林 v1.1 视觉验收，用不含固定文学人物名的运行时 Canon 执行 A–F 代表性 LookDev，并连续人工观看；通过前保持 `pending_review`。
+3. 梦幻园林 v1.1 仍是源码侧未部署改动；如需本机使用，另行做独立有界部署，不能从本轮田园风安装推断其已生效。
+4. VOX 后续仍需在新任务确认 `pilot_design_route` 与 v1.8 decomposition / Static Reconstruction 衔接，并用真实代表镜连续观看。
