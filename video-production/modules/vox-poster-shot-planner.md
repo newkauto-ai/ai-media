@@ -12,6 +12,7 @@ Require the frozen Script, confirmed final narration semantic intervals, current
 2. Split the Beat into one or more Poster Shots only when information density, reading time, evidence, map/detail, comparison, climax, or editorial rhythm requires it. Do not force Wide + Detail or a fixed shot count.
 3. Give every Poster Shot one `information_goal`, one primary attention target at a time, one independently readable `stable_poster_state`, and an open-vocabulary `shot_role`/`poster_archetype`.
 4. Before Pilot design or image Prompt compilation, select exactly one `pilot_design_route`: `hero_key_art` or `production_reconstructable`. Use Hero for cover/climax/emotional/callback/Title Card/video-reference value where fusion matters more than element control. Use Production when text, map/route, data, relationships, staged reveals, independent entrances, or a Remotion precision reconstruction requires independent visual groups.
+4a. For a historical Shot, optionally select one `historical_visual_mode`: `hero_cinematic`, `editorial_explainer`, or `atmospheric_historical`. Omit it or use `null` for non-historical Shots. This mode is independent of `pilot_design_route`, `decomposition_decision`, and `motion_route`; never infer one dimension from another.
 5. Define the poster before motion: visual hierarchy, reading path, protected critical-text region, paper layers, primary/secondary elements, and the exact approved stable-state reference. A Production Pilot must read as one coherent poster while its major typography, directional, decorative, and context groups remain visually separable and independently reconstructable; do not prescribe a fixed layer count, layout, palette, or project-specific constants.
 6. Review the generated Pilot by route inside the existing Poster Readiness / `previsualization_storyboard` Review Result. Hero checks visual impact, hierarchy, style, emotional value, and micro-animation/video-reference feasibility; reconstructability is `not_applicable`. Production additionally requires `typography_split_test`, `context_separation_test`, `decorative_independence_test`, `rectangle_risk_test`, and `motion_sequence_test`.
 7. After the actual Pilot passes its route-specific review, choose exactly one minimum-sufficient `decomposition_decision`: `keep_whole`, `partial_decomposition`, `full_element_assembly`, or `rebuild_locally`. Base it on actual motion exposure, editability, typography fidelity, asset quality, cost, and risk—not on a preference for more layers.
@@ -44,6 +45,7 @@ pilot_design_route: hero_key_art | production_reconstructable
 decomposition_decision: keep_whole | partial_decomposition | full_element_assembly | rebuild_locally
 adjacent_shot_difference: string
 motion_route: remotion_living_poster | remotion_precision_motion | generative_hero_clip
+historical_visual_mode: hero_cinematic | editorial_explainer | atmospheric_historical | null
 ```
 
 `shot_role` is descriptive and open. Suggested values are `establish`, `detail`, `comparison`, `evidence`, `map`, `number`, `relationship`, `transition`, `climax`, `symbolic_payoff`, and `custom`.
@@ -61,6 +63,7 @@ local_assembly_plan:
   poster_spec:
     poster_archetype: string
     pilot_design_route: hero_key_art | production_reconstructable
+    historical_visual_mode: hero_cinematic | editorial_explainer | atmospheric_historical | null
     visual_hierarchy: object
     primary_subject: object
     secondary_elements: [object]
@@ -96,6 +99,14 @@ local_assembly_plan:
 ```
 
 `camera_motion.intent` is not a closed enum. Static, strong, compound, multi-phase, perspective-aware and layer-coordinated motion remain available when the material, coverage and reading constraints support them.
+
+## Historical VOX projection
+
+Historical VOX is an optional module of the same stable profile, not a separate profile, planner, Gate, Manifest, state machine, or retry owner. Use `hero_cinematic` for a dignified person/event turning-point composition, `editorial_explainer` for map/route/time/relationship/institution/data/causality explanation, and `atmospheric_historical` for place/era/environmental-pressure establishment with a clear narrative focus.
+
+Compose **historical subject + evidence/context + editorial explanation** with palette roles `substrate`, `anchor_dark`, `persistent_accent`, and restrained optional secondary. Materials must be coherent with meaning and period, not generic archival clutter. Historical people remain narrative subjects with clean Alpha and Remotion-owned runtime outline. Maps, routes and timelines must answer `where`, `from_to`, `distance`, `territory`, `sequence`, `relationship`, or `change_over_time`; their labels remain Remotion-owned. Critical text keeps the existing three realizations and numeral display keeps the existing localization bindings.
+
+Era, region, identity, costume/armor, hair/props, architecture/terrain, formation, exact palette, project typography and recurring project symbols come from the Project Visual Bible. Do not hard-code a particular person, campaign, dynasty, costume, color or prop into this reusable module.
 
 ## Pilot route review and reclassification
 
@@ -152,6 +163,6 @@ If a generated asset is unsuitable for its original Shot, record one existing as
 
 ## Poster Readiness
 
-Reuse Review Result `previsualization_storyboard` and its existing lineage/evidence rules. Review these checks: primary attention clarity, editorial hierarchy, paper-layer separation, critical-text protection, readability without motion, asset coverage, adjacent-composition distinction, Style Baseline consistency, applicable Static Reconstruction fidelity, and poster-to-motion feasibility.
+Reuse Review Result `previsualization_storyboard` and its existing lineage/evidence rules. Review these checks: primary attention clarity, editorial hierarchy, paper-layer separation, critical-text protection, readability without motion, asset coverage, adjacent-composition distinction, Style Baseline consistency, applicable Static Reconstruction fidelity, and poster-to-motion feasibility. For Historical VOX also review mobile-size subject identity, primary title, direction/sequence and primary evidence; reject overloaded scrapbook, decorative archival clutter, unexplained maps/arrows/timelines, sticker-like people, competing persistent accents, material/period mismatch, baked critical text, and project-specific Core leakage.
 
 Any unresolved `must_fix` blocks motion compilation for the affected Poster Shot. Missing/stale evidence maps to `UNKNOWN` without retry consumption. Fixture output proves only structure and routing, never composition quality or approval.

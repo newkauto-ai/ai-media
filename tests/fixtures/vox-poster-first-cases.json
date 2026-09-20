@@ -260,11 +260,60 @@
       "expected": "delivery_frame_validation_required"
     }
   ],
+  "historical_visual_modes": [
+    {
+      "case_id": "historical-hero-introduction",
+      "historical_visual_mode": "hero_cinematic",
+      "pilot_design_route": "hero_key_art",
+      "decomposition_decision": "keep_whole",
+      "motion_route": "remotion_living_poster",
+      "expected": "valid"
+    },
+    {
+      "case_id": "historical-campaign-route",
+      "historical_visual_mode": "editorial_explainer",
+      "pilot_design_route": "production_reconstructable",
+      "decomposition_decision": "full_element_assembly",
+      "motion_route": "remotion_precision_motion",
+      "explains": ["from_to", "distance", "sequence"],
+      "label_owner": "remotion",
+      "expected": "valid"
+    },
+    {
+      "case_id": "historical-frontier-establish",
+      "historical_visual_mode": "atmospheric_historical",
+      "pilot_design_route": "hero_key_art",
+      "decomposition_decision": "partial_decomposition",
+      "motion_route": "remotion_living_poster",
+      "expected": "valid"
+    },
+    {
+      "case_id": "historical-hero-with-controlled-relationship",
+      "historical_visual_mode": "hero_cinematic",
+      "pilot_design_route": "production_reconstructable",
+      "decomposition_decision": "rebuild_locally",
+      "motion_route": "remotion_precision_motion",
+      "orthogonality_proven": true,
+      "expected": "valid"
+    },
+    {
+      "case_id": "historical-overloaded-scrapbook",
+      "historical_visual_mode": "editorial_explainer",
+      "anti_patterns": ["overloaded_scrapbook", "decorative_archival_clutter", "multiple_persistent_accents_competing_for_attention"],
+      "expected": "must_fix"
+    },
+    {
+      "case_id": "historical-core-project-leak",
+      "historical_visual_mode": "hero_cinematic",
+      "style_core_contains": ["named_project_person_costume_constant", "project_specific_exact_palette"],
+      "expected": "invalid_project_specific_leak"
+    }
+  ],
   "migration": {
-    "input_profile_versions": ["v1.6-zh", "v1.7-zh", "v1.8-zh"],
+    "input_profile_versions": ["v1.6-zh", "v1.7-zh", "v1.8-zh", "v1.9-zh"],
     "input_manifest_versions": ["1.7", "1.8"],
     "input_read_only": true,
-    "output_profile_version": "v1.9-zh",
+    "output_profile_version": "v1.10-zh",
     "output_manifest_version": "1.8",
     "stable_profile_id": "vox_transcript_driven_handmade_collage",
     "reuse_approved_assets_and_baselines_when_lineage_matches": true

@@ -60,3 +60,12 @@ This file preserves migration history for `vox_transcript_driven_handmade_collag
 - Made visible horizontal/vertical crop lines, background halos, full-width context strips, title-plus-background rectangles, and adjacent-element fragments `must_fix`; obvious rectangular screenshot crops are not an asset fallback.
 - Allowed visually strong but over-fused Production Pilots to be recommended as `hero_key_art` and retained through the existing v1.8 salvage/reuse path instead of forced decomposition.
 - Added the Production Pilot Prompt clause for a coherent poster plus independently reconstructable visual groups. Preserved all v1.8 decomposition, Static Reconstruction, Hero Typography, numeral localization, generative route, ownership, Gate, and state boundaries.
+
+## v1.10-zh
+
+- Added optional `style_profile.audiovisual_modules.historical_vox` v1.0 under the same stable VOX profile ID; no separate profile, registry ID, Gate, Manifest, state machine, retry owner, or planner was introduced.
+- Added `historical_visual_mode` with `hero_cinematic`, `editorial_explainer`, and `atmospheric_historical`; non-historical Shots omit it or use `null` and retain v1.9 behavior.
+- Kept Historical mode, Pilot design route, decomposition decision, and motion route as four orthogonal decisions.
+- Added the reusable historical grammar of subject + evidence/context + editorial explanation, structural palette roles, material/period coherence, subject-grade historical people, explanatory maps/routes/timelines, existing Remotion-owned critical text, and inherited numeral localization.
+- Routed era, identity, costume, architecture, terrain, exact palette, project typography, and recurring symbols to the Project Visual Bible instead of hard-coding project-specific historical constants into Style Core.
+- Added mobile-readability and anti-scrapbook findings to the existing Poster Readiness / `previsualization_storyboard` Review Result, plus six structural fixtures covering valid mode combinations, route orthogonality, must-fix clutter, and invalid project-specific leakage.

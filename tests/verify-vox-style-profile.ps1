@@ -12,18 +12,18 @@ $entries = @($registry.profiles | Where-Object { $_.profile_id -eq 'vox_transcri
 
 Assert-True ($entries.Count -eq 1) 'VOX profile must resolve to one stable registry entry.'
 $entry = $entries[0]
-Assert-True ($entry.source_file -eq 'Style_Profile_VOX编辑纸拼贴讲解动画_v1.9_生产友好Pilot路由.md') 'VOX registry source must be v1.9 Production-Friendly Pilot Routing.'
-Assert-True ($entry.normalized_file -eq 'transcript_driven_handmade_collage.v1.9-zh.json') 'VOX registry normalized file must be v1.9.'
-Assert-True ($entry.normalized_version -eq 'v1.9-zh') 'VOX registry version must be v1.9-zh.'
+Assert-True ($entry.source_file -eq 'Style_Profile_VOX编辑纸拼贴讲解动画_v1.10_历史VOX.md') 'VOX registry source must be v1.10 Historical VOX.'
+Assert-True ($entry.normalized_file -eq 'transcript_driven_handmade_collage.v1.10-zh.json') 'VOX registry normalized file must be v1.10.'
+Assert-True ($entry.normalized_version -eq 'v1.10-zh') 'VOX registry version must be v1.10-zh.'
 Assert-True ($entry.status -eq 'ready') 'VOX registry status must remain ready.'
 
 $sourcePath = Join-Path (Join-Path $libraryRoot 'source') $entry.source_file
 $normalizedPath = Join-Path (Join-Path $libraryRoot 'normalized') $entry.normalized_file
 $changelogPath = Join-Path $libraryRoot 'references\vox-changelog.md'
-Assert-True (Test-Path -LiteralPath $sourcePath) 'VOX v1.9 source file is missing.'
-Assert-True (Test-Path -LiteralPath $normalizedPath) 'VOX v1.9 normalized file is missing.'
+Assert-True (Test-Path -LiteralPath $sourcePath) 'VOX v1.10 source file is missing.'
+Assert-True (Test-Path -LiteralPath $normalizedPath) 'VOX v1.10 normalized file is missing.'
 Assert-True (Test-Path -LiteralPath $changelogPath) 'VOX changelog is missing.'
-foreach ($version in @('1.2', '1.3', '1.4', '1.5', '1.6', '1.7', '1.8')) {
+foreach ($version in @('1.2', '1.3', '1.4', '1.5', '1.6', '1.7', '1.8', '1.9')) {
     Assert-True (@(Get-ChildItem -LiteralPath (Join-Path $libraryRoot 'source') -Filter "*v$version*.md").Count -ge 1) "Historical VOX v$version source must be preserved."
     Assert-True (Test-Path -LiteralPath (Join-Path $libraryRoot "normalized\transcript_driven_handmade_collage.v$version-zh.json")) "Historical VOX v$version normalized profile must be preserved."
 }
@@ -35,9 +35,9 @@ $changelog = Get-Content -LiteralPath $changelogPath -Raw
 $normalized = Get-Content -LiteralPath $normalizedPath -Raw | ConvertFrom-Json
 $profile = $normalized.style_profile
 
-Assert-True ($normalized.normalized_from_source -eq $entry.source_file) 'Normalized Profile must name the active v1.9 source.'
+Assert-True ($normalized.normalized_from_source -eq $entry.source_file) 'Normalized Profile must name the active v1.10 source.'
 Assert-True ($profile.style_id -eq 'vox_transcript_driven_handmade_collage') 'VOX normalized stable ID changed.'
-Assert-True ($profile.version -eq 'v1.9-zh') 'VOX normalized version must be v1.9-zh.'
+Assert-True ($profile.version -eq 'v1.10-zh') 'VOX normalized version must be v1.10-zh.'
 Assert-True ($profile.provenance.source_sha256 -eq $sourceHash) 'Normalized Profile provenance hash must match the active source.'
 Assert-True (($profile.provenance.source_documents | Where-Object { $_.file -eq $entry.source_file }).sha256 -eq $sourceHash) 'Normalized source-document hash must match the active source.'
 
@@ -47,6 +47,7 @@ Assert-True ($poster.required_before_batch_asset_generation) 'Poster Shot Map mu
 Assert-True ($poster.planning_unit -match 'existing_scene_shot_local_assembly_plan') 'Poster Shot must project into existing Scene/Shot/local assembly ownership.'
 Assert-True (@($poster.required_fields) -contains 'stable_poster_state') 'Stable poster state is missing from the Poster Shot contract.'
 Assert-True (@($poster.required_fields) -contains 'source_beat_id') 'Poster Shot must retain the ADP Beat reference.'
+Assert-True (@($poster.optional_fields) -contains 'historical_visual_mode' -and -not (@($poster.required_fields) -contains 'historical_visual_mode')) 'Historical visual mode must remain optional and non-historical behavior must not change.'
 Assert-True ($poster.wide_detail_rule -match 'without_forcing_two_shots_per_beat') 'Wide/detail planning must remain optional.'
 Assert-True ($poster.poster_readiness.failure_rule -match 'blocks_motion_compilation') 'Failed Poster Readiness must block motion compilation.'
 Assert-True ($poster.poster_readiness.owner -match 'existing_review_result') 'Poster Readiness must reuse the existing Review Result owner.'
@@ -76,6 +77,19 @@ $numerals = $profile.audiovisual_modules.historical_cultural_numeral_localizatio
 Assert-True ($numerals.historical_cultural_hero_default -eq 'locale_appropriate_written_numerals') 'Historical/cultural hero numerals must default to locale-appropriate written forms.'
 Assert-True ($numerals.modern_data_visualization -eq 'arabic_numerals_allowed') 'Modern data visualization must allow Arabic numerals.'
 Assert-True ($numerals.semantic_rule -match 'must_not_change') 'Numeral display conversion must preserve source fact semantics.'
+
+$historicalVox = $profile.audiovisual_modules.historical_vox
+Assert-True ($historicalVox.version -eq 'v1.0-zh' -and $historicalVox.field -eq 'historical_visual_mode') 'Historical VOX module identity is missing.'
+Assert-True ((@($historicalVox.allowed_modes) -join '|') -eq 'hero_cinematic|editorial_explainer|atmospheric_historical') 'Historical VOX modes are incomplete or reordered.'
+Assert-True ((@($historicalVox.orthogonal_dimensions) -join '|') -eq 'historical_visual_mode|pilot_design_route|decomposition_decision|motion_route') 'Historical, Pilot, decomposition, and motion decisions must stay orthogonal.'
+Assert-True ((@($historicalVox.visual_grammar.required_structure) -join '|') -eq 'historical_subject|evidence_or_context|editorial_explanation') 'Historical VOX visual grammar is incomplete.'
+Assert-True ((@($historicalVox.visual_grammar.palette_roles) -join '|') -eq 'substrate|anchor_dark|persistent_accent|restrained_optional_secondary') 'Historical VOX palette roles are incomplete.'
+Assert-True ($historicalVox.visual_grammar.character_rule -match 'not_stickers' -and $historicalVox.visual_grammar.character_rule -match 'runtime_outline') 'Historical people must remain subjects with runtime outline.'
+Assert-True (@($historicalVox.visual_grammar.map_route_timeline_questions) -contains 'distance' -and @($historicalVox.visual_grammar.map_route_timeline_questions) -contains 'change_over_time' -and $historicalVox.visual_grammar.map_label_owner -eq 'remotion') 'Historical map/route/timeline explanation contract is incomplete.'
+Assert-True ((@($historicalVox.visual_grammar.critical_text_realizations) -join '|') -eq 'remotion_native_text|verified_typography_svg|verified_typography_png') 'Historical VOX must reuse the three existing critical-text realizations.'
+Assert-True (@($historicalVox.project_visual_bible_owns) -contains 'historical_person_identity' -and @($historicalVox.project_visual_bible_owns) -contains 'exact_palette_values') 'Project Visual Bible ownership is incomplete.'
+Assert-True (@($historicalVox.anti_patterns) -contains 'overloaded_scrapbook' -and @($historicalVox.anti_patterns) -contains 'project_specific_constants_leaking_into_style_core') 'Historical VOX anti-patterns are incomplete.'
+Assert-True ($historicalVox.new_owner_policy -match 'no_new_profile_registry_id_gate_manifest_state_machine_retry_or_planner') 'Historical VOX must not create new owners or a new profile.'
 
 $routing = $profile.audiovisual_modules.motion_route_decision
 Assert-True ($routing.default -eq 'remotion_living_poster') 'VOX motion routing must default to Remotion living poster.'
@@ -126,6 +140,9 @@ Assert-True ($source.Contains('later_beat') -and $source.Contains('hero_poster')
 Assert-True ($source.Contains('motion_exposure_regions') -and $source.Contains('不得机械地为每张海报补整张空背景')) 'Source background plate strategy is incomplete.'
 Assert-True ($source.Contains('verified_typography_svg') -and $source.Contains('verified_typography_png') -and $source.Contains('不得静默降级为普通 CSS 字体')) 'Source typography realization or Hero Typography boundary is missing.'
 Assert-True ($source.Contains('Historical/Cultural Numeral Localization') -and $source.Contains('八百') -and $source.Contains('Arabic numerals')) 'Source numeral localization policy is missing.'
+Assert-True ($source.Contains('Historical VOX 可选模块') -and $source.Contains('historical_visual_mode: hero_cinematic | editorial_explainer | atmospheric_historical | null')) 'Source Historical VOX mode projection is missing.'
+Assert-True ($source.Contains('historical subject + evidence/context + editorial explanation') -and $source.Contains('Project Visual Bible')) 'Source Historical VOX grammar or project boundary is missing.'
+Assert-True ($source.Contains('互相正交') -and $source.Contains('拥挤 scrapbook') -and $source.Contains('archival clutter')) 'Source Historical VOX orthogonality or anti-pattern policy is missing.'
 Assert-True ($source.Contains('Remotion 在运行时施加') -and $source.Contains('10px/8px/6px') -and $source.Contains('投影保持低饱和')) 'Source runtime outline policy is missing.'
 Assert-True ($source.Contains('VOX editorial 为主体') -and $source.Contains('少量高质量 hero poster')) 'Source editorial-plus-hero-poster mix is missing.'
 Assert-True ($source.Contains('why_not_remotion') -and $source.Contains('“更电影感”不是充分理由')) 'Source generative routing boundary is missing.'
@@ -150,8 +167,11 @@ Assert-True ($planner.Contains('poster_spec') -and $planner.Contains('motion_pla
 Assert-True ($posterPlanner.Contains('Poster Shot Map') -and $posterPlanner.Contains('generative_hero_clip') -and $posterPlanner.Contains('why_not_remotion')) 'VOX Poster Shot Planner is incomplete.'
 Assert-True ($posterPlanner.Contains('Static Reconstruction Check') -and $posterPlanner.Contains('recover_motion_exposure_regions') -and $posterPlanner.Contains('verified_typography_svg')) 'VOX Poster planner lacks reconstruction, plate, or typography routing.'
 Assert-True ($posterPlanner.Contains('pilot_design_route') -and $posterPlanner.Contains('typography_split_test') -and $posterPlanner.Contains('recommended_reclassification: hero_key_art')) 'VOX Poster planner lacks v1.9 Pilot route, reconstructability checks, or reclassification.'
+Assert-True ($posterPlanner.Contains('Historical VOX projection') -and $posterPlanner.Contains('historical_visual_mode') -and $posterPlanner.Contains('Project Visual Bible')) 'VOX Poster planner lacks Historical VOX projection or project boundary.'
+Assert-True ($planner.Contains('four independent decisions') -and $planner.Contains('Non-historical Shots omit the field')) 'Scene planner must preserve Historical VOX orthogonality and non-historical behavior.'
 Assert-True ($storyboard.Contains('VOX Poster Contact Sheet') -and $storyboard.Contains('editorial_repetition_warning')) 'Storyboard planner is missing VOX rhythm review.'
 Assert-True ($storyboard.Contains('rectangle_risk_test') -and $storyboard.Contains('full-width context strip') -and $storyboard.Contains('preserve it through existing salvage/reuse')) 'Storyboard review lacks route-specific rectangle risk and reclassification handling.'
+Assert-True ($storyboard.Contains('At mobile size') -and $storyboard.Contains('overloaded scrapbook') -and $storyboard.Contains('adds no Historical Gate')) 'Storyboard review lacks Historical VOX mobile readability or ownership boundary.'
 Assert-True ($assetCompiler.Contains('one visually strong, coherent editorial poster') -and $assetCompiler.Contains('independently reconstructable') -and $assetCompiler.Contains('fixed layer count')) 'Asset Prompt Compiler lacks Production Pilot auto-clause semantics or non-prescription boundary.'
 Assert-True ($promptContract.Contains('pilot_design_route') -and $promptContract.Contains('rectangular screenshot-crop dependency')) 'Executable Prompt Contract lacks VOX Pilot route projection.'
 Assert-True ($lookdev.Contains('vox_style_bakeoff') -and $lookdev.Contains('no applicable approved VOX or Series Baseline')) 'LookDev optional VOX bake-off is missing.'
@@ -228,9 +248,21 @@ $partialBackground = $fixture.background_plate | Where-Object { $_.case_id -eq '
 Assert-True ($partialBackground.strategy -eq 'recover_motion_exposure_regions' -and -not $partialBackground.full_plate_generated -and @($partialBackground.approved_motion_exposure_regions).Count -gt 0) 'Partial background recovery fixture is invalid.'
 $runtimeOutline = $fixture.runtime_outline | Where-Object { $_.case_id -eq 'runtime-outline' }
 Assert-True ($runtimeOutline.owner -eq 'remotion_runtime_style' -and -not $runtimeOutline.bake_into_new_source_png -and @($runtimeOutline.global_width_constants).Count -eq 0 -and $runtimeOutline.shadow_separate) 'Runtime outline fixture is invalid.'
+$historicalHero = $fixture.historical_visual_modes | Where-Object { $_.case_id -eq 'historical-hero-introduction' }
+$historicalRoute = $fixture.historical_visual_modes | Where-Object { $_.case_id -eq 'historical-campaign-route' }
+$historicalAtmosphere = $fixture.historical_visual_modes | Where-Object { $_.case_id -eq 'historical-frontier-establish' }
+$historicalOrthogonal = $fixture.historical_visual_modes | Where-Object { $_.case_id -eq 'historical-hero-with-controlled-relationship' }
+$historicalScrapbook = $fixture.historical_visual_modes | Where-Object { $_.case_id -eq 'historical-overloaded-scrapbook' }
+$historicalLeak = $fixture.historical_visual_modes | Where-Object { $_.case_id -eq 'historical-core-project-leak' }
+Assert-True ($historicalHero.historical_visual_mode -eq 'hero_cinematic' -and $historicalHero.pilot_design_route -eq 'hero_key_art' -and $historicalHero.expected -eq 'valid') 'Historical hero introduction fixture is invalid.'
+Assert-True ($historicalRoute.historical_visual_mode -eq 'editorial_explainer' -and $historicalRoute.pilot_design_route -eq 'production_reconstructable' -and $historicalRoute.motion_route -eq 'remotion_precision_motion' -and @($historicalRoute.explains) -contains 'distance' -and $historicalRoute.label_owner -eq 'remotion') 'Historical campaign route fixture is invalid.'
+Assert-True ($historicalAtmosphere.historical_visual_mode -eq 'atmospheric_historical' -and $historicalAtmosphere.pilot_design_route -eq 'hero_key_art' -and $historicalAtmosphere.expected -eq 'valid') 'Historical atmospheric establish fixture is invalid.'
+Assert-True ($historicalOrthogonal.historical_visual_mode -eq 'hero_cinematic' -and $historicalOrthogonal.pilot_design_route -eq 'production_reconstructable' -and $historicalOrthogonal.orthogonality_proven) 'Historical orthogonality fixture is invalid.'
+Assert-True ($historicalScrapbook.expected -eq 'must_fix' -and @($historicalScrapbook.anti_patterns) -contains 'decorative_archival_clutter') 'Historical overloaded scrapbook must be must_fix.'
+Assert-True ($historicalLeak.expected -eq 'invalid_project_specific_leak' -and @($historicalLeak.style_core_contains).Count -gt 0) 'Historical project-specific Core leak fixture is invalid.'
 $derived = @($fixture.short_explainer.poster_shots | Where-Object { $_.approved_for_asset_derivation } | ForEach-Object { $_.asset_requirements } | Sort-Object -Unique)
 $expected = @($fixture.asset_derivation.expected_production_asset_set | Sort-Object -Unique)
 Assert-True (($derived -join '|') -eq ($expected -join '|')) 'Production Asset Set must derive only from approved Poster Shots.'
-Assert-True ($fixture.migration.input_read_only -and @($fixture.migration.input_profile_versions) -contains 'v1.8-zh' -and $fixture.migration.output_profile_version -eq 'v1.9-zh' -and $fixture.migration.output_manifest_version -eq '1.8' -and $fixture.migration.stable_profile_id -eq 'vox_transcript_driven_handmade_collage') 'v1.6-v1.8 to v1.9 migration fixture is invalid.'
+Assert-True ($fixture.migration.input_read_only -and @($fixture.migration.input_profile_versions) -contains 'v1.9-zh' -and $fixture.migration.output_profile_version -eq 'v1.10-zh' -and $fixture.migration.output_manifest_version -eq '1.8' -and $fixture.migration.stable_profile_id -eq 'vox_transcript_driven_handmade_collage') 'v1.6-v1.9 to v1.10 migration fixture is invalid.'
 
-Write-Output 'PASS: VOX v1.9 Production-Friendly Pilot Routing Profile, stable-ID/v1.8 history, route-specific design/review, rectangle-crop prohibition, Production-to-Hero reclassification, v1.8 decomposition/reconstruction reuse, Prompt auto-clause, source/mirror parity, provenance, and structural fixtures are valid. Visual quality, provider execution, runtime loading, and human approval are not proven.'
+Write-Output 'PASS: VOX v1.10 Historical VOX Profile, stable ID/v1.9 history, optional historical modes, orthogonal routing, visual grammar, Project Visual Bible boundary, mobile readability review, source/mirror parity, provenance, and structural fixtures are valid. Visual quality, provider execution, runtime loading, and human approval are not proven.'
