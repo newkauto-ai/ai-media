@@ -14,6 +14,14 @@ Follow the [Executable Prompt Contract](../contracts/executable-prompt-contract.
 - `identity_invariants`: exact frozen text for each present character or product. Reuse it verbatim across independently generated Clips unless the Adapter proves persistent identity context; include voice only for verified native-speech generation.
 - `clip_variables`: actual start state, this Clip's action and micro-expression/emotional beat, exact native dialogue when applicable, camera, timeline, intended end state, and Clip-specific constraints.
 
+When the selected Style Profile is `oriental_pastoral_cinematic_lifestyle` and the current Shot carries `pastoral_craft_shot_type`, compile only the applicable intent into `clip_variables`:
+
+- `atmosphere_shot`: state its formal breathing, regional, emotional, contrast, visual-echo, or aftertaste function. Do not render it as generic tourism scenery or an unmotivated beauty cutaway.
+- `process_detail_shot`: state one credible bounded local action and observable contact/material response. Explicitly allow the Shot to end without a complete teaching loop; do not ask the model to close complex needlework, weaving, mechanical repetition, or multi-step cooking inside one Shot.
+- `progression_shot`: state `prior_process_state_ref`, `current_process_state`, and the specific visible `completion_delta`. A match cut or visual echo may connect evidenced stages, but never request magic growth, full-frame morphing, unsupported instant completion, or plastic 3D transformation.
+
+Keep the montage truthful across calls: the previous result remains the next input, and each independent prompt receives the required state reference. The two-process/one-atmosphere pattern is planning guidance and is not serialized as a literal action count. Project-grounded relationships such as “the real exterior and the crafted image echo one another” are allowed only when both elements are confirmed by the current project; do not automatically inject Jiangnan, Hanfu, embroidery, tea, or a female subject.
+
 `clip_performance_binding` may only cite an existing ADP `performance_plan`; it supplies timeline evidence references and does not create a new choice, motive, or resulting action. The binding provenance is `story_change_arc -> performance_plan -> clip_performance_binding`.
 
 Record `duration_seconds`, `aspect_ratio`, `resolution`, and `native_audio_mode` in the Clip `output_spec`, and expose them in the reviewable call package. Unresolved aspect ratio or resolution blocks `ready_for_generation`. Compile the approved baseline, selected references, actual start state, timeline, camera/performance, intended end state, and continuity constraints. Do not ask the video model to generate BGM.

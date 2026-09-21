@@ -1,0 +1,60 @@
+{
+  "fixture_only": true,
+  "purpose": "Structural pastoral craft montage routing examples only; not visual quality, craft-fact proof, provider execution, or human acceptance.",
+  "cases": [
+    {
+      "case_id": "A-embroidery-poetic-montage",
+      "project_grounding": ["embroidery", "regional_window_view", "material_state_chain"],
+      "shots": [
+        {"shot_id": "S01", "pastoral_craft_shot_type": "process_detail_shot", "bounded_action": "fingers_align_thread", "tutorial_closure": false},
+        {"shot_id": "S02", "pastoral_craft_shot_type": "process_detail_shot", "bounded_action": "needle_approaches_fabric", "tutorial_closure": false},
+        {"shot_id": "S03", "pastoral_craft_shot_type": "atmosphere_shot", "breathing_shot_note": "regional_window_view_echoes_the_crafted_landscape"},
+        {"shot_id": "S04", "pastoral_craft_shot_type": "progression_shot", "prior_process_state_ref": "embroidery-stage-1", "current_process_state": "embroidery-stage-2", "completion_delta": "one_additional_ridge_and_waterline", "match_cut_or_visual_echo": "window_landscape_to_embroidery_landscape"}
+      ],
+      "expected": "valid"
+    },
+    {
+      "case_id": "B-five-consecutive-craft-macros",
+      "shots": [
+        {"pastoral_craft_shot_type": "process_detail_shot"},
+        {"pastoral_craft_shot_type": "process_detail_shot"},
+        {"pastoral_craft_shot_type": "process_detail_shot"},
+        {"pastoral_craft_shot_type": "process_detail_shot"},
+        {"pastoral_craft_shot_type": "process_detail_shot"}
+      ],
+      "human_atmosphere_or_progression_present": false,
+      "expected": "must_fix_repetitive_craft_macro"
+    },
+    {
+      "case_id": "C-single-shot-complex-tutorial-loop",
+      "pastoral_craft_shot_type": "process_detail_shot",
+      "requested_action": "complete_complex_needlework_loop_in_one_generated_shot",
+      "tutorial_closure": true,
+      "expected": "must_fix_single_shot_tutorial_overreach"
+    },
+    {
+      "case_id": "D-stage-progression-without-morph",
+      "pastoral_craft_shot_type": "progression_shot",
+      "prior_process_state_ref": "craft-stage-2",
+      "current_process_state": "craft-stage-3",
+      "completion_delta": "two_additional_woven_rows",
+      "magic_growth": false,
+      "full_frame_morph": false,
+      "expected": "valid"
+    },
+    {
+      "case_id": "E-beauty-environment-finished-product-shell",
+      "present_functions": ["beauty_portrait", "generic_environment", "finished_product"],
+      "credible_process_detail_present": false,
+      "progression_evidence_present": false,
+      "expected": "must_fix_empty_craft_shell"
+    },
+    {
+      "case_id": "F-non-craft-pastoral",
+      "topic": "ordinary_orchard_walk",
+      "pastoral_craft_shot_type": null,
+      "craft_montage_required": false,
+      "expected": "valid_non_craft_unchanged"
+    }
+  ]
+}

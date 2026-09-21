@@ -12,6 +12,23 @@ Also project the minimum existing Scene/Shot/asset records needed by real consum
 
 For Historical VOX, keep `historical_visual_mode`, `pilot_design_route`, `decomposition_decision`, and `motion_route` as four independent decisions. Project the chosen mode into the existing `poster_spec`; do not create a new historical Scene/Shot schema. Require historical subject + evidence/context + editorial explanation, an explanatory purpose for every map/route/timeline, Remotion-owned labels and critical text, clean-alpha people with runtime outline, and Project Visual Bible refs for era/person/costume/terrain/project-specific details. Non-historical Shots omit the field or use `null` and preserve v1.9 behavior.
 
+For selected `oriental_pastoral_cinematic_lifestyle` craft content, project the Profile's optional poetic-craft montage fields into the existing Scene/Shot plan; do not create another Manifest, Gate, state owner, or planner. Activate only from current project, Script, ADP, or human evidence that the content is light craft, intangible heritage, folk making, handwork, light cooking, or light manufacturing—keywords alone are examples, not proof. Classify each applicable Shot as exactly one `pastoral_craft_shot_type`: `atmosphere_shot`, `process_detail_shot`, or `progression_shot`; non-craft Shots omit the field or use `null`.
+
+Use this existing-plan projection:
+
+```yaml
+pastoral_craft_shot_type: atmosphere_shot | process_detail_shot | progression_shot | null
+breathing_shot_note: string | null
+prior_process_state_ref: string | null
+current_process_state: string | null
+completion_delta: string | null
+match_cut_or_visual_echo: string | null
+```
+
+An `atmosphere_shot` is a formal narrative node and records how it establishes region/space, changes breathing, carries emotion, creates contrast/visual echo, or supplies aftertaste; it is not scenery filler. A `process_detail_shot` shows one credible bounded local action and may end after approach, contact, light placement, arranging, stable touch, or minor material response without pretending to complete a tutorial. A `progression_shot` binds a prior state, current state, and specific visible `completion_delta`; it must not imply magic growth, full-frame morphing, or unsupported instant completion. Preserve the v1.1 fact and material-state chain across Shots: the previous result still becomes the next input.
+
+As a default rhythm tendency, consider two `process_detail_shot` entries followed by one `atmosphere_shot`, insert `progression_shot` when a meaningful completion delta becomes visible, and alternate human/process/atmosphere functions. This is not a counting quota or Gate. If Script, music, factual procedure, or emotion requires another ratio, record how the plan avoids five or six consecutive same-function craft macros. Jiangnan, water-town, Hanfu, embroidery, tea, and similar examples require current project grounding and are never injected as universal Style constants.
+
 Select the Pilot route before image generation. `hero_key_art` may retain a fused complete scene and is not required to pass reconstructability checks. `production_reconstructable` must be designed as a coherent poster with separable typography, directional, decorative, and context groups and must pass the five Production Reconstructability findings before decomposition. If the real Production Pilot is visually strong but over-fused, recommend Hero reclassification and use existing salvage/reuse instead of rectangular cropping.
 
 Choose minimum sufficient decomposition. A high-quality hero poster may remain whole or lightly decomposed; a VOX editorial body may mix whole posters, local graphics, partial decomposition and a small number of hero posters. Full element assembly is not a style-quality score and torn-paper treatment is not mandatory on every Shot.

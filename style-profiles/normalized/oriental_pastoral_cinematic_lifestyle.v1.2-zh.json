@@ -1,0 +1,248 @@
+{
+  "fixture_only": false,
+  "library_status": "pending_review",
+  "normalized_from_source": "Style_Profile_田园风_v1.2_诗意工艺蒙太奇.md",
+  "style_profile": {
+    "style_id": "oriental_pastoral_cinematic_lifestyle",
+    "version": "v1.2-zh",
+    "classification": "hybrid_style_profile",
+    "pre_content_modules": {
+      "compatibility": {
+        "authority": "high",
+        "preferred": [
+          "田园生活",
+          "古村生活",
+          "农事",
+          "采摘",
+          "传统饮食",
+          "手作",
+          "非遗工艺",
+          "民俗文化",
+          "东方生活方式"
+        ]
+      },
+      "cultural_fidelity": {
+        "authority": "hard",
+        "style_may_invent_facts": false,
+        "evidence_required_for": [
+          "非遗名称",
+          "地域归属",
+          "历史起源",
+          "仪式顺序",
+          "工艺步骤",
+          "工具用途",
+          "服饰身份",
+          "象征意义"
+        ]
+      },
+      "story_direction": {
+        "authority": "medium",
+        "value": "环境建立 → 人物进入 → 局部动作 → 意境呼吸 → 成果递进 → 情绪回落 → 环境余韵"
+      }
+    },
+    "audiovisual_modules": {
+      "visual_identity": {
+        "authority": "hard",
+        "value": "真人东方自然主义田园电影感，真实材质、自然光、明确空间层次"
+      },
+      "visual_domains": {
+        "authority": "high",
+        "values": [
+          "pastoral_lifestyle",
+          "craft_process",
+          "folk_culture",
+          "food_tea"
+        ]
+      },
+      "lighting": {
+        "authority": "hard",
+        "value": "motivated naturalistic light；根据场景选择清晨、Golden Hour、阴天漫射、窗侧光、庭院斑驳光或真实火光"
+      },
+      "cinematography": {
+        "authority": "hard",
+        "value": "镜头焦段和景深服从当前信息任务；人物情绪偏中长焦，工艺操作偏标准至中长焦，材质使用 Macro，群体与仪式优先保存空间关系"
+      },
+      "depth_of_field": {
+        "authority": "high",
+        "value": "task-dependent selective focus；人物 / 材质可浅景深，工艺与群体空间可适度增加景深"
+      },
+      "foreground_layering": {
+        "authority": "high",
+        "value": "轻盈、自然、不规则前景；用于空间层次和视差，不遮挡关键动作"
+      },
+      "performance": {
+        "authority": "high",
+        "value": "人物自然在场；情绪由当前项目选择 joyful / serene / focused / reverent / communal"
+      },
+      "shot_architecture": {
+        "authority": "hard",
+        "value": "环境负责世界，人物负责情绪，过程负责因果，材质负责触感；连续镜头同时检查景别、主体与信息功能变化"
+      },
+      "shot_design": {
+        "authority": "hard",
+        "value": "one_primary_attention_target；允许二级环境与人物信息共存",
+        "craft_shot_types": [
+          "atmosphere_shot",
+          "process_detail_shot",
+          "progression_shot"
+        ],
+        "non_craft_default": null
+      },
+      "process_detail": {
+        "authority": "hard",
+        "value": "只要求可信且有美感的局部动作；不要求单镜完成复杂教学闭环，完整状态链可跨镜头成立",
+        "credible_local_actions": [
+          "approach",
+          "contact",
+          "light_drop",
+          "arrange",
+          "stable_touch",
+          "minor_material_displacement"
+        ],
+        "single_shot_tutorial_closure_required": false
+      },
+      "process_visualization": {
+        "authority": "hard",
+        "value": "initial_state → human_action → tool_or_force → material_response → visible_state_change → resulting_state"
+      },
+      "process_continuity": {
+        "authority": "hard",
+        "value": "previous_result_equals_next_input",
+        "may_span_multiple_shots": true,
+        "progression_requires": [
+          "prior_process_state_ref",
+          "current_process_state",
+          "completion_delta"
+        ],
+        "prohibit": [
+          "magic_growth",
+          "full_frame_morph",
+          "unsupported_instant_completion"
+        ]
+      },
+      "editing_rhythm": {
+        "authority": "high",
+        "value": "工艺段默认倾向两个 process_detail_shot 后插入一个 atmosphere_shot；这是软节奏建议而非固定配额，并按可见 completion_delta 插入 progression_shot",
+        "suggested_pattern": [
+          "process_detail_shot",
+          "process_detail_shot",
+          "atmosphere_shot"
+        ],
+        "hard_quota": false,
+        "avoid_consecutive_craft_macro_count": "5-6_without_human_atmosphere_or_progression",
+        "atmosphere_is_formal_story_node": true
+      },
+      "content_guardrails": {
+        "authority": "hard",
+        "avoid": [
+          "precise_tutorial_reconstruction",
+          "beauty_environment_product_shell",
+          "portrait_studio_staging",
+          "tourism_promo",
+          "product_only_ad",
+          "magic_growth",
+          "full_frame_morph",
+          "plastic_3d_craft_result",
+          "persistent_camera_gaze",
+          "forced_complex_mechanical_closure_in_one_shot"
+        ]
+      },
+      "sound_design": {
+        "authority": "high",
+        "value": "环境 / 材料 / 行为驱动；动作与 Foley 同步，特写更近，环境镜头声场更宽"
+      },
+      "music_direction": {
+        "authority": "medium_high",
+        "value": "独立 BGM、无人声、低至中密度，不覆盖现场环境声与工艺声音"
+      },
+      "continuity": {
+        "authority": "hard",
+        "value": "锁定人物、地域、空间、材料状态、工具、光向与声音空间连续性"
+      }
+    },
+    "production_modules": {
+      "prompt_compilation": {
+        "require_global_visual_dna": true,
+        "require_visual_domain": true,
+        "require_shot_intent": true,
+        "require_primary_attention_target": true,
+        "require_focus_target": true,
+        "require_process_state": "when_applicable",
+        "require_material_response": "when_applicable",
+        "require_sound_direction": true,
+        "require_pastoral_craft_shot_type": "when_craft_montage_applies",
+        "require_breathing_shot_note": "when_atmosphere_shot",
+        "require_completion_delta": "when_progression_shot",
+        "process_detail_clause": "credible_local_action_without_single_shot_tutorial_closure",
+        "progression_clause": "express_progress_through_prior_and_current_completion_states_with_a_specific_delta",
+        "atmosphere_clause": "must_serve_region_emotion_contrast_visual_echo_or_aftertaste_not_scenery_filler",
+        "allow_match_cut_or_visual_echo": "when_grounded_by_project_states",
+        "prohibit_magic_growth_or_full_frame_morph": true
+      },
+      "storyboard_planning": {
+        "craft_montage_activation": "project_or_script_evidence",
+        "topic_examples_not_keyword_only": [
+          "刺绣",
+          "苏绣",
+          "非遗",
+          "工艺",
+          "手作",
+          "制作",
+          "轻料理",
+          "民俗"
+        ],
+        "shot_types": [
+          "atmosphere_shot",
+          "process_detail_shot",
+          "progression_shot"
+        ],
+        "rhythm_tendency": "two_process_detail_then_one_atmosphere",
+        "rhythm_is_hard_quota": false,
+        "output_fields": [
+          "pastoral_craft_shot_type",
+          "breathing_shot_note",
+          "prior_process_state_ref",
+          "current_process_state",
+          "completion_delta",
+          "match_cut_or_visual_echo"
+        ],
+        "project_grounding_rule": "jiangnan_water_town_hanfu_embroidery_tea_and_other_examples_require_current_project_script_adp_or_visual_bible_evidence"
+      },
+      "visual_baseline": {
+        "required": true,
+        "method": "LookDev 静帧 → 短 Clip Pilot → 真实生成结果审查"
+      },
+      "adapter_reference": {
+        "replaceable": true
+      },
+      "fixed_shot_count_is_canon": false,
+      "fixed_duration_is_canon": false,
+      "fixed_lens_is_canon": false,
+      "fixed_depth_of_field_is_canon": false,
+      "fixed_model_is_canon": false
+    },
+    "provenance": {
+      "source_documents": [
+        {
+          "file": "Style_Profile_田园风_v1.0_中文解析.md",
+          "version": "v1.0-zh",
+          "source_type": "previous_ready_profile"
+        },
+        {
+          "file": "Style_Profile_田园风_v1.1_中文解析.md",
+          "version": "v1.1-zh",
+          "source_type": "previous_profile",
+          "evidence": "江南采茶、制茶、泡茶、品茗项目多轮 LookDev、视频生成、镜头节奏重构与最终成片经验，以及面向田园生活、非遗民俗与工艺品制作的扩展审查"
+        },
+        {
+          "file": "Style_Profile_田园风_v1.2_诗意工艺蒙太奇.md",
+          "version": "v1.2-zh",
+          "source_type": "short_spec_incremental_upgrade",
+          "evidence": "田园风_style_profile_升级_short_spec_插件交接版.md"
+        }
+      ],
+      "source_sha256": "5C7F57059D4B8B334F0E615EC4102F462AC80B90BF17CADB3D8CE355B3B7EEF7"
+    },
+    "display_name": "田园风"
+  }
+}
