@@ -7,9 +7,9 @@
       "project_grounding": ["embroidery", "regional_window_view", "material_state_chain"],
       "shots": [
         {"shot_id": "S01", "pastoral_craft_shot_type": "process_detail_shot", "bounded_action": "fingers_align_thread", "tutorial_closure": false},
-        {"shot_id": "S02", "pastoral_craft_shot_type": "process_detail_shot", "bounded_action": "needle_approaches_fabric", "tutorial_closure": false},
-        {"shot_id": "S03", "pastoral_craft_shot_type": "atmosphere_shot", "breathing_shot_note": "regional_window_view_echoes_the_crafted_landscape"},
-        {"shot_id": "S04", "pastoral_craft_shot_type": "progression_shot", "prior_process_state_ref": "embroidery-stage-1", "current_process_state": "embroidery-stage-2", "completion_delta": "one_additional_ridge_and_waterline", "match_cut_or_visual_echo": "window_landscape_to_embroidery_landscape"}
+        {"shot_id": "S02", "pastoral_craft_shot_type": "progression_shot", "prior_process_state_ref": "embroidery-stage-1", "current_process_state": "embroidery-stage-2", "completion_delta": "one_additional_ridge_and_waterline"},
+        {"shot_id": "S03", "pastoral_craft_shot_type": "atmosphere_shot", "breathing_shot_note": "regional_window_view_echoes_the_crafted_landscape", "match_cut_or_visual_echo": "embroidery_landscape_to_window_landscape"},
+        {"shot_id": "S04", "pastoral_craft_shot_type": "process_detail_shot", "bounded_action": "needle_approaches_next_fabric_area", "tutorial_closure": false}
       ],
       "expected": "valid"
     },
@@ -55,6 +55,19 @@
       "pastoral_craft_shot_type": null,
       "craft_montage_required": false,
       "expected": "valid_non_craft_unchanged"
+    },
+    {
+      "case_id": "G-process-led-no-atmosphere-needed",
+      "project_grounding": ["compact_process_explanation", "material_state_chain", "continuous_focused_action"],
+      "rhythm_decision_inputs": ["narrative_intent", "process_complexity", "material_state_change", "information_density", "human_space_relationship", "music_emotional_arc", "breathing_need", "visible_completion_delta"],
+      "atmosphere_function_needed": false,
+      "fixed_pattern_applied": false,
+      "shots": [
+        {"shot_id": "S01", "pastoral_craft_shot_type": "process_detail_shot", "bounded_action": "hands_align_bamboo_strips"},
+        {"shot_id": "S02", "pastoral_craft_shot_type": "progression_shot", "prior_process_state_ref": "weave-stage-1", "current_process_state": "weave-stage-2", "completion_delta": "one_stable_interlocked_row"},
+        {"shot_id": "S03", "pastoral_craft_shot_type": "process_detail_shot", "bounded_action": "fingers_tighten_edge_strip"}
+      ],
+      "expected": "valid_adaptive_sequence"
     }
   ]
 }

@@ -40,7 +40,9 @@ Assert-True ($null -eq $av.shot_design.non_craft_default) 'Non-craft pastoral sh
 Assert-True (-not $av.process_detail.single_shot_tutorial_closure_required -and $av.process_detail.value -match '跨镜头') 'Pastoral process detail must allow bounded local action and cross-shot process truth.'
 Assert-True ($av.process_continuity.value -eq 'previous_result_equals_next_input' -and $av.process_continuity.may_span_multiple_shots) 'Pastoral process continuity must stay truthful across shots.'
 Assert-True (@($av.process_continuity.prohibit) -contains 'magic_growth' -and @($av.process_continuity.prohibit) -contains 'full_frame_morph') 'Pastoral progression must prohibit magic growth and full-frame morph.'
-Assert-True ((@($av.editing_rhythm.suggested_pattern) -join '|') -eq 'process_detail_shot|process_detail_shot|atmosphere_shot' -and -not $av.editing_rhythm.hard_quota) 'Pastoral two-process/one-atmosphere guidance must remain a soft tendency.'
+Assert-True ($av.editing_rhythm.decision_mode -eq 'adaptive_sequence_design' -and $null -eq $av.editing_rhythm.fixed_pattern -and $null -eq $av.editing_rhythm.fixed_ratio) 'Pastoral rhythm must be adaptive without a fixed pattern or ratio.'
+Assert-True ((@($av.editing_rhythm.decision_inputs) -join '|') -eq 'narrative_intent|process_complexity|material_state_change|information_density|human_space_relationship|music_emotional_arc|breathing_need|visible_completion_delta') 'Pastoral adaptive rhythm inputs are incomplete.'
+Assert-True ($av.editing_rhythm.atmosphere_insertion -eq 'only_when_it_has_a_specific_narrative_function' -and $av.editing_rhythm.character_process_interleaving -eq 'optional_when_it_serves_the_story') 'Pastoral rhythm must not force atmosphere insertion or human/process alternation.'
 Assert-True ($av.editing_rhythm.atmosphere_is_formal_story_node) 'Pastoral atmosphere shots must be formal story nodes.'
 Assert-True (@($av.content_guardrails.avoid) -contains 'beauty_environment_product_shell' -and @($av.content_guardrails.avoid) -contains 'precise_tutorial_reconstruction') 'Pastoral content guardrails must reject empty beauty shells and precise tutorial reconstruction.'
 
@@ -49,11 +51,12 @@ Assert-True ($production.prompt_compilation.require_breathing_shot_note -eq 'whe
 Assert-True ($production.prompt_compilation.require_completion_delta -eq 'when_progression_shot') 'Pastoral progression Prompt must bind a completion delta.'
 Assert-True ($production.prompt_compilation.allow_match_cut_or_visual_echo -eq 'when_grounded_by_project_states') 'Pastoral match cut/visual echo must remain project-grounded.'
 Assert-True ($production.prompt_compilation.prohibit_magic_growth_or_full_frame_morph) 'Pastoral Prompt compilation must prohibit magic growth and full-frame morph.'
-Assert-True (-not $production.storyboard_planning.rhythm_is_hard_quota) 'Pastoral Storyboard rhythm must not create a quota or Gate.'
+Assert-True ($production.storyboard_planning.rhythm_decision_mode -eq 'adaptive_sequence_design' -and $null -eq $production.storyboard_planning.fixed_pattern -and $null -eq $production.storyboard_planning.fixed_ratio) 'Pastoral Storyboard rhythm must remain adaptive without a fixed pattern or ratio.'
 Assert-True ((@($production.storyboard_planning.output_fields) -join '|') -eq 'pastoral_craft_shot_type|breathing_shot_note|prior_process_state_ref|current_process_state|completion_delta|match_cut_or_visual_echo') 'Pastoral output template fields are incomplete.'
 
 Assert-True ($source.Contains('意境镜头、工艺镜头、成果递进镜头共同承担叙事')) 'Pastoral source must define the three-way montage structure.'
-Assert-True ($source.Contains('soft_tendency_not_fixed_quota') -and $source.Contains('不是每三镜强制一次的计数 Gate')) 'Pastoral source must keep the rhythm recommendation soft.'
+Assert-True ($source.Contains('adaptive_sequence_design') -and $source.Contains('不采用固定镜头比例、固定排序或默认交替公式')) 'Pastoral source must define adaptive rhythm design.'
+Assert-True (-not $source.Contains('suggested_pattern') -and -not $source.Contains('two_process_detail_then_one_atmosphere')) 'Pastoral source must not retain a removed fixed rhythm default.'
 Assert-True ($source.Contains('不要求一个 Shot 复现复杂工序闭环') -and $source.Contains('不得用整图 morph 代替工艺过程')) 'Pastoral source must bound single-shot process detail and progression effects.'
 Assert-True ($source.Contains('不是通用 Style Core 的硬编码默认值')) 'Pastoral source must not hard-code Jiangnan/Hanfu/craft examples into Style Core.'
 
@@ -64,11 +67,11 @@ $clipCompiler = Get-Content -LiteralPath (Join-Path $videoRoot 'modules\clip-pro
 $assetCompiler = Get-Content -LiteralPath (Join-Path $videoRoot 'modules\asset-prompt-compiler.md') -Raw
 $manifest = Get-Content -LiteralPath (Join-Path $videoRoot 'contracts\production-manifest.md') -Raw
 Assert-True ($planner.Contains('pastoral_craft_shot_type') -and $planner.Contains('breathing_shot_note') -and $planner.Contains('completion_delta')) 'Scene planner is missing the Pastoral craft output projection.'
-Assert-True ($planner.Contains('not a counting quota or Gate') -and $planner.Contains('keywords alone are examples, not proof')) 'Scene planner must preserve soft-rhythm and evidence boundaries.'
-Assert-True ($storyboard.Contains('beauty + environment + finished product') -and $storyboard.Contains('soft planning tendency')) 'Storyboard review lacks Pastoral craft anti-regression checks.'
-Assert-True ($clipCompiler.Contains('credible bounded local action') -and $clipCompiler.Contains('full-frame morphing')) 'Clip Prompt Compiler lacks Pastoral process/progression guidance.'
+Assert-True ($planner.Contains('Design the rhythm adaptively') -and $planner.Contains('Do not apply a fixed shot ratio, default sequence, or mandatory') -and $planner.Contains('keywords alone are examples, not proof')) 'Scene planner must preserve adaptive-rhythm and evidence boundaries.'
+Assert-True ($storyboard.Contains('beauty + environment + finished product') -and $storyboard.Contains('no fixed ratio, default sequence, or mandatory alternation')) 'Storyboard review lacks adaptive Pastoral rhythm checks.'
+Assert-True ($clipCompiler.Contains('credible bounded local action') -and $clipCompiler.Contains('full-frame morphing') -and $clipCompiler.Contains('without encoding or inventing any fixed shot ratio')) 'Clip Prompt Compiler lacks Pastoral process/progression or adaptive-rhythm guidance.'
 Assert-True ($assetCompiler.Contains('pastoral_craft_shot_type') -and $assetCompiler.Contains('universal Style constant')) 'Asset Prompt Compiler lacks Pastoral craft routing or project-grounding boundary.'
-Assert-True ($manifest.Contains('pastoral_craft_montage projection') -and $manifest.Contains('never a Gate, quota, retry rule')) 'Production Manifest lacks the optional Pastoral Scene/Shot projection boundary.'
+Assert-True ($manifest.Contains('pastoral_craft_montage projection') -and $manifest.Contains('no fixed ratio, default sequence, mandatory alternation')) 'Production Manifest lacks the optional adaptive Pastoral Scene/Shot projection boundary.'
 
 $mirrorPairs = @(
     'modules\scene-clip-planner.md',
@@ -91,11 +94,13 @@ $caseC = @($fixture.cases | Where-Object case_id -eq 'C-single-shot-complex-tuto
 $caseD = @($fixture.cases | Where-Object case_id -eq 'D-stage-progression-without-morph')[0]
 $caseE = @($fixture.cases | Where-Object case_id -eq 'E-beauty-environment-finished-product-shell')[0]
 $caseF = @($fixture.cases | Where-Object case_id -eq 'F-non-craft-pastoral')[0]
+$caseG = @($fixture.cases | Where-Object case_id -eq 'G-process-led-no-atmosphere-needed')[0]
 Assert-True ($caseA.expected -eq 'valid' -and (@($caseA.shots.pastoral_craft_shot_type | Sort-Object -Unique) -join '|') -eq 'atmosphere_shot|process_detail_shot|progression_shot') 'Valid Pastoral three-way montage fixture is incomplete.'
 Assert-True ($caseB.expected -eq 'must_fix_repetitive_craft_macro' -and -not $caseB.human_atmosphere_or_progression_present) 'Consecutive craft macro regression fixture is invalid.'
 Assert-True ($caseC.expected -eq 'must_fix_single_shot_tutorial_overreach' -and $caseC.tutorial_closure) 'Single-shot tutorial overreach fixture is invalid.'
 Assert-True ($caseD.expected -eq 'valid' -and $caseD.completion_delta -and -not $caseD.magic_growth -and -not $caseD.full_frame_morph) 'Stage progression fixture is invalid.'
 Assert-True ($caseE.expected -eq 'must_fix_empty_craft_shell' -and -not $caseE.credible_process_detail_present -and -not $caseE.progression_evidence_present) 'Beauty/environment/product shell fixture is invalid.'
 Assert-True ($caseF.expected -eq 'valid_non_craft_unchanged' -and $null -eq $caseF.pastoral_craft_shot_type -and -not $caseF.craft_montage_required) 'Non-craft Pastoral behavior must remain unchanged.'
+Assert-True ($caseG.expected -eq 'valid_adaptive_sequence' -and -not $caseG.atmosphere_function_needed -and -not $caseG.fixed_pattern_applied -and -not (@($caseG.shots.pastoral_craft_shot_type) -contains 'atmosphere_shot')) 'Adaptive Pastoral rhythm must allow a grounded sequence without a forced atmosphere shot.'
 
-Write-Output 'PASS: Pastoral v1.2 poetic craft montage, three shot types, soft rhythm, truthful cross-shot progression, prompt/storyboard projection, non-craft compatibility, provenance, mirrors, and structural fixtures are valid. Visual quality, craft-fact accuracy, provider execution, runtime loading, and human approval are not proven.'
+Write-Output 'PASS: Pastoral v1.2 poetic craft montage, three shot types, adaptive rhythm without a fixed pattern, truthful cross-shot progression, prompt/storyboard projection, non-craft compatibility, provenance, mirrors, and structural fixtures are valid. Visual quality, craft-fact accuracy, provider execution, runtime loading, and human approval are not proven.'

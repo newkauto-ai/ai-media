@@ -52,8 +52,8 @@ v1.2 继续保留这些长期 Style Core：
 11. **意境镜头、工艺镜头、成果递进镜头共同承担叙事，避免“美女 + 环境 + 成品”空壳结构**
 12. **工艺镜头只需呈现可信且有美感的局部动作，不要求单镜复现完整教学闭环**
 13. **材料状态链可跨多个镜头成立；成果递进通过可追溯的阶段差异表达，不使用魔法生长或整图 morph**
-14. **工艺段默认倾向“两个工艺镜头后安排一个意境呼吸镜头”，但这是节奏建议而非固定配额**
-15. **人物、工艺与意境交替推进；意境镜头是正式叙事节点，不是无功能的补空镜**
+14. **工艺段由插件结合当前叙事、工序状态、信息密度、人物 / 空间关系、音乐 / 情绪与呼吸需求动态设计节奏，不设固定比例或默认序列**
+15. **人物、工艺、意境与成果递进按叙事需要组合；意境镜头只有在承担明确功能时才成为正式叙事节点**
 
 ---
 
@@ -841,12 +841,21 @@ editing_rhythm:
     - 用人物近景承担情绪
     - 用过程和材质特写承担信息
 
-  craft_montage_tendency:
-    suggested_pattern:
-      - process_detail_shot
-      - process_detail_shot
-      - atmosphere_shot
-    enforcement: soft_tendency_not_fixed_quota
+  craft_montage_design:
+    mode: adaptive_sequence_design
+    fixed_pattern: none
+    fixed_ratio: none
+    decision_inputs:
+      - narrative_intent
+      - process_complexity
+      - material_state_change
+      - information_density
+      - human_space_relationship
+      - music_emotional_arc
+      - breathing_need
+      - visible_completion_delta
+    atmosphere_insertion: only_when_it_has_a_specific_narrative_function
+    character_process_interleaving: optional_when_it_serves_the_story
     progression_insertion: whenever_a_meaningful_completion_delta_becomes_visible
 
   avoid:
@@ -857,7 +866,7 @@ editing_rhythm:
     - 把呼吸镜头当作与叙事无关的旅游空镜
 ```
 
-“工艺镜头 2 个 → 意境镜头 1 个”是工艺段的默认节奏倾向，用于提醒编排者主动换气和恢复地域/人物关系；它不是每三镜强制一次的计数 Gate。若 Script、音乐、真实工序或情绪节拍要求不同，可调整比例，但必须说明如何避免中段被同质微距填满。
+工艺段不采用固定镜头比例、固定排序或默认交替公式。插件应根据叙事目的、工序复杂度、材料状态变化、信息密度、人物与空间关系、音乐与情绪曲线、呼吸需求及可见 `completion_delta` 动态设计镜头节奏。人物、工艺、意境与成果递进镜头可以自由组合；意境镜头只有在承担地域、情绪、对照、互文或余韵功能时才插入，不按固定间隔补位。每个方案必须说明其节奏如何服务当前内容，并避免模板化复用同一序列或让中段被同质微距填满。
 
 ### Runtime Reference
 
@@ -1177,8 +1186,11 @@ production_modules:
   storyboard_planning:
     craft_montage_activation: project_or_script_evidence
     shot_types: [atmosphere_shot, process_detail_shot, progression_shot]
-    rhythm_tendency: two_process_detail_then_one_atmosphere
-    rhythm_is_hard_quota: false
+    rhythm_decision_mode: adaptive_sequence_design
+    fixed_pattern: none
+    fixed_ratio: none
+    decision_inputs: [narrative_intent, process_complexity, material_state_change, information_density, human_space_relationship, music_emotional_arc, breathing_need, visible_completion_delta]
+    atmosphere_insertion: only_when_it_has_a_specific_narrative_function
     output_fields:
       - pastoral_craft_shot_type
       - breathing_shot_note
@@ -1366,7 +1378,7 @@ style_profile:
 
     editing_rhythm:
       authority: high
-      value: 工艺段默认倾向两个 process_detail_shot 后插入一个 atmosphere_shot；这是软节奏建议而非固定配额，并按可见 completion_delta 插入 progression_shot
+      value: 工艺段由插件结合叙事目的、工序复杂度、材料状态变化、信息密度、人物与空间关系、音乐与情绪曲线、呼吸需求及可见 completion_delta 动态设计；不设置固定比例、固定排序或默认交替公式
 
     content_guardrails:
       authority: hard
@@ -1404,8 +1416,11 @@ style_profile:
     storyboard_planning:
       craft_montage_activation: project_or_script_evidence
       shot_types: [atmosphere_shot, process_detail_shot, progression_shot]
-      rhythm_tendency: two_process_detail_then_one_atmosphere
-      rhythm_is_hard_quota: false
+      rhythm_decision_mode: adaptive_sequence_design
+      fixed_pattern: none
+      fixed_ratio: none
+      decision_inputs: [narrative_intent, process_complexity, material_state_change, information_density, human_space_relationship, music_emotional_arc, breathing_need, visible_completion_delta]
+      atmosphere_insertion: only_when_it_has_a_specific_narrative_function
 
     visual_baseline:
       required: true

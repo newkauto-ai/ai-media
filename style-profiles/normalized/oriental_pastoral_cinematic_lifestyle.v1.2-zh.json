@@ -122,13 +122,22 @@
       },
       "editing_rhythm": {
         "authority": "high",
-        "value": "工艺段默认倾向两个 process_detail_shot 后插入一个 atmosphere_shot；这是软节奏建议而非固定配额，并按可见 completion_delta 插入 progression_shot",
-        "suggested_pattern": [
-          "process_detail_shot",
-          "process_detail_shot",
-          "atmosphere_shot"
+        "value": "工艺段由插件结合叙事目的、工序复杂度、材料状态变化、信息密度、人物与空间关系、音乐与情绪曲线、呼吸需求及可见 completion_delta 动态设计；不设置固定比例、固定排序或默认交替公式",
+        "decision_mode": "adaptive_sequence_design",
+        "fixed_pattern": null,
+        "fixed_ratio": null,
+        "decision_inputs": [
+          "narrative_intent",
+          "process_complexity",
+          "material_state_change",
+          "information_density",
+          "human_space_relationship",
+          "music_emotional_arc",
+          "breathing_need",
+          "visible_completion_delta"
         ],
-        "hard_quota": false,
+        "atmosphere_insertion": "only_when_it_has_a_specific_narrative_function",
+        "character_process_interleaving": "optional_when_it_serves_the_story",
         "avoid_consecutive_craft_macro_count": "5-6_without_human_atmosphere_or_progression",
         "atmosphere_is_formal_story_node": true
       },
@@ -196,8 +205,20 @@
           "process_detail_shot",
           "progression_shot"
         ],
-        "rhythm_tendency": "two_process_detail_then_one_atmosphere",
-        "rhythm_is_hard_quota": false,
+        "rhythm_decision_mode": "adaptive_sequence_design",
+        "fixed_pattern": null,
+        "fixed_ratio": null,
+        "decision_inputs": [
+          "narrative_intent",
+          "process_complexity",
+          "material_state_change",
+          "information_density",
+          "human_space_relationship",
+          "music_emotional_arc",
+          "breathing_need",
+          "visible_completion_delta"
+        ],
+        "atmosphere_insertion": "only_when_it_has_a_specific_narrative_function",
         "output_fields": [
           "pastoral_craft_shot_type",
           "breathing_shot_note",
@@ -241,7 +262,7 @@
           "evidence": "田园风_style_profile_升级_short_spec_插件交接版.md"
         }
       ],
-      "source_sha256": "5C7F57059D4B8B334F0E615EC4102F462AC80B90BF17CADB3D8CE355B3B7EEF7"
+      "source_sha256": "F8B1E7C9B458F386A28D6B6824863559A8571D593598BD9C0396C9BAA5D4FE03"
     },
     "display_name": "田园风"
   }
