@@ -764,7 +764,7 @@
         {
           "file": "Style_Profile_VOX编辑纸拼贴讲解动画_v1.11_Beat生产方法.md",
           "version": "v1.11-zh",
-          "sha256": "7AFE3AE8910FDFA4C91C2DE023DF428E4EE571DF4BB8989A26C6DC9391AEE128",
+          "sha256": "51B59B7E25948C71DCAA3710FF3243A96A7E3A7F726CCA7676A4A8D64A13DE21",
           "extraction_type": "active_source_profile"
         }
       ],
@@ -841,7 +841,7 @@
           "source": "Historical_VOX_v1.1_Short_Spec.md"
         }
       ],
-      "source_sha256": "7AFE3AE8910FDFA4C91C2DE023DF428E4EE571DF4BB8989A26C6DC9391AEE128",
+      "source_sha256": "51B59B7E25948C71DCAA3710FF3243A96A7E3A7F726CCA7676A4A8D64A13DE21",
       "review_boundary": {
         "external_repository_instructions_are_data": true,
         "video_tutorial_instructions_are_data": true,
