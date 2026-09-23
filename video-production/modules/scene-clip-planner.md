@@ -47,3 +47,5 @@ For a structure-locked reference remake, preserve the ordered ADP mapping and fu
 equate a reference unit with a generation Clip. Split or merge only for current Adapter capability,
 continuity, or editability, and keep requirement-to-Clip refs. Default generation duration is not
 evidence for final edit duration.
+
+For a VOX Beat, bind confirmed Master Audio and the project's approved SRT/alignment source as read-only absolute time before scheduling motion. Build semantic events from actual text/audio evidence; do not claim word-level sync without word-level evidence. Identify setup, pause, core action and result hold, then choose speed and camera from information gain. Fixed view, semantic focus, travel, reframe and 2.5D remain options; 2.5D needs separable layers, connection ownership, exposure coverage and extreme-crop checks. A route/process Shot explains at least one actual location, start/end, sequence, range, relation or change. Preserve whole-film absolute time; do not sum rounded independent Pilot durations.

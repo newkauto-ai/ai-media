@@ -139,6 +139,11 @@ The target is perceptual and editorial equivalence, not pixel-perfect reproducti
 
 Compute exposure from the approved translation, rotation, scale, perspective, crop and occlusion changes. Use `none` when nothing hidden becomes visible, `reuse_existing` when an approved plate already covers it, and `recover_motion_exposure_regions` for only the exposed bounds plus an evidenced safety margin. `full_plate_evidenced` is exceptional. When hidden content cannot be recovered without invention, reduce motion, change the decomposition decision, or request human review.
 
+
+## Conditional Beat production method v2.0
+
+Bind actual Profile/version, project output geometry, Master Audio/time source, locale/subtitle strategy, Visual Bible, approved Poster and reusable assets before choosing a Shot method. For each Beat record information goal, absolute semantic events, primary attention, grouping and asset choice, text roles, camera/motion intent, exposure or result handoff, static evidence, output and feedback in the existing Scene/Shot/Review records. Relationship, comparison, geography/process, quotation, hero atmosphere and symbolic result are conditional options, not a mandatory sequence. Preserve approved Poster quality and label whole image, fused source region and clean independent Alpha accurately. Complete subjects reveal as coherent silhouettes when appropriate; routes may reveal along their path. A baked-result handoff requires aligned coordinates, anchor, scale, direction, occlusion and mutually exclusive same-frame switching; if a truthful intermediate state is required, do not use the handoff.
+
 ## Motion routing
 
 - Default to `remotion_living_poster` for portraits, quotes, evidence, comparisons, conclusions and general editorial layouts.

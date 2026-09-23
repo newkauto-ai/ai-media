@@ -313,7 +313,7 @@
     "input_profile_versions": ["v1.6-zh", "v1.7-zh", "v1.8-zh", "v1.9-zh"],
     "input_manifest_versions": ["1.7", "1.8"],
     "input_read_only": true,
-    "output_profile_version": "v1.10-zh",
+    "output_profile_version": "v1.11-zh",
     "output_manifest_version": "1.8",
     "stable_profile_id": "vox_transcript_driven_handmade_collage",
     "reuse_approved_assets_and_baselines_when_lineage_matches": true

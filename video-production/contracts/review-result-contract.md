@@ -68,6 +68,9 @@ review_result:
 
 ## Invariants
 
+- For VOX Beat production, retain these findings in existing Poster Readiness / `previsualization_storyboard` and applicable Production QA: approved-poster static fidelity at delivery and viewing size; intermediate-state/handoff integrity; text-role timing and factual glyphs; information-goal and attention clarity; and final-encoded temporal texture stability when planned motion risks flicker, crawl, moire or edge jump. Continuous viewing is needed for temporal claims; sampled stills and bitrate alone are insufficient. Distinguish source texture, resampling, changing randomness and encoding before assigning a targeted repair. Record technical completion, motion acceptance, text/fact acceptance and full-film acceptance separately. A bounded diagnostic with known defects does not become formal PASS.
+
+
 - Persist the complete result in `production_manifest.qa.results`; Markdown and Notion remain projections.
 - All hashes, policy identity/version, exact target revision, and at least one evidence reference are required. A material dependency or target change makes the decision stale and routes to `UNKNOWN` until reviewed again.
 - `pre_generation_prompt` requires non-empty `frozen_script`, `audiovisual_direction_package`, `production_manifest`, `video_prompt_spec`, and `executable_prompt` dependency hashes. It retains the existing Cost Gate recommendation behavior.

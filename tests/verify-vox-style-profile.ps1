@@ -1,4 +1,4 @@
-$ErrorActionPreference = 'Stop'
+﻿$ErrorActionPreference = 'Stop'
 
 function Assert-True {
     param([bool]$Condition, [string]$Message)
@@ -12,16 +12,16 @@ $entries = @($registry.profiles | Where-Object { $_.profile_id -eq 'vox_transcri
 
 Assert-True ($entries.Count -eq 1) 'VOX profile must resolve to one stable registry entry.'
 $entry = $entries[0]
-Assert-True ($entry.source_file -eq 'Style_Profile_VOX编辑纸拼贴讲解动画_v1.10_历史VOX.md') 'VOX registry source must be v1.10 Historical VOX.'
-Assert-True ($entry.normalized_file -eq 'transcript_driven_handmade_collage.v1.10-zh.json') 'VOX registry normalized file must be v1.10.'
-Assert-True ($entry.normalized_version -eq 'v1.10-zh') 'VOX registry version must be v1.10-zh.'
+Assert-True ($entry.source_file -eq 'Style_Profile_VOX编辑纸拼贴讲解动画_v1.11_Beat生产方法.md') 'VOX registry source must be v1.11 Historical VOX.'
+Assert-True ($entry.normalized_file -eq 'transcript_driven_handmade_collage.v1.11-zh.json') 'VOX registry normalized file must be v1.11.'
+Assert-True ($entry.normalized_version -eq 'v1.11-zh') 'VOX registry version must be v1.11-zh.'
 Assert-True ($entry.status -eq 'ready') 'VOX registry status must remain ready.'
 
 $sourcePath = Join-Path (Join-Path $libraryRoot 'source') $entry.source_file
 $normalizedPath = Join-Path (Join-Path $libraryRoot 'normalized') $entry.normalized_file
 $changelogPath = Join-Path $libraryRoot 'references\vox-changelog.md'
-Assert-True (Test-Path -LiteralPath $sourcePath) 'VOX v1.10 source file is missing.'
-Assert-True (Test-Path -LiteralPath $normalizedPath) 'VOX v1.10 normalized file is missing.'
+Assert-True (Test-Path -LiteralPath $sourcePath) 'VOX v1.11 source file is missing.'
+Assert-True (Test-Path -LiteralPath $normalizedPath) 'VOX v1.11 normalized file is missing.'
 Assert-True (Test-Path -LiteralPath $changelogPath) 'VOX changelog is missing.'
 foreach ($version in @('1.2', '1.3', '1.4', '1.5', '1.6', '1.7', '1.8', '1.9')) {
     Assert-True (@(Get-ChildItem -LiteralPath (Join-Path $libraryRoot 'source') -Filter "*v$version*.md").Count -ge 1) "Historical VOX v$version source must be preserved."
@@ -35,9 +35,9 @@ $changelog = Get-Content -LiteralPath $changelogPath -Raw
 $normalized = Get-Content -LiteralPath $normalizedPath -Raw | ConvertFrom-Json
 $profile = $normalized.style_profile
 
-Assert-True ($normalized.normalized_from_source -eq $entry.source_file) 'Normalized Profile must name the active v1.10 source.'
+Assert-True ($normalized.normalized_from_source -eq $entry.source_file) 'Normalized Profile must name the active v1.11 source.'
 Assert-True ($profile.style_id -eq 'vox_transcript_driven_handmade_collage') 'VOX normalized stable ID changed.'
-Assert-True ($profile.version -eq 'v1.10-zh') 'VOX normalized version must be v1.10-zh.'
+Assert-True ($profile.version -eq 'v1.11-zh') 'VOX normalized version must be v1.11-zh.'
 Assert-True ($profile.provenance.source_sha256 -eq $sourceHash) 'Normalized Profile provenance hash must match the active source.'
 Assert-True (($profile.provenance.source_documents | Where-Object { $_.file -eq $entry.source_file }).sha256 -eq $sourceHash) 'Normalized source-document hash must match the active source.'
 
@@ -263,6 +263,23 @@ Assert-True ($historicalLeak.expected -eq 'invalid_project_specific_leak' -and @
 $derived = @($fixture.short_explainer.poster_shots | Where-Object { $_.approved_for_asset_derivation } | ForEach-Object { $_.asset_requirements } | Sort-Object -Unique)
 $expected = @($fixture.asset_derivation.expected_production_asset_set | Sort-Object -Unique)
 Assert-True (($derived -join '|') -eq ($expected -join '|')) 'Production Asset Set must derive only from approved Poster Shots.'
-Assert-True ($fixture.migration.input_read_only -and @($fixture.migration.input_profile_versions) -contains 'v1.9-zh' -and $fixture.migration.output_profile_version -eq 'v1.10-zh' -and $fixture.migration.output_manifest_version -eq '1.8' -and $fixture.migration.stable_profile_id -eq 'vox_transcript_driven_handmade_collage') 'v1.6-v1.9 to v1.10 migration fixture is invalid.'
+Assert-True ($fixture.migration.input_read_only -and @($fixture.migration.input_profile_versions) -contains 'v1.9-zh' -and $fixture.migration.output_profile_version -eq 'v1.11-zh' -and $fixture.migration.output_manifest_version -eq '1.8' -and $fixture.migration.stable_profile_id -eq 'vox_transcript_driven_handmade_collage') 'v1.6-v1.9 to v1.11 migration fixture is invalid.'
 
-Write-Output 'PASS: VOX v1.10 Historical VOX Profile, stable ID/v1.9 history, optional historical modes, orthogonal routing, visual grammar, Project Visual Bible boundary, mobile readability review, source/mirror parity, provenance, and structural fixtures are valid. Visual quality, provider execution, runtime loading, and human approval are not proven.'
+
+# Conditional Beat method remains in existing owners and does not claim real-media acceptance.
+Assert-True ($profile.poster_first_planning.information_goal_method -match 'absolute_narration_events') 'VOX Beat method must bind information goal and absolute narration events.'
+Assert-True ($profile.poster_first_planning.grouping_and_reveal -match 'clean_alpha_fused_region_and_whole_poster') 'VOX group semantics must distinguish clean Alpha and fused regions.'
+Assert-True ($profile.audiovisual_modules.motion_choreography.vox_beat_method -match 'speed_curve_by_meaning') 'VOX motion speed must follow semantic intent.'
+Assert-True ($profile.audiovisual_modules.critical_text_policy.text_role_timing -match 'prevent_early_conclusion_reveal') 'VOX text roles must prevent early conclusion reveal.'
+Assert-True ($profile.production_modules.background_plate_strategy.result_handoff -match 'mutually_exclusive_switch') 'VOX result handoff must be mutually exclusive.'
+Assert-True ($profile.production_modules.temporal_texture_validation -match 'continuous_motion_review') 'VOX temporal texture needs continuous final-encoded review.'
+foreach ($goal in @('关系', '比较', '地理过程', '文字阅读', '人物氛围', '象征接合')) {
+    Assert-True ($source.Contains($goal)) "VOX Beat method is missing conditional information goal: $goal"
+}
+Assert-True ($source.Contains('B19/B33 是项目案例') -and $source.Contains('其他信息类型在真实小样前不宣称实测通过')) 'VOX examples must not be promoted into general validation.'
+foreach ($module in @('vox-poster-shot-planner.md', 'scene-clip-planner.md', 'storyboard-keyframe-planner.md', 'asset-prompt-compiler.md')) {
+    $top = Join-Path $projectRoot "video-production\modules\$module"
+    $mirror = Join-Path $projectRoot "skills\video-production\modules\$module"
+    Assert-True ((Get-FileHash $top).Hash -eq (Get-FileHash $mirror).Hash) "VOX module mirror mismatch: $module"
+}
+Write-Output 'PASS: VOX v1.11 Historical VOX Profile, stable ID/v1.9 history, optional historical modes, orthogonal routing, visual grammar, Project Visual Bible boundary, mobile readability review, source/mirror parity, provenance, and structural fixtures are valid. Visual quality, provider execution, runtime loading, and human approval are not proven.'
