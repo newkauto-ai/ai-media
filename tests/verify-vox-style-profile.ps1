@@ -84,7 +84,7 @@ Assert-True ((@($historicalVox.allowed_modes) -join '|') -eq 'hero_cinematic|edi
 Assert-True ((@($historicalVox.orthogonal_dimensions) -join '|') -eq 'historical_visual_mode|pilot_design_route|decomposition_decision|motion_route') 'Historical, Pilot, decomposition, and motion decisions must stay orthogonal.'
 Assert-True ((@($historicalVox.visual_grammar.required_structure) -join '|') -eq 'historical_subject|evidence_or_context|editorial_explanation') 'Historical VOX visual grammar is incomplete.'
 Assert-True ((@($historicalVox.visual_grammar.palette_roles) -join '|') -eq 'substrate|anchor_dark|persistent_accent|restrained_optional_secondary') 'Historical VOX palette roles are incomplete.'
-Assert-True ($historicalVox.visual_grammar.character_rule -match 'not_stickers' -and $historicalVox.visual_grammar.character_rule -match 'runtime_outline') 'Historical people must remain subjects with runtime outline.'
+Assert-True ($historicalVox.visual_grammar.character_rule -match 'not_stickers' -and $historicalVox.visual_grammar.character_rule -match 'runtime_outline_only_when_needed' -and $historicalVox.visual_grammar.character_rule -match 'preserve_approved_source_outline' -and $historicalVox.visual_grammar.character_rule -match 'no_new_outline_when_natural_separation_suffices') 'Historical subjects must preserve approved contours without requiring a new outline.'
 Assert-True (@($historicalVox.visual_grammar.map_route_timeline_questions) -contains 'distance' -and @($historicalVox.visual_grammar.map_route_timeline_questions) -contains 'change_over_time' -and $historicalVox.visual_grammar.map_label_owner -eq 'remotion') 'Historical map/route/timeline explanation contract is incomplete.'
 Assert-True ((@($historicalVox.visual_grammar.critical_text_realizations) -join '|') -eq 'remotion_native_text|verified_typography_svg|verified_typography_png') 'Historical VOX must reuse the three existing critical-text realizations.'
 Assert-True (@($historicalVox.project_visual_bible_owns) -contains 'historical_person_identity' -and @($historicalVox.project_visual_bible_owns) -contains 'exact_palette_values') 'Project Visual Bible ownership is incomplete.'
@@ -282,4 +282,31 @@ foreach ($module in @('vox-poster-shot-planner.md', 'scene-clip-planner.md', 'st
     $mirror = Join-Path $projectRoot "skills\video-production\modules\$module"
     Assert-True ((Get-FileHash $top).Hash -eq (Get-FileHash $mirror).Hash) "VOX module mirror mismatch: $module"
 }
+# B24-derived conditional contracts: structural regression, not a semantic/media evaluator.
+$skillEntry = Get-Content -LiteralPath (Join-Path $projectRoot 'skills\video-production\SKILL.md') -Raw
+Assert-True ($skillEntry.Contains('For natural-contour reuse and layered micro-animation') -and $skillEntry.Contains('verify perceptible parallax and tail behavior through `qa-retry.md`')) 'Skill entrypoint must route to natural-contour and actual-media motion review.'
+$natural = $profile.poster_first_planning.natural_boundary_decomposition
+$micro = $profile.audiovisual_modules.motion_discipline.layered_micro_animation
+Assert-True ($natural.poster_adaptation -match 'do_not_uniformly_add_torn_paper_or_outline' -and $natural.contour_preservation -match 'approved_source_outline' -and $natural.contour_preservation -match 'semantically_complete_map') 'Natural reuse must not force redesign, clip original outlines, or cut maps.'
+Assert-True ($natural.source_completeness -match 'does_not_complete_hidden_anatomy') 'Recovered background cannot authorize motion of incomplete anatomy.'
+Assert-True ($profile.audiovisual_modules.cut_paper_outline_system.applicability -match 'no_new_outline_when_natural_separation_suffices' -and $profile.audiovisual_modules.cut_paper_outline_system.applicability -match 'without_double_outline') 'Outline applicability must preserve no-outline and original-outline routes.'
+Assert-True ($plate.repair_rule -match 'contiguous_occluded_regions_not_only_colored_stamp_or_text_strokes' -and $plate.exposure_sources -match 'before_element_entrance') 'Background repair must include pre-entrance ghosts and full required occlusion.'
+Assert-True ($micro.relative_motion -match 'perceptible_parallax_at_target_viewing_size' -and $micro.relative_motion -match 'not_only_global_zoom') 'Differential motion must be perceptible rather than a common zoom proxy.'
+Assert-True ($micro.connections -match 'one_fixed_point_does_not_validate_entire_contact_edge' -and $micro.coverage -match 'intermediate_handoff_and_extreme') 'A pivot alone cannot validate contacts or motion exposure.'
+Assert-True ($micro.ending -match 'continue_to_last_visible_frame' -and $micro.ending -match 'ease_out_visual_stall' -and $micro.ending -match 'holds_remain_valid_when_intended') 'Continuous-tail and intentional-hold routes must both survive.'
+Assert-True ($micro.validation -match 'last_frame_differences_are_supporting_not_visual_acceptance' -and $micro.validation -match 'missing_evidence_is_unknown') 'Numerical checks cannot substitute for actual viewing.'
+Assert-True ($posterPlanner.Contains('## Natural-boundary reuse') -and $assetCompiler.Contains('contiguous occluded region') -and $assetCompiler.Contains('Atlas cropping remains a separate')) 'Extraction/recovery consumers must carry the conditional policy.'
+Assert-True ($planner.Contains('## Layered micro-animation') -and $planner.Contains('continue_to_last_visible_frame') -and $storyboard.Contains('final encoded playback in existing production QA')) 'Planner/Storyboard must route tail and perceptual review to actual-media QA.'
+Assert-True ($qa.Contains('## Natural layers and micro-animation QA') -and $qa.Contains('`motion_failure`') -and $qa.Contains('ease-out visual stall') -and $qa.Contains('`timing_failure`') -and $qa.Contains('Missing media/viewing evidence stays `UNKNOWN`')) 'Existing QA must cover observable parallax/tail failures without fabricated PASS.'
+Assert-True ($review.Contains('actual-media owner remains existing `production_qa`') -and $manifest.Contains('not new required fields') -and $promptContract.Contains('not a requirement to add one to every subject')) 'Review, Manifest and Prompt consumers must preserve ownership and optional outline.'
+$motionFixture = Get-Content -LiteralPath (Join-Path $PSScriptRoot 'fixtures\vox-remotion-shot-intent-cases.json') -Raw | ConvertFrom-Json
+Assert-True ($motionFixture.fixture_only) 'Natural/motion cases are review scenarios, not media evidence.'
+$reviewCases = @($motionFixture.natural_layer_motion_review_cases)
+foreach ($id in @('natural-edge-no-outline','approved-source-outline','plate-with-hidden-anatomy','stamp-ghost-before-entrance','common-zoom-is-not-parallax','continuous-tail-early-stop','continuous-tail-ease-out-stall','intentional-reading-hold','no-playback-evidence')) {
+    $case = @($reviewCases | Where-Object { $_.case_id -eq $id })
+    Assert-True ($case.Count -eq 1 -and $case[0].given.Length -gt 20 -and $case[0].expected.Length -gt 20) "Missing or duplicate bounded review scenario: $id"
+}
+Assert-True (@($reviewCases.case_id | Sort-Object -Unique).Count -eq $reviewCases.Count) 'Review scenarios must have unique IDs.'
+
+
 Write-Output 'PASS: VOX v1.11 Historical VOX Profile, stable ID/v1.9 history, optional historical modes, orthogonal routing, visual grammar, Project Visual Bible boundary, mobile readability review, source/mirror parity, provenance, and structural fixtures are valid. Visual quality, provider execution, runtime loading, and human approval are not proven.'

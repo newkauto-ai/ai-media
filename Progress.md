@@ -1,8 +1,10 @@
-# Progress
+﻿# Progress
 
 ## Current Goal
 
-稳定 ID `oriental_pastoral_cinematic_lifestyle` 已按 `田园风_style_profile_升级_short_spec_插件交接版.md` 从 v1.1 增量升级并有界部署为 `v1.2-zh`：工艺题材新增 `atmosphere_shot`、`process_detail_shot`、`progression_shot` 三类镜头，完整材料状态链允许跨镜头成立；后续源码修正已移除预设镜头比例与默认序列，改由插件结合叙事目的、工序与材料状态、信息密度、人物/空间关系、音乐/情绪曲线及呼吸需求动态设计节奏。Scene/Shot、Storyboard、Asset Prompt、Clip Prompt 与 Production Manifest 复用现有 owner，增加呼吸功能、前后状态、`completion_delta` 与 visual echo 输出，不新增 Gate、Manifest、状态机或 Retry。Profile 继续保持 `pending_review`；当前活动插件为已部署的 `ai-media@personal 0.1.0+codex.20260923122603`，本轮自适应节奏修正尚未部署。
+2026-09-23，B24经验已按用户授权完成 VOX v1.11 的源码内修订：自然边界拆解、原生描边保留、按暴露修补残影、相对微动画和片尾意图进入既有模块。VOX Profile版本保持 v1.11-zh；已更新 cachebuster 并部署 ai-media@personal 0.1.0+codex.20260923094059。安装缓存 VOX 校验通过，关键文件与源码哈希一致；当前会话的 Skill 热加载未核验。本条为最新范围，下面保留其他任务历史。
+
+稳定 ID `oriental_pastoral_cinematic_lifestyle` 已按 `田园风_style_profile_升级_short_spec_插件交接版.md` 从 v1.1 增量升级并有界部署为 `v1.2-zh`：工艺题材新增 `atmosphere_shot`、`process_detail_shot`、`progression_shot` 三类镜头，完整材料状态链允许跨镜头成立；后续源码修正已移除预设镜头比例与默认序列，改由插件结合叙事目的、工序与材料状态、信息密度、人物/空间关系、音乐/情绪曲线及呼吸需求动态设计节奏。Scene/Shot、Storyboard、Asset Prompt、Clip Prompt 与 Production Manifest 复用现有 owner，增加呼吸功能、前后状态、`completion_delta` 与 visual echo 输出，不新增 Gate、Manifest、状态机或 Retry。Profile 继续保持 `pending_review`；当前活动插件已更新为 `ai-media@personal 0.1.0+codex.20260923094059`；本轮安装覆盖了田园风自适应节奏源码修正。
 
 VOX 稳定 ID `vox_transcript_driven_handmade_collage` 已按 `Historical_VOX_v1.1_Short_Spec.md` 增量升级并有界部署为 `v1.10-zh`：新增可选 `historical_visual_mode`（`hero_cinematic`、`editorial_explainer`、`atmospheric_historical`），并与 `pilot_design_route`、`decomposition_decision`、`motion_route` 保持正交。历史视觉语法、Project Visual Bible 边界和手机可读性检查复用现有 Poster Shot、Scene/Shot、Storyboard 与 Review Result owner，没有新增 Profile ID、Gate、Manifest、状态机、Retry 或 Planner。活动插件为 `ai-media@personal 0.1.0+codex.20260920152055`，已回读 installed/enabled，部署快照与活动缓存 624/624、零缺失、零多余、零 SHA-256 差异；当前任务不会热加载新 Skill。
 
@@ -31,6 +33,8 @@ VOX 稳定 ID `vox_transcript_driven_handmade_collage` 已在权威源码升级�
 权威源码中的新角色 Job 已改为固定 `head → body → upper_arms → forearms → hands → thighs → lower_legs → feet` 顺序；每个部位的线稿固定 `outline → details`，并由 checksum 绑定的部位、轮廓、细节 RGBA 蒙版证明。动物按前肢上/下段、前爪、后肢上/下段、后爪映射。旧四段与 `head_first + head_bbox` 仅保留兼容读取。本轮只修改源码，尚未更新版本或安装缓存，旧样片不能作为八段顺序的运行时验收。
 
 ## Completed & Key Decisions
+
+B24修订保留稳定Profile ID、现有Gate/Manifest/Review/QA；source/normalized、来源哈希、root/skills模块镜像已同步。新增描边是条件选项，原生描边保留；微动画按目标观看尺寸与片尾意图验收，不照搬B24幅度/帧数。仅增加规则与结构回归场景，未实现新抠图引擎或生成新视频。
 
 - `oriental_pastoral_cinematic_lifestyle` 保持稳定 ID；新增 v1.2 source/normalized 并把 registry 路由到 v1.2，v1.0/v1.1 历史文件保留。
 - 工艺型内容优先用“意境呼吸 + 可信局部动作 + 可追溯成果递进”表达过程；不要求生成模型在单镜闭合复杂针法、编织、机械重复或多步骤料理。
@@ -117,6 +121,8 @@ VOX 稳定 ID `vox_transcript_driven_handmade_collage` 已在权威源码升级�
 
 ## Core Files
 
+B24规则：`style-profiles/source/Style_Profile_VOX编辑纸拼贴讲解动画_v1.11_Beat生产方法.md`、对应normalized及registry；`video-production`与`skills/video-production`中的Poster/Scene/Storyboard/Asset/QA模块及相关契约；`tests/verify-vox-style-profile.ps1`、`tests/fixtures/vox-remotion-shot-intent-cases.json`。项目整合候选：`D:/文档/AI视频项目/Vox/国风历史讲解/AGENTS_整合迭代候选_v2.1.md`，未替换现行AGENTS。
+
 - `style-profiles/source/Style_Profile_田园风_v1.1_中文解析.md`
 - `style-profiles/normalized/oriental_pastoral_cinematic_lifestyle.v1.1-zh.json`
 - `style-profiles/registry.json`
@@ -180,6 +186,8 @@ VOX 稳定 ID `vox_transcript_driven_handmade_collage` 已在权威源码升级�
 - `tests/verify-vox-style-profile.ps1`
 
 ## Verification
+
+B24源码修订：VOX Profile、Style Profile Library、Skill 4 contracts、Image Prompt contracts 四项回归通过；覆盖来源哈希、现有契约、模块镜像和结构性规则约束。九个自然分层/微动画场景是明确fixture-only的审查输入，不是已执行的视觉评估；新增规则仍需实际Beat最终编码连续观看，未声称运行时或视觉PASS。
 
 - 田园风 v1.2 的自适应节奏源码修正通过 Pastoral 定向、Style Profile library、VOX、Image Prompt、Skill 4、Storyboard 与基础 contracts 七组回归。覆盖三类镜头、无固定比例/默认序列/强制交替、按叙事功能安排意境镜头、跨镜头状态连续性、P1/P2/P3 投影、普通田园兼容、A–G 七案、provenance 与根目录/`skills/` mirror parity；未部署到活动缓存，也未调用外部生成。
 - `ai-media@personal 0.1.0+codex.20260921030828` 已回读为 installed/enabled；受限 staging 与活动安装缓存均为 628 文件，零缺失、零多余、零 SHA-256 差异；personal marketplace 恢复前后哈希一致。
@@ -246,6 +254,8 @@ VOX 稳定 ID `vox_transcript_driven_handmade_collage` 已在权威源码升级�
 
 ## Known Issues
 
+B24源码修订尚未安装或当前会话加载；其他风格已有待部署差异，后续若获部署授权须限定包内差异。项目AGENTS候选尚未启用。
+
 - 田园风 v1.2 自适应节奏修正的自动化测试不证明真实工艺事实、视觉质量、模型动作稳定性或连续成片节奏；状态继续保持 `pending_review`。活动安装缓存仍是上一版固定节奏源码，新规则须在另行授权部署后才能用于新任务的自然语言路由与代表性 Pilot。
 
 - VOX v1.10 自动化验证证明契约、fixtures、provenance、镜像与安装缓存一致，不证明 Historical VOX 的真实构图、史实视觉准确性、手机端阅读体验或连续成片质量；真实使用前仍需项目 Visual Bible、代表性 Pilot 与人工连续观看。
@@ -272,6 +282,8 @@ VOX 稳定 ID `vox_transcript_driven_handmade_collage` 已在权威源码升级�
 - 接触表显示角色→灯泡→因果节点的对象级顺序、三级线条与分层上色已保留，但不能替代用户对 18 秒样片的连续观看；尤其需要判断 `energetic` 速度与手笔尺寸是否舒适。
 
 ## Next
+
+B24本轮交付完成：供用户审阅项目AGENTS完整候选。源码安装部署、替换现行AGENTS及Git发布不在本轮执行范围；后续按明确授权分别推进。
 
 1. 获得部署授权后，将田园风 v1.2 自适应节奏修正有界安装并核验缓存一致性；随后在新任务做自然语言冒烟验证。若要推进到 `ready`，用有事实依据的轻工艺项目验证插件是否按内容选择镜头组合，并连续观看实际节奏。
 2. 在新任务做 VOX v1.10 自然语言冒烟验证；真实历史项目先提供 Project Visual Bible，再用 `hero_cinematic`、`editorial_explainer`、`atmospheric_historical` 各一张代表镜做手机尺寸和连续观看验收。

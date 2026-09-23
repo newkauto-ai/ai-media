@@ -36,3 +36,11 @@ preserved and all remaining differences are optional, use `accept_current_stop_o
 emit a total similarity score or new failure taxonomy.
 
 Whiteboard 1.3 segment execution remains ordinary `production_qa`: render and technically check one immutable Job before starting the next; on failure retain passed segments, stop downstream, and route only the named failed unit through existing Execution State. A continuous-canvas merge checks non-overlapping logical frame ranges, exact total frames/duration, no boundary duplicate/gap/flash/state loss, hidden tip at the boundary, full decode, and SHA-256. A board cut must be declared. Technical success and merge parity remain `success_pending_human_review` until continuous human viewing.
+
+## Natural layers and micro-animation QA
+
+For VOX, use actual evidence in existing `production_qa`, not a new Gate. A clipped approved source outline, visible hard crop, neighbor fragment, stamp/text ghost, hole or broken contact edge is `artifact` (or `camera_failure` for an unintended framing cause); displaced/unreadable critical text is `text_render_failure`. No added outline is valid when natural separation already reads; preserve approved intrinsic outlines without doubling them. A recovered background never proves hidden anatomy complete.
+
+When perceptible layered parallax is the declared goal, inspect relative movement at target viewing size in final encoded continuous playback. Insufficient or incoherent relative movement that defeats that goal is `motion_failure`; a purely static Shot or a purposeful shared camera move does not fail for lacking parallax. Check margins, all contact/occlusion edges, text and temporal texture. With `continue_to_last_visible_frame` intent, early stopping or an ease-out visual stall in the tail is `timing_failure`; an intentional reading hold is valid. A still independent label does not require the environment to stop.
+
+Transform changes, coverage calculations and non-identical last frames only support the review. They cannot prove perceptible parallax, coordination or continuous human viewing. Missing media/viewing evidence stays `UNKNOWN` and does not consume retry. Report natural boundaries/fused limitations, exposure/extreme evidence and observed parallax/tail behavior in existing findings. Preserve accepted outputs; repair only the evidenced defect.

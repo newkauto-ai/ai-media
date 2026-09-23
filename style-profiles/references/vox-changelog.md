@@ -72,3 +72,10 @@ This file preserves migration history for `vox_transcript_driven_handmade_collag
 # v1.11-zh — VOX Beat production method
 
 The active stable ID now projects the current `VOX_Beat生产方法_ShortSpec_v0.1.md` (document v2.0) into existing Poster Shot, Scene/Shot, Storyboard, Asset Prompt, Review and QA owners. It adds conditional information-goal methods, narration-first absolute events, grouping and result-handoff discipline, text-role timing, minimum assets, and final-encoded temporal texture review. B19/B33 values remain project examples, not global defaults. v1.10 source and normalized history remain available.
+
+## 2026-09-23 — v1.11 source-only B24 lesson amendment
+
+- Integrated Short Spec v2.1: natural-contour reuse without uniform paper/outline redesign; complete approved source contours; exposure recovery including pre-entrance and stamp ghosts.
+- Added conditional differential micro-motion, connection/coverage checks, perceptible target-size QA and continuous-tail versus intentional-reading-hold intent in existing owners.
+- Synchronized source/normalized provenance, root/skills consumers and structural regression scenarios. No new state, schema, renderer or automated segmentation engine; visual behavior still needs actual media review.
+- Profile/plugin versions and cachebuster unchanged. No installation or Git publication in this source-only change. B24 motion numbers are not defaults.

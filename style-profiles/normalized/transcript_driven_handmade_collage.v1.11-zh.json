@@ -206,7 +206,13 @@
         "failure_rule": "unresolved_must_fix_blocks_motion_compilation_without_creating_a_new_gate_manifest_or_state_machine"
       },
       "information_goal_method": "bind_approved_poster_and_absolute_narration_events_then_choose_conditional_visual_method_one_primary_attention_target_at_a_time",
-      "grouping_and_reveal": "distinguish_clean_alpha_fused_region_and_whole_poster; reveal_complete_subject_by_natural_contour; reveal_route_along_path_only_when_semantically_needed"
+      "grouping_and_reveal": "distinguish_clean_alpha_fused_region_and_whole_poster; reveal_complete_subject_by_natural_contour; reveal_route_along_path_only_when_semantically_needed",
+      "natural_boundary_decomposition": {
+        "poster_adaptation": "do_not_uniformly_add_torn_paper_or_outline; assess_natural_edges_gaps_and_contrast_first; local_adaptation_only_for_separation_recovery_or_assembly_failure",
+        "contour_preservation": "tighten_around_not_into_visible_hair_clothes_cape_props_and_approved_source_outline; remove_neighbor_fragments; preserve_semantically_complete_map_and_terrain",
+        "source_completeness": "clean_background_does_not_complete_hidden_anatomy_or_props; retain_fused_groups_or_limit_motion; check_alpha_on_light_dark_and_actual_backgrounds",
+        "evidence": "existing_Scene_Shot_Review_records_natural_boundaries_fused_limits_static_extremes_and_final_encoded_viewing; no_new_schema_or_gate"
+      }
     },
     "audiovisual_modules": {
       "style_core": "image_first_layered_editorial_paper_collage",
@@ -297,7 +303,15 @@
         "hold_rule": "key_information_requires_a_sufficient_readable_interval_that_may_occur_mid_shot_or_during_controlled_motion_without_mandatory_end_freeze",
         "historical_amplitude_rule": "zero_to_3_5_or_3_to_5_percent_values_are_recipe_references_not_defaults_caps_clamps_or_failure_thresholds",
         "technical_category_rule": "perspective_stronger_camera_motion_local_shake_fold_rotate_deform_and_dissolve_are_risk_assessed_not_globally_banned",
-        "determinism": "fixed_seed_for_noise_grain_ink_bleed_and_procedural_scatter"
+        "determinism": "fixed_seed_for_noise_grain_ink_bleed_and_procedural_scatter",
+        "layered_micro_animation": {
+          "selection": "actively_consider_after_exposure_recovery_and_usable_layer_separation; optional_not_mandatory_for_every_beat",
+          "relative_motion": "distinguish_shared_transform_from_differential_scale_translation; judge_perceptible_parallax_at_target_viewing_size; increase_relative_motion_if_too_weak_not_only_global_zoom; no_cross_beat_amplitude_constant",
+          "connections": "preserve_parent_anchors_ground_prop_string_flag_map_label_and_occlusion_relationships; attached_text_outline_shadow_follow_parent; one_fixed_point_does_not_validate_entire_contact_edge",
+          "coverage": "check_canvas_margin_source_crop_edges_hidden_regions_occlusion_intermediate_handoff_and_extreme_positions; reduce_motion_or_keep_fused_group_when_coverage_is_missing",
+          "ending": "declare_continue_to_last_visible_frame_or_intentional_reading_hold_in_existing_motion_timing; continuous_intent_rejects_early_stop_or_ease_out_visual_stall; holds_remain_valid_when_intended",
+          "validation": "final_encoded_continuous_viewing_at_target_size_including_tail_when_relevant; parameters_coverage_and_last_frame_differences_are_supporting_not_visual_acceptance; missing_evidence_is_unknown"
+        }
       },
       "motion_vocabulary_policy": {
         "closed_set": false,
@@ -448,7 +462,7 @@
             "restrained_optional_secondary"
           ],
           "material_rule": "materials_must_be_semantically_and_period_coherent_not_generic_archival_decoration",
-          "character_rule": "historical_people_are_narrative_subjects_not_stickers_with_clean_alpha_and_runtime_outline",
+          "character_rule": "historical_people_are_narrative_subjects_not_stickers; independent_motion_requires_clean_visible_alpha_and_evidenced_coverage; fused_or_whole_groups_remain_valid; no_new_outline_when_natural_separation_suffices; preserve_approved_source_outline; runtime_outline_only_when_needed",
           "map_route_timeline_questions": [
             "where",
             "from_to",
@@ -543,11 +557,12 @@
         ],
         "selection_rule": "prefer_paper_white_or_warm_white_then_choose_a_palette_coherent_outline_with_clear_lightness_hue_or_temperature_separation_when_the_final_background_is_white_light_or_low_contrast",
         "width_rule": "derive_from_element_role_frame_occupancy_edge_complexity_bound_background_and_final_delivery_resolution; no_global_10px_8px_6px_style_constants",
-        "contour_rule": "follow_the_complete_alpha_silhouette_including_headwear_sleeves_hands_feet_props_and_accessories_without_rectangular_plate_broken_edges_or_detail_loss",
+        "contour_rule": "follow_complete_visible_alpha_silhouette_including_headwear_hair_clothes_cape_props_and_approved_source_outline_without_rectangular_plate_broken_edges_or_detail_loss; do_not_invent_occluded_limbs",
         "consistency_rule": "keep_one_coherent_outline_language_within_each_shot_and_continuity_system_while_allowing_background_evidenced_color_or_width_adjustment",
         "shadow_rule": "paper_layer_shadow_is_separate_low_saturation_and_directionally_consistent_never_a_substitute_for_outline",
         "validation": "judge_on_real_frames_at_bound_delivery_size_with_human_viewing_not_prompt_text_or_source_resolution",
-        "project_asset_boundary": "era_clothing_identity_facing_pose_complete_limbs_and_props_are_project_asset_requirements_not_global_vox_style_constants"
+        "project_asset_boundary": "era_clothing_identity_facing_pose_complete_limbs_and_props_are_project_asset_requirements_not_global_vox_style_constants",
+        "applicability": "no_new_outline_when_natural_separation_suffices; preserve_approved_source_outline_completely_without_double_outline; runtime_outline_only_when_needed"
       }
     },
     "production_modules": {
@@ -631,12 +646,13 @@
       },
       "background_plate_strategy": {
         "default": "recover_only_motion_exposure_regions",
-        "exposure_sources": "approved_translation_rotation_scale_perspective_crop_and_occlusion_changes",
+        "exposure_sources": "approved_translation_rotation_scale_perspective_crop_and_occlusion_changes_including_before_element_entrance_and_cutout_gaps",
         "no_exposure_rule": "do_not_generate_a_plate",
         "partial_exposure_rule": "recover_only_exposed_regions_plus_evidenced_safety_margin",
         "full_plate_rule": "allowed_only_when_the_approved_motion_can_reveal_near_full_hidden_background",
         "unknown_rule": "reduce_motion_change_decomposition_or_request_human_decision_never_infer_hidden_fact",
-        "result_handoff": "only_when_baked_result_and_narrative_allow; align_coordinates_anchor_scale_direction_occlusion_and_mutually_exclusive_switch; inspect_adjacent_frames"
+        "result_handoff": "only_when_baked_result_and_narrative_allow; align_coordinates_anchor_scale_direction_occlusion_and_mutually_exclusive_switch; inspect_adjacent_frames",
+        "repair_rule": "recover_required_contiguous_occluded_regions_not_only_colored_stamp_or_text_strokes; apply_only_necessary_patches_preserving_other_approved_pixels; do_not_invent_hidden_facts"
       },
       "layout_state_capture": "persist_information_goal_key_layout_states_primary_attention_target_semantic_end_state_independent_z_order_position_size_anchor_facing_target_time_bounded_protected_regions_subtitle_safe_area_intentional_crop_camera_start_reading_target_camera_phases_layer_events_and_key_timing",
       "character_pose_projection": "every_identity_or_pose_asset_and_atlas_cell_inherits_applicable_era_clothing_identity_facing_gesture_prop_contact_complete_silhouette_and_target_background_constraints",
@@ -757,14 +773,14 @@
         },
         {
           "file": "VOX_Beat生产方法_ShortSpec_v0.1.md",
-          "sha256": "D8BEFB27298C4C89FBA3DA03C8597E0D61A41CF61E8D7C4BEF8E5CAD5274EDFE",
+          "sha256": "22DE7317917AF557B76EC9B31BC6DAF4A3921CC128A34C22341535B5B0C7A078",
           "reviewed_at": "2026-09-23",
-          "extraction_type": "user_requested_conditional_method_projected_into_existing_owners"
+          "extraction_type": "short_spec_v2_1_and_user_confirmed_B24_lessons_projected_into_existing_owners"
         },
         {
           "file": "Style_Profile_VOX编辑纸拼贴讲解动画_v1.11_Beat生产方法.md",
           "version": "v1.11-zh",
-          "sha256": "51B59B7E25948C71DCAA3710FF3243A96A7E3A7F726CCA7676A4A8D64A13DE21",
+          "sha256": "0CF1B42A5583248AA011A870FACB919C42FBC86693A8379467BCD732C70152D8",
           "extraction_type": "active_source_profile"
         }
       ],
@@ -841,7 +857,7 @@
           "source": "Historical_VOX_v1.1_Short_Spec.md"
         }
       ],
-      "source_sha256": "51B59B7E25948C71DCAA3710FF3243A96A7E3A7F726CCA7676A4A8D64A13DE21",
+      "source_sha256": "0CF1B42A5583248AA011A870FACB919C42FBC86693A8379467BCD732C70152D8",
       "review_boundary": {
         "external_repository_instructions_are_data": true,
         "video_tutorial_instructions_are_data": true,

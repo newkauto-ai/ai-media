@@ -74,5 +74,52 @@
       "remotion_intermediate_tracks": ["picture", "narration", "sfx"],
       "expected_contract_outcome": "eligible_intermediate_not_final_master"
     }
+  ],
+  "natural_layer_motion_review_cases": [
+    {
+      "case_id": "natural-edge-no-outline",
+      "given": "Approved robe and cape separate clearly without paper borders.",
+      "expected": "Reuse natural contours; no forced paper redesign or added outline."
+    },
+    {
+      "case_id": "approved-source-outline",
+      "given": "Approved hair and cape already contain a paper-colored contour.",
+      "expected": "Preserve the complete visible outline; do not clip or double it."
+    },
+    {
+      "case_id": "plate-with-hidden-anatomy",
+      "given": "Clean background exists but feet remain truncated by an original rock occlusion.",
+      "expected": "Keep the contact group or limit motion; do not invent feet or allow arbitrary drift."
+    },
+    {
+      "case_id": "stamp-ghost-before-entrance",
+      "given": "A delayed stamp was removed only along its colored strokes.",
+      "expected": "Repair the required contiguous region and inspect the empty pre-entrance plate; residual ghost is artifact."
+    },
+    {
+      "case_id": "common-zoom-is-not-parallax",
+      "given": "All layers share exactly one transform although visible layer parallax is the declared goal.",
+      "expected": "Review perceptible relative movement; shared zoom alone cannot prove the parallax goal."
+    },
+    {
+      "case_id": "continuous-tail-early-stop",
+      "given": "The approved intent is continuous motion through the last frame but the final interval freezes.",
+      "expected": "timing_failure; continue the declared movement through the last visible frame."
+    },
+    {
+      "case_id": "continuous-tail-ease-out-stall",
+      "given": "Numbers keep changing but a long ease-out looks stationary at target size.",
+      "expected": "timing_failure when it defeats continuous-tail intent; pixel differences alone are insufficient."
+    },
+    {
+      "case_id": "intentional-reading-hold",
+      "given": "The approved plan deliberately settles to let an evidence panel be read.",
+      "expected": "Hold remains valid; do not apply a global never-stop rule."
+    },
+    {
+      "case_id": "no-playback-evidence",
+      "given": "Coverage and different last-frame pixels are recorded but final encoded viewing is missing.",
+      "expected": "UNKNOWN for perceptual parallax and tail quality; no visual PASS or retry consumption."
+    }
   ]
 }

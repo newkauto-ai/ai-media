@@ -123,3 +123,5 @@ When a Clip prompt is projected into Notion, the `Video Prompt` field must conta
 - only the negative constraints needed to prevent named failures.
 
 Acceptance, QA, cost, file, and human-approval evidence belong in database properties or review pages. Placeholder text such as `已接受片段`, `正文为 Clip Brief`, `承接上一条后再编译`, or `正文另见` fails the copy-ready contract. A planned prompt may use a frozen provisional start state, but its database status and observed end state must remain explicitly planned/unobserved.
+
+For VOX source reuse, preserve an approved intrinsic outline rather than cutting it away or requesting a duplicate. Natural contours may require no added outline. The existing runtime-outline owner/validation describes who creates and checks a needed new outline, not a requirement to add one to every subject. Clean Alpha for new independent assets and the transparent-atlas safety contract remain unchanged; do not interpret named-cell atlas cropping as natural-contour extraction.
