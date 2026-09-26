@@ -23,6 +23,8 @@
 | Low-risk storyboard assessed as optional | skip Storyboard and advance to Keyframe planning |
 | Medium/high-risk Storyboard | retain Storyboard/Keyframe planning |
 | Storyboard Review PASS with current non-fixture media evidence | complete Storyboard and advance to Prompt planning; do not request a Cost Gate |
+| Managed VOX Poster Shot/Contact Sheet v2.2 Review PASS with exact media/context, all route-required checks and no unresolved `must_fix` | continue Poster preparation; a complete Poster may proceed to detailed motion preplan, while formal Motion still needs static/exposure preflight |
+| Managed VOX Poster has only legacy assessment, v2.1 Review, missing/unknown check, or stale source/use binding | block for current evidence without consuming retry; do not fabricate Storyboard/Video Prompt or a provider request |
 | Storyboard Review fixture, missing media identity, or stale target/dependency hash | block for current evidence; do not consume retry budget |
 | Storyboard Review named non-semantic Must Fix with budget remaining | repair only the named Panel through `video-production` |
 | Production `domain_identity_failure` with budget remaining | retry affected unit through `video-production` only |

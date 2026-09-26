@@ -2,6 +2,10 @@
 
 This file preserves migration history for `vox_transcript_driven_handmade_collage`. The active runtime Profile contains only current executable guidance; this changelog is not inherited as runtime policy.
 
+## 2026-09-25 — v1.12-zh execution reliability source revision
+
+The stable VOX style ID now resolves to the v1.12 source and normalized Profile. This revision adds many-to-many Beat–Shot–Poster use binding, bounded reuse before requests, Base suitability before independent transparent overlays, deterministic complete Preview, detailed motion preplan before decomposition/exposure repair, static checks before formal Motion, verified typography/path registration, and effective subject-pixel sizing for atlas exceptions. Historical VOX v1.0 remains the optional module. Source/test readiness does not assert installed-cache or real-media approval.
+
 ## v1.1-zh
 
 - Established the stable formal ID and the transcript-driven editorial paper-collage grammar.

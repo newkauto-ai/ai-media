@@ -445,10 +445,10 @@
     },
     {
       "profile_id": "vox_transcript_driven_handmade_collage",
-      "source_file": "Style_Profile_VOX编辑纸拼贴讲解动画_v1.11_Beat生产方法.md",
-      "source_sha256": "0CF1B42A5583248AA011A870FACB919C42FBC86693A8379467BCD732C70152D8",
-      "normalized_file": "transcript_driven_handmade_collage.v1.11-zh.json",
-      "normalized_version": "v1.11-zh",
+      "source_file": "Style_Profile_VOX编辑纸拼贴讲解动画_v1.12_执行可靠性.md",
+      "source_sha256": "5A138607131C02164E2B99275D557556DB4E9E377B95DFF93369580FDB1B4161",
+      "normalized_file": "transcript_driven_handmade_collage.v1.12-zh.json",
+      "normalized_version": "v1.12-zh",
       "classification": "hybrid_style_profile",
       "status": "ready",
       "provenance_verified": true

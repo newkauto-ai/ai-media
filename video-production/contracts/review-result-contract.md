@@ -1,15 +1,16 @@
-# Review Result Contract v2.1
+# Review Result Contract v2.1 / VOX v2.2 extension
 
 This additive contract records an evidence-bound review without replacing Workflow Controller `Evaluator Result` or `Execution State`. V2.1 enables `pre_generation_prompt` plus bounded `previsualization_storyboard` targets, including VOX Poster Shots and VOX Poster Contact Sheets. Production Clip Review Gate 2 and Final Cut Review Gate 3 remain unimplemented.
 
 ```yaml
 review_result:
-  schema_version: "2.1"
+  schema_version: "2.1" | "2.2" # v2.2 is required for new managed VOX Poster Reviews
   review_id: string
   gate: pre_generation_prompt | previsualization_storyboard
   target:
     project_id: string
     target_type: video_prompt | storyboard_asset | vox_poster_shot | vox_poster_contact_sheet
+    pilot_design_route: hero_key_art | production_reconstructable | null # v2.2 VOX Poster Shot
     target_id: string
     revision_id: string
     content_hash: string
@@ -26,6 +27,8 @@ review_result:
       storyboard_plan: string | null
       storyboard_prompt: string | null
       storyboard_media: string | null
+      poster_shot_map: string | null # v2.2 VOX instead of generated storyboard_prompt
+      poster_media: string | null # v2.2 VOX exact Poster/Preview version
     evaluator_policy_id: string
     evaluator_policy_version: string
   provenance:
@@ -40,6 +43,8 @@ review_result:
       category: feasibility | continuity | story_function_conformance | editability | poster_readiness | production_reconstructability | editorial_rhythm
       severity: must_fix | optional | do_not_optimize
       status: confirmed | suspected | unknown | not_applicable
+      check_result: pass | fail | unknown | not_applicable | null # v2.2: explicit outcome, never inferred from status
+      resolution: unresolved | resolved | not_applicable | null # v2.2 must_fix disposition
       confidence: high | medium | low
       evidence: [string]
       failure_type: string | null
@@ -48,7 +53,7 @@ review_result:
       owner: script_engine | audiovisual_director | video_production | human_decision
   decision:
     verdict: PASS | WARNING | FAIL | UNKNOWN | HUMAN_REVIEW
-    next_action: advance_to_separate_cost_gate | advance_to_prompt_planning | targeted_repair | hold_for_evidence | human_review
+    next_action: advance_to_separate_cost_gate | advance_to_prompt_planning | continue_poster_preparation | targeted_repair | hold_for_evidence | human_review
     generation_gate_recommendation: eligible_for_separate_cost_gate | withhold
     recommended_reclassification: hero_key_art | null
     reason: string
@@ -74,7 +79,9 @@ review_result:
 - Persist the complete result in `production_manifest.qa.results`; Markdown and Notion remain projections.
 - All hashes, policy identity/version, exact target revision, and at least one evidence reference are required. A material dependency or target change makes the decision stale and routes to `UNKNOWN` until reviewed again.
 - `pre_generation_prompt` requires non-empty `frozen_script`, `audiovisual_direction_package`, `production_manifest`, `video_prompt_spec`, and `executable_prompt` dependency hashes. It retains the existing Cost Gate recommendation behavior.
-- `previsualization_storyboard` requires target `media_checksum` plus non-empty `frozen_script`, `audiovisual_direction_package`, `production_manifest`, `storyboard_plan`, `storyboard_prompt`, and `storyboard_media` dependency hashes. Its PASS advances only to Prompt planning and keeps `generation_gate_recommendation=withhold`.
+- Generative `storyboard_asset` under `previsualization_storyboard` requires target `media_checksum` plus non-empty `frozen_script`, `audiovisual_direction_package`, `production_manifest`, `storyboard_plan`, `storyboard_prompt`, and `storyboard_media` dependency hashes. Its PASS advances only to Prompt planning and keeps `generation_gate_recommendation=withhold`.
+- Managed VOX Poster targets use v2.2 with exact target checksum and non-empty `frozen_script`, `audiovisual_direction_package`, `production_manifest`, `poster_shot_map`, and `poster_media` hashes. They do not invent a generated Storyboard or Video Prompt. Their PASS means `continue_poster_preparation`: a full Poster may proceed to detailed motion planning, while formal Motion still requires current static and exposure evidence. A base-only or unapproved design candidate is not a v2.2 Poster PASS.
+- VOX PASS requires one explicit high-confidence `check_result: pass` with evidence for `visual_quality` and `poster_readiness`. A `production_reconstructable` Poster Shot additionally requires the five named reconstructability checks. `status: confirmed` means a finding is confirmed, not that its check passed. A `must_fix` finding is unresolved unless `resolution: resolved`, `check_result: pass`, and repair evidence are present. Missing/unknown/failed required results block advancement without consuming retry. Existing VOX v2.1 records remain readable for diagnosis but cannot issue a new managed PASS.
 - A VOX `vox_poster_shot` or `vox_poster_contact_sheet` remains under `previsualization_storyboard`. Review primary-attention clarity, editorial hierarchy, paper-layer separation, critical-text protection, no-motion readability, asset coverage, adjacent-composition distinction, Style Baseline consistency, applicable Static Reconstruction fidelity, and poster-to-motion feasibility. Static Reconstruction is recorded as existing `poster_readiness` findings and evidence; it preserves composition, hierarchy, focal weight, negative space, palette, and typography character without requiring pixel-perfect equality. It does not create a Reconstruction Gate, Manifest, Typography Manifest, or state machine. Any unresolved `must_fix` blocks motion compilation for the affected Poster Shot.
 - VOX review validates one decomposition decision (`keep_whole`, `partial_decomposition`, `full_element_assembly`, or `rebuild_locally`), exposure-bounded background recovery, Remotion-owned critical-text realization, Hero Typography character, numeral-display semantic equivalence, runtime outline behavior, and separate shadow. `keep_whole` may mark Static Reconstruction not applicable only when crop, typography, composition, and layout are unchanged.
 - VOX Pilot review validates `pilot_design_route` before decomposition. `hero_key_art` evaluates visual impact, focal hierarchy, Style fidelity, emotional value, and micro-animation/video-reference feasibility and marks Production Reconstructability findings not applicable. `production_reconstructable` must pass Visual Quality, Poster Readiness, and the five findings `typography_split_test`, `context_separation_test`, `decorative_independence_test`, `rectangle_risk_test`, and `motion_sequence_test`.

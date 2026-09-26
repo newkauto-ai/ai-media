@@ -9,17 +9,17 @@ Require the frozen Script, confirmed final narration semantic intervals, current
 ## Planning sequence
 
 1. Preserve each ADP Beat's story/audiovisual function and absolute narration interval.
-2. Split the Beat into one or more Poster Shots only when information density, reading time, evidence, map/detail, comparison, climax, or editorial rhythm requires it. Do not force Wide + Detail or a fixed shot count.
+2. Make a joint Beat–Shot–Poster use map. One Beat may have several Shots using different Posters, and one Poster source may be referenced by Shots in several Beats. Keep each use's scalar `source_beat_id`, absolute interval, purpose, source asset revision, static layout and Review scope. Do not force Wide + Detail, a fixed shot count, a visible cut at a Beat boundary, or another image merely because narration changes sentence.
 3. Give every Poster Shot one `information_goal`, one primary attention target at a time, one independently readable `stable_poster_state`, and an open-vocabulary `shot_role`/`poster_archetype`.
 4. Before Pilot design or image Prompt compilation, select exactly one `pilot_design_route`: `hero_key_art` or `production_reconstructable`. Use Hero for cover/climax/emotional/callback/Title Card/video-reference value where fusion matters more than element control. Use Production when text, map/route, data, relationships, staged reveals, independent entrances, or a Remotion precision reconstruction requires independent visual groups.
 4a. For a historical Shot, optionally select one `historical_visual_mode`: `hero_cinematic`, `editorial_explainer`, or `atmospheric_historical`. Omit it or use `null` for non-historical Shots. This mode is independent of `pilot_design_route`, `decomposition_decision`, and `motion_route`; never infer one dimension from another.
-5. Define the poster before motion: visual hierarchy, reading path, protected critical-text region, paper layers, primary/secondary elements, and the exact approved stable-state reference. A Production Pilot must read as one coherent poster while its major typography, directional, decorative, and context groups remain visually separable and independently reconstructable; do not prescribe a fixed layer count, layout, palette, or project-specific constants.
-6. Review the generated Pilot by route inside the existing Poster Readiness / `previsualization_storyboard` Review Result. Hero checks visual impact, hierarchy, style, emotional value, and micro-animation/video-reference feasibility; reconstructability is `not_applicable`. Production additionally requires `typography_split_test`, `context_separation_test`, `decorative_independence_test`, `rectangle_risk_test`, and `motion_sequence_test`.
-7. After the actual Pilot passes its route-specific review, choose exactly one minimum-sufficient `decomposition_decision`: `keep_whole`, `partial_decomposition`, `full_element_assembly`, or `rebuild_locally`. Base it on actual motion exposure, editability, typography fidelity, asset quality, cost, and risk—not on a preference for more layers.
-8. For any decomposition or local rebuild, derive the bounded `background_plate_strategy` and recover only regions the approved motion can expose. A full plate needs evidence that near-full hidden background may become visible.
-9. Derive the minimum asset requirements used by at least one approved Poster Shot. Keep the ADP asset plan as Candidate Asset Plan; do not queue unused candidates.
-10. Run the Static Reconstruction Check through the existing Poster Readiness / `previsualization_storyboard` Review Result whenever decomposition, local rebuild, crop, typography, or layout changes the approved static state. Motion may enrich or transform only a passed static reconstruction; it may not rescue one.
-11. Select a motion route only after the applicable route-specific Review, Poster Readiness, and Static Reconstruction findings pass.
+5. Before any new image request, inspect bounded reusable Poster, Base, independent elements, text, route and plate candidates. Record scope, versions, suitability reasons and remaining gap on the owning Shot/Asset. Define layout intent now: visual hierarchy, reading path, text region, independently controlled groups, delayed information, framing allowance, separation and texture. Plan IDs are candidates, never approved media. Do not require an as-yet-unmade complete Poster approval before requesting an authorized design candidate.
+6. For new `production_reconstructable`, reuse or obtain a clean scene Base under that layout intent and confirm its suitability. It may retain people/environment that need no independent control. Then reuse or request independent transparent design overlays, preferably one high-resolution asset per critical title, route, figure or frame. A Base approval permits overlay design only. Compose the complete Preview deterministically from the same assets and layout used by the later Remotion assembly; never ask an image model to redraw that final composite. Hero and already approved whole Posters may stay whole.
+7. Review the actual complete Poster/Preview by route inside existing Poster Readiness / `previsualization_storyboard` Review Result. Hero checks visual impact, hierarchy, style, emotional value and motion feasibility. Production additionally requires `typography_split_test`, `context_separation_test`, `decorative_independence_test`, `rectangle_risk_test` and `motion_sequence_test`. Candidate lettering is not verified typography; Base suitability is not complete Poster PASS.
+8. Only after complete Poster approval, draft detailed semantic motion: actual narration interval, attention targets, groups/anchors, entrances, handoffs, likely camera/element range and hidden-background exposure. This preplan informs minimum decomposition; it is not formal animation or a claim that geometry has passed.
+9. Choose one minimum-sufficient `decomposition_decision` from actual exposure/editability/quality/cost/risk. Reuse native independent overlays directly; never flatten the approved Preview merely to extract them again. Recover only hidden regions that the detailed preplan exposes, including pre-entrance and extreme states. A full plate needs near-full exposure evidence.
+10. Derive only missing assets for current uses. Keep unneeded ADP candidates ungenerated. Compare approved Poster with the same-implementation no-motion reconstruction, including applicable pre-entry, handoff, intermediate and extreme states. Missing/stale or unresolved `must_fix` evidence blocks formal Motion.
+11. Compile and render formal Motion only after static/exposure checks. The route may be planned as intent earlier but is not an execution permission. Local Remotion does not require a generated Video Prompt or provider request.
 12. Compare adjacent shots and record the intended difference. Three highly similar consecutive shots emit `editorial_repetition_warning`; material harm becomes a Review Result `must_fix`, not an automatic quota failure.
 
 ## Poster Shot Map
@@ -29,6 +29,7 @@ Each entry minimally contains:
 ```yaml
 poster_shot_id: string
 source_beat_id: string
+poster_source_asset_ref: {asset_id, revision_id, sha256} | planned_candidate_id # resolve before formal Motion
 time_range: {start_seconds: number, end_seconds: number}
 information_goal: string
 primary_attention_target: string
@@ -42,13 +43,15 @@ critical_text:
   items: [object]
 asset_requirements: [string]
 pilot_design_route: hero_key_art | production_reconstructable
-decomposition_decision: keep_whole | partial_decomposition | full_element_assembly | rebuild_locally
+decomposition_decision: keep_whole | partial_decomposition | full_element_assembly | rebuild_locally | null # null for design candidate until complete Poster Review
 adjacent_shot_difference: string
-motion_route: remotion_living_poster | remotion_precision_motion | generative_hero_clip
+motion_route: remotion_living_poster | remotion_precision_motion | generative_hero_clip | null # plan intent early, execute only after static evidence
 historical_visual_mode: hero_cinematic | editorial_explainer | atmospheric_historical | null
 ```
 
 `shot_role` is descriptive and open. Suggested values are `establish`, `detail`, `comparison`, `evidence`, `map`, `number`, `relationship`, `transition`, `climax`, `symbolic_payoff`, and `custom`.
+
+Multiple use rows may reference one `poster_source_asset_ref` while retaining their own `source_beat_id`, layout, text visibility, crop, time and Review. A long Beat may likewise contain several rows with distinct source assets. Asset reuse does not copy approval for changed uses. The existing `local_assembly_plan.poster_spec.production_design` may carry layout intent, Base/Overlay IDs, deterministic Preview input fingerprint, Review refs and later motion preplan; the existing `assets` carry each request's reuse/authorization evidence and exact media revision. These are compatible projections, not another Manifest or approval owner.
 
 ## Local assembly projection
 

@@ -41,7 +41,7 @@ Later user-reported media may activate one independent External Result Review on
 
 ## Per-unit loop
 
-1. Load a unit state and an [Evaluator Result](contracts/evaluator-result.md). A pre-generation prompt review may instead supply [Review Result v2.1](../video-production/contracts/review-result-contract.md), which the controller validates and maps into the existing assessment meanings. The evaluator may be an LLM, deterministic check, or human, but its evidence and source must be recorded.
+1. Load a unit state and an [Evaluator Result](contracts/evaluator-result.md). A pre-generation prompt review may instead supply [Review Result v2.1](../video-production/contracts/review-result-contract.md); a current managed VOX Poster uses its v2.2 extension with explicit check results. The controller validates either against the applicable route before mapping into existing assessment meanings. The evaluator may be an LLM, deterministic check, or human, but its evidence and source must be recorded. Legacy VOX assessment or v2.1 Poster Review is diagnostic only and cannot advance a new managed Poster.
 2. Apply [route policy](policies/route-policy.md) to select the next Skill/tool or to skip only an optional unit.
 3. Apply the retry budget and semantic boundary from [Execution State](contracts/execution-state.md). Emit exactly one owning capability and one action: advance, retry, skip, block for evidence, request the exact Gate, accept/stop, edit/reuse, bind reported media, request a separate Cost Gate, or escalate to human review.
 4. Persist the decision and run the selected atomic action. Stop before another Skill, Gate, unit, or external action; re-observe the resulting artifact before selecting anything else.
@@ -81,4 +81,4 @@ The envelope is not a Manifest, database, retry ledger, approval, or proof of co
 
 ## Local verification
 
-`scripts/decide-next-action.ps1` evaluates structured fixture assessments only. It proves policy transitions, not real LLM judgment, tool invocation, media quality, or retry effectiveness.
+`scripts/decide-next-action.ps1` evaluates structured assessment/Review input and enforces the route's mechanical PASS invariants. Synthetic fixtures prove policy transitions and blockers, not real evaluator judgment, tool invocation, media quality, human acceptance or retry effectiveness.

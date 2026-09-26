@@ -18,22 +18,38 @@ $reviewProperty = $inputState.PSObject.Properties['review_result']
 $assessment = if ($null -ne $assessmentProperty) { $assessmentProperty.Value } else { $null }
 $reviewResult = if ($null -ne $reviewProperty) { $reviewProperty.Value } else { $null }
 $reviewGate = $null
+$isVoxReview = $false
+$voxTargetTypes = @('vox_poster_shot', 'vox_poster_contact_sheet')
+$voxUnitMarkers = @('style_id', 'style_profile_id', 'production_route', 'motion_route', 'workflow_mode' | ForEach-Object {
+    if ($unit.PSObject.Properties[$_]) { [string]$unit.$_ }
+})
+$isManagedVoxUnit = ($unit.PSObject.Properties['vox_managed'] -and [bool]$unit.vox_managed) -or
+    (@($voxUnitMarkers | Where-Object { $_ -match '(?i)vox|remotion_living_poster|remotion_precision_motion' }).Count -gt 0)
 
 if ($null -ne $reviewResult) {
     foreach ($field in @('schema_version', 'review_id', 'gate', 'target', 'lineage', 'provenance', 'findings', 'decision', 'controller_mapping', 'retry_snapshot')) {
         if ($null -eq $reviewResult.PSObject.Properties[$field] -or $null -eq $reviewResult.$field) { throw "review_result.$field is required." }
     }
     $reviewGate = [string]$reviewResult.gate
-    if ([string]$reviewResult.schema_version -ne '2.1' -or $reviewGate -notin @('pre_generation_prompt', 'previsualization_storyboard')) {
-        throw 'Only Review Result v2.1 pre_generation_prompt and previsualization_storyboard are implemented.'
+    $isVoxReview = [string]$reviewResult.target.target_type -in $voxTargetTypes
+    if ($isManagedVoxUnit -and [string]$unit.stage -eq 'storyboard' -and -not $isVoxReview) { throw 'Managed VOX Poster unit requires a VOX target, not a generative Storyboard target.' }
+    if ([string]$reviewResult.schema_version -notin @('2.1', '2.2') -or $reviewGate -notin @('pre_generation_prompt', 'previsualization_storyboard')) {
+        throw 'Only Review Result v2.1/v2.2 pre_generation_prompt and previsualization_storyboard are implemented.'
     }
+    if ($isVoxReview -and $reviewGate -ne 'previsualization_storyboard') { throw 'VOX Poster targets require previsualization_storyboard.' }
     foreach ($field in @('project_id', 'target_type', 'target_id', 'revision_id', 'content_hash', 'reviewed_at')) {
         if ([string]::IsNullOrWhiteSpace([string]$reviewResult.target.$field)) { throw "review_result.target.$field is required." }
     }
     foreach ($field in @('review_input_hash', 'dependency_hashes', 'evaluator_policy_id', 'evaluator_policy_version')) {
         if ($null -eq $reviewResult.lineage.PSObject.Properties[$field] -or $null -eq $reviewResult.lineage.$field) { throw "review_result.lineage.$field is required." }
     }
-    $dependencyFields = if ($reviewGate -eq 'previsualization_storyboard') {
+    $dependencyFields = if ($isVoxReview -and [string]$reviewResult.schema_version -eq '2.1') {
+        @('frozen_script', 'audiovisual_direction_package', 'production_manifest')
+    }
+    elseif ($isVoxReview) {
+        @('frozen_script', 'audiovisual_direction_package', 'production_manifest', 'poster_shot_map', 'poster_media')
+    }
+    elseif ($reviewGate -eq 'previsualization_storyboard') {
         @('frozen_script', 'audiovisual_direction_package', 'production_manifest', 'storyboard_plan', 'storyboard_prompt', 'storyboard_media')
     }
     else {
@@ -44,13 +60,13 @@ if ($null -ne $reviewResult) {
     }
     if ($reviewGate -eq 'previsualization_storyboard') {
         if ([string]$unit.stage -ne 'storyboard') { throw 'previsualization_storyboard Review requires unit.stage=storyboard.' }
-        if ([string]$reviewResult.target.target_type -ne 'storyboard_asset' -or [string]::IsNullOrWhiteSpace([string]$reviewResult.target.media_checksum)) {
-            throw 'Storyboard Review requires target_type=storyboard_asset and media_checksum.'
+        if ([string]$reviewResult.target.target_type -notin (@('storyboard_asset') + $voxTargetTypes) -or [string]::IsNullOrWhiteSpace([string]$reviewResult.target.media_checksum)) {
+            throw 'Previsualization Review requires a supported media target and media_checksum.'
         }
         $reviewContextProperty = $unit.PSObject.Properties['review_context']
         if ($null -eq $reviewContextProperty -or $null -eq $reviewContextProperty.Value) { throw 'Storyboard Review requires unit.review_context.' }
     }
-    if (@($reviewResult.provenance.evidence_refs).Count -lt 1) { throw 'Review Result must contain provenance evidence_refs.' }
+    if (@($reviewResult.provenance.evidence_refs | Where-Object { -not [string]::IsNullOrWhiteSpace([string]$_) }).Count -lt 1) { throw 'Review Result must contain provenance evidence_refs.' }
 
     $findingEvidence = @($reviewResult.findings | ForEach-Object { @($_.evidence) })
     $evidence = @($reviewResult.provenance.evidence_refs) + $findingEvidence
@@ -58,6 +74,59 @@ if ($null -ne $reviewResult) {
     $mappedVerdict = [string]$reviewResult.controller_mapping.verdict
     $fixtureOnly = [bool]$reviewResult.provenance.fixture_only
     $staleReview = $false
+    $voxEvidenceBlocked = $false
+    if ([string]$reviewResult.decision.verdict -eq 'PASS') {
+        $unresolvedFindings = @($reviewResult.findings | Where-Object {
+            [string]$_.severity -eq 'must_fix' -and
+            (-not $_.PSObject.Properties['resolution'] -or [string]$_.resolution -ne 'resolved' -or
+                -not $_.PSObject.Properties['check_result'] -or [string]$_.check_result -ne 'pass' -or
+                @($_.evidence | Where-Object { -not [string]::IsNullOrWhiteSpace([string]$_) }).Count -lt 1)
+        })
+        if ($unresolvedFindings.Count -gt 0) {
+            $voxEvidenceBlocked = $true
+            $evidence += 'Review PASS contains unresolved must_fix findings.'
+        }
+    }
+    if ($isVoxReview) {
+        if ([string]$reviewResult.schema_version -ne '2.2') {
+            $voxEvidenceBlocked = $true
+            $evidence += 'Legacy VOX Review v2.1 is diagnostic only; re-review the current target with explicit check results.'
+        }
+        elseif ([string]$reviewResult.decision.verdict -eq 'PASS') {
+            $requiredChecks = @('visual_quality', 'poster_readiness')
+            if ([string]$reviewResult.target.target_type -eq 'vox_poster_shot') {
+                $pilotRoute = if ($reviewResult.target.PSObject.Properties['pilot_design_route']) { [string]$reviewResult.target.pilot_design_route } else { '' }
+                if ($pilotRoute -notin @('hero_key_art', 'production_reconstructable')) {
+                    $voxEvidenceBlocked = $true
+                    $evidence += 'VOX Poster Shot requires an explicit pilot_design_route.'
+                }
+                elseif ($pilotRoute -eq 'production_reconstructable') {
+                    $requiredChecks += @('typography_split_test', 'context_separation_test', 'decorative_independence_test', 'rectangle_risk_test', 'motion_sequence_test')
+                }
+            }
+            foreach ($check in $requiredChecks) {
+                $matches = @($reviewResult.findings | Where-Object { [string]$_.check_id -eq $check })
+                if ($matches.Count -ne 1 -or -not $matches[0].PSObject.Properties['check_result'] -or [string]$matches[0].check_result -ne 'pass' -or [string]$matches[0].confidence -ne 'high' -or @($matches[0].evidence | Where-Object { -not [string]::IsNullOrWhiteSpace([string]$_) }).Count -lt 1) {
+                    $voxEvidenceBlocked = $true
+                    $evidence += "Required VOX check $check is missing, unknown, duplicated, or lacks high-confidence evidence."
+                }
+            }
+            $unresolvedMustFix = @($reviewResult.findings | Where-Object {
+                [string]$_.severity -eq 'must_fix' -and
+                (-not $_.PSObject.Properties['resolution'] -or [string]$_.resolution -ne 'resolved' -or
+                    -not $_.PSObject.Properties['check_result'] -or [string]$_.check_result -ne 'pass' -or
+                    @($_.evidence | Where-Object { -not [string]::IsNullOrWhiteSpace([string]$_) }).Count -lt 1)
+            })
+            if ($unresolvedMustFix.Count -gt 0) {
+                $voxEvidenceBlocked = $true
+                $evidence += 'VOX Review contains unresolved must_fix findings.'
+            }
+            if (@($reviewResult.findings | Where-Object { $_.PSObject.Properties['check_result'] -and [string]$_.check_result -in @('fail', 'unknown') }).Count -gt 0) {
+                $voxEvidenceBlocked = $true
+                $evidence += 'VOX Review contains failed or unknown checks.'
+            }
+        }
+    }
 
     if ($reviewGate -eq 'previsualization_storyboard') {
         $reviewContext = $unit.review_context
@@ -96,13 +165,16 @@ if ($null -ne $reviewResult) {
     if ($mappedVerdict -eq 'pass' -and $reviewGate -eq 'pre_generation_prompt' -and ([string]$reviewResult.decision.verdict -ne 'PASS' -or [string]$reviewResult.decision.generation_gate_recommendation -ne 'eligible_for_separate_cost_gate')) {
         throw 'Only a pre-generation Review PASS may recommend entry to the separate Cost Gate.'
     }
-    if ($mappedVerdict -eq 'pass' -and $reviewGate -eq 'previsualization_storyboard' -and ([string]$reviewResult.decision.verdict -ne 'PASS' -or [string]$reviewResult.decision.next_action -ne 'advance_to_prompt_planning' -or [string]$reviewResult.decision.generation_gate_recommendation -ne 'withhold')) {
+    $expectedStoryboardAction = if ($isVoxReview) { 'continue_poster_preparation' } else { 'advance_to_prompt_planning' }
+    if ($mappedVerdict -eq 'pass' -and $reviewGate -eq 'previsualization_storyboard' -and
+        -not ($isVoxReview -and [string]$reviewResult.schema_version -eq '2.1') -and
+        ([string]$reviewResult.decision.verdict -ne 'PASS' -or [string]$reviewResult.decision.next_action -ne $expectedStoryboardAction -or [string]$reviewResult.decision.generation_gate_recommendation -ne 'withhold')) {
         throw 'Storyboard Review PASS may advance only to Prompt planning and must withhold the Cost Gate.'
     }
 
-    if ($staleReview) {
+    if ($staleReview -or $voxEvidenceBlocked) {
         $mappedVerdict = 'blocked'
-        $evidence += 'Current Storyboard target or dependency hash does not match the reviewed revision.'
+        if ($staleReview) { $evidence += 'Current previsualization target or dependency hash does not match the reviewed revision.' }
         $failureTypes = @()
     }
 
@@ -120,6 +192,11 @@ if ($null -ne $reviewResult) {
 }
 
 if ($null -eq $assessment) { throw 'assessment or review_result is required.' }
+if ($isManagedVoxUnit -and $null -eq $reviewResult -and [string]$unit.stage -eq 'storyboard') {
+    $assessment.verdict = 'blocked'
+    $assessment.evidence = @($assessment.evidence) + 'Managed VOX requires a current Review Result; legacy assessment is diagnostic only.'
+    $assessment.failure_types = @()
+}
 
 foreach ($field in @('unit_id', 'stage', 'retry_count', 'max_retries')) {
     if ($null -eq $unit.$field) { throw "unit.$field is required." }
@@ -301,7 +378,7 @@ elseif ($assessment.verdict -eq 'pass') {
         'script_quality' { $decision.selected_capability = 'audiovisual-director' }
         'audiovisual_direction' { $decision.selected_capability = 'video-production' }
         'lookdev' { $decision.selected_capability = 'video-production'; $decision.next_action = 'unlock_approved_domains_only' }
-        'storyboard' { $decision.selected_capability = 'video-production'; $decision.next_action = 'advance_to_prompt_planning' }
+        'storyboard' { $decision.selected_capability = 'video-production'; $decision.next_action = if ($isVoxReview) { 'continue_poster_preparation' } else { 'advance_to_prompt_planning' } }
         'pre_generation_prompt_review' { $decision.selected_capability = 'video-production'; $decision.next_action = 'request_separate_cost_gate' }
         'production_qa' { $decision.selected_capability = 'video-production'; $decision.next_action = 'record_actual_end_state_and_return_controller' }
         default { $decision.next_action = 'advance_to_next_policy_stage' }

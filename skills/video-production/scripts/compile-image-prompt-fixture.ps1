@@ -94,12 +94,23 @@ foreach ($case in (As-Array $fixture.cases)) {
     $variant = [string](Get-Value $spec 'prompt_variant')
     $isVoxPilot = [bool](Get-Value $spec 'is_vox_pilot')
     $pilotDesignRoute = [string](Get-Value $spec 'pilot_design_route')
+    $voxDesignRole = [string](Get-Value $spec 'vox_design_role')
     if ($assetType -notin @('character_identity', 'scene', 'prop', 'graphic', 'keyframe')) { Add-Failure $failures 'prompt_under_specified' }
     if ($variant -notin @('default', 'story_prop', 'product_evidence', 'cover_visual')) { Add-Failure $failures 'prompt_under_specified' }
     if ($variant -eq 'product_evidence' -and $assetType -ne 'prop') { Add-Failure $failures 'prompt_under_specified' }
     if ($variant -eq 'cover_visual' -and $assetType -ne 'keyframe') { Add-Failure $failures 'prompt_under_specified' }
     if ($isVoxPilot -and $pilotDesignRoute -notin @('hero_key_art', 'production_reconstructable')) { Add-Failure $failures 'prompt_under_specified' }
     if (-not $isVoxPilot -and (Has-Text $pilotDesignRoute)) { Add-Failure $failures 'prompt_under_specified' }
+    if (Has-Text $voxDesignRole) {
+        if (-not $isVoxPilot -or $pilotDesignRoute -ne 'production_reconstructable' -or
+            $voxDesignRole -notin @('base_scene', 'transparent_overlay') -or
+            -not (Has-Text (Get-Value $spec 'layout_intent'))) { Add-Failure $failures 'prompt_under_specified' }
+        if ($voxDesignRole -eq 'transparent_overlay' -and
+            (-not (Has-Text (Get-Value $spec 'base_asset_ref')) -or
+             [string](Get-Value (Get-Value $spec 'output_spec') 'background') -ne 'transparent')) {
+            Add-Failure $failures 'prompt_under_specified'
+        }
+    }
 
     $decisions = Get-Value $spec 'decisions'
     $decisionNames = @('subject_action', 'context', 'composition_camera', 'lighting_outcome', 'style_aesthetic', 'optics')
@@ -260,7 +271,17 @@ foreach ($case in (As-Array $fixture.cases)) {
         }
     }
 
-    if ($pilotDesignRoute -eq 'production_reconstructable') {
+    if ($pilotDesignRoute -eq 'production_reconstructable' -and $voxDesignRole -eq 'base_scene') {
+        [void]$modules.Add((New-ModuleText 'VOX Base Scene' @(
+            (Add-LineClause 'Create a clean coherent scene Base for the planned final poster. Respect the reading path, protected text region, separable groups and framing allowance; retain physical architecture and props. Do not bake later editorial titles, arrows, routes or frames into this Base. The final Poster will be locally composed from independently verified overlays.' @('pilot_design_route','vox_design_role','layout_intent') 'keeps the base reusable and prevents a generated final-composite redraw')
+        )))
+    }
+    elseif ($pilotDesignRoute -eq 'production_reconstructable' -and $voxDesignRole -eq 'transparent_overlay') {
+        [void]$modules.Add((New-ModuleText 'VOX Independent Overlay' @(
+            (Add-LineClause 'Create only the named independent design overlay with genuine transparent Alpha, matching the bound Base scene, planned layout, material and effective display size. This is a candidate until text/path, Alpha, rights and design checks pass; do not redraw the complete Poster.' @('pilot_design_route','vox_design_role','base_asset_ref','layout_intent','output_spec') 'preserves independent editability and candidate status')
+        )))
+    }
+    elseif ($pilotDesignRoute -eq 'production_reconstructable') {
         [void]$modules.Add((New-ModuleText 'VOX Pilot Route' @(
             (Add-LineClause 'Create one visually strong editorial poster that is intentionally reconstructable in layered motion design. The final composition must read as one coherent poster, while major typography groups, directional graphics, decorative ink/seal elements and context groups remain visually separable and independently reproducible.' @('pilot_design_route') 'requires coherent poster plus independently reconstructable visual groups'),
             (Add-LineClause 'Preserve useful negative space. Avoid large cross-element texture entanglement, continuous full-width scenery strips, visible crop boundaries, background halos, or designs that would require rectangular screenshot crops for reconstruction. Do not prescribe a fixed layer count, fixed layout, fixed palette, or project-specific visual constants.' @('pilot_design_route') 'prevents rectangle fallback and over-prescription')
@@ -295,7 +316,7 @@ foreach ($case in (As-Array $fixture.cases)) {
         case_id = $case.case_id
         expected_result = $case.expected_result
         image_prompt_spec = [pscustomobject]@{
-            contract_version = $imageContractVersion; asset_id = $spec.asset_id; asset_type = $assetType; prompt_variant = $variant; is_vox_pilot = $isVoxPilot; pilot_design_route = if ($isVoxPilot) { $pilotDesignRoute } else { $null }; source_locks = (As-Array (Get-Value $spec 'source_locks')); decisions = $decisions; material_texture = (Get-Value $spec 'material_texture'); text_handling = (Get-Value $spec 'text_handling'); consistency_locks = (As-Array (Get-Value $spec 'consistency_locks')); allowed_variation = (As-Array (Get-Value $spec 'allowed_variation')); reference_bindings = (As-Array (Get-Value $spec 'reference_bindings')); negative_constraints = (As-Array (Get-Value $spec 'negative_constraints')); output_spec = $output; cover_context = $coverContext; clause_decision_map = $map; executable_prompt = $prompt; qa = [pscustomobject]@{ status = $status; failures = $failures }
+            contract_version = $imageContractVersion; asset_id = $spec.asset_id; asset_type = $assetType; prompt_variant = $variant; is_vox_pilot = $isVoxPilot; pilot_design_route = if ($isVoxPilot) { $pilotDesignRoute } else { $null }; vox_design_role = if (Has-Text $voxDesignRole) { $voxDesignRole } else { $null }; source_locks = (As-Array (Get-Value $spec 'source_locks')); decisions = $decisions; material_texture = (Get-Value $spec 'material_texture'); text_handling = (Get-Value $spec 'text_handling'); consistency_locks = (As-Array (Get-Value $spec 'consistency_locks')); allowed_variation = (As-Array (Get-Value $spec 'allowed_variation')); reference_bindings = (As-Array (Get-Value $spec 'reference_bindings')); negative_constraints = (As-Array (Get-Value $spec 'negative_constraints')); output_spec = $output; cover_context = $coverContext; clause_decision_map = $map; executable_prompt = $prompt; qa = [pscustomobject]@{ status = $status; failures = $failures }
         }
         call_package = [pscustomobject]@{
             executable_prompt = $prompt; reference_bindings = (As-Array (Get-Value $spec 'reference_bindings')); request_parameters = [pscustomobject]@{ size = Get-Value $output 'size'; quality = Get-Value $output 'quality'; background = Get-Value $output 'background'; output_format = Get-Value $output 'output_format' }; adapter_id = 'local-fixture'; unresolved_fields = $unresolved; generation_status = if ($status -eq 'passed') { 'blocked' } else { 'blocked' }

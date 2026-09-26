@@ -12,17 +12,19 @@ $entries = @($registry.profiles | Where-Object { $_.profile_id -eq 'vox_transcri
 
 Assert-True ($entries.Count -eq 1) 'VOX profile must resolve to one stable registry entry.'
 $entry = $entries[0]
-Assert-True ($entry.source_file -eq 'Style_Profile_VOX编辑纸拼贴讲解动画_v1.11_Beat生产方法.md') 'VOX registry source must be v1.11 Historical VOX.'
-Assert-True ($entry.normalized_file -eq 'transcript_driven_handmade_collage.v1.11-zh.json') 'VOX registry normalized file must be v1.11.'
-Assert-True ($entry.normalized_version -eq 'v1.11-zh') 'VOX registry version must be v1.11-zh.'
+Assert-True ($entry.source_file -eq 'Style_Profile_VOX编辑纸拼贴讲解动画_v1.12_执行可靠性.md') 'VOX registry source must be v1.12.'
+Assert-True ($entry.normalized_file -eq 'transcript_driven_handmade_collage.v1.12-zh.json') 'VOX registry normalized file must be v1.12.'
+Assert-True ($entry.normalized_version -eq 'v1.12-zh') 'VOX registry version must be v1.12-zh.'
 Assert-True ($entry.status -eq 'ready') 'VOX registry status must remain ready.'
 
 $sourcePath = Join-Path (Join-Path $libraryRoot 'source') $entry.source_file
 $normalizedPath = Join-Path (Join-Path $libraryRoot 'normalized') $entry.normalized_file
 $changelogPath = Join-Path $libraryRoot 'references\vox-changelog.md'
-Assert-True (Test-Path -LiteralPath $sourcePath) 'VOX v1.11 source file is missing.'
-Assert-True (Test-Path -LiteralPath $normalizedPath) 'VOX v1.11 normalized file is missing.'
+Assert-True (Test-Path -LiteralPath $sourcePath) 'VOX v1.12 source file is missing.'
+Assert-True (Test-Path -LiteralPath $normalizedPath) 'VOX v1.12 normalized file is missing.'
 Assert-True (Test-Path -LiteralPath $changelogPath) 'VOX changelog is missing.'
+Assert-True (Test-Path -LiteralPath (Join-Path $libraryRoot 'source\Style_Profile_VOX编辑纸拼贴讲解动画_v1.11_Beat生产方法.md')) 'VOX v1.11 source migration input must remain.'
+Assert-True (Test-Path -LiteralPath (Join-Path $libraryRoot 'normalized\transcript_driven_handmade_collage.v1.11-zh.json')) 'VOX v1.11 normalized migration input must remain.'
 foreach ($version in @('1.2', '1.3', '1.4', '1.5', '1.6', '1.7', '1.8', '1.9')) {
     Assert-True (@(Get-ChildItem -LiteralPath (Join-Path $libraryRoot 'source') -Filter "*v$version*.md").Count -ge 1) "Historical VOX v$version source must be preserved."
     Assert-True (Test-Path -LiteralPath (Join-Path $libraryRoot "normalized\transcript_driven_handmade_collage.v$version-zh.json")) "Historical VOX v$version normalized profile must be preserved."
@@ -35,14 +37,22 @@ $changelog = Get-Content -LiteralPath $changelogPath -Raw
 $normalized = Get-Content -LiteralPath $normalizedPath -Raw | ConvertFrom-Json
 $profile = $normalized.style_profile
 
-Assert-True ($normalized.normalized_from_source -eq $entry.source_file) 'Normalized Profile must name the active v1.11 source.'
+Assert-True ($normalized.normalized_from_source -eq $entry.source_file) 'Normalized Profile must name the active v1.12 source.'
 Assert-True ($profile.style_id -eq 'vox_transcript_driven_handmade_collage') 'VOX normalized stable ID changed.'
-Assert-True ($profile.version -eq 'v1.11-zh') 'VOX normalized version must be v1.11-zh.'
+Assert-True ($profile.version -eq 'v1.12-zh') 'VOX normalized version must be v1.12-zh.'
 Assert-True ($profile.provenance.source_sha256 -eq $sourceHash) 'Normalized Profile provenance hash must match the active source.'
 Assert-True (($profile.provenance.source_documents | Where-Object { $_.file -eq $entry.source_file }).sha256 -eq $sourceHash) 'Normalized source-document hash must match the active source.'
 
 # Poster-first planning and routing.
 $poster = $profile.poster_first_planning
+Assert-True ($poster.relationship -match 'many_to_many' -and $poster.relationship -match 'scalar_source_beat_id') 'VOX must project many-to-many uses without changing the Beat field type.'
+Assert-True ($poster.execution_reliability.production_default -match 'deterministic_complete_preview_without_model_redraw') 'VOX Base and Overlay must compose locally.'
+Assert-True ($poster.execution_reliability.motion_order -match 'detailed_preplan.*static_key_states_then_formal_motion') 'Formal Motion must follow static and exposure evidence.'
+Assert-True ($poster.execution_reliability.asset_size -match 'extracted_visible_content_pixels') 'Atlas must be evaluated by effective subject pixels.'
+$rulesBlock = [regex]::Match($source, '(?s)以下结构块.*?```json\s*(\{.*?\})\s*```')
+Assert-True ($rulesBlock.Success) 'VOX source must expose the executable reliability rules block.'
+$sourceRules = $rulesBlock.Groups[1].Value | ConvertFrom-Json
+Assert-True (($sourceRules | ConvertTo-Json -Depth 10 -Compress) -eq ($poster.execution_reliability | ConvertTo-Json -Depth 10 -Compress)) 'VOX normalized execution rules drifted from the source block.'
 Assert-True ($poster.required_before_batch_asset_generation) 'Poster Shot Map must be required before batch asset generation.'
 Assert-True ($poster.planning_unit -match 'existing_scene_shot_local_assembly_plan') 'Poster Shot must project into existing Scene/Shot/local assembly ownership.'
 Assert-True (@($poster.required_fields) -contains 'stable_poster_state') 'Stable poster state is missing from the Poster Shot contract.'
@@ -198,7 +208,9 @@ $mirrorPairs = @(
     'modules\asset-prompt-compiler.md',
     'modules\qa-retry.md',
     'scripts\compile-image-prompt-fixture.ps1',
-    'scripts\compile-production-fixture.ps1'
+    'scripts\compile-production-fixture.ps1',
+    'scripts\validate-vox-production.ps1',
+    'scripts\validate-vox-production.py'
 )
 foreach ($relativePath in $mirrorPairs) {
     $rootPath = Join-Path $videoRoot $relativePath
@@ -211,6 +223,14 @@ foreach ($relativePath in $mirrorPairs) {
     $rootText = $rootText.Replace("`r`n", "`n")
     $skillsText = $skillsText.Replace("`r`n", "`n")
     Assert-True ($rootText -eq $skillsText) "VOX affected entry mirror drift: $relativePath"
+}
+$pluginManifest = Get-Content -LiteralPath (Join-Path $projectRoot '.codex-plugin\plugin.json') -Raw | ConvertFrom-Json
+Assert-True ($pluginManifest.skills -eq './skills/') 'The published entrypoint must be manifest-declared skills/.'
+foreach ($relativePath in @('SKILL.md', 'policies\route-policy.md', 'scripts\decide-next-action.ps1')) {
+    $rootPath = Join-Path (Join-Path $projectRoot 'workflow-controller') $relativePath
+    $skillsPath = Join-Path (Join-Path $projectRoot 'skills\workflow-controller') $relativePath
+    Assert-True (((Get-Content -LiteralPath $rootPath -Raw) -replace "`r`n", "`n") -eq
+                 ((Get-Content -LiteralPath $skillsPath -Raw) -replace "`r`n", "`n")) "Controller published entry drift: $relativePath"
 }
 
 $fixture = Get-Content -LiteralPath (Join-Path $PSScriptRoot 'fixtures\vox-poster-first-cases.json') -Raw | ConvertFrom-Json
@@ -309,4 +329,4 @@ foreach ($id in @('natural-edge-no-outline','approved-source-outline','plate-wit
 Assert-True (@($reviewCases.case_id | Sort-Object -Unique).Count -eq $reviewCases.Count) 'Review scenarios must have unique IDs.'
 
 
-Write-Output 'PASS: VOX v1.11 Historical VOX Profile, stable ID/v1.9 history, optional historical modes, orthogonal routing, visual grammar, Project Visual Bible boundary, mobile readability review, source/mirror parity, provenance, and structural fixtures are valid. Visual quality, provider execution, runtime loading, and human approval are not proven.'
+Write-Output 'PASS: VOX v1.12 source/normalized/registry and existing Historical VOX/migration structural fixtures are valid. Visual quality, media execution, runtime loading, and human approval are not proven.'

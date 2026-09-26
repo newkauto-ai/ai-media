@@ -82,6 +82,36 @@ try {
     Assert-True ($productionPilot.image_prompt_spec.executable_prompt -match 'Do not prescribe a fixed layer count, fixed layout, fixed palette') 'Production Pilot compiler must avoid fixed layers, layout, palette, and project constants.'
     Assert-True ($heroPilot.image_prompt_spec.pilot_design_route -eq 'hero_key_art' -and $heroPilot.image_prompt_spec.executable_prompt -notmatch 'independently reconstructable|rectangular screenshot crops') 'Hero Pilot must not inherit Production reconstructability requirements.'
 
+    $seed = ((Get-Content -LiteralPath $fixturePath -Raw -Encoding UTF8 | ConvertFrom-Json).cases | Where-Object { $_.case_id -eq 'vox-production-reconstructable-pilot' } | Select-Object -First 1)
+    $base = $seed | ConvertTo-Json -Depth 30 | ConvertFrom-Json
+    $base.case_id = 'vox-base-candidate'
+    $base.image_prompt_spec | Add-Member -NotePropertyName vox_design_role -NotePropertyValue 'base_scene'
+    $base.image_prompt_spec | Add-Member -NotePropertyName layout_intent -NotePropertyValue 'upper title region; separate route and frame overlays'
+    $base.image_prompt_spec.decisions.subject_action.value = '制作一张干净场景底图'
+    $overlay = $base | ConvertTo-Json -Depth 30 | ConvertFrom-Json
+    $overlay.case_id = 'vox-overlay-candidate'
+    $overlay.image_prompt_spec.vox_design_role = 'transparent_overlay'
+    $overlay.image_prompt_spec | Add-Member -NotePropertyName base_asset_ref -NotePropertyValue 'base-r1-sha256'
+    $overlay.image_prompt_spec.decisions.subject_action.value = '制作单件独立透明设计标题'
+    $overlay.image_prompt_spec.decisions.context.value = 'transparent'
+    $overlay.image_prompt_spec.output_spec.background = 'transparent'
+    $invalid = $overlay | ConvertTo-Json -Depth 30 | ConvertFrom-Json
+    $invalid.case_id = 'vox-overlay-missing-base'
+    $invalid.image_prompt_spec.base_asset_ref = ''
+    $newInput = Join-Path $tempDirectory 'vox-design-candidates.json'
+    $newOutput = Join-Path $tempDirectory 'vox-design-candidates-output.json'
+    [pscustomobject]@{ fixture_only = $true; cases = @($base, $overlay, $invalid) } | ConvertTo-Json -Depth 30 | Set-Content -LiteralPath $newInput -Encoding UTF8
+    & $compilerPath -FixturePath $newInput -OutputPath $newOutput | Out-Null
+    $candidates = (Get-Content -LiteralPath $newOutput -Raw -Encoding UTF8 | ConvertFrom-Json).cases
+    $publishedCompiler = Join-Path $root 'skills\video-production\scripts\compile-image-prompt-fixture.ps1'
+    $publishedOutput = Join-Path $tempDirectory 'vox-design-candidates-published.json'
+    & $publishedCompiler -FixturePath $newInput -OutputPath $publishedOutput | Out-Null
+    $publishedCandidates = (Get-Content -LiteralPath $publishedOutput -Raw -Encoding UTF8 | ConvertFrom-Json).cases
+    Assert-True (($candidates | ConvertTo-Json -Depth 30) -eq ($publishedCandidates | ConvertTo-Json -Depth 30)) 'Published image compiler must match source behavior for VOX design candidates.'
+    Assert-True ($candidates[0].image_prompt_spec.qa.status -eq 'passed' -and $candidates[0].image_prompt_spec.executable_prompt -match 'clean coherent scene Base' -and $candidates[0].image_prompt_spec.executable_prompt -notmatch 'Create one visually strong editorial poster') 'Base candidate must reserve overlay design without asking for a complete generated Poster.'
+    Assert-True ($candidates[1].image_prompt_spec.qa.status -eq 'passed' -and $candidates[1].image_prompt_spec.executable_prompt -match 'only the named independent design overlay') 'Overlay candidate must compile as an independent transparent asset.'
+    Assert-True ($candidates[2].image_prompt_spec.qa.status -eq 'blocked' -and $candidates[2].image_prompt_spec.qa.failures -contains 'prompt_under_specified') 'Overlay candidate without a bound Base must block.'
+
     Write-Output 'PASS: Image Prompt contracts validate legacy templates, cover composition, blocked ChatGPT Web VOX atlas projections, and route-specific VOX Pilot Prompt compilation without generation or Manifest persistence.'
 }
 finally {
