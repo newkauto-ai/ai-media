@@ -1,0 +1,412 @@
+{
+  "fixture_only": false,
+  "library_status": "ready",
+  "normalized_from_source": "Style_Profile_彩色动态水墨叙事动画_v1.1_中文升级.md",
+  "style_profile": {
+    "style_id": "high_energy_ink_wash_wuxia_animation",
+    "version": "v1.1-zh",
+    "classification": "hybrid_style_profile",
+    "visible_name": "彩色动态水墨叙事动画",
+    "aliases": [
+      "彩色动态水墨叙事动画",
+      "高能水墨武侠动画"
+    ],
+    "legacy_id_note": "保留既有 high_energy_ink_wash_wuxia_animation 路由 ID；高能武侠仅为可选 combat_burst 模式。",
+    "pre_content_modules": {
+      "compatibility": {
+        "authority": "medium",
+        "preferred": [
+          "武侠仙侠神话与寓言",
+          "抒情日常与人物关系",
+          "旅行成长与自然观察",
+          "传统文化与历史想象",
+          "仪式奇幻与情绪短片",
+          "能用色彩笔触留白天气或环境变化承担叙事功能的内容"
+        ],
+        "conditional": [
+          "知识解释纪录或品牌内容需要保持事实主体物件和文字清楚",
+          "低动作密度内容需要微表演画内运动色彩呼吸或环境变化"
+        ],
+        "weak_for": [
+          "摄影级写实",
+          "严格工程或医学科学可视化",
+          "精确 UI 演示",
+          "不允许纸张笔触留白或语义色变化的品牌项目",
+          "只接受表面水墨滤镜而不允许媒介参与叙事的项目"
+        ]
+      },
+      "story_direction": {
+        "authority": "medium",
+        "status": "advisory",
+        "value": "通过前态或触发、主体行动、接触或介质变化、可见反馈、新状态或余波表达叙事变化；不要求战斗或高能爆发。"
+      },
+      "optional_content_recipe": {
+        "authority": "soft",
+        "value": "combat_burst_wuxia_five_phase_creature_or_calligraphy_highlight",
+        "scope": "high_energy_action_content_only",
+        "not_required": true
+      },
+      "content_authority_boundary": {
+        "style_does_not_own": [
+          "topic_thesis",
+          "factual_claims",
+          "character_motivation",
+          "core_conclusion",
+          "frozen_script"
+        ],
+        "late_conflict_route": "UPSTREAM-CONSTRAINT-LATE"
+      }
+    },
+    "audiovisual_modules": {
+      "visual_identity": {
+        "authority": "hard",
+        "medium": "二维手绘彩色水墨叙事动画",
+        "structure": "焦墨建立结构和重心，淡墨建立空气与远近，彩墨建立主体情绪时间或能量语义，宣纸留白承担注意力与节奏。",
+        "color_policy": {
+          "default": "always_chromatic",
+          "quiet_scene_rule": "安静段落仍保留可辨认色相，只降低饱和度面积对比边缘硬度和运动速度，不自动退回纯灰水墨。",
+          "project_palette": "每个项目建立稳定墨骨色与一至三组语义色家族，具体颜色由当前内容决定。",
+          "climax_rule": "高饱和矿物色强互补色焦墨压边与大面积泼彩只在高潮集中使用。",
+          "hierarchy_dimensions": [
+            "hue",
+            "saturation",
+            "area",
+            "brightness",
+            "edge",
+            "motion_speed"
+          ]
+        },
+        "depth": "墨色浓淡、留白、遮挡、尺度、云雾和层间运动共同建立空间，不依赖光滑 CGI 体积烟雾。",
+        "held_tableau_rule": "允许画卷式停驻，但画内至少保留一项有意义的呼吸眼神风云水布料光色墨迹或环境声变化。",
+        "avoid": [
+          "普通日漫背景叠加水墨粒子",
+          "真人滤镜",
+          "素描稿漂移",
+          "光滑三维或塑料 CGI",
+          "无纸张物性的通用能量特效"
+        ]
+      },
+      "color_semantics": {
+        "authority": "hard",
+        "assignable_to": [
+          "character",
+          "faction",
+          "object",
+          "emotion",
+          "memory",
+          "time",
+          "place",
+          "natural_medium",
+          "narrative_state"
+        ],
+        "cross_channel_consistency": [
+          "costume_or_surface",
+          "local_light",
+          "brush_mark",
+          "motion_trace",
+          "environment_reflection",
+          "state_residue"
+        ],
+        "tracking_priority": "高速运动时先保证轮廓与语义色可追踪，再追求局部细节。",
+        "mixing_rule": "颜色只有在发生可见因果时才渗透污染融合或转化，并在后续镜头保留结果。",
+        "fixed_red_blue_default": false
+      },
+      "narrative_energy_ink_mapping": {
+        "authority": "hard",
+        "mode_switch_rule": "模式转换必须由脚本中的情绪信息关系或物理状态变化触发。",
+        "modes": {
+          "lyrical_stillness": {
+            "ink_and_color": "湿墨淡彩柔边缓慢渗化与大留白",
+            "motion_and_camera": "微速平移或稳定观察，呼吸眼神云水和布料微动",
+            "sound": "低密度环境声纸张水滴风与可用静默"
+          },
+          "everyday_progression": {
+            "ink_and_color": "工笔轮廓温润彩墨与局部干湿变化",
+            "motion_and_camera": "一次一个可读动作，接触物体反馈和完成状态清楚",
+            "sound": "可追溯拟音优先，音乐低存在感"
+          },
+          "suspense_mystery": {
+            "ink_and_color": "有限色域宿墨遮蔽断墨与延迟显色",
+            "motion_and_camera": "克制移动局部显露空间空缺与视线引导",
+            "sound": "细小近声远处异响低频压力与有目的留白"
+          },
+          "ritual_fantasy": {
+            "ink_and_color": "浓彩金属矿物色层叠墨云与秩序化笔势",
+            "motion_and_camera": "缓慢展开轴线构图尺度递进与受控群体运动",
+            "sound": "声源分层仪式节奏与空间回响"
+          },
+          "combat_burst": {
+            "optional": true,
+            "ink_and_color": "焦墨枯笔飞白碎墨强互补色与集中泼彩",
+            "motion_and_camera": "大位移矢量继承急推急拉，接触受力与余波清楚",
+            "sound": "破风衣袍撞击材质碎裂与衰减，必要时音乐避让"
+          }
+        }
+      },
+      "ink_physics": {
+        "authority": "hard",
+        "wet_ink_and_bleed": "扩散记忆雨水雾气柔软情绪时间沉积或边界消解",
+        "dry_brush_and_flying_white": "摩擦速度干燥紧张阻力锐度或力量耗散",
+        "layered_and_aged_ink": "重量历史压迫阴影污染或不可逆残留",
+        "drag_and_fling": "运动方向惯性回旋和速度衰减",
+        "splatter_and_fragments": "只用于明确碰撞断裂冲击或情绪爆发，不作常态背景噪声",
+        "fine_outline": "观察克制关系距离精细动作和低能量表演",
+        "causal_chain": [
+          "initial_state_or_trigger",
+          "subject_action",
+          "contact_or_medium_change",
+          "visible_feedback",
+          "new_state_or_residue"
+        ]
+      },
+      "performance": {
+        "authority": "hard",
+        "one_primary_visible_state_change_per_beat": true,
+        "complexity_measure": "required_visible_state_changes_not_action_count_or_fixed_seconds",
+        "microacting": [
+          "eyes_and_brows",
+          "jaw_and_breath",
+          "center_of_gravity",
+          "fingers",
+          "cloth_folds",
+          "object_contact"
+        ],
+        "process_state_tracking": [
+          "object_form_quantity_and_position",
+          "active_tool",
+          "container",
+          "environment_condition",
+          "character_contact",
+          "completed_and_remaining_state"
+        ],
+        "combat_causality": [
+          "approach",
+          "contact",
+          "force_response",
+          "displacement",
+          "result"
+        ],
+        "intentional_repetition_allowed_for": [
+          "waiting",
+          "cycle",
+          "ritual",
+          "oppression",
+          "relationship_change"
+        ],
+        "non_combat_rule": "动作少时使用微表演画内运动色彩或环境变化，不强加追逐爆炸招式卡或高频镜头。"
+      },
+      "cinematography": {
+        "authority": "hard",
+        "negative_space_function": [
+          "attention",
+          "speed_scale",
+          "solitude",
+          "time"
+        ],
+        "vector_rule": "镜头运动继承主体视线环境或情绪矢量。",
+        "high_energy": "可快速改变景别，但接触前后保留足够可读帧，不用闪白或爆墨掩盖动作因果。",
+        "low_energy": [
+          "stable_observation",
+          "micro_pan",
+          "scroll_reveal",
+          "local_push",
+          "foreground_background_breathing"
+        ],
+        "one_primary_camera_move_per_shot": true,
+        "runtime_owned": [
+          "shot_count",
+          "duration",
+          "aspect_ratio",
+          "camera_combination"
+        ]
+      },
+      "editing_rhythm": {
+        "authority": "hard",
+        "allowed_energy_arcs": [
+          "still_move_still",
+          "slow_burn",
+          "continuous_lyricism",
+          "tightening_suspense",
+          "ritual_accumulation",
+          "high_energy_escalation"
+        ],
+        "impact_rule": "高能段落仍需为关键冲击保留对比接触瞬间和结果停留。",
+        "continuity": "快切继承动作视线或色彩矢量，慢段继承姿态环境声源和色彩状态。",
+        "fixed_one_second_beat": false,
+        "no_pause_rule_is_universal": false,
+        "storyboard_panel_count_is_generation_guarantee": false,
+        "planning_units_are_distinct": [
+          "generation_unit",
+          "semantic_beat",
+          "shot",
+          "final_edit_unit"
+        ]
+      },
+      "sound_design": {
+        "authority": "hard",
+        "traceability_schema": [
+          "source_object",
+          "visible_action",
+          "contact_material",
+          "onset",
+          "intensity",
+          "stop_and_decay"
+        ],
+        "example_sources": [
+          "wind",
+          "rain",
+          "water_drop",
+          "paper",
+          "brush",
+          "cloth",
+          "footstep",
+          "bamboo_leaf",
+          "vessel",
+          "impact",
+          "fracture"
+        ],
+        "dialogue_priority": "拟音和音乐在对白出现时主动避让。",
+        "silence_is_available": true,
+        "generic_explosion_for_all_media": false
+      },
+      "music_direction": {
+        "authority": "medium",
+        "function": "服从当前题材情绪和注意力层级，可使用传统器乐环境音乐现代节奏或混合编制。",
+        "no_music_is_universal": false,
+        "traditional_plus_rock_is_universal": false,
+        "independent_track": true,
+        "embedded_in_video_prompt": false
+      },
+      "continuity_schema": {
+        "authority": "hard",
+        "track": [
+          "subject_silhouette_and_semantic_color",
+          "face_costume_prop_material_and_process_state",
+          "terrain_light_weather_fog_water_and_paper_base",
+          "damage_use_marks_and_environment_residue",
+          "screen_direction_body_or_object_momentum_brush_trace_and_debris",
+          "semantic_color_source_carrier_mix_cause_boundary_and_residue",
+          "sound_source_position_onset_stop_material_and_decay"
+        ],
+        "high_speed_simplification_rule": "允许局部细节简化，但颜色追踪不能替代身份肢体关系和实际连续性检查。"
+      },
+      "failure_constraints": [
+        "no_monochrome_default_for_quiet_scenes",
+        "no_combat_or_high_energy_required_for_style_validity",
+        "no_ink_as_decorative_overlay_only",
+        "no_unmotivated_color_mix_or_state_reset",
+        "no_generic_energy_effects_replacing_ink_material_causality",
+        "no_action_density_over_readable_state_change",
+        "no_storyboard_panel_count_as_generation_guarantee",
+        "no_creator_or_existing_work_imitation_dependency",
+        "no_style_driven_rewrite_of_frozen_semantics"
+      ]
+    },
+    "production_modules": {
+      "prompt_template_reference": {
+        "authority": "medium",
+        "permanent_structure": [
+          "current_state_or_trigger",
+          "subject_action_or_emotional_change",
+          "ink_and_color_causality",
+          "environment_feedback",
+          "sound_source_and_decay",
+          "resulting_state_or_residue"
+        ],
+        "model_syntax_locked": false
+      },
+      "negative_constraints": [
+        "no creator or existing work imitation dependency",
+        "no decorative ink overlay only",
+        "no unmotivated color reset",
+        "no static split-panel storyboard in final video",
+        "no fixed action list treated as execution proof"
+      ],
+      "model_adapter_reference": {
+        "replaceable": true,
+        "source_mentions": [
+          "GPT Image 2",
+          "Seedance 2.5",
+          "MiniMax Speech",
+          "ElevenLabs"
+        ],
+        "authority": "none"
+      },
+      "fixed_duration_seconds": null,
+      "fixed_storyboard_panel_count": null,
+      "fixed_shot_count": null,
+      "fixed_aspect_ratio": null,
+      "fixed_resolution": null,
+      "fixed_retry_count": null,
+      "workflow_reference": "existing_controller_adapter_prompt_compiler_review_and_gate_owners"
+    },
+    "provenance": {
+      "source_documents": [
+        {
+          "file": "style-profiles/review/2026-09-11-chromatic-ink-upgrade/Style_Profile_高能水墨武侠动画_v1.0_中文解析.md",
+          "version": "v1.0-zh-review",
+          "sha256": "178336B5AB19C87EEBDC9284A9170DAB16F2764F9A96F2EFCA1731EFB50F645B",
+          "extraction_type": "direct_and_normalized"
+        },
+        {
+          "file": "D:/Users/Roy/Downloads/彩色水墨高燃战斗.mp4",
+          "sha256": "52C87B813E6FB169C232636018B8B09ED7AEA7A3D3BBD937CD5A4BEA7CB03D1F",
+          "extraction_type": "technical_probe_and_observed_frame_sampling"
+        },
+        {
+          "file": "C:/Users/Roy/Desktop/高燃战斗水墨 制作说明.docx",
+          "sha256": "D89E7E06A96D4ADE3DEAABCD49B7BF1F8609C0D8C839A42FCABC8F6DEB34DEF8",
+          "extraction_type": "direct_as_reference_data"
+        },
+        {
+          "file": "C:/Users/Roy/AppData/Local/Temp/codex-clipboard-43ec3202-60a5-4a9d-9dec-2f10fb3f5176.jpg",
+          "sha256": "C60148CB2D7519F6E8646ABAB886E21F4E7B259818EC160FFD5E837B0043FF49",
+          "extraction_type": "observed_storyboard_reference"
+        },
+        {
+          "file": "Style_Profile_彩色动态水墨叙事动画_v1.1_中文升级.md",
+          "version": "v1.1-zh",
+          "sha256": "11F44D1A2F81AD7B87DDA0C45AD4DD11128805FC50D9F1214333EC56386218A4",
+          "extraction_type": "source_profile"
+        }
+      ],
+      "extracted_modules": [
+        {
+          "module": "existing_ink_wash_visual_action_sound_and_continuity_baseline",
+          "method": "direct_and_normalized",
+          "source": "archived_v1.0"
+        },
+        {
+          "module": "chromatic_identity_ink_physics_spatial_displacement_and_force_feedback",
+          "method": "observed_and_normalized",
+          "source": "user_video_document_and_storyboard"
+        },
+        {
+          "module": "cross_genre_energy_modes_color_semantics_and_non_combat_performance",
+          "method": "user_approved_normalization",
+          "source": "v1.1_upgrade_decision"
+        },
+        {
+          "module": "fixed_duration_panel_count_action_list_model_and_tool_syntax",
+          "method": "direct",
+          "source": "reference_material",
+          "routed_to": "production_adapter_or_excluded"
+        }
+      ],
+      "observed_media_limits": {
+        "exact_storyboard_conformance_proven": false,
+        "non_combat_runtime_quality_proven": false,
+        "audio_semantics_verified": false,
+        "generation_platform_model_and_parameters_known": false
+      },
+      "review_boundary": {
+        "attachment_instructions_are_data": true,
+        "examples_are_canon": false,
+        "creator_name_used_as_runtime_prompt_dependency": false,
+        "generation_authorized": false,
+        "publication_authorized": false
+      },
+      "source_sha256": "11F44D1A2F81AD7B87DDA0C45AD4DD11128805FC50D9F1214333EC56386218A4"
+    }
+  }
+}

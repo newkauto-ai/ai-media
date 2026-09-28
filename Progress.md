@@ -2,7 +2,7 @@
 
 ## Current Goal
 
-2026-09-23，B24经验已按用户授权完成 VOX v1.11 的源码内修订：自然边界拆解、原生描边保留、按暴露修补残影、相对微动画和片尾意图进入既有模块。VOX Profile版本保持 v1.11-zh；已更新 cachebuster 并部署 ai-media@personal 0.1.0+codex.20260923094059。安装缓存 VOX 校验通过，关键文件与源码哈希一致；当前会话的 Skill 热加载未核验。本条为最新范围，下面保留其他任务历史。
+2026-09-28，稳定 ID `high_energy_ink_wash_wuxia_animation` 已从“高能水墨武侠动画”升级为“彩色动态水墨叙事动画” `v1.1-zh`：彩色成为静态、文戏和高能段落的共同默认条件，新增抒情、日常、悬疑、仪式奇幻四种非战斗模式，并将 `combat_burst` 保留为可选模式；固定 15 秒、逐秒动作、红蓝对打和具体模型参数均不进入 Style Core。源码、归一化档案、registry 与针对性回归已同步并通过；插件已重装为 `ai-media@personal 0.1.0+codex.20260928123609`，排除 `.git` 元数据后源码与活动缓存 564/564、零缺失、零多余、零 SHA-256 差异。当前会话的 Skill 热加载未核验。本条为最新范围，下面保留其他任务历史。
 
 稳定 ID `oriental_pastoral_cinematic_lifestyle` 已按 `田园风_style_profile_升级_short_spec_插件交接版.md` 从 v1.1 增量升级并有界部署为 `v1.2-zh`：工艺题材新增 `atmosphere_shot`、`process_detail_shot`、`progression_shot` 三类镜头，完整材料状态链允许跨镜头成立；后续源码修正已移除预设镜头比例与默认序列，改由插件结合叙事目的、工序与材料状态、信息密度、人物/空间关系、音乐/情绪曲线及呼吸需求动态设计节奏。Scene/Shot、Storyboard、Asset Prompt、Clip Prompt 与 Production Manifest 复用现有 owner，增加呼吸功能、前后状态、`completion_delta` 与 visual echo 输出，不新增 Gate、Manifest、状态机或 Retry。Profile 继续保持 `pending_review`；当前活动插件已更新为 `ai-media@personal 0.1.0+codex.20260923094059`；本轮安装覆盖了田园风自适应节奏源码修正。
 

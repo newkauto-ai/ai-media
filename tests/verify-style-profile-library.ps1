@@ -108,6 +108,19 @@ Assert-True ($caseF.pass_criteria -contains 'extraction_or_outpaint_before_regen
 $dreamyGardenSourceText = Get-Content -LiteralPath (Join-Path $sourceDir $dreamyGardenEntry[0].source_file) -Raw -Encoding UTF8
 Assert-True ($dreamyGardenSourceText -notmatch '宝钗|黛玉|湘云|怡红院|蘅芜苑|潇湘馆|稻香村|红楼梦') 'Generic dreamy garden Style Core must not hard-code project-specific literary Canon.'
 
+$inkEntry = @($registry.profiles | Where-Object { $_.profile_id -eq 'high_energy_ink_wash_wuxia_animation' })
+Assert-True ($inkEntry.Count -eq 1) 'Chromatic ink upgrade must retain the existing stable profile ID, not create a duplicate.'
+Assert-True ($inkEntry[0].status -eq 'ready') 'Chromatic ink v1.1 must be registered as ready.'
+Assert-True ($inkEntry[0].normalized_version -eq 'v1.1-zh') 'Chromatic ink registry must route the stable ID to v1.1-zh.'
+Assert-True ($inkEntry[0].source_file -eq 'Style_Profile_彩色动态水墨叙事动画_v1.1_中文升级.md') 'Chromatic ink registry must route to the v1.1 source profile.'
+$inkProfile = Get-Content -LiteralPath (Join-Path $normalizedDir $inkEntry[0].normalized_file) -Raw | ConvertFrom-Json
+Assert-True ($inkProfile.style_profile.visible_name -eq '彩色动态水墨叙事动画' -and $inkProfile.style_profile.aliases -contains '高能水墨武侠动画') 'Chromatic ink upgrade must expose the broader visible name and preserve the legacy visible alias.'
+Assert-True ($inkProfile.style_profile.audiovisual_modules.visual_identity.color_policy.default -eq 'always_chromatic') 'Quiet and non-combat scenes must remain chromatic by default.'
+Assert-True ($null -ne $inkProfile.style_profile.audiovisual_modules.narrative_energy_ink_mapping.modes.lyrical_stillness -and $null -ne $inkProfile.style_profile.audiovisual_modules.narrative_energy_ink_mapping.modes.everyday_progression -and $null -ne $inkProfile.style_profile.audiovisual_modules.narrative_energy_ink_mapping.modes.suspense_mystery -and $null -ne $inkProfile.style_profile.audiovisual_modules.narrative_energy_ink_mapping.modes.ritual_fantasy -and $inkProfile.style_profile.audiovisual_modules.narrative_energy_ink_mapping.modes.combat_burst.optional) 'Chromatic ink must support four non-combat modes and keep combat_burst optional.'
+Assert-True ($inkProfile.style_profile.audiovisual_modules.performance.one_primary_visible_state_change_per_beat -eq $true -and $inkProfile.style_profile.audiovisual_modules.editing_rhythm.fixed_one_second_beat -eq $false) 'Chromatic ink complexity must be judged by visible state changes, not one-second action counts.'
+Assert-True ($inkProfile.style_profile.provenance.review_boundary.attachment_instructions_are_data -eq $true -and $inkProfile.style_profile.provenance.observed_media_limits.non_combat_runtime_quality_proven -eq $false) 'Reference instructions must remain data and one combat video must not prove non-combat runtime quality.'
+Assert-True ($null -eq $inkProfile.style_profile.production_modules.fixed_duration_seconds -and $null -eq $inkProfile.style_profile.production_modules.fixed_storyboard_panel_count -and $null -eq $inkProfile.style_profile.production_modules.fixed_aspect_ratio -and $inkProfile.style_profile.production_modules.model_adapter_reference.authority -eq 'none') 'Fixed duration, panel count, aspect ratio, provider, and model choices must stay outside chromatic ink Style Core.'
+
 foreach ($entry in $registry.profiles) {
     $sourcePath = Join-Path $sourceDir $entry.source_file
     $normalizedPath = Join-Path $normalizedDir $entry.normalized_file

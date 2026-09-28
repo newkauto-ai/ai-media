@@ -365,12 +365,12 @@
     },
     {
       "profile_id": "high_energy_ink_wash_wuxia_animation",
-      "source_file": "Style_Profile_高能水墨武侠动画_v1.0_中文解析.md",
-      "source_sha256": "178336B5AB19C87EEBDC9284A9170DAB16F2764F9A96F2EFCA1731EFB50F645B",
-      "normalized_file": "high_energy_ink_wash_wuxia_animation.1.0-zh.json",
-      "normalized_version": "v1.0-zh",
+      "source_file": "Style_Profile_彩色动态水墨叙事动画_v1.1_中文升级.md",
+      "source_sha256": "11F44D1A2F81AD7B87DDA0C45AD4DD11128805FC50D9F1214333EC56386218A4",
+      "normalized_file": "high_energy_ink_wash_wuxia_animation.1.1-zh.json",
+      "normalized_version": "v1.1-zh",
       "classification": "hybrid_style_profile",
-      "status": "pending_review",
+      "status": "ready",
       "provenance_verified": true
     },
     {
