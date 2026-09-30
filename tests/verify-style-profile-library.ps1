@@ -110,9 +110,9 @@ Assert-True ($dreamyGardenSourceText -notmatch '宝钗|黛玉|湘云|怡红院|�
 
 $inkEntry = @($registry.profiles | Where-Object { $_.profile_id -eq 'high_energy_ink_wash_wuxia_animation' })
 Assert-True ($inkEntry.Count -eq 1) 'Chromatic ink upgrade must retain the existing stable profile ID, not create a duplicate.'
-Assert-True ($inkEntry[0].status -eq 'ready') 'Chromatic ink v1.1 must be registered as ready.'
-Assert-True ($inkEntry[0].normalized_version -eq 'v1.1-zh') 'Chromatic ink registry must route the stable ID to v1.1-zh.'
-Assert-True ($inkEntry[0].source_file -eq 'Style_Profile_彩色动态水墨叙事动画_v1.1_中文升级.md') 'Chromatic ink registry must route to the v1.1 source profile.'
+Assert-True ($inkEntry[0].status -eq 'pending_review') 'Chromatic ink v1.2 must remain pending_review until representative visual acceptance.'
+Assert-True ($inkEntry[0].normalized_version -eq 'v1.2-zh') 'Chromatic ink registry must route the stable ID to v1.2-zh.'
+Assert-True ($inkEntry[0].source_file -eq 'Style_Profile_彩色动态水墨叙事动画_v1.2_写意章法与笔墨升级.md') 'Chromatic ink registry must route to the v1.2 source profile.'
 $inkProfile = Get-Content -LiteralPath (Join-Path $normalizedDir $inkEntry[0].normalized_file) -Raw | ConvertFrom-Json
 Assert-True ($inkProfile.style_profile.visible_name -eq '彩色动态水墨叙事动画' -and $inkProfile.style_profile.aliases -contains '高能水墨武侠动画') 'Chromatic ink upgrade must expose the broader visible name and preserve the legacy visible alias.'
 Assert-True ($inkProfile.style_profile.audiovisual_modules.visual_identity.color_policy.default -eq 'always_chromatic') 'Quiet and non-combat scenes must remain chromatic by default.'
@@ -120,6 +120,15 @@ Assert-True ($null -ne $inkProfile.style_profile.audiovisual_modules.narrative_e
 Assert-True ($inkProfile.style_profile.audiovisual_modules.performance.one_primary_visible_state_change_per_beat -eq $true -and $inkProfile.style_profile.audiovisual_modules.editing_rhythm.fixed_one_second_beat -eq $false) 'Chromatic ink complexity must be judged by visible state changes, not one-second action counts.'
 Assert-True ($inkProfile.style_profile.provenance.review_boundary.attachment_instructions_are_data -eq $true -and $inkProfile.style_profile.provenance.observed_media_limits.non_combat_runtime_quality_proven -eq $false) 'Reference instructions must remain data and one combat video must not prove non-combat runtime quality.'
 Assert-True ($null -eq $inkProfile.style_profile.production_modules.fixed_duration_seconds -and $null -eq $inkProfile.style_profile.production_modules.fixed_storyboard_panel_count -and $null -eq $inkProfile.style_profile.production_modules.fixed_aspect_ratio -and $inkProfile.style_profile.production_modules.model_adapter_reference.authority -eq 'none') 'Fixed duration, panel count, aspect ratio, provider, and model choices must stay outside chromatic ink Style Core.'
+
+
+Assert-True ($inkProfile.style_profile.version -eq 'v1.2-zh') 'Chromatic ink normalized version must match registry.'
+Assert-True ($inkProfile.style_profile.provenance.source_sha256 -eq $inkEntry[0].source_sha256) 'Chromatic ink normalized provenance must bind the registered source hash.'
+Assert-True (Test-Path -LiteralPath (Join-Path $sourceDir 'Style_Profile_彩色动态水墨叙事动画_v1.1_中文升级.md')) 'Chromatic ink must preserve the v1.1 source history.'
+Assert-True (Test-Path -LiteralPath (Join-Path $normalizedDir 'high_energy_ink_wash_wuxia_animation.1.1-zh.json')) 'Chromatic ink must preserve the v1.1 normalized history.'
+Assert-True ($inkProfile.style_profile.provenance.observed_media_limits.v1_2_static_low_noise_quality_proven -eq $false -and $inkProfile.style_profile.provenance.review_boundary.v1_2_representative_visual_acceptance -eq $false) 'A rule upgrade must not claim new visual quality or acceptance.'
+Assert-True ($inkProfile.style_profile.production_modules.prompt_template_reference.permanent_structure.Count -eq 6 -and $inkProfile.style_profile.production_modules.prompt_template_reference.static_image_structure.Count -eq 7) 'Static image guidance must coexist with the existing animation causal prompt structure.'
+Assert-True ($inkProfile.style_profile.audiovisual_modules.visual_identity.paper_surface -and $inkProfile.style_profile.audiovisual_modules.visual_identity.brush_organization -and $inkProfile.style_profile.audiovisual_modules.visual_identity.edge_hierarchy -and $inkProfile.style_profile.audiovisual_modules.cinematography.asset_edge_scope) 'Chromatic ink must carry paper, structural brushwork, edge hierarchy and asset-scope guidance into normalized fields.'
 
 foreach ($entry in $registry.profiles) {
     $sourcePath = Join-Path $sourceDir $entry.source_file
