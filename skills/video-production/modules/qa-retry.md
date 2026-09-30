@@ -39,6 +39,16 @@ emit a total similarity score or new failure taxonomy.
 
 Whiteboard 1.3 segment execution remains ordinary `production_qa`: render and technically check one immutable Job before starting the next; on failure retain passed segments, stop downstream, and route only the named failed unit through existing Execution State. A continuous-canvas merge checks non-overlapping logical frame ranges, exact total frames/duration, no boundary duplicate/gap/flash/state loss, hidden tip at the boundary, full decode, and SHA-256. A board cut must be declared. Technical success and merge parity remain `success_pending_human_review` until continuous human viewing.
 
+## Illustrated character action and emphasis QA
+
+For illustration-based local assembly, compare actual encoded media with the Shot's planned action phases. Check pose changes, intermediate transitions, body/foot registration, completion/reaction and hand/prop contact at viewing size. A required physical action replaced by a static pose, whole-image entrance/translation/scale, or blink alone is `motion_failure`; discontinuous transfer, a duplicate prop or a broken contact edge is `artifact` or `continuity_mismatch` according to the observed defect. Check a transferred prop's screen position, size, orientation and appearance across release/receipt, not only the two endpoint poses.
+
+Repair only the missing transition or responsible asset/use under the existing retry authority. An unrelated action's pose is not a valid in-between merely because identity matches. A completed action may land in a purposeful hold. When a simpler design is permitted by the current direction and preserves its required narrative function, record what it actually performs and what was omitted; never report a deleted action as having passed the original plan. Required narrative actions cannot be silently removed to bypass a failure.
+
+Assess project-requested prop, text, graphic and glow emphasis at normal playback size and requested SFX strength in the rendered mix. Prefer a clear primary attention target and readable holds; match sounds to visible motion/settle events, preserve intelligible narration and check clipping. Increasing master gain or citing peak level alone does not establish stronger event sound. These are project-relative judgments, not global loudness, amplitude or effect-count defaults.
+
+Sampled stills support contact and edge checks but do not prove fluent action, perceptible emphasis or audible SFX. Keep technical checks, static/key-state findings, continuous viewing/listening and user acceptance distinct in existing QA records. Missing playback/listening evidence remains `UNKNOWN`, never a perceptual PASS.
+
 ## Natural layers and micro-animation QA
 
 For VOX, use actual evidence in existing `production_qa`, not a new Gate. A clipped approved source outline, visible hard crop, neighbor fragment, stamp/text ghost, hole or broken contact edge is `artifact` (or `camera_failure` for an unintended framing cause); displaced/unreadable critical text is `text_render_failure`. No added outline is valid when natural separation already reads; preserve approved intrinsic outlines without doubling them. A recovered background never proves hidden anatomy complete.
